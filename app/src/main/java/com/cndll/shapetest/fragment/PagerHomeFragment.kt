@@ -82,7 +82,15 @@ class PagerHomeFragment : Fragment() {
 
         override fun onCreateViewHolder(p0: ViewGroup?, p1: Int): RecyclerAdapter.ItemView {
             //val view = LayoutInflater.from(p0?.context).inflate(R.layout.banner, p0, false)
-            val view = MenuGrid(p0, null)
+            val bean1 = MenuGrid.MenuBean()
+            bean1.title = "美妆"
+            val bean2 = MenuGrid.MenuBean()
+            bean2.title = "家电"
+            val bean3 = MenuGrid.MenuBean()
+            bean3.title = "美女"
+            val dataList = listOf<MenuGrid.MenuBean>(bean1, bean2, bean3)
+
+            val view = MenuGrid(p0, dataList)
             val params = view.view.layoutParams
             val windowManager = p0?.context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
             params.height = windowManager.defaultDisplay.height / 2
