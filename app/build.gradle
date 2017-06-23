@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion "25.0.0"
     dataBinding {
         enabled = true
     }
@@ -50,4 +50,17 @@ dependencies {
     compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2@aar'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.4.3'
+    compile files('libs/SocialSDK_QQ_Simplify.jar')
+    compile files('libs/SocialSDK_Sina_Simplify.jar')
+    compile files('libs/SocialSDK_WeChat_Simplify.jar')
+    compile files('libs/umeng_shareboard_widget.jar')
+    compile files('libs/umeng_social_api.jar')
+    compile files('libs/umeng_social_net.jar')
+    compile files('libs/umeng_social_shareboard.jar')
+    compile files('libs/umeng_social_shareview.jar')
+    compile files('libs/umeng_social_tool.jar')
+    compile files('libs/universal-image-loader-1.9.4.jar')
+    compile files('libs/open_sdk_r5043_lite.jar')
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    compile files('libs/alipaySdk-20160825.jar')
 }
