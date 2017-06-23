@@ -16,8 +16,9 @@ import kotlin.concurrent.thread
 class MenuGrid(view: ViewGroup?) {
     var view: View = LayoutInflater.from(view?.context).inflate(R.layout.banner, view, false)
 
-    fun setBanner() {
+    fun setBanner(dataList: List<BannerBean>) {
 
+//todo
     }
 
     fun setMenuData(dataList: List<MenuBean>?) {
