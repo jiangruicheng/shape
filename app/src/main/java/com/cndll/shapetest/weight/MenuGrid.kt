@@ -13,10 +13,14 @@ import kotlin.concurrent.thread
 /**
  * Created by kongqing on 2017/6/20.
  */
-class MenuGrid(view: ViewGroup?, dataList: List<MenuBean>?) {
+class MenuGrid(view: ViewGroup?) {
     var view: View = LayoutInflater.from(view?.context).inflate(R.layout.banner, view, false)
-    val dataList = dataList
-    fun setViewData() {
+
+    fun setBanner() {
+
+    }
+
+    fun setMenuData(dataList: List<MenuBean>?) {
         thread {
             val menu = view.findViewById(R.id.menu) as ViewGroup
             for (i in 0..menu.childCount - 1) {
@@ -49,6 +53,11 @@ class MenuGrid(view: ViewGroup?, dataList: List<MenuBean>?) {
                 }
             }
         }
+    }
+
+    open class BannerBean {
+        val imageUrl: String = ""
+        val gotoUrl: String = ""
     }
 
     open class MenuBean {
