@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
-import android.widget.ImageView
 import com.cndll.shapetest.R
 import com.cndll.shapetest.bean.Login
 import com.cndll.shapetest.databinding.ActivityLoginBinding
@@ -39,7 +38,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
         }
         binding.wechat.setOnClickListener {
-
             UtilsUmeng.Login(this@LoginActivity, applicationContext, SHARE_MEDIA.WEIXIN, mHandler)
         }
     }
@@ -58,10 +56,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
        }
 
    }
-
-
-
-
 
     /**
      * 第三方登录
