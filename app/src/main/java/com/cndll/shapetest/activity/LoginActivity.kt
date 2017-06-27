@@ -17,7 +17,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     /**
      * 登录之后
      * */
-    lateinit var mHandler:Handler
+    lateinit private var mHandler:Handler
 
     override fun initTitle() {
         binding.titlebar.title.text = "手机登录"
@@ -49,7 +49,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
            override fun handleMessage(msg: Message) {
                when (msg.what) {
                    Ini.SDK_PAY_FLAG3 -> {
-                       println("请求自己的接口登录！")
+                       println("拿到第三方登录的信息,请求自己的接口登录！")
                    }
                }
            }
