@@ -5,6 +5,7 @@ import `in`.srain.cube.views.ptr.PtrDefaultHandler
 import `in`.srain.cube.views.ptr.PtrFrameLayout
 import `in`.srain.cube.views.ptr.PtrHandler
 import `in`.srain.cube.views.ptr.util.PtrLocalDisplay
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -25,7 +26,8 @@ import com.cndll.shapetest.databinding.FragmentHomeBinding
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class
+HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun initBindingVar() {
     }
 
@@ -48,6 +50,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         mView = binding.root
         initDownRefresh()
         initPageView()
+
+        binding.titlebar.root.setBackgroundResource(R.color.titleRed)
+        binding.titlebar.title.text = "众享消费"
+        binding.titlebar.title.setTextColor(Color.WHITE)
+        binding.titlebar.back.visibility = View.GONE
+        binding.titlebar.menu.visibility = View.GONE
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

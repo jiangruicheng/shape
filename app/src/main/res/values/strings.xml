@@ -21,6 +21,16 @@
     <string name="sign_register">注册</string>
 
 
+    <!-- 我的 -->
+    <string name="mine_advance_order">预约订单</string>
+    <string name="mine_vouchers_code">我的抵用卷</string>
+    <string name="mine_generalize">我的推广</string>
+    <string name="mine_booking">我的拼团</string>
+    <string name="mine_apply_business">申请成为商家</string>
+    <string name="mine_managing_partner">申请成为管理合伙人</string>
+    <string name="mine_servier_partner">申请成为服务合伙人</string>
+    <string name="mine_salesman">申请成为业务员</string>
+
     <!-- 二维码 -->
     <string name="app_picker_name">Applications</string>
     <string name="bookmark_picker_name">Bookmarks</string>

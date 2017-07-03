@@ -38,7 +38,7 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
         if (type.equals("pwd")){
             binding.signRegisterPwd.text="修改密码"
             binding.signRegisterPwd.setBackgroundColor(resources.getColor(R.color.tabTextSelect))
-
+            binding.signAgreement.visibility=View.GONE
         }
 
         cT=MyCountTime(60000,1000)
