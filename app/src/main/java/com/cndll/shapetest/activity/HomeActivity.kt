@@ -8,6 +8,7 @@ import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityHomeBinding
 import com.cndll.shapetest.fragment.HomeFragment
 import com.cndll.shapetest.fragment.MineFragment
+import com.cndll.shapetest.fragment.TableDataFragment
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>(),BottomNavigationBar.OnTabSelectedListener {
 
@@ -20,6 +21,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(),BottomNavigationBar.OnT
     override fun onTabSelected(position: Int) {
         when(position){
             0 -> supportFragmentManager.beginTransaction().replace(R.id.frame, HomeFragment.newInstance("", "")).commit()
+            2 -> supportFragmentManager.beginTransaction().replace(R.id.frame, TableDataFragment.newInstance("", "")).commit()
             4 -> supportFragmentManager.beginTransaction().replace(R.id.frame, MineFragment.newInstance("", "")).commit()
         }
 

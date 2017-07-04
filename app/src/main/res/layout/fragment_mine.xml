@@ -327,6 +327,7 @@
 
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_advance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
@@ -356,6 +357,7 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_vouchers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
@@ -385,6 +387,7 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_generalize"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
@@ -414,6 +417,7 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_booking"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
@@ -444,6 +448,7 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_apply"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
@@ -473,6 +478,7 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_managing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
@@ -502,6 +508,7 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_partner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"

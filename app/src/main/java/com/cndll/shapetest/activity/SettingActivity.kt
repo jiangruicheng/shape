@@ -44,7 +44,9 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
         }
         //修改密码
         binding.setUpdatePwd.setOnClickListener{
-            context.startActivity(Intent(context,SetPwdActivity::class.java))
+            val bundle = Bundle()
+            bundle.putString("type", "pwd")
+            context.startActivity(Intent(context,SetPwdActivity::class.java).putExtras(bundle))
         }
         //推送消息
         binding.mTogBtn.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -56,10 +58,12 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
         }
         //关于我们
         binding.setUsers.setOnClickListener {
-            context.startActivity(Intent(context,SetPwdActivity::class.java))
+            val bundle = Bundle()
+            bundle.putString("type", "users")
+            context.startActivity(Intent(context,SetPwdActivity::class.java).putExtras(bundle))
         }
         //退出登录
-        binding.outLogin.setOnClickListener {  }
+        binding.outLogin.setOnClickListener { finish() }
 
 
     }
