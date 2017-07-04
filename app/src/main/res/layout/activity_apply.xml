@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:orientation="vertical"
+        tools:context="com.cndll.shapetest.activity.ApplyActivity">
+
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/titlebar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%h"
+            app:layout_widthPercent="100%w" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/result_text"
+            android:orientation="vertical"
+            app:layout_heightPercent="20%h"
+            app:layout_widthPercent="100%w">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="49%h"
+                app:layout_paddingLeftPercent="5%"
+                app:layout_widthPercent="100%w">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:text="姓名："
+                    android:textColor="@color/contents_text"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="20%w" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="黄小皇"
+                    app:layout_heightPercent="80%h"
+                    app:layout_paddingLeftPercent="2%"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="75%w" />
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="right"
+                android:background="@color/gray"
+                app:layout_widthPercent="95%w" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="49%h"
+                app:layout_paddingLeftPercent="5%"
+                app:layout_widthPercent="100%w">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:text="推荐码："
+                    android:textColor="@color/contents_text"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="20%w" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="510623197"
+                    app:layout_heightPercent="80%h"
+                    app:layout_paddingLeftPercent="2%"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="75%w" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:text="如果没有推荐人,请拨打平台热线123456"
+            app:layout_heightPercent="5%h"
+            app:layout_paddingLeftPercent="5%"
+            app:layout_textSizePercent="@string/text_size_mid"
+            app:layout_widthPercent="100%w" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_button_red"
+            android:text="下一步"
+            android:textColor="@color/titleBackGround"
+            app:layout_heightPercent="7%h"
+            app:layout_marginTopPercent="4%"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="90%w" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_heightPercent="7%h"
+            app:layout_marginTopPercent="4%"
+            app:layout_paddingLeftPercent="5%"
+            app:layout_widthPercent="100%w">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="同意"
+                android:textColor="@color/contents_text"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="商家协议"
+                android:textColor="@color/titleRed"
+                android:textSize="15dp" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

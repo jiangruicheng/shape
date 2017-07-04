@@ -8,20 +8,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context="com.cndll.shapetest.activity.HomeActivity">
-
-        <include
-            android:id="@+id/titlebar"
-            layout="@layout/titlebar"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_heightPercent="8%h"
-            app:layout_widthPercent="100%w" />
-
         <FrameLayout
             android:id="@+id/frame"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_heightPercent="82%h" >
+            app:layout_heightPercent="90%h" >
 
         </FrameLayout>
         <com.ashokvarma.bottomnavigation.BottomNavigationBar

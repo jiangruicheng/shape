@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray">
+
+        <com.cndll.shapetest.view.ObservableScrollView
+            android:id="@+id/mine_srcollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_icon_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/titleRed"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <TextView
+                        android:id="@+id/mine_nick"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="yu"
+                        android:textColor="@color/titleBackGround"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="20%w" />
+
+                    <TextView
+                        android:id="@+id/mine_ID"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="ID:135268"
+                        android:textColor="@color/titleBackGround"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="20%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/titleBackGround"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="我的订单"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="20%w" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="查看全部"
+                        android:textColor="@color/gray"
+                        app:layout_marginLeftPercent="45%"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="20%w" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/right"
+                        android:padding="10dp"
+                        app:layout_widthPercent="10%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/titleBackGround"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        app:layout_widthPercent="20%w">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/payment" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="3dp"
+                            android:gravity="center"
+                            android:text="待付款"
+                            android:textColor="@color/viewfinder_mask" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        app:layout_widthPercent="20%w">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/shipments" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="3dp"
+                            android:gravity="center"
+                            android:text="待发货"
+                            android:textColor="@color/viewfinder_mask" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        app:layout_widthPercent="20%w">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/mine_goods" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="3dp"
+                            android:gravity="center"
+                            android:text="待收货"
+                            android:textColor="@color/viewfinder_mask" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        app:layout_widthPercent="20%w">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/mine_aware" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="3dp"
+                            android:gravity="center"
+                            android:text="待激励"
+                            android:textColor="@color/viewfinder_mask" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        app:layout_widthPercent="20%w">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/rate" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="3dp"
+                            android:gravity="center"
+                            android:text="待评价"
+                            android:textColor="@color/viewfinder_mask" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/titleBackGround"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        app:layout_widthPercent="25%w">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/mine_wallet" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="3dp"
+                            android:gravity="center"
+                            android:text="我的钱包"
+                            android:textColor="@color/viewfinder_mask" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        app:layout_widthPercent="25%w">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/collect" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="3dp"
+                            android:gravity="center"
+                            android:text="我的收藏"
+                            android:textColor="@color/viewfinder_mask" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        app:layout_widthPercent="25%w">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/mine_paper" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="3dp"
+                            android:gravity="center"
+                            android:text="红包记录"
+                            android:textColor="@color/viewfinder_mask" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        app:layout_widthPercent="25%w">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/mine_salse" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="3dp"
+                            android:gravity="center"
+                            android:text="退货/退款"
+                            android:textColor="@color/viewfinder_mask" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_advance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/titleBackGround"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/mine_advance_order"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="20%w" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/right"
+                        android:padding="10dp"
+                        app:layout_marginLeftPercent="65%"
+                        app:layout_widthPercent="10%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_vouchers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/titleBackGround"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/mine_vouchers_code"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="24%w" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/right"
+                        android:padding="10dp"
+                        app:layout_marginLeftPercent="61%"
+                        app:layout_widthPercent="10%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_generalize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/titleBackGround"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/mine_generalize"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="20%w" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/right"
+                        android:padding="10dp"
+                        app:layout_marginLeftPercent="65%"
+                        app:layout_widthPercent="10%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_booking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/titleBackGround"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/mine_booking"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="20%w" />
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:padding="10dp"
+                        android:src="@mipmap/right"
+                        app:layout_marginLeftPercent="65%"
+                        app:layout_widthPercent="10%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_apply"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/titleBackGround"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/mine_apply_business"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="28%w" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/right"
+                        android:padding="10dp"
+                        app:layout_marginLeftPercent="57%"
+                        app:layout_widthPercent="10%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_managing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/titleBackGround"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/mine_managing_partner"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="40%w" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/right"
+                        android:padding="10dp"
+                        app:layout_marginLeftPercent="45%"
+                        app:layout_widthPercent="10%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_partner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/titleBackGround"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/mine_servier_partner"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="40%w" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/right"
+                        android:padding="10dp"
+                        app:layout_marginLeftPercent="45%"
+                        app:layout_widthPercent="10%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_sales_man"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/titleBackGround"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/mine_salesman"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="32%w" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/right"
+                        android:padding="10dp"
+                        app:layout_marginLeftPercent="53%"
+                        app:layout_widthPercent="10%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+            </LinearLayout>
+        </com.cndll.shapetest.view.ObservableScrollView>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/mine_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%h"
+            app:layout_widthPercent="100%w">
+
+            <ImageView
+                android:id="@+id/mine_setting"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:layout_gravity="center|left"
+                android:src="@mipmap/setting"
+                app:layout_widthPercent="10%w" />
+
+            <ImageView
+                android:id="@+id/mine_zixing_code"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/zicode"
+                app:layout_marginLeftPercent="70%"
+                app:layout_widthPercent="10%w" />
+
+            <ImageView
+                android:id="@+id/mine_news"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/news"
+                app:layout_widthPercent="10%w" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+</layout>
