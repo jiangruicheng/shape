@@ -1,5 +1,6 @@
 package com.cndll.shapetest.fragment
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import com.cndll.shapetest.R
+import com.cndll.shapetest.activity.ApplyActivity
+import com.cndll.shapetest.activity.SettingActivity
 import com.cndll.shapetest.databinding.FragmentMineBinding
 import com.cndll.shapetest.view.ObservableScrollView
 import com.cndll.shapetest.view.ObservableScrollView.ScrollViewListener
@@ -16,7 +19,7 @@ import com.cndll.shapetest.view.ObservableScrollView.ScrollViewListener
  * Created by Administrator on 2017/7/3 0003.
  */
 class MineFragment : BaseFragment<FragmentMineBinding>(){
-    var imageHeight:Int=0
+    var imageHeight:Int=300
     private var mParam1: String? = null
     private var mParam2: String? = null
     override fun initBindingVar() {
@@ -34,6 +37,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         initBinding(R.layout.fragment_mine,container)
         mView = binding.root
         initSrco()
+        initView()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -45,7 +49,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         vto.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 binding.mineIconTop.viewTreeObserver.removeGlobalOnLayoutListener(this)
-                imageHeight = binding.mineTop.height
+//                imageHeight = binding.mineTop.height
                 binding.mineSrcollView.setScrollViewListener(object : ScrollViewListener {
                     override fun onScrollChanged(scrollView: ObservableScrollView, x: Int, y: Int, oldx: Int, oldy: Int) {
                         // TODO Auto-generated method stub
@@ -68,9 +72,23 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
     }
 
     /**
-     * 加载视图
+     * 加载视图---点击事件处理
      * */
-    private fun initView(){}
+    private fun initView(){
+
+        //申请成为业务员
+        binding.mineSalesMan.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putString("type", "sales")
+            context.startActivity(Intent(context,ApplyActivity::class.java).putExtras(bundle))
+        }
+
+        binding.mineSetting.setOnClickListener{
+            context.startActivity(Intent(context,SettingActivity::class.java))
+
+        }
+
+    }
 
 
     companion object {

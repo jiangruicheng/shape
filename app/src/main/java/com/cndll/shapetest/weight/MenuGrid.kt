@@ -13,15 +13,10 @@ import kotlin.concurrent.thread
 /**
  * Created by kongqing on 2017/6/20.
  */
-class MenuGrid(view: ViewGroup?) {
+class MenuGrid(view: ViewGroup?, dataList: List<MenuBean>?) {
     var view: View = LayoutInflater.from(view?.context).inflate(R.layout.banner, view, false)
-
-    fun setBanner(dataList: List<BannerBean>) {
-
-//todo
-    }
-
-    fun setMenuData(dataList: List<MenuBean>?) {
+    val dataList = dataList
+    fun setViewData() {
         thread {
             val menu = view.findViewById(R.id.menu) as ViewGroup
             for (i in 0..menu.childCount - 1) {

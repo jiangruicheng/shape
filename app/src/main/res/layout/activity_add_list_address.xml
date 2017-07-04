@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical"
+    tools:context="com.cndll.shapetest.activity.AddListAddressActivity">
+    <include
+        android:id="@+id/titlebar"
+        layout="@layout/titlebar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w" />
+
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_heightPercent="9%h"
+        android:background="@color/bg"
+        android:layout_marginTop="1dp"
+        app:layout_paddingLeftPercent="5%"
+        app:layout_widthPercent="100%w">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:text="姓名"
+            android:textColor="@color/contents_text"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="20%w" />
+
+        <EditText
+            android:id="@+id/add_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="请输入姓名"
+            app:layout_heightPercent="80%h"
+            app:layout_paddingLeftPercent="1%"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="75%w" />
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_heightPercent="9%h"
+        android:background="@color/bg"
+        android:layout_marginTop="1dp"
+        app:layout_paddingLeftPercent="5%"
+        app:layout_widthPercent="100%w">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:text="联系电话"
+            android:textColor="@color/contents_text"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="20%w" />
+
+        <EditText
+            android:id="@+id/add_phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="请输入联系电话"
+            app:layout_heightPercent="80%h"
+            app:layout_paddingLeftPercent="1%"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="75%w" />
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/lin_add_chose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_heightPercent="9%h"
+        android:background="@color/bg"
+        android:layout_marginTop="1dp"
+        app:layout_paddingLeftPercent="5%"
+        app:layout_widthPercent="100%w">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:text="所在地区"
+            android:textColor="@color/contents_text"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="20%w" />
+
+        <TextView
+            android:id="@+id/add_city"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="请选择"
+            app:layout_heightPercent="75%h"
+            app:layout_paddingLeftPercent="1%"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="65%w" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@mipmap/right"
+            app:layout_paddingPercent="4%"
+            app:layout_widthPercent="10%w" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/bg"
+        android:layout_marginTop="1dp"
+        app:layout_paddingLeftPercent="5%"
+        app:layout_widthPercent="100%w">
+        <EditText
+            android:id="@+id/add_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="详细地址"
+            android:lines="4"
+            android:gravity="start"
+            app:layout_paddingPercent="1%"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="95%w" />
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_heightPercent="9%h"
+        android:background="@color/bg"
+        app:layout_marginTopPercent="1%"
+        app:layout_paddingLeftPercent="5%"
+        app:layout_widthPercent="100%w">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:text="设为默认地址"
+            android:textColor="@color/contents_text"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="25%w" />
+
+
+        <CheckBox
+            android:id="@+id/add_chose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_widthPercent="10%w"
+            app:layout_marginLeftPercent="55%"
+            android:checked="true" />
+    </com.zhy.android.percent.support.PercentLinearLayout>
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_heightPercent="9%h"
+        android:background="@color/bg"
+        app:layout_marginTopPercent="1%"
+        app:layout_paddingLeftPercent="5%"
+        app:layout_widthPercent="100%w">
+
+        <TextView
+            android:id="@+id/delete_address"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:text="删除地址"
+            android:textColor="@color/titleRed"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="25%w" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

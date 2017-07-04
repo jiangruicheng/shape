@@ -9,7 +9,7 @@
     <color name="titleRed">#f0393c</color>
     <color name="tabTextSelect">#fb4b4d</color>
     <color name="white">#ffffff</color>
-
+    <color name="bg">#f0f0f0</color>
 
     <!-- 二维码 -->
     <color name="contents_text">#ff000000</color>

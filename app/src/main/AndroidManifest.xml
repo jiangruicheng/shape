@@ -127,13 +127,21 @@
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity android:name=".activity.SignActivity" />
         <activity android:name=".activity.ZiXingActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
 
         </activity>
+        <activity android:name=".activity.ApplyActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.AddressActivity" />
+        <activity android:name=".activity.AddListAddressActivity" />
+        <activity android:name=".activity.SetPhoneActivity" />
+        <activity android:name=".activity.SetPwdActivity"></activity>
     </application>
 
 </manifest>

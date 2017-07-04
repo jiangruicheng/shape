@@ -90,11 +90,11 @@ class PagerHomeFragment : Fragment() {
             bean3.title = "美女"
             val dataList = listOf<MenuGrid.MenuBean>(bean1, bean2, bean3)
 
-            val view = MenuGrid(p0)
+            val view = MenuGrid(p0, dataList)
             val params = view.view.layoutParams
             val windowManager = p0?.context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
             params.height = windowManager.defaultDisplay.height / 2
-            view.setMenuData(dataList)
+            view.setViewData()
             return ItemView(view.view)
 
         }

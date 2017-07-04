@@ -37,7 +37,7 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
         val type:String=bundle.getString("type")
         if (type.equals("pwd")){
             binding.signRegisterPwd.text="修改密码"
-            binding.signRegisterPwd.setBackgroundColor(resources.getColor(R.color.tabTextSelect))
+            binding.signRegisterPwd.setBackgroundResource(resources.getColor(R.drawable.shape_button_red))
             binding.signAgreement.visibility=View.GONE
         }
 
