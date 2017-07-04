@@ -32,7 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
-
+    private lateinit var adapter: PagerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
@@ -71,20 +71,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     fun initPageView() {
+        adapter = PagerAdapter(activity.supportFragmentManager)
         binding.pageTab.tabMode = TabLayout.MODE_SCROLLABLE
         binding.pageTab.setupWithViewPager(binding.viewPage)
-        binding.pageTab.addTab(binding.pageTab.newTab().setText("首页"))
-        binding.pageTab.addTab(binding.pageTab.newTab().setText("农产"))
-        binding.pageTab.addTab(binding.pageTab.newTab().setText("美食"))
-        binding.pageTab.addTab(binding.pageTab.newTab().setText("水果"))
-        binding.pageTab.addTab(binding.pageTab.newTab().setText("家居"))
-        binding.pageTab.addTab(binding.pageTab.newTab().setText("电器"))
-        binding.pageTab.addTab(binding.pageTab.newTab().setText("美妆"))
-        binding.pageTab.addTab(binding.pageTab.newTab().setText("海淘"))
-        binding.viewPage.adapter = PagerAdapter(activity.supportFragmentManager)
+        binding.viewPage.adapter = adapter
         binding.pageTab.setupWithViewPager(binding.viewPage)
+
     }
 
+    fun updatePageView(list: ArrayList<String>) {
+        adapter.list = list
+        adapter.notifyDataSetChanged()
+    }
 
     companion object {
         // TODO: Rename parameter arguments, choose names that match
@@ -120,9 +118,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             return PagerHomeFragment.newInstance("", "")
         }
 
-        val list = arrayListOf<String>()
+        open var list = arrayListOf<String>()
 
         init {
+
             list.add("首页")
             list.add("农产")
             list.add("美食")
@@ -136,7 +135,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
 
         override fun getCount(): Int {
-            return 8
+            return list.size
         }
 
         override fun getPageTitle(position: Int): CharSequence {

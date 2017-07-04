@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.ArrayMap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import android.view.WindowManager
 import com.cndll.shapetest.R
 import com.cndll.shapetest.weight.MenuGrid
 import kotlinx.android.synthetic.main.fragment_pager_home.*
+import java.util.*
 
 
 /**
@@ -80,6 +82,7 @@ class PagerHomeFragment : Fragment() {
         override fun onBindViewHolder(p0: RecyclerAdapter.ItemView?, p1: Int) {
         }
 
+        lateinit var mitems: ArrayMap<String, Objects>
         override fun onCreateViewHolder(p0: ViewGroup?, p1: Int): RecyclerAdapter.ItemView {
             //val view = LayoutInflater.from(p0?.context).inflate(R.layout.banner, p0, false)
             val bean1 = MenuGrid.MenuBean()
@@ -95,6 +98,11 @@ class PagerHomeFragment : Fragment() {
             val windowManager = p0?.context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
             params.height = windowManager.defaultDisplay.height / 2
             view.setMenuData(dataList)
+            val bannerBeans = ArrayList<MenuGrid.BannerBean>()
+            bannerBeans.add(MenuGrid.BannerBean("http://zhongxiang.51edn.com/data/upload/shop/goods_class/05513824560521848.jpg", "http:www.baidu.com"))
+            bannerBeans.add(MenuGrid.BannerBean("http://zhongxiang.51edn.com/data/upload/shop/goods_class/05513824560521848.jpg", "http:www.baidu.com"))
+            bannerBeans.add(MenuGrid.BannerBean("http://zhongxiang.51edn.com/data/upload/shop/goods_class/05513824560521848.jpg", "http:www.baidu.com"))
+            view.setBanner(bannerBeans)
             return ItemView(view.view)
 
         }

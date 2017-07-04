@@ -1,5 +1,6 @@
 package com.cndll.shapetest.weight
 
+import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.bigkoo.convenientbanner.holder.Holder
 import com.cndll.shapetest.R
+import com.facebook.drawee.view.SimpleDraweeView
 import kotlin.concurrent.thread
 
 /**
@@ -17,8 +20,8 @@ class MenuGrid(view: ViewGroup?) {
     var view: View = LayoutInflater.from(view?.context).inflate(R.layout.banner, view, false)
 
     fun setBanner(dataList: List<BannerBean>) {
-
-//todo
+        val banner = Banner()
+        banner.setBanner(view, dataList)
     }
 
     fun setMenuData(dataList: List<MenuBean>?) {
@@ -56,13 +59,33 @@ class MenuGrid(view: ViewGroup?) {
         }
     }
 
-    open class BannerBean {
-        val imageUrl: String = ""
-        val gotoUrl: String = ""
+    open class BannerBean(imageUrl: String, gotoUrl: String) {
+        var imageUrl: String = ""
+        var gotoUrl: String = ""
+
+        init {
+            this.imageUrl = imageUrl
+            this.gotoUrl = gotoUrl
+        }
     }
 
     open class MenuBean {
         var title: String = ""
         var imageUrl: String = ""
+    }
+
+    open class LocalImageHolderView : Holder<String> {
+        private lateinit var imageView: SimpleDraweeView
+        override fun createView(context: Context?): View {
+            imageView = SimpleDraweeView(context)
+            imageView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            imageView.scaleType = ImageView.ScaleType.FIT_XY
+            return imageView
+        }
+
+        override fun UpdateUI(context: Context?, position: Int, data: String?) {
+            imageView.setImageURI(data)
+        }
+
     }
 }
