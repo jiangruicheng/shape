@@ -37,7 +37,7 @@ class PagerHomeFragment : Fragment() {
         }
     }
 
-    var offsetX = 0;
+    var offsetX = 0
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -52,10 +52,11 @@ class PagerHomeFragment : Fragment() {
         recycler.adapter = RecyclerAdapter()
         val layoutManager = LinearLayoutManager(context)
         recycler.layoutManager = layoutManager
+        back_top.setOnClickListener { recycler.smoothScrollToPosition(0) }
         recycler.setOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                offsetX = offsetX + dx
+                offsetX = offsetX + dy
                 if (offsetX > height) {
                     back_top.visibility = View.VISIBLE
                 } else {

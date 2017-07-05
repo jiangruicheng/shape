@@ -48,8 +48,8 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         initBinding(R.layout.fragment_home, container)
         mView = binding.root
-        initDownRefresh()
         initPageView()
+        initDownRefresh()
 
         binding.titlebar.root.setBackgroundResource(R.color.titleRed)
         binding.titlebar.title.text = "众享消费"
@@ -68,8 +68,8 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             override fun checkCanDoRefresh(frame: PtrFrameLayout, content: View, header: View): Boolean {
                 // 默认实现，根据实际情况做改动
-
-                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header)
+                return (adapter.getItem(binding.viewPage.currentItem) as PagerHomeFragment).offsetX <= 0
+                // return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header)
             }
         })
         val header = PtrClassicDefaultHeader(context)
@@ -121,15 +121,15 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
 
     inner class PagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-        private lateinit var fragmentlist: List<Fragment>
+        private var fragmentlist: ArrayList<Fragment>
         override fun getItem(p0: Int): Fragment {
-            return PagerHomeFragment.newInstance("", "")
+            return fragmentlist[p0]
         }
 
         open var list = arrayListOf<String>()
 
         init {
-
+            fragmentlist = ArrayList()
             list.add("首页")
             list.add("农产")
             list.add("美食")
@@ -139,7 +139,9 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
             list.add("美妆")
             list.add("海淘")
 
-
+            for (i in list) {
+                fragmentlist.add(PagerHomeFragment.newInstance("", ""))
+            }
         }
 
         override fun getCount(): Int {
