@@ -1,11 +1,5 @@
 package com.cndll.shapetest.tools;
 
-import android.graphics.Bitmap;
-
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-
 /**
  * Created by Administrator on 2017/4/28 0028.
  */
@@ -24,5 +18,8 @@ public final class Constants {
     public static class Config {
         public static final boolean DEVELOPER_MODE = false;
     }
+
+
+
 
 }

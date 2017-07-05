@@ -20,7 +20,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     lateinit private var mHandler:Handler
 
     override fun initTitle() {
-        binding.titlebar.title.text = "手机登录"
+        binding.titlebar.title.text = "手机号登录"
+        // 退出登录
+        binding.titlebar.back.setOnClickListener{}
     }
 
     override fun initBindingVar() {

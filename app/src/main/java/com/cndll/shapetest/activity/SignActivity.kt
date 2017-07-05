@@ -21,7 +21,6 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
     }
 
     override fun initTitle() {
-        binding.titlebar.title.text = "账号注册"
         binding.titlebar.back.setOnClickListener(Clicks())
     }
 
@@ -37,8 +36,10 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
         val type:String=bundle.getString("type")
         if (type.equals("pwd")){
             binding.signRegisterPwd.text="修改密码"
-            binding.signRegisterPwd.setBackgroundResource(resources.getColor(R.drawable.shape_button_red))
+            binding.signRegisterPwd.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_red))
             binding.signAgreement.visibility=View.GONE
+        }else{
+            binding.titlebar.title.text = "账号注册"
         }
 
         cT=MyCountTime(60000,1000)
