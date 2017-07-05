@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.AbsListView
 import com.cndll.shapetest.R
 import com.cndll.shapetest.weight.MenuGrid
 import kotlinx.android.synthetic.main.fragment_pager_home.*
@@ -36,19 +37,38 @@ class PagerHomeFragment : Fragment() {
         }
     }
 
+    var offsetX = 0;
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater?.inflate(R.layout.fragment_pager_home, container, false)
-
         return view
     }
 
     override fun onResume() {
         super.onResume()
+        val wm: WindowManager = activity.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val height = wm.defaultDisplay.height
         recycler.adapter = RecyclerAdapter()
         val layoutManager = LinearLayoutManager(context)
         recycler.layoutManager = layoutManager
+        recycler.setOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                offsetX = offsetX + dx
+                if (offsetX > height) {
+                    back_top.visibility = View.VISIBLE
+                } else {
+                    back_top.visibility = View.GONE
+
+                }
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+            }
+        })
     }
 
     companion object {
@@ -108,7 +128,7 @@ class PagerHomeFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 1
+            return 22
         }
 
         override fun getItemId(position: Int): Long {

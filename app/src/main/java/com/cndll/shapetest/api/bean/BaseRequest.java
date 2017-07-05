@@ -5,4 +5,5 @@ package com.cndll.shapetest.api.bean;
  */
 
 public class BaseRequest {
+
 }
