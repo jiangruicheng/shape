@@ -10,6 +10,10 @@
     <color name="tabTextSelect">#fb4b4d</color>
     <color name="white">#ffffff</color>
     <color name="bg">#f0f0f0</color>
+    <color name="sit_title_bg">#fff7b0</color>
+    <color name="sit_top_bg">#ff6f71</color>
+    <color name="sit_title_text">#fed28e</color>
+    <color name="sit_test_color">#333333</color>
 
     <!-- 二维码 -->
     <color name="contents_text">#ff000000</color>

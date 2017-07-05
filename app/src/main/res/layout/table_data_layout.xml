@@ -1,12 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/data_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/titleRed"
+        android:background="@mipmap/databg"
         android:orientation="vertical">
 
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/titlebar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%h"
+            app:layout_widthPercent="100%w" />
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="2017 年 6 月 15 号"
+            android:textColor="@color/white"
+            app:layout_marginTopPercent="1%h"
+            app:layout_textSizePercent="@string/text_size_mid"
+            app:layout_widthPercent="100%w" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="运营数据总汇"
+            android:textColor="@color/white"
+            app:layout_marginTopPercent="20%h"
+            app:layout_textSizePercent="@string/text_size_bigC"
+            app:layout_widthPercent="100%w" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="会员人数"
+            android:textColor="@color/white"
+            app:layout_marginTopPercent="3%h"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="100%w" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="88万"
+            android:textColor="@color/white"
+            app:layout_marginTopPercent="1%h"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="100%w" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="店铺总数量"
+            android:textColor="@color/white"
+            app:layout_marginTopPercent="5%h"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="100%w" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="18万"
+            android:textColor="@color/white"
+            app:layout_marginTopPercent="1%h"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="100%w" />
 
 
     </com.zhy.android.percent.support.PercentLinearLayout>

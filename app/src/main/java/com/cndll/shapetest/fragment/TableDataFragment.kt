@@ -28,8 +28,17 @@ class TableDataFragment : BaseFragment<TableDataLayoutBinding>() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         initBinding(R.layout.table_data_layout, container)
         mView = binding.root
-
+        initView()
         return super.onCreateView(inflater, container, savedInstanceState)
+    }
+    /**
+    * 加载控件
+    * */
+    private fun initView(){
+        binding.titlebar.root.setBackgroundResource(R.color.titleRed)
+        binding.titlebar.back.visibility=View.INVISIBLE
+        binding.titlebar.title.text="众享消费（消费激励）"
+        binding.titlebar.title.setTextColor(R.color.white)
     }
 
 

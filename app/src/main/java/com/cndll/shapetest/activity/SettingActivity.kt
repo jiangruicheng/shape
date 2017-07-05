@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivitySettingBinding
+import com.cndll.shapetest.tools.FilesUtlis
 
 
 /**
@@ -12,7 +13,7 @@ import com.cndll.shapetest.databinding.ActivitySettingBinding
  * */
 class SettingActivity : BaseActivity<ActivitySettingBinding>() {
     lateinit var context:Context
-
+    var futils=FilesUtlis()
     override fun initBindingVar() {
     }
 
@@ -34,13 +35,22 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
      * 加载控件
      * */
     private fun initView(){
+        /** 清楚缓存 */
+        binding.setAllCache.text=futils.getTotalCacheSize(context)
+        binding.setAllCache.setOnClickListener {
+            futils.clearAllCache(context)
+            binding.setAllCache.text="0M"
+        }
+        /** 版本 */
+        binding.setVersion.text=futils.getVersion(context)
+
         /** 地址管理 */
         binding.setAddress.setOnClickListener{
             context.startActivity(Intent(context,AddressActivity::class.java))
         }
         // 绑定手机号
         binding.setPhone.setOnClickListener{
-            context.startActivity(Intent(context,SettingActivity::class.java))
+            context.startActivity(Intent(context,SetPhoneActivity::class.java))
         }
         //修改密码
         binding.setUpdatePwd.setOnClickListener{
@@ -64,8 +74,6 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
         }
         //退出登录
         binding.outLogin.setOnClickListener { finish() }
-
-
     }
 
 }

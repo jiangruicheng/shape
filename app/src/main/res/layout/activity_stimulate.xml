@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.cndll.shapetest.activity.StimulateActivity">
+
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/titlebar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%h"
+            app:layout_widthPercent="100%w" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/sit_title_bg"
+            android:orientation="horizontal"
+            app:layout_heightPercent="7%h"
+            app:layout_widthPercent="100%w">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/sit_tips"
+                app:layout_paddingPercent="2%" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="身份认证失败，请重新认证"
+                android:textColor="@color/sit_title_text"
+                app:layout_heightPercent="90%h"
+                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_widthPercent="45%w" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="为资金安全，请认证"
+                android:textColor="@color/sit_title_text"
+                app:layout_heightPercent="90%h"
+                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_widthPercent="38%w" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/sit_go"
+                app:layout_paddingPercent="3%" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/sit_top_bg"
+            android:orientation="horizontal"
+            app:layout_heightPercent="26%h"
+            app:layout_paddingPercent="2%"
+            app:layout_widthPercent="100%w">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/si_wallet"
+                app:layout_marginLeftPercent="3%" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_heightPercent="80%h"
+                app:layout_marginLeftPercent="2%"
+                app:layout_marginTopPercent="15%"
+                app:layout_widthPercent="70%w">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="可提现激励积分总额"
+                    android:textColor="@color/white"
+                    app:layout_heightPercent="20%h"
+
+                    app:layout_textSizePercent="@string/text_size_bigC"
+                    app:layout_widthPercent="100%w" />
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="30%h"
+                    app:layout_widthPercent="100%w">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:text="10000"
+                        android:textColor="@color/white"
+                        app:layout_heightPercent="100%h"
+                        app:layout_textSizePercent="7%w"
+                        app:layout_widthPercent="60%w" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="积分"
+                        android:textColor="@color/white"
+                        app:layout_heightPercent="100%h"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="40%w" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="30%h"
+                    app:layout_widthPercent="100%w">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/sit_anglr"
+                        android:gravity="center"
+                        android:text="回购"
+                        android:textColor="@color/white"
+                        app:layout_textSizePercent="@string/text_size_big"
+                      />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/sit_anglr"
+                        android:gravity="center"
+                        android:text="直捐"
+                        android:textColor="@color/white"
+                        app:layout_marginLeftPercent="3%"
+                        app:layout_textSizePercent="@string/text_size_big"
+                         />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+            </com.zhy.android.percent.support.PercentLinearLayout>
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_heightPercent="50%h"
+            app:layout_paddingPercent="2%"
+            app:layout_widthPercent="100%w">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_heightPercent="100%h"
+                app:layout_marginLeftPercent="3%"
+                app:layout_widthPercent="48%w">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="25%h"
+                    app:layout_widthPercent="100%w">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/sit_purst" />
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        app:layout_heightPercent="90%h"
+                        app:layout_marginLeftPercent="5%"
+                        app:layout_widthPercent="80%w"
+
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="激励积分"
+                            android:textColor="@color/sit_test_color"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="100积分"
+                            android:textColor="@color/tabTextSelect"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="25%h"
+                    app:layout_widthPercent="100%w">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/sit_integ" />
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        app:layout_heightPercent="90%h"
+                        app:layout_marginLeftPercent="5%"
+                        app:layout_widthPercent="80%w"
+
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="积分明细"
+                            android:textColor="@color/sit_test_color"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="100积分"
+                            android:textColor="@color/tabTextSelect"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="25%h"
+                    app:layout_widthPercent="100%w">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/sit_donate" />
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        app:layout_heightPercent="90%h"
+                        app:layout_marginLeftPercent="5%"
+                        app:layout_widthPercent="80%w"
+
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="基金捐款"
+                            android:textColor="@color/sit_test_color"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="100积分"
+                            android:textColor="@color/tabTextSelect"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="25%h"
+                    app:layout_widthPercent="100%w">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/sit_bank" />
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        app:layout_heightPercent="90%h"
+                        app:layout_marginLeftPercent="5%"
+                        app:layout_widthPercent="80%w"
+
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="常用银行卡"
+                            android:textColor="@color/sit_test_color"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="2张"
+                            android:textColor="@color/tabTextSelect"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_heightPercent="100%h"
+                app:layout_marginLeftPercent="4%"
+                app:layout_widthPercent="45%w">\
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="25%h"
+                    app:layout_widthPercent="100%w">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/sit_banlance" />
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        app:layout_heightPercent="90%h"
+                        app:layout_marginLeftPercent="5%"
+                        app:layout_widthPercent="75%w"
+
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="消费积分"
+                            android:textColor="@color/sit_test_color"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="100积分"
+                            android:textColor="@color/tabTextSelect"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="25%h"
+                    app:layout_widthPercent="100%w">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/sit_roll" />
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        app:layout_heightPercent="90%h"
+                        app:layout_marginLeftPercent="5%"
+                        app:layout_widthPercent="75%w"
+
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="我的抵用卷"
+                            android:textColor="@color/sit_test_color"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="95%w" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="2张"
+                            android:textColor="@color/tabTextSelect"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="95%w" />
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="25%h"
+                    app:layout_widthPercent="95%w">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/sit_accounts" />
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        app:layout_heightPercent="90%h"
+                        app:layout_marginLeftPercent="5%"
+                        app:layout_widthPercent="80%w">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="积分转赠"
+                            android:textColor="@color/sit_test_color"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="激励积分转赠"
+                            android:textColor="@color/tabTextSelect"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="25%h"
+                    app:layout_widthPercent="95%w">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/sit_recycle" />
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        app:layout_heightPercent="90%h"
+                        app:layout_marginLeftPercent="5%"
+                        app:layout_widthPercent="80%w"
+
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="回购记录"
+                            android:textColor="@color/sit_test_color"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|left"
+                            android:text="积分的回购记录"
+                            android:textColor="@color/tabTextSelect"
+                            app:layout_heightPercent="45%h"
+                            app:layout_textSizePercent="10%w"
+                            app:layout_widthPercent="100%w" />
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

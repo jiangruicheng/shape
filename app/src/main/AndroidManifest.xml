@@ -3,7 +3,6 @@
     package="com.cndll.shapetest">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="Android.permission.WRITE_APN_SETTINGS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 网络访问权限 -->
@@ -50,9 +49,7 @@
         </activity>
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.HomeActivity" />
-        <!--
-                <activity android:name=".activity.BaseActivity"></activity>
-        -->
+        <!--                 <activity android:name=".activity.BaseActivity"></activity> -->
         <activity android:name=".activity.BaseActivity" />
 
         <!-- 添加第三方登录 -->
@@ -146,7 +143,8 @@
         <activity android:name=".activity.AddressActivity" />
         <activity android:name=".activity.AddListAddressActivity" />
         <activity android:name=".activity.SetPhoneActivity" />
-        <activity android:name=".activity.SetPwdActivity"></activity>
+        <activity android:name=".activity.SetPwdActivity" />
+        <activity android:name=".activity.StimulateActivity"></activity>
     </application>
 
 </manifest>

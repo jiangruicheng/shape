@@ -4,6 +4,7 @@
     <com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gray">
@@ -24,15 +25,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:background="@color/titleRed"
+                    android:background="@mipmap/minebg"
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/mine_icon"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_centerInParent="true"
+                        fresco:roundedCornerRadius="45dp"
                         android:layout_marginTop="50dp"
-                        android:src="@mipmap/ic_launcher" />
+                        fresco:placeholderImage="@mipmap/ic_launcher"
+                        fresco:placeholderImageScaleType="fitCenter"
+                        fresco:roundingBorderColor="@color/white"
+                        fresco:roundingBorderWidth="1dp"/>
 
                     <TextView
                         android:id="@+id/mine_nick"
@@ -233,6 +240,7 @@
                     android:padding="5dp">
 
                     <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/mine_stimu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -250,7 +258,7 @@
                             android:layout_height="20dp"
                             android:layout_marginTop="3dp"
                             android:gravity="center"
-                            android:text="我的钱包"
+                            android:text="我的激励"
                             android:textColor="@color/viewfinder_mask" />
 
                     </com.zhy.android.percent.support.PercentLinearLayout>
