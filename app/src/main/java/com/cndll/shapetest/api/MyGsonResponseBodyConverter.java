@@ -1,7 +1,7 @@
 package com.cndll.shapetest.api;
 
 
-import com.cndll.chgj.mvp.mode.bean.response.BaseResponse;
+import com.cndll.shapetest.api.bean.BaseResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -56,12 +56,9 @@ public class MyGsonResponseBodyConverter<T extends BaseResponse> implements Conv
         }
 
         if (code == -211) {
-            // 按停服公告的格式解析，封装到notify字段中
-            t.code = code;
-            t.extra = extra;
+
         } else if (code == 0) {
-            t.code = code;
-            t.extra = extra;
+
         } else {
             // 按标准格式解析
             return gson.fromJson(json, type);
