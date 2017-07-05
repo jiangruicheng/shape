@@ -49,7 +49,6 @@ public class ZiXingActivity extends Activity {
                 } catch (WriterException e) {
                     e.printStackTrace();
                 }
-
             }
         });
 
