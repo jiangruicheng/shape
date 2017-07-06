@@ -45,15 +45,18 @@ class PagerHomeFragment : Fragment() {
         return view
     }
 
+    lateinit var adapter: RecyclerAdapter
     override fun onResume() {
         super.onResume()
         val wm: WindowManager = activity.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val height = wm.defaultDisplay.height
-        recycler.adapter = RecyclerAdapter()
+        adapter = RecyclerAdapter()
+        recycler.adapter = adapter
         val layoutManager = LinearLayoutManager(context)
         recycler.layoutManager = layoutManager
         back_top.setOnClickListener { recycler.smoothScrollToPosition(0) }
         recycler.setOnScrollListener(object : RecyclerView.OnScrollListener() {
+            val isSlidingToLast = false
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 offsetX = offsetX + dy
@@ -67,7 +70,21 @@ class PagerHomeFragment : Fragment() {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
+                val manager = recyclerView!!.getLayoutManager() as LinearLayoutManager
 
+                if (newState === RecyclerView.SCROLL_STATE_IDLE) {
+                    //获取最后一个完全显示的ItemPosition
+                    val lastVisibleItem = manager.findLastCompletelyVisibleItemPosition()
+                    val totalItemCount = manager.getItemCount()
+
+                    // 判断是否滚动到底部，并且是向右滚动
+                    if (lastVisibleItem == totalItemCount - 1 /*&& isSlidingToLast*/) {
+                        //加载更多功能的代码
+                        val count = adapter.count
+                        adapter.count = adapter.count + 4
+                        adapter.notifyDataSetChanged()
+                    }
+                }
             }
         })
     }
@@ -103,6 +120,7 @@ class PagerHomeFragment : Fragment() {
         override fun onBindViewHolder(p0: RecyclerAdapter.ItemView?, p1: Int) {
         }
 
+        var count = 4
         lateinit var mitems: ArrayMap<String, Objects>
         override fun onCreateViewHolder(p0: ViewGroup?, p1: Int): RecyclerAdapter.ItemView {
             //val view = LayoutInflater.from(p0?.context).inflate(R.layout.banner, p0, false)
@@ -129,7 +147,7 @@ class PagerHomeFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 22
+            return count
         }
 
         override fun getItemId(position: Int): Long {
