@@ -18,6 +18,7 @@
             app:layout_widthPercent="100%w" />
 
         <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/sit_lin_photo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/sit_title_bg"

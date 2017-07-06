@@ -11,6 +11,7 @@ import com.cndll.shapetest.R
 import com.cndll.shapetest.activity.ApplyActivity
 import com.cndll.shapetest.activity.SettingActivity
 import com.cndll.shapetest.activity.StimulateActivity
+import com.cndll.shapetest.activity.UserInfoActivity
 import com.cndll.shapetest.databinding.FragmentMineBinding
 import com.cndll.shapetest.view.ObservableScrollView
 import com.cndll.shapetest.view.ObservableScrollView.ScrollViewListener
@@ -23,6 +24,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
     var imageHeight:Int=300
     private var mParam1: String? = null
     private var mParam2: String? = null
+    val bundle = Bundle()
     override fun initBindingVar() {
     }
 
@@ -76,28 +78,28 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
      * 加载视图---点击事件处理
      * */
     private fun initView(){
+        // 头像，个人资料
         binding.mineIcon.setImageURI("http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=false&word=%E5%A4%B4%E5%83%8F&step_word=&hs=0&pn=1&spn=0&di=182229183950&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=2&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=-1&cs=3797592229%2C3840448992&os=3100598133%2C668324230&simid=3517583087%2C254517939&adpicid=0&lpn=0&ln=3952&fr=&fmq=1461834053046_R&fm=&ic=0&s=0&se=&sme=&tab=0&width=&height=&face=undefined&ist=&jit=&cg=head&bdtype=0&oriquery=&objurl=http%3A%2F%2Fwww.shzbbc.com%2Fuploads%2Ftu%2Fztmb%2Fslt%2Fbd119308765.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bfizkkv_z%26e3Bv54AzdH3FpxAzdH3F8dd0nnm_z%26e3Bip4s&gsm=0&rpstart=0&rpnum=0")
+        binding.mineIcon.setOnClickListener {
+            context.startActivity(Intent(context,UserInfoActivity::class.java))
+        }
         //申请成为业务员
         binding.mineSalesMan.setOnClickListener{
-            val bundle = Bundle()
             bundle.putString("type", "sales")
             context.startActivity(Intent(context,ApplyActivity::class.java).putExtras(bundle))
         }
         //申请服务合伙人
         binding.mineLinPartner.setOnClickListener {
-            val bundle = Bundle()
             bundle.putString("type", "par")
             context.startActivity(Intent(context,ApplyActivity::class.java).putExtras(bundle))
         }
         //申请管理合伙人
         binding.mineLinManaging.setOnClickListener {
-            val bundle = Bundle()
             bundle.putString("type", "manag")
             context.startActivity(Intent(context,ApplyActivity::class.java).putExtras(bundle))
         }
         //申请商家
         binding.mineLinApply.setOnClickListener {
-            val bundle = Bundle()
             bundle.putString("type", "apply")
             context.startActivity(Intent(context,ApplyActivity::class.java).putExtras(bundle)) }
         //我的拼团

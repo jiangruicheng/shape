@@ -109,7 +109,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@drawable/shape_button_red"
-            android:text="下一步"
+            android:text="提交"
             android:textColor="@color/titleBackGround"
             app:layout_heightPercent="7%h"
             app:layout_marginTopPercent="4%"
@@ -138,6 +138,7 @@
                 android:textSize="15dp" />
 
             <TextView
+                android:id="@+id/apply_deal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"

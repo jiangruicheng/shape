@@ -50,7 +50,9 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
         }
         // 绑定手机号
         binding.setPhone.setOnClickListener{
-            context.startActivity(Intent(context,SetPhoneActivity::class.java))
+            var bundle=Bundle()
+            bundle.putString("type","bPhone")
+            context.startActivity(Intent(context,SetPhoneActivity::class.java).putExtras(bundle))
         }
         //修改密码
         binding.setUpdatePwd.setOnClickListener{
@@ -62,6 +64,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
         binding.mTogBtn.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
                 println("选中")
+                context.startActivity(Intent(context,AuthenticationActivity::class.java))
             }else{
                 println("未选中")
             }
