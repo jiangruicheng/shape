@@ -8,10 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import com.cndll.shapetest.R
-import com.cndll.shapetest.activity.ApplyActivity
-import com.cndll.shapetest.activity.SettingActivity
-import com.cndll.shapetest.activity.StimulateActivity
-import com.cndll.shapetest.activity.UserInfoActivity
+import com.cndll.shapetest.activity.*
 import com.cndll.shapetest.databinding.FragmentMineBinding
 import com.cndll.shapetest.view.ObservableScrollView
 import com.cndll.shapetest.view.ObservableScrollView.ScrollViewListener
@@ -105,9 +102,15 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         //我的拼团
         binding.mineLinBooking.setOnClickListener {  }
         //我的推广
-        binding.mineLinGeneralize.setOnClickListener {  }
+        binding.mineLinGeneralize.setOnClickListener {
+            ///////////////////////////////////////////
+            context.startActivity(Intent(context,OrdersListActivity::class.java))
+
+        }
         //我的抵用卷
-        binding.mineLinVouchers.setOnClickListener {  }
+        binding.mineLinVouchers.setOnClickListener {
+
+        }
         //预约订单
         binding.mineLinAdvance.setOnClickListener {  }
         //设置
@@ -123,6 +126,11 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         binding.mineStimu.setOnClickListener {
             context.startActivity(Intent(context,StimulateActivity::class.java))
         }
+        //我的红包记录
+        binding.mineLinPack.setOnClickListener {
+        context.startActivity(Intent(context,RedPacketActivity::class.java))
+        }
+
     }
 
 

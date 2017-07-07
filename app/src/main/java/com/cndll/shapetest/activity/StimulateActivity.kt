@@ -36,5 +36,33 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
             bundle.putString("type","ent")
             context.startActivity(Intent(context,SetPwdActivity::class.java).putExtras(bundle))
         }
+        //回购
+        binding.sitRopeText.setOnClickListener {  }
+        //直捐
+        binding.sitDonateText.setOnClickListener {  }
+        //激励积分
+        binding.incentivePointsLin.setOnClickListener {
+            context.startActivity(Intent(context,IntegralActivity::class.java))
+        }
+        //积分明细
+        binding.subsidiaryLin.setOnClickListener {
+            context.startActivity(Intent(context,IntegralActivity::class.java))
+        }
+        //基金捐款
+        binding.fundLin.setOnClickListener {  }
+        //常用银行卡
+        binding.commonBankCardLin.setOnClickListener {  }
+        //消费积分
+        binding.scoreLin.setOnClickListener {  }
+        //我的抵用卷
+        binding.offsetVolume.setOnClickListener {
+            context.startActivity(Intent(context,VouchersActivity::class.java))
+        }
+        //积分转增
+        binding.integralRemainderLin.setOnClickListener {  }
+        //回购记录
+        binding.buybackRecordLin.setOnClickListener {  }
+
+
     }
 }

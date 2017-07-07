@@ -148,7 +148,12 @@
         <activity android:name=".activity.UpdatePwdActivity" />
         <activity android:name=".activity.UserMessageActivity" />
         <activity android:name=".activity.AuthenticationActivity" />
-        <activity android:name=".activity.UserInfoActivity"></activity>
+        <activity android:name=".activity.UserInfoActivity" />
+        <activity android:name=".activity.RedPacketActivity" />
+        <activity android:name=".activity.VouchersActivity" />
+        <activity android:name=".activity.IntegralActivity" />
+        <activity android:name=".activity.DataActivity" />
+        <activity android:name=".activity.OrdersListActivity"></activity>
     </application>
 
 </manifest>

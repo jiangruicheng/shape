@@ -85,6 +85,7 @@
 
 
                     <TextView
+                        android:id="@+id/mine_all_order"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
@@ -115,6 +116,7 @@
                     android:padding="5dp">
 
                     <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/mine_lin_payment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -138,6 +140,7 @@
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
                     <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/mine_lin_shipments"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -161,6 +164,7 @@
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
                     <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/mine_lin_goods"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -184,6 +188,7 @@
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
                     <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/mine_lin_aware"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -207,6 +212,7 @@
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
                     <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/mine_lin_rate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -264,6 +270,7 @@
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
                     <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/mine_lin_collect"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -287,6 +294,7 @@
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
                     <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/mine_lin_pack"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -310,6 +318,7 @@
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
                     <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/mine_lin_refund"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -374,6 +383,7 @@
                     android:padding="5dp">
 
                     <TextView
+                        android:id="@+id/textView2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
