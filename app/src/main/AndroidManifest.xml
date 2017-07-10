@@ -153,7 +153,13 @@
         <activity android:name=".activity.VouchersActivity" />
         <activity android:name=".activity.IntegralActivity" />
         <activity android:name=".activity.DataActivity" />
-        <activity android:name=".activity.OrdersListActivity"></activity>
+        <activity android:name=".activity.OrdersListActivity" />
+        <activity android:name=".activity.ApplyBuyBackActivity" />
+        <activity android:name=".activity.DonateActivity" />
+        <activity android:name=".activity.BankCardActivity" />
+        <activity android:name=".activity.AddBankActivity" />
+        <activity android:name=".activity.PopularizeActivity" />
+        <activity android:name=".activity.FavoriteActivity"></activity>
     </application>
 
 </manifest>

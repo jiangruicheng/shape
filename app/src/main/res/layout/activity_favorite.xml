@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg"
-    tools:context="com.cndll.shapetest.activity.OrdersListActivity">
-
+    tools:context="com.cndll.shapetest.activity.FavoriteActivity">
     <include
         android:id="@+id/titlebar"
         layout="@layout/titlebar"
@@ -18,7 +17,7 @@
         app:layout_widthPercent="100%w" />
 
     <android.support.design.widget.TabLayout
-        android:id="@+id/order_tab"
+        android:id="@+id/fav_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -31,13 +30,12 @@
         app:tabTextColor="@android:color/black"
         app:tabIndicatorHeight="1dp"
         />
-        <android.support.v4.view.ViewPager
-        android:id="@+id/tab_viewpager"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/fav_viewpager"
         android:layout_width="match_parent"
-         android:layout_marginTop="1dp"
+        android:layout_marginTop="1dp"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@android:color/white" />
-
 </com.zhy.android.percent.support.PercentLinearLayout>
 </layout>

@@ -1,24 +1,28 @@
 package com.cndll.shapetest.activity
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.view.PagerAdapter
-import android.view.Gravity
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.support.v4.app.Fragment
 import com.cndll.shapetest.R
+import com.cndll.shapetest.adapter.MyViewPagerAdapter
 import com.cndll.shapetest.databinding.ActivityOrdersListBinding
+import com.cndll.shapetest.fragment.MineFragment
 import com.cndll.shapetest.fragment.OrdersFragment
+import com.cndll.shapetest.fragment.TableDataFragment
 
+/**
+ * 我的订房
+ * */
 class OrdersListActivity : BaseActivity<ActivityOrdersListBinding>() {
-    private val mTabTitles = arrayOfNulls<String>(6)
+
+    private var fragemnts=ArrayList<Fragment>()
+    private val titles = arrayOf("全部", "待付款","待发货","待收货","待激励","待评价")
+    private var adapter: MyViewPagerAdapter?=null
     override fun initBindingVar() {
     }
 
     override fun initTitle() {
         binding.titlebar.back.setOnClickListener { finish() }
-        binding.titlebar.title.text="1545"
+        binding.titlebar.title.text="我的订单"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,44 +31,15 @@ class OrdersListActivity : BaseActivity<ActivityOrdersListBinding>() {
         initView()
     }
     private fun initView(){
-        mTabTitles[0] = "全部"
-        mTabTitles[1] = "待付款"
-        mTabTitles[2] = "待发货"
-        mTabTitles[3] = "待收货"
-        mTabTitles[4] = "待激励"
-        mTabTitles[5] = "待评价"
-//        binding.orderTab.setTabMode(TabLayout.MODE_SCROLLABLE)
-        binding.tabViewpager.adapter= MorePagerAdapter()
+        fragemnts.add(OrdersFragment().newInstance(1))
+        fragemnts.add(OrdersFragment().newInstance(2))
+        fragemnts.add(OrdersFragment().newInstance(3))
+        fragemnts.add(OrdersFragment().newInstance(4))
+        fragemnts.add(OrdersFragment().newInstance(5))
+        fragemnts.add(OrdersFragment().newInstance(6))
+        adapter=MyViewPagerAdapter(supportFragmentManager,fragemnts,titles)
+        binding.tabViewpager.adapter=adapter
         binding.orderTab.setupWithViewPager(binding.tabViewpager)
-    }
-
-    internal inner class MorePagerAdapter : PagerAdapter() {
-
-        override fun getCount(): Int {
-            return mTabTitles.size
-        }
-
-        override fun instantiateItem(container: ViewGroup, position: Int): Any {
-            val tv = TextView(this@OrdersListActivity)
-            tv.text = "布局2222222222222" + mTabTitles[position]
-            tv.textSize = 30.0f
-            tv.gravity = Gravity.CENTER
-            var sd=OrdersFragment()
-            sd.newInstance("pos:"+position)
-            container.addView(tv)
-            return tv
-        }
-
-        override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-            container.removeView(`object` as View)
-        }
-
-        override fun isViewFromObject(view: View, `object`: Any): Boolean {
-            return view === `object`
-        }
-
-        override fun getPageTitle(position: Int): CharSequence {
-            return mTabTitles[position]+""
-        }
+        binding.orderTab.setTabsFromPagerAdapter(adapter)
     }
 }

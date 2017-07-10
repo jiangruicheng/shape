@@ -100,11 +100,14 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
             bundle.putString("type", "apply")
             context.startActivity(Intent(context,ApplyActivity::class.java).putExtras(bundle)) }
         //我的拼团
-        binding.mineLinBooking.setOnClickListener {  }
+        binding.mineLinBooking.setOnClickListener {
+            ////////////////////////////////
+            context.startActivity(Intent(context,OrdersListActivity::class.java))
+
+        }
         //我的推广
         binding.mineLinGeneralize.setOnClickListener {
-            ///////////////////////////////////////////
-            context.startActivity(Intent(context,OrdersListActivity::class.java))
+            context.startActivity(Intent(context,PopularizeActivity::class.java))
 
         }
         //我的抵用卷
@@ -129,6 +132,16 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         //我的红包记录
         binding.mineLinPack.setOnClickListener {
         context.startActivity(Intent(context,RedPacketActivity::class.java))
+        }
+        //我的收藏
+        binding.mineLinCollect.setOnClickListener {
+            bundle.putString("type", "collect")
+            context.startActivity(Intent(context,FavoriteActivity::class.java).putExtras(bundle))
+        }
+        //退貨，換貨
+        binding.mineLinRefund.setOnClickListener {
+            bundle.putString("type", "refund")
+            context.startActivity(Intent(context,FavoriteActivity::class.java).putExtras(bundle))
         }
 
     }

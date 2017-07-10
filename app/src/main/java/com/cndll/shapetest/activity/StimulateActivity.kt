@@ -37,9 +37,14 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
             context.startActivity(Intent(context,SetPwdActivity::class.java).putExtras(bundle))
         }
         //回购
-        binding.sitRopeText.setOnClickListener {  }
+        binding.sitRopeText.setOnClickListener {
+            context.startActivity(Intent(context,ApplyBuyBackActivity::class.java))
+        }
         //直捐
-        binding.sitDonateText.setOnClickListener {  }
+        binding.sitDonateText.setOnClickListener {
+            bundle.putString("type","Donate")
+            context.startActivity(Intent(context,DonateActivity::class.java).putExtras(bundle))
+        }
         //激励积分
         binding.incentivePointsLin.setOnClickListener {
             context.startActivity(Intent(context,IntegralActivity::class.java))
@@ -49,19 +54,30 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
             context.startActivity(Intent(context,IntegralActivity::class.java))
         }
         //基金捐款
-        binding.fundLin.setOnClickListener {  }
+        binding.fundLin.setOnClickListener {
+            context.startActivity(Intent(context,IntegralActivity::class.java))
+        }
         //常用银行卡
-        binding.commonBankCardLin.setOnClickListener {  }
+        binding.commonBankCardLin.setOnClickListener {
+            context.startActivity(Intent(context,BankCardActivity::class.java))
+        }
         //消费积分
-        binding.scoreLin.setOnClickListener {  }
+        binding.scoreLin.setOnClickListener {
+            context.startActivity(Intent(context,IntegralActivity::class.java))
+        }
         //我的抵用卷
         binding.offsetVolume.setOnClickListener {
             context.startActivity(Intent(context,VouchersActivity::class.java))
         }
         //积分转增
-        binding.integralRemainderLin.setOnClickListener {  }
+        binding.integralRemainderLin.setOnClickListener {
+            bundle.putString("type","Remain")
+            context.startActivity(Intent(context,DonateActivity::class.java).putExtras(bundle))
+        }
         //回购记录
-        binding.buybackRecordLin.setOnClickListener {  }
+        binding.buybackRecordLin.setOnClickListener {
+            context.startActivity(Intent(context,IntegralActivity::class.java))
+        }
 
 
     }
