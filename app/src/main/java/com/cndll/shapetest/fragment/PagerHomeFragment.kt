@@ -11,12 +11,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.AbsListView
-import android.widget.TextView
+import com.alibaba.android.vlayout.DelegateAdapter
+import com.alibaba.android.vlayout.DelegateAdapter.Adapter
+import com.alibaba.android.vlayout.LayoutHelper
+import com.alibaba.android.vlayout.VirtualLayoutManager
+import com.alibaba.android.vlayout.layout.LinearLayoutHelper
+import com.alibaba.android.vlayout.layout.ScrollFixLayoutHelper
 import com.cndll.shapetest.R
+import com.cndll.shapetest.adapter.BannerAdapter
 import com.cndll.shapetest.weight.MenuGrid
 import kotlinx.android.synthetic.main.fragment_pager_home.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -47,23 +53,51 @@ class PagerHomeFragment : Fragment() {
         return view
     }
 
-    lateinit var adapter: RecyclerAdapter
+    lateinit var adapter: DelegateAdapter
     override fun onResume() {
         super.onResume()
-        val wm: WindowManager = activity.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val height = wm.defaultDisplay.height
-        adapter = RecyclerAdapter()
+        val vlayout = VirtualLayoutManager(activity)
+        recycler.layoutManager = vlayout
+        adapter = DelegateAdapter(vlayout, true)
         recycler.adapter = adapter
-        val layoutManager = LinearLayoutManager(context)
-        recycler.layoutManager = layoutManager
-        back_top.setOnClickListener {
-            if (adapter.count > 48) {
-                recycler.scrollToPosition(24)
-                recycler.smoothScrollToPosition(0)
-            } else {
-                recycler.smoothScrollToPosition(0)
+        val adapterList = ArrayList<Adapter<*>>()
+
+        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val h = windowManager.defaultDisplay.height / 8
+        adapterList.add(BannerAdapter(context, LinearLayoutHelper(), 5))
+
+        val mLayoutParams = ViewGroup.LayoutParams(windowManager.defaultDisplay.width / 6, windowManager.defaultDisplay.height / 8)
+
+        val mScrollFixLayoutHelper = ScrollFixLayoutHelper(ScrollFixLayoutHelper.BOTTOM_RIGHT, 12, 12)
+        mScrollFixLayoutHelper.setItemCount(1)
+        mScrollFixLayoutHelper.showType = ScrollFixLayoutHelper.SHOW_ON_LEAVE
+        adapterList.add(object : BannerAdapter(context, mScrollFixLayoutHelper, 1, mLayoutParams) {
+            override fun onBindViewHolder(holder: BannerViewHolder?, position: Int) {
             }
-        }
+
+            override fun getItemCount(): Int {
+                return 1
+            }
+
+            override fun getItemViewType(position: Int): Int {
+                return 1
+            }
+
+            override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BannerViewHolder {
+                val view = LayoutInflater.from(context).inflate(R.layout.button_vlayout, parent, false)
+                return BannerViewHolder(view)
+            }
+
+            override fun onCreateLayoutHelper(): LayoutHelper {
+                return mScrollFixLayoutHelper
+            }
+        })
+
+
+        adapterList.add(BannerAdapter(context, LinearLayoutHelper(), 12))
+
+        adapter.addAdapters(adapterList)
+
         recycler.setOnScrollListener(object : RecyclerView.OnScrollListener() {
             val isSlidingToLast = false
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
@@ -72,11 +106,7 @@ class PagerHomeFragment : Fragment() {
                 if (offsetX > 0) {
                     isFirstRecycler = false
                 }
-                if (offsetX > height && !isFirstRecycler) {
-                    back_top.visibility = View.VISIBLE
-                } else {
-                    back_top.visibility = View.GONE
-                }
+
             }
 
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
@@ -90,13 +120,12 @@ class PagerHomeFragment : Fragment() {
                     isFirstRecycler = manager.findFirstCompletelyVisibleItemPosition() == 0
                     if (isFirstRecycler) {
                         offsetX = 0
-                        back_top.visibility = View.GONE
+                        //back_top.visibility = View.GONE
                     }
                     // 判断是否滚动到底部，并且是向右滚动
                     if (lastVisibleItem == totalItemCount - 1 /*&& isSlidingToLast*/) {
                         //加载更多功能的代码
-                        adapter.count = adapter.count + 4
-                        adapter.notifyDataSetChanged()
+
                     }
                 }
             }
@@ -129,6 +158,7 @@ class PagerHomeFragment : Fragment() {
             return fragment
         }
     }
+
 
     inner class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ItemView>() {
         override fun onBindViewHolder(p0: RecyclerAdapter.ItemView?, p1: Int) {

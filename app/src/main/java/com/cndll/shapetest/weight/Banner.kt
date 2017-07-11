@@ -10,6 +10,7 @@ import com.cndll.shapetest.R
  * Created by jiangruicheng on 2017/7/4.
  */
 class Banner {
+    lateinit var view: View
     fun setBanner(view: View, dataList: List<MenuGrid.BannerBean>) {
         val urls = ArrayList<String>()
         for (r in dataList) {
