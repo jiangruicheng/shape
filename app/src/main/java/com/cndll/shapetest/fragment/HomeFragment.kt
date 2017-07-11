@@ -68,7 +68,7 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             override fun checkCanDoRefresh(frame: PtrFrameLayout, content: View, header: View): Boolean {
                 // 默认实现，根据实际情况做改动
-                return (adapter.getItem(binding.viewPage.currentItem) as PagerHomeFragment).offsetX <= 0
+                return (adapter.getItem(binding.viewPage.currentItem) as PagerHomeFragment).isFirstRecycler
                 // return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header)
             }
         })

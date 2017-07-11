@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.AbsListView
+import android.widget.TextView
 import com.cndll.shapetest.R
 import com.cndll.shapetest.weight.MenuGrid
 import kotlinx.android.synthetic.main.fragment_pager_home.*
@@ -37,6 +38,7 @@ class PagerHomeFragment : Fragment() {
         }
     }
 
+    var isFirstRecycler = true
     var offsetX = 0
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -54,17 +56,26 @@ class PagerHomeFragment : Fragment() {
         recycler.adapter = adapter
         val layoutManager = LinearLayoutManager(context)
         recycler.layoutManager = layoutManager
-        back_top.setOnClickListener { recycler.smoothScrollToPosition(0) }
+        back_top.setOnClickListener {
+            if (adapter.count > 48) {
+                recycler.scrollToPosition(24)
+                recycler.smoothScrollToPosition(0)
+            } else {
+                recycler.smoothScrollToPosition(0)
+            }
+        }
         recycler.setOnScrollListener(object : RecyclerView.OnScrollListener() {
             val isSlidingToLast = false
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 offsetX = offsetX + dy
-                if (offsetX > height) {
+                if (offsetX > 0) {
+                    isFirstRecycler = false
+                }
+                if (offsetX > height && !isFirstRecycler) {
                     back_top.visibility = View.VISIBLE
                 } else {
                     back_top.visibility = View.GONE
-
                 }
             }
 
@@ -76,11 +87,14 @@ class PagerHomeFragment : Fragment() {
                     //获取最后一个完全显示的ItemPosition
                     val lastVisibleItem = manager.findLastCompletelyVisibleItemPosition()
                     val totalItemCount = manager.getItemCount()
-
+                    isFirstRecycler = manager.findFirstCompletelyVisibleItemPosition() == 0
+                    if (isFirstRecycler) {
+                        offsetX = 0
+                        back_top.visibility = View.GONE
+                    }
                     // 判断是否滚动到底部，并且是向右滚动
                     if (lastVisibleItem == totalItemCount - 1 /*&& isSlidingToLast*/) {
                         //加载更多功能的代码
-                        val count = adapter.count
                         adapter.count = adapter.count + 4
                         adapter.notifyDataSetChanged()
                     }
@@ -120,10 +134,10 @@ class PagerHomeFragment : Fragment() {
         override fun onBindViewHolder(p0: RecyclerAdapter.ItemView?, p1: Int) {
         }
 
-        var count = 4
+        var count = 20
         lateinit var mitems: ArrayMap<String, Objects>
         override fun onCreateViewHolder(p0: ViewGroup?, p1: Int): RecyclerAdapter.ItemView {
-            //val view = LayoutInflater.from(p0?.context).inflate(R.layout.banner, p0, false)
+            //val view = LayoutInflater.from(p0?.context).inflate(R.layout.testitem, p0, false)
             val bean1 = MenuGrid.MenuBean()
             bean1.title = "美妆"
             val bean2 = MenuGrid.MenuBean()
@@ -143,7 +157,6 @@ class PagerHomeFragment : Fragment() {
             bannerBeans.add(MenuGrid.BannerBean("http://zhongxiang.51edn.com/data/upload/shop/goods_class/05513824560521848.jpg", "http:www.baidu.com"))
             view.setBanner(bannerBeans)
             return ItemView(view.view)
-
         }
 
         override fun getItemCount(): Int {
@@ -158,7 +171,8 @@ class PagerHomeFragment : Fragment() {
             return super.getItemViewType(position)
         }
 
-        inner class ItemView(view: View) : RecyclerView.ViewHolder(view) {}
+        inner class ItemView(view: View) : RecyclerView.ViewHolder(view) {
+        }
 
     }
 }// Required empty public constructor

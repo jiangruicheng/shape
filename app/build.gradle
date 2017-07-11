@@ -65,4 +65,7 @@ dependencies {
     compile 'com.contrarywind:Android-PickerView:3.2.4'
     testCompile 'junit:junit:4.12'
     kapt 'com.android.databinding:compiler:2.3.0'
+    compile ('com.alibaba.android:vlayout:1.0.9@aar') {
+        transitive = true
+    }
 }
