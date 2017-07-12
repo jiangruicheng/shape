@@ -12,6 +12,7 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
     }
 
     override fun initTitle() {
+        binding.titlebar.title.text="企业认证"
         binding.titlebar.back.setOnClickListener { finish() }
     }
 
@@ -25,7 +26,7 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
      * 加载控件
      * */
     private fun initView(){
-        binding.titlebar.title.text="企业认证"
+
 
     }
 }

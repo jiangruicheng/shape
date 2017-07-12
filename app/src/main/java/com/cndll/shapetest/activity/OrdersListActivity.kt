@@ -41,5 +41,11 @@ class OrdersListActivity : BaseActivity<ActivityOrdersListBinding>() {
         binding.tabViewpager.adapter=adapter
         binding.orderTab.setupWithViewPager(binding.tabViewpager)
         binding.orderTab.setTabsFromPagerAdapter(adapter)
+
+        var bundle=this.intent.extras
+        var type=bundle.getInt("count")
+        binding.tabViewpager.currentItem=type
+        binding.orderTab.getTabAt(type)!!.select()
+
     }
 }

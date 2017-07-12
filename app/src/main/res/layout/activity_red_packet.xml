@@ -37,7 +37,7 @@
             android:text="发出的红包"
             app:layout_heightPercent="90%h"
             app:layout_widthPercent="30%w"
-            android:textColor="@color/possible_result_points"
+            android:textColor="@color/sit_title_text"
             app:layout_marginLeftPercent="20%"
             />
 
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="收到的红包"
-            android:textColor="@color/sit_title_text"
+            android:textColor="@color/possible_result_points"
             app:layout_heightPercent="90%h"
             app:layout_widthPercent="30%w"
             />

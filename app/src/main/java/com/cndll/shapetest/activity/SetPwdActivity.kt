@@ -86,13 +86,11 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
         }
         //企业认证
         binding.linEnterprise.setOnClickListener {
-            bundle.putString("type","enter")
-            context.startActivity(Intent(context,AuthenticationActivity::class.java).putExtras(bundle))
+            context.startActivity(Intent(context,AuthenticationActivity::class.java))
         }
         // 个人认证
         binding.linUser.setOnClickListener {
-            bundle.putString("type","user")
-            context.startActivity(Intent(context,AuthenticationActivity::class.java).putExtras(bundle))
+            context.startActivity(Intent(context,PersonalCertificateActivity::class.java))
         }
     }
 }

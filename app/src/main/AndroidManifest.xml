@@ -159,7 +159,10 @@
         <activity android:name=".activity.BankCardActivity" />
         <activity android:name=".activity.AddBankActivity" />
         <activity android:name=".activity.PopularizeActivity" />
-        <activity android:name=".activity.FavoriteActivity"></activity>
+        <activity android:name=".activity.FavoriteActivity" />
+        <activity android:name=".activity.PersonalCertificateActivity" />
+        <activity android:name=".activity.AppraiseActivity" />
+        <activity android:name=".activity.AddCarStareActivity"></activity>
     </application>
 
 </manifest>

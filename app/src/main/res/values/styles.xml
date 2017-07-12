@@ -11,4 +11,10 @@
         <item name="textAllCaps">false</item>
         <item name="android:textSize">18sp</item>
     </style>
+    <style name="foodRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingstars</item>
+        <item name="android:minHeight">60dip</item>
+        <item name="android:maxHeight">60dip</item>
+    </style>
+
 </resources>

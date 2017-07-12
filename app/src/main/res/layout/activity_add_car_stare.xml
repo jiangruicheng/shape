@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context="com.cndll.shapetest.activity.AddCarStareActivity">
+
+    <include
+        android:id="@+id/titlebar"
+        layout="@layout/titlebar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w" />
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/lin_jam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        app:layout_heightPercent="30%h"
+        app:layout_widthPercent="100%w"
+        android:gravity="center"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/jam"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_heightPercent="20%h"
+            app:layout_widthPercent="100%w"
+            android:gravity="center"
+            android:text="添加失败"
+            app:layout_textSizePercent="@string/text_size_bigC"
+            android:textColor="@color/titleRed"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_heightPercent="15%h"
+            android:gravity="center"
+            app:layout_widthPercent="100%w"
+            android:textColor="@color/titleRed"
+            android:text="请确认信息无误后再添加"
+            app:layout_textSizePercent="@string/text_size_big"
+            />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/lin_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        app:layout_heightPercent="30%h"
+        app:layout_widthPercent="100%w"
+        android:gravity="center"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/finish"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_heightPercent="35%h"
+            android:gravity="center"
+            app:layout_widthPercent="100%w"
+            android:textColor="@color/titleRed"
+            android:text="完成"
+            app:layout_textSizePercent="@string/text_size_big"
+            />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

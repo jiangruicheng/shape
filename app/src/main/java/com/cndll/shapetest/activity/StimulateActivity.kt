@@ -47,15 +47,18 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
         }
         //激励积分
         binding.incentivePointsLin.setOnClickListener {
-            context.startActivity(Intent(context,IntegralActivity::class.java))
+            bundle.putString("type","incentive")
+            context.startActivity(Intent(context,IntegralActivity::class.java).putExtras(bundle))
         }
         //积分明细
         binding.subsidiaryLin.setOnClickListener {
-            context.startActivity(Intent(context,IntegralActivity::class.java))
+            bundle.putString("type","subsidiary")
+            context.startActivity(Intent(context,IntegralActivity::class.java).putExtras(bundle))
         }
         //基金捐款
         binding.fundLin.setOnClickListener {
-            context.startActivity(Intent(context,IntegralActivity::class.java))
+            bundle.putString("type","fund")
+            context.startActivity(Intent(context,IntegralActivity::class.java).putExtras(bundle))
         }
         //常用银行卡
         binding.commonBankCardLin.setOnClickListener {
@@ -63,7 +66,8 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
         }
         //消费积分
         binding.scoreLin.setOnClickListener {
-            context.startActivity(Intent(context,IntegralActivity::class.java))
+            bundle.putString("type","score")
+            context.startActivity(Intent(context,IntegralActivity::class.java).putExtras(bundle))
         }
         //我的抵用卷
         binding.offsetVolume.setOnClickListener {

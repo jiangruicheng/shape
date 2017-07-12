@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter
  */
 class MyViewPagerAdapter(fm: FragmentManager, var fragments: List<Fragment>, var titles:Array<String>) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
-        return fragments.get(position)
+        return fragments[position]
     }
 
     override fun getCount(): Int {

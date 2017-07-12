@@ -26,10 +26,14 @@ class RedPacketActivity : BaseActivity<ActivityRedPacketBinding>() {
         binding.packBack.setOnClickListener { finish() }
         //收到红包记录
         binding.packIn.setOnClickListener {
+            binding.packOut.setTextColor(resources.getColor(R.color.possible_result_points))
+            binding.packIn.setTextColor(resources.getColor(R.color.sit_title_text))
             binding.packType.text="共收到"
         }
         //发出红包记录
         binding.packOut.setOnClickListener {
+            binding.packOut.setTextColor(resources.getColor(R.color.possible_result_points))
+            binding.packIn.setTextColor(resources.getColor(R.color.sit_title_text))
             binding.packType.text="共发出"
         }
 
