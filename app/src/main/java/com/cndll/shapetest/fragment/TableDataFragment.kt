@@ -38,7 +38,7 @@ class TableDataFragment : BaseFragment<TableDataLayoutBinding>() {
         binding.titlebar.root.setBackgroundResource(R.color.titleRed)
         binding.titlebar.back.visibility=View.INVISIBLE
         binding.titlebar.title.text="众享消费（消费激励）"
-        binding.titlebar.title.setTextColor(R.color.white)
+        binding.titlebar.title.setTextColor(resources.getColor(R.color.white))
     }
 
 

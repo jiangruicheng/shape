@@ -37,6 +37,7 @@ public class AppContext extends Application implements UncaughtExceptionHandler 
         PlatformConfig.setWeixin("wxd96b8dd3e5733967", "de1d138b686684274a39964f931b7eea");
         PlatformConfig.setQQZone("1105155596", "bbRRZKif6xhk679w");
         PlatformConfig.setSinaWeibo("3588954476", "66ee7a15a0301492373f82a42a80cd62", "http://www.sina.com");
+        Config.DEBUG = true; //测试----友盟
         Config.isJumptoAppStore = true;
         UMShareAPI.get(this);
         msgApi = WXAPIFactory.createWXAPI(appContext, null);

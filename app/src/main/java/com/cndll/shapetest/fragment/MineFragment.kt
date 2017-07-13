@@ -2,7 +2,6 @@ package com.cndll.shapetest.fragment
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -118,19 +117,23 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
             context.startActivity(Intent(context,VouchersActivity::class.java))
         }
         //预约订单
-        binding.mineLinAdvance.setOnClickListener {  }
+        binding.mineLinAdvance.setOnClickListener {
+            /////////////////////////////////////
+            context.startActivity(Intent(context,AppraiseActivity::class.java))
+        }
         //设置
         binding.mineSetting.setOnClickListener{
             context.startActivity(Intent(context,SettingActivity::class.java))
         }
         //二维码处理
         binding.mineZixingCode.setOnClickListener {
-           ///////////////////sssssss评论sss//////////////
-//            context.startActivity(Intent(context,AppraiseActivity::class.java))
             startActivityForResult(Intent(context,CaptureActivity::class.java),REQUEST_CODE_SCAN)
         }
         //消息
-        binding.mineNews.setOnClickListener {  }
+        binding.mineNews.setOnClickListener {
+            ////////////////////////////////////////////////
+            context.startActivity(Intent(context,ReimburseActivity::class.java))
+        }
 
         //我的激励
         binding.mineStimu.setOnClickListener {

@@ -14,6 +14,7 @@
     <color name="sit_top_bg">#ff6f71</color>
     <color name="sit_title_text">#fed28e</color>
     <color name="sit_test_color">#333333</color>
+    <color name="group_booking">#ff6600</color>
 
     <!-- 二维码 -->
     <color name="contents_text">#ff000000</color>

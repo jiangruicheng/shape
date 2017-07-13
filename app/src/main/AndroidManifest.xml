@@ -128,15 +128,8 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity android:name=".activity.SignActivity" />
+        <!-- 二维码 -->
         <activity android:name=".activity.ZiXingActivity">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-
         </activity>
         <activity android:name=".activity.ApplyActivity" />
         <activity android:name=".activity.SettingActivity" />
@@ -152,7 +145,6 @@
         <activity android:name=".activity.RedPacketActivity" />
         <activity android:name=".activity.VouchersActivity" />
         <activity android:name=".activity.IntegralActivity" />
-        <activity android:name=".activity.DataActivity" />
         <activity android:name=".activity.OrdersListActivity" />
         <activity android:name=".activity.ApplyBuyBackActivity" />
         <activity android:name=".activity.DonateActivity" />
@@ -162,7 +154,10 @@
         <activity android:name=".activity.FavoriteActivity" />
         <activity android:name=".activity.PersonalCertificateActivity" />
         <activity android:name=".activity.AppraiseActivity" />
-        <activity android:name=".activity.AddCarStareActivity"></activity>
+        <activity android:name=".activity.AddCarStareActivity" />
+        <activity android:name=".activity.GroupBookingDetailsActivity" />
+        <activity android:name=".activity.AdvanceOrderActivity" />
+        <activity android:name=".activity.ReimburseActivity"></activity>
     </application>
 
 </manifest>
