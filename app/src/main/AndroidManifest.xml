@@ -49,7 +49,7 @@
         </activity>
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.HomeActivity" />
-        <!--                 <activity android:name=".activity.BaseActivity"></activity> -->
+        <!-- <activity android:name=".activity.BaseActivity"></activity> -->
         <activity android:name=".activity.BaseActivity" />
 
         <!-- 添加第三方登录 -->
@@ -144,7 +144,25 @@
         <activity android:name=".activity.AddListAddressActivity" />
         <activity android:name=".activity.SetPhoneActivity" />
         <activity android:name=".activity.SetPwdActivity" />
-        <activity android:name=".activity.StimulateActivity"></activity>
+        <activity android:name=".activity.StimulateActivity" />
+        <activity android:name=".activity.UpdatePwdActivity" />
+        <activity android:name=".activity.UserMessageActivity" />
+        <activity android:name=".activity.AuthenticationActivity" />
+        <activity android:name=".activity.UserInfoActivity" />
+        <activity android:name=".activity.RedPacketActivity" />
+        <activity android:name=".activity.VouchersActivity" />
+        <activity android:name=".activity.IntegralActivity" />
+        <activity android:name=".activity.DataActivity" />
+        <activity android:name=".activity.OrdersListActivity" />
+        <activity android:name=".activity.ApplyBuyBackActivity" />
+        <activity android:name=".activity.DonateActivity" />
+        <activity android:name=".activity.BankCardActivity" />
+        <activity android:name=".activity.AddBankActivity" />
+        <activity android:name=".activity.PopularizeActivity" />
+        <activity android:name=".activity.FavoriteActivity" />
+        <activity android:name=".activity.PersonalCertificateActivity" />
+        <activity android:name=".activity.AppraiseActivity" />
+        <activity android:name=".activity.AddCarStareActivity"></activity>
     </application>
 
 </manifest>

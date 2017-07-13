@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg"
+    tools:context="com.cndll.shapetest.activity.AddBankActivity">
+
+    <include
+        android:id="@+id/titlebar"
+        layout="@layout/titlebar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_heightPercent="6%h"
+        app:layout_widthPercent="100%w"
+        android:text="请绑定持卡人本人银行卡"
+        android:gravity="center|left"
+        app:layout_paddingLeftPercent="2%"
+        android:textColor="@color/gray"
+        app:layout_textSizePercent="@string/text_size_mid"
+        />
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%h"
+        app:layout_paddingPercent="2%"
+        android:background="@color/white"
+        app:layout_widthPercent="100%w"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/contents_text"
+            android:text="持卡人："
+            app:layout_widthPercent="25%w"
+            app:layout_heightPercent="90%h"
+            android:gravity="center"
+            android:padding="5dp"
+            app:layout_textSizePercent="@string/text_size_big"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/gray"
+            app:layout_widthPercent="70%w"
+            app:layout_heightPercent="90%h"
+            android:gravity="center|left"
+            android:background="@null"
+            android:hint="请输入持卡人"
+            app:layout_textSizePercent="@string/text_size_big"
+            />
+    </com.zhy.android.percent.support.PercentLinearLayout>
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%h"
+        android:layout_marginTop="1dp"
+        app:layout_paddingPercent="2%"
+        android:background="@color/white"
+        app:layout_widthPercent="100%w"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/contents_text"
+            android:text="卡号："
+            app:layout_widthPercent="25%w"
+            app:layout_heightPercent="90%h"
+            android:gravity="center"
+            android:padding="5dp"
+            app:layout_textSizePercent="@string/text_size_big"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/gray"
+            app:layout_widthPercent="70%w"
+            app:layout_heightPercent="90%h"
+            android:gravity="center|left"
+            android:background="@null"
+            android:hint="请输入卡号"
+            app:layout_textSizePercent="@string/text_size_big"
+            />
+    </com.zhy.android.percent.support.PercentLinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_heightPercent="6%h"
+        app:layout_widthPercent="100%w"
+        android:text="请填写银行预留手机号"
+        android:gravity="center|left"
+        app:layout_paddingLeftPercent="2%"
+        android:textColor="@color/gray"
+        app:layout_textSizePercent="@string/text_size_mid"
+        />
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%h"
+        android:layout_marginTop="1dp"
+        app:layout_paddingPercent="2%"
+        android:background="@color/white"
+        app:layout_widthPercent="100%w"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/contents_text"
+            android:text="手机号："
+            app:layout_widthPercent="25%w"
+            app:layout_heightPercent="90%h"
+            android:gravity="center"
+            android:padding="5dp"
+            app:layout_textSizePercent="@string/text_size_big"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/gray"
+            app:layout_widthPercent="70%w"
+            app:layout_heightPercent="90%h"
+            android:gravity="center|left"
+            android:background="@null"
+            android:hint="请输入手机号"
+            android:inputType="phone"
+            app:layout_textSizePercent="@string/text_size_big"
+            />
+    </com.zhy.android.percent.support.PercentLinearLayout>
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:layout_paddingPercent="2%"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/sign_auth_code"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="25%w"
+            app:layout_heightPercent="90%h"
+            android:gravity="center"
+            android:textColor="@color/contents_text"
+            android:padding="5dp" />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="@string/sign_auth_code_content"
+            app:layout_heightPercent="80%h"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="45%w" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:gravity="center"
+            android:text="@string/sign_send_code"
+            app:layout_heightPercent="65%h"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="25%w" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_paddingPercent="2%"
+        app:layout_marginTopPercent="1%"
+        app:layout_paddingLeftPercent="2%"
+        app:layout_widthPercent="100%w">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="同意"
+            android:textColor="@color/contents_text"
+            app:layout_textSizePercent="@string/text_size_big" />
+
+        <TextView
+            android:id="@+id/apply_deal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="服务协议"
+            android:textColor="@color/titleRed"
+            app:layout_textSizePercent="@string/text_size_big" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <Button
+        android:id="@+id/bank_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_button_red"
+        android:text="下一步"
+        app:layout_heightPercent="7%h"
+        android:textColor="@color/titleBackGround"
+        app:layout_marginTopPercent="1%"
+        app:layout_textSizePercent="@string/text_size_big"
+        app:layout_widthPercent="90%w" />
+</com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

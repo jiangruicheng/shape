@@ -18,6 +18,7 @@
             app:layout_widthPercent="100%w" />
 
         <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/sit_lin_photo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/sit_title_bg"
@@ -135,7 +136,7 @@
                     app:layout_widthPercent="100%w">
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/sit_rope_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/sit_anglr"
@@ -146,6 +147,7 @@
                       />
 
                     <TextView
+                        android:id="@+id/sit_donate_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/sit_anglr"
@@ -177,6 +179,7 @@
                 app:layout_widthPercent="48%w">
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/incentive_points_lin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
@@ -227,6 +230,7 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/subsidiary_lin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
@@ -277,6 +281,7 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/fund_lin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
@@ -327,6 +332,7 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/common_bank_card_lin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
@@ -387,6 +393,7 @@
                 app:layout_widthPercent="45%w">\
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/score_lin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
@@ -437,6 +444,7 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/offset_volume"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
@@ -487,6 +495,7 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/integral_remainder_lin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
@@ -535,6 +544,7 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/buyback_record_lin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"

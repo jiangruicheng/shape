@@ -17,7 +17,21 @@
         app:layout_heightPercent="8%h"
         app:layout_widthPercent="100%w" />
 
+    <TextView
+        android:id="@+id/old_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|left"
+        android:text="请获取1111111手机号"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:textColor="@color/contents_text"
+        app:layout_paddingLeftPercent="5%"
+        app:layout_heightPercent="9%h"
+        app:layout_textSizePercent="@string/text_size_big"
+        app:layout_widthPercent="100%w" />
     <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/new_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -79,7 +93,7 @@
             app:layout_heightPercent="80%h"
             app:layout_paddingLeftPercent="1%"
             app:layout_textSizePercent="@string/text_size_big"
-            app:layout_widthPercent="45%w" />
+            app:layout_widthPercent="40%w" />
         <TextView
             android:id="@+id/phone_sed_code"
             android:layout_width="match_parent"
@@ -89,11 +103,46 @@
             android:text="@string/sign_send_code"
             android:textColor="@color/bg"
             app:layout_heightPercent="65%h"
+
             app:layout_textSizePercent="@string/text_size_big"
             app:layout_widthPercent="30%w" />
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/new_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_heightPercent="9%h"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        app:layout_paddingLeftPercent="5%"
+        app:layout_widthPercent="100%w">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:text="新密码："
+            android:textColor="@color/contents_text"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="20%w" />
+
+        <EditText
+            android:id="@+id/user_new_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="新密码"
+            android:inputType="phone"
+            app:layout_heightPercent="80%h"
+            app:layout_paddingLeftPercent="1%"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="75%w" />
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
 
 
     <Button

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    tools:context="com.cndll.shapetest.activity.UserInfoActivity">
+
+    <include
+        android:id="@+id/titlebar"
+        layout="@layout/titlebar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w" />
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_heightPercent="15%h"
+        app:layout_widthPercent="100%w"
+        android:background="@color/white"
+        app:layout_paddingLeftPercent="5%"
+        app:layout_paddingPercent="2%"
+        app:layout_marginTopPercent="3%"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:text="头像"
+            android:textColor="@color/contents_text"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="20%w" />
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            fresco:roundedCornerRadius="45dp"
+            app:layout_marginLeftPercent="55%"
+            fresco:placeholderImage="@mipmap/ic_launcher"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:roundingBorderColor="@color/white"
+            fresco:roundingBorderWidth="1dp"/>
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        app:layout_heightPercent="10%h"
+        app:layout_paddingLeftPercent="5%"
+        app:layout_widthPercent="100%w">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:text="昵称"
+            android:textColor="@color/contents_text"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="20%w" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="卖屋先生"
+            android:gravity="right|center"
+            app:layout_heightPercent="75%h"
+            app:layout_paddingLeftPercent="2%"
+            app:layout_paddingRightPercent="3%"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="75%w" />
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        app:layout_heightPercent="10%h"
+        app:layout_paddingLeftPercent="5%"
+        app:layout_widthPercent="100%w">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:text="ID"
+            android:textColor="@color/contents_text"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="20%w" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="123456"
+            android:gravity="right|center"
+            app:layout_heightPercent="75%h"
+            app:layout_paddingRightPercent="3%"
+            app:layout_paddingLeftPercent="2%"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="75%w" />
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w"
+        app:layout_marginTopPercent="5%"
+        android:background="@color/white"
+        android:text="保存"
+        app:layout_textSizePercent="@string/text_size_big"
+        android:textColor="@color/contents_text"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w"
+        app:layout_marginTopPercent="5%"
+        android:background="@color/white"
+        android:text="取消"
+        app:layout_textSizePercent="@string/text_size_big"
+        android:textColor="@color/contents_text"
+        />
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

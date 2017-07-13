@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg"
+    tools:context="com.cndll.shapetest.activity.FavoriteActivity">
+    <include
+        android:id="@+id/titlebar"
+        layout="@layout/titlebar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/fav_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w"
+        app:tabIndicatorColor="@color/titleRed"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/titleRed"
+        app:tabTextColor="@android:color/black"
+        app:tabIndicatorHeight="1dp"
+        />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/fav_viewpager"
+        android:layout_width="match_parent"
+        android:layout_marginTop="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/white" />
+</com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

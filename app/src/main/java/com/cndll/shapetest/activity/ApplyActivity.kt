@@ -34,6 +34,7 @@ class ApplyActivity : BaseActivity<ActivityApplyBinding>() {
             binding.titlebar.title.text = "申请服务合伙人"
         }else if(type.equals("manag")){
             binding.titlebar.title.text = "申请管理合伙人"
+            binding.applyDeal.text="管理合伙人协议"
         }else if(type.equals("apply")){
             binding.titlebar.title.text = "申请商家"
         }

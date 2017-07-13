@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg"
+    tools:context="com.cndll.shapetest.activity.PersonalCertificateActivity">
+
+    <include
+        android:id="@+id/titlebar"
+        layout="@layout/titlebar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        >
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_widthPercent="100%w"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="1dp"
+                android:text="请输入本人身份证信息"
+                android:textColor="@color/text"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_paddingPercent="2%"
+                />
+
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_marginTop="1dp"
+                app:layout_paddingLeftPercent="5%"
+                app:layout_widthPercent="100%w">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="姓名："
+                    app:layout_heightPercent="8%h"
+                    android:textColor="@color/contents_text"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="20%w" />
+
+                <EditText
+                    android:id="@+id/cer_username_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="甜甜"
+                    app:layout_heightPercent="8%h"
+                    app:layout_paddingLeftPercent="2%"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="75%w" />
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_marginTop="1dp"
+                app:layout_paddingLeftPercent="5%"
+                app:layout_widthPercent="100%w">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="身份证号："
+                    app:layout_heightPercent="8%h"
+                    android:textColor="@color/contents_text"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="20%w" />
+
+                <EditText
+                    android:id="@+id/cer_card_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="13528679401352867940"
+                    app:layout_heightPercent="8%h"
+                    app:layout_paddingLeftPercent="2%"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="75%w" />
+            </com.zhy.android.percent.support.PercentLinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="请上传本人身份证照片"
+                android:textColor="@color/text"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_paddingPercent="2%"
+                />
+
+
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                >
+                <com.zhy.android.percent.support.PercentFrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content">
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/sim_user_card"
+                        android:layout_width="200dp"
+                        android:layout_height="130dp"
+                        android:layout_centerInParent="true"
+                        android:background="@mipmap/approve_bg"
+                        />
+                    <TextView
+                        android:id="@+id/add_card_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="添加身份证"
+                        android:layout_gravity="center"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_mid"
+                        android:layout_marginTop="30dp"
+                        app:layout_paddingPercent="2%"
+                        />
+                </com.zhy.android.percent.support.PercentFrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="手持身份证照片"
+                    android:layout_gravity="center"
+                    android:textColor="@color/contents_text"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_paddingPercent="2%"
+                    />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                >
+                <com.zhy.android.percent.support.PercentFrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content">
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/sim_card_z"
+                        android:layout_width="200dp"
+                        android:layout_height="130dp"
+                        android:layout_centerInParent="true"
+                        android:background="@mipmap/approve_bg"
+                        />
+                    <TextView
+                        android:id="@+id/add_card_z_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="添加身份证"
+                        android:layout_gravity="center"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_mid"
+                        android:layout_marginTop="30dp"
+                        app:layout_paddingPercent="2%"
+                        />
+                </com.zhy.android.percent.support.PercentFrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="正面"
+                    android:layout_gravity="center"
+                    android:textColor="@color/contents_text"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_paddingPercent="2%"
+                    />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                >
+                <com.zhy.android.percent.support.PercentFrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content">
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/sim_card_f"
+                        android:layout_width="200dp"
+                        android:layout_height="130dp"
+                        android:layout_centerInParent="true"
+                        android:background="@mipmap/approve_bg"
+                        />
+                    <TextView
+                        android:id="@+id/add_card_f_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="添加身份证"
+                        android:layout_gravity="center"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_mid"
+                        android:layout_marginTop="30dp"
+                        app:layout_paddingPercent="2%"
+                        />
+                </com.zhy.android.percent.support.PercentFrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="反面"
+                    android:layout_gravity="center"
+                    android:textColor="@color/contents_text"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_paddingPercent="2%"
+                    />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            <Button
+                android:id="@+id/auth_submit_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_button_red"
+                android:text="提交"
+                android:textColor="@color/titleBackGround"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="80%w" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+    </ScrollView>
+
+</com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

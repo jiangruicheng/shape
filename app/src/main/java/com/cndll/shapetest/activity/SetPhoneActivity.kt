@@ -3,6 +3,7 @@ package com.cndll.shapetest.activity
 import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.View
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivitySetPhoneBinding
 
@@ -16,7 +17,6 @@ class SetPhoneActivity : BaseActivity<ActivitySetPhoneBinding>() {
     }
 
     override fun initTitle() {
-        binding.titlebar.title.text="绑定手机号"
         binding.titlebar.back.setOnClickListener{
             finish()
         }
@@ -33,6 +33,22 @@ class SetPhoneActivity : BaseActivity<ActivitySetPhoneBinding>() {
     private fun initView(){
         cT=MyCountTime(60000,1000)
         binding.phoneSedCode.setOnClickListener { cT.start() }
+        var bundle=this.intent.extras
+        var type=bundle.getString("type")
+        if (type.equals("bPhone")){
+            binding.titlebar.title.text="绑定手机号"
+            binding.oldPhone.visibility= View.GONE
+            binding.newPwd.visibility= View.GONE
+        }else if (type.equals("payPwd")){
+            binding.titlebar.title.text="修改支付密码"
+            binding.bindPhone.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_red))
+            binding.bindPhone.text="修改密码"
+            binding.newPhone.visibility= View.GONE
+        }
+
+
+
+
     }
 
     /** 定时任务 */
