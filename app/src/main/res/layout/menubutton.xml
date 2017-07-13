@@ -6,13 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scaleType="fitEnd"
-        android:src="@mipmap/ic_launcher_round"
-        app:layout_heightPercent="70%h" />
+        android:scaleType="centerCrop"
+        app:actualImageScaleType="centerCrop"
+        app:layout_heightPercent="70%h"
+        app:placeholderImage="@mipmap/ic_launcher_round"
+        app:roundAsCircle="true" />
 
     <TextView
         android:id="@+id/text"

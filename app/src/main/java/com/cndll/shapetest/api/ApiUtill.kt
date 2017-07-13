@@ -25,21 +25,24 @@ open class ApiUtill {
         val init = ApiUtill()
     }
 
-    lateinit var api: HashMap<Int, Observable<BaseResponse>>
+    lateinit var api: HashMap<Int, Observable<out BaseResponse>>
 
     init {
         api = HashMap()
         api.put(TEST, AppRequest.getAPI().test(BaseRequest()))
     }
 
-    fun getApi(flag: Int): Subscription? {
+    fun getApi(flag: Int, next: (BaseResponse) -> Unit): Subscription? {
         if (api.get(flag) != null)
             return api.get(flag)!!.subscribeOn(Schedulers.io()).
                     observeOn(AndroidSchedulers.mainThread()).
-                    subscribe(object : BaseObservable(){
+                    subscribe(object : BaseObservable() {
 
                         override fun onNext(t: BaseResponse?) {
                             super.onNext(t)
+                            if (t != null) {
+                                next(t)
+                            }
                         }
 
                         override fun onError(e: Throwable?) {

@@ -15,6 +15,7 @@ import com.alibaba.android.vlayout.DelegateAdapter
 import com.alibaba.android.vlayout.DelegateAdapter.Adapter
 import com.alibaba.android.vlayout.LayoutHelper
 import com.alibaba.android.vlayout.VirtualLayoutManager
+import com.alibaba.android.vlayout.layout.GridLayoutHelper
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper
 import com.alibaba.android.vlayout.layout.ScrollFixLayoutHelper
 import com.cndll.shapetest.R
@@ -32,9 +33,14 @@ import kotlin.collections.ArrayList
  */
 class PagerHomeFragment : Fragment() {
 
+    var isFirstRecycler = true
+    var offsetX = 0
+    lateinit var adapter: DelegateAdapter
+    lateinit var bannerAdapter: BannerAdapter
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,27 +50,22 @@ class PagerHomeFragment : Fragment() {
         }
     }
 
-    var isFirstRecycler = true
-    var offsetX = 0
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater?.inflate(R.layout.fragment_pager_home, container, false)
-        return view
-    }
-
-    lateinit var adapter: DelegateAdapter
-    override fun onResume() {
-        super.onResume()
         val vlayout = VirtualLayoutManager(activity)
+        val recycler = view!!.findViewById(R.id.recycler) as RecyclerView
         recycler.layoutManager = vlayout
         adapter = DelegateAdapter(vlayout, true)
         recycler.adapter = adapter
-        val adapterList = ArrayList<Adapter<*>>()
+        val adapterList = ArrayList<Adapter<out RecyclerView.ViewHolder>>()
 
         val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val h = windowManager.defaultDisplay.height / 8
-        adapterList.add(BannerAdapter(context, LinearLayoutHelper(), 5))
+        val llh = LinearLayoutHelper()
+        bannerAdapter = BannerAdapter(context, llh, 1, layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, windowManager.defaultDisplay.height / 10 * 4))
+        adapterList.add(bannerAdapter)
 
         val mLayoutParams = ViewGroup.LayoutParams(windowManager.defaultDisplay.width / 6, windowManager.defaultDisplay.height / 8)
 
@@ -73,10 +74,6 @@ class PagerHomeFragment : Fragment() {
         mScrollFixLayoutHelper.showType = ScrollFixLayoutHelper.SHOW_ON_LEAVE
         adapterList.add(object : BannerAdapter(context, mScrollFixLayoutHelper, 1, mLayoutParams) {
             override fun onBindViewHolder(holder: BannerViewHolder?, position: Int) {
-            }
-
-            override fun getItemCount(): Int {
-                return 1
             }
 
             override fun getItemViewType(position: Int): Int {
@@ -93,8 +90,26 @@ class PagerHomeFragment : Fragment() {
             }
         })
 
+        val grid = GridLayoutHelper(2, 2)
+        grid.setPadding(0, 20, 0, 20)
+        grid.setMargin(0, 24, 0, 24)
+        adapterList.add(object : BannerAdapter(context, grid, 4, layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, windowManager.defaultDisplay.height / 2)) {
+            override fun onBindViewHolder(holder: BannerViewHolder?, position: Int) {
+                super.mLayoutParams
+            }
 
-        adapterList.add(BannerAdapter(context, LinearLayoutHelper(), 12))
+
+            override fun getItemViewType(position: Int): Int {
+                return 2
+            }
+
+            override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BannerViewHolder {
+                val view = LayoutInflater.from(context).inflate(R.layout.nearby_item, parent, false)
+                var lp = view.layoutParams
+                lp.height = windowManager.defaultDisplay.height / 10
+                return BannerViewHolder(view)
+            }
+        })
 
         adapter.addAdapters(adapterList)
 
@@ -130,6 +145,20 @@ class PagerHomeFragment : Fragment() {
                 }
             }
         })
+        return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        /*if (bannerAdapter.view != null){
+            bannerAdapter.view.startBanner(1500)
+
+        }*/
+    }
+
+    override fun onPause() {
+        super.onPause()
+        bannerAdapter.view.stopBanner()
     }
 
     companion object {
@@ -182,9 +211,9 @@ class PagerHomeFragment : Fragment() {
             params.height = windowManager.defaultDisplay.height / 2
             view.setMenuData(dataList)
             val bannerBeans = ArrayList<MenuGrid.BannerBean>()
-            bannerBeans.add(MenuGrid.BannerBean("http://zhongxiang.51edn.com/data/upload/shop/goods_class/05513824560521848.jpg", "http:www.baidu.com"))
-            bannerBeans.add(MenuGrid.BannerBean("http://zhongxiang.51edn.com/data/upload/shop/goods_class/05513824560521848.jpg", "http:www.baidu.com"))
-            bannerBeans.add(MenuGrid.BannerBean("http://zhongxiang.51edn.com/data/upload/shop/goods_class/05513824560521848.jpg", "http:www.baidu.com"))
+            bannerBeans.add(MenuGrid.BannerBean("http://pic.58pic.com/58pic/13/61/00/61a58PICtPr_1024.jpg", "http:www.baidu.com"))
+            bannerBeans.add(MenuGrid.BannerBean("http://pic.58pic.com/58pic/15/24/50/43Q58PICkj4_1024.jpg", "http:www.baidu.com"))
+            bannerBeans.add(MenuGrid.BannerBean("http://img0.imgtn.bdimg.com/it/u=3519309645,3088241677&fm=26&gp=0.jpg", "http:www.baidu.com"))
             view.setBanner(bannerBeans)
             return ItemView(view.view)
         }
