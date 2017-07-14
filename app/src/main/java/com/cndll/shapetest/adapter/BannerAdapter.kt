@@ -84,7 +84,8 @@ open class BannerAdapter(context: Context, layoutHelper: LayoutHelper, count: In
         bannerBeans.add(MenuGrid.BannerBean("http://pic.58pic.com/58pic/13/61/00/61a58PICtPr_1024.jpg", "http:www.baidu.com"))
         bannerBeans.add(MenuGrid.BannerBean("http://pic.58pic.com/58pic/15/24/50/43Q58PICkj4_1024.jpg", "http:www.baidu.com"))
         bannerBeans.add(MenuGrid.BannerBean("http://img0.imgtn.bdimg.com/it/u=3519309645,3088241677&fm=26&gp=0.jpg", "http:www.baidu.com"))
-        view.view.layoutParams = mLayoutParams
+        view.view.layoutParams.height = mLayoutParams!!.height
+        view.view.layoutParams.width = mLayoutParams!!.width
         view.setBanner(bannerBeans)
         view.startBanner(3500)
         return BannerViewHolder(view.view)

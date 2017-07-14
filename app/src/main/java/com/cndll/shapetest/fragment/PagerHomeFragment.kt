@@ -6,23 +6,21 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.ArrayMap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import com.alibaba.android.vlayout.DelegateAdapter
 import com.alibaba.android.vlayout.DelegateAdapter.Adapter
-import com.alibaba.android.vlayout.LayoutHelper
 import com.alibaba.android.vlayout.VirtualLayoutManager
 import com.alibaba.android.vlayout.layout.GridLayoutHelper
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper
 import com.alibaba.android.vlayout.layout.ScrollFixLayoutHelper
 import com.cndll.shapetest.R
 import com.cndll.shapetest.adapter.BannerAdapter
-import com.cndll.shapetest.weight.MenuGrid
-import kotlinx.android.synthetic.main.fragment_pager_home.*
-import java.util.*
+import com.cndll.shapetest.weight.VLayoutHelper
+import com.facebook.drawee.view.SimpleDraweeView
 import kotlin.collections.ArrayList
 
 
@@ -35,6 +33,7 @@ class PagerHomeFragment : Fragment() {
 
     var isFirstRecycler = true
     var offsetX = 0
+    val adapterList = ArrayList<Adapter<out RecyclerView.ViewHolder>>()
     lateinit var adapter: DelegateAdapter
     lateinit var bannerAdapter: BannerAdapter
     // TODO: Rename and change types of parameters
@@ -53,66 +52,55 @@ class PagerHomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater?.inflate(R.layout.fragment_pager_home, container, false)
+        val view: View = inflater?.inflate(R.layout.fragment_pager_home, container, false) as View
+        setScollListen(view)
+        setFirstViewPage(view)
+        return view
+    }
+
+    fun setFirstViewPage(view: View) {
         val vlayout = VirtualLayoutManager(context)
-        val recycler = view!!.findViewById(R.id.recycler) as RecyclerView
+        val recycler: RecyclerView = view!!.findViewById(R.id.recycler) as RecyclerView
+
         recycler.layoutManager = vlayout
         adapter = DelegateAdapter(vlayout, true)
         recycler.adapter = adapter
-        val adapterList = ArrayList<Adapter<out RecyclerView.ViewHolder>>()
-
         val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val h = windowManager.defaultDisplay.height / 8
+
         val llh = LinearLayoutHelper()
         bannerAdapter = BannerAdapter(context, llh, 1, layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, windowManager.defaultDisplay.height / 2))
-        adapterList.add(bannerAdapter)
+        adapter.addAdapter(bannerAdapter)
 
         val mLayoutParams = ViewGroup.LayoutParams(windowManager.defaultDisplay.width / 6, windowManager.defaultDisplay.height / 8)
-
         val mScrollFixLayoutHelper = ScrollFixLayoutHelper(ScrollFixLayoutHelper.BOTTOM_RIGHT, 12, 12)
         mScrollFixLayoutHelper.setItemCount(1)
         mScrollFixLayoutHelper.showType = ScrollFixLayoutHelper.SHOW_ON_LEAVE
-        adapterList.add(object : BannerAdapter(context, mScrollFixLayoutHelper, 1, mLayoutParams) {
-            override fun onBindViewHolder(holder: BannerViewHolder?, position: Int) {
-            }
-
-            override fun getItemViewType(position: Int): Int {
-                return 1
-            }
-
-            override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BannerViewHolder {
-                val view = LayoutInflater.from(context).inflate(R.layout.button_vlayout, parent, false)
-                return BannerViewHolder(view)
-            }
-
-            override fun onCreateLayoutHelper(): LayoutHelper {
-                return mScrollFixLayoutHelper
-            }
-        })
+        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setLayoutHelper(mScrollFixLayoutHelper).
+                setParams(mLayoutParams).setViewType(1).setCount(1).setRes(R.layout.button_vlayout).
+                creatAdapter())
 
         val grid = GridLayoutHelper(2, 2)
         grid.setPadding(0, 12, 0, 12)
         grid.setMargin(0, 6, 0, 6)
-        adapterList.add(object : BannerAdapter(context, grid, 4) {
-            override fun onBindViewHolder(holder: BannerViewHolder?, position: Int) {
-                super.mLayoutParams
-            }
+        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setCount(4).
+                setLayoutHelper(grid).
+                setViewType(2).
+                setRes(R.layout.nearby_item).
+                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        windowManager.defaultDisplay.height / 13 * 2)).
+                setOnBindView({ itemView, position ->
+                    val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                    imageView.setOnClickListener { Toast.makeText(context, position.toString(), Toast.LENGTH_SHORT).show() }
+                }).creatAdapter())
 
+    }
 
-            override fun getItemViewType(position: Int): Int {
-                return 2
-            }
-
-            override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BannerViewHolder {
-                val view = LayoutInflater.from(context).inflate(R.layout.nearby_item, parent, false)
-                var lp = view.layoutParams
-                lp.height = windowManager.defaultDisplay.height / 13 * 2
-                return BannerViewHolder(view)
-            }
-        })
-
-        adapter.addAdapters(adapterList)
-
+    fun setScollListen(view: View) {
+        val recycler = view!!.findViewById(R.id.recycler) as RecyclerView
         recycler.setOnScrollListener(object : RecyclerView.OnScrollListener() {
             val isSlidingToLast = false
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
@@ -145,15 +133,10 @@ class PagerHomeFragment : Fragment() {
                 }
             }
         })
-        return view
     }
 
     override fun onResume() {
         super.onResume()
-        /*if (bannerAdapter.view != null){
-            bannerAdapter.view.startBanner(1500)
-
-        }*/
     }
 
     override fun onPause() {
@@ -186,52 +169,5 @@ class PagerHomeFragment : Fragment() {
             fragment.arguments = args
             return fragment
         }
-    }
-
-
-    inner class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ItemView>() {
-        override fun onBindViewHolder(p0: RecyclerAdapter.ItemView?, p1: Int) {
-        }
-
-        var count = 20
-        lateinit var mitems: ArrayMap<String, Objects>
-        override fun onCreateViewHolder(p0: ViewGroup?, p1: Int): RecyclerAdapter.ItemView {
-            //val view = LayoutInflater.from(p0?.context).inflate(R.layout.testitem, p0, false)
-            val bean1 = MenuGrid.MenuBean()
-            bean1.title = "美妆"
-            val bean2 = MenuGrid.MenuBean()
-            bean2.title = "家电"
-            val bean3 = MenuGrid.MenuBean()
-            bean3.title = "美女"
-            val dataList = listOf<MenuGrid.MenuBean>(bean1, bean2, bean3)
-
-            val view = MenuGrid(p0)
-            val params = view.view.layoutParams
-            val windowManager = p0?.context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-            params.height = windowManager.defaultDisplay.height / 2
-            view.setMenuData(dataList)
-            val bannerBeans = ArrayList<MenuGrid.BannerBean>()
-            bannerBeans.add(MenuGrid.BannerBean("http://pic.58pic.com/58pic/13/61/00/61a58PICtPr_1024.jpg", "http:www.baidu.com"))
-            bannerBeans.add(MenuGrid.BannerBean("http://pic.58pic.com/58pic/15/24/50/43Q58PICkj4_1024.jpg", "http:www.baidu.com"))
-            bannerBeans.add(MenuGrid.BannerBean("http://img0.imgtn.bdimg.com/it/u=3519309645,3088241677&fm=26&gp=0.jpg", "http:www.baidu.com"))
-            view.setBanner(bannerBeans)
-            return ItemView(view.view)
-        }
-
-        override fun getItemCount(): Int {
-            return count
-        }
-
-        override fun getItemId(position: Int): Long {
-            return super.getItemId(position)
-        }
-
-        override fun getItemViewType(position: Int): Int {
-            return super.getItemViewType(position)
-        }
-
-        inner class ItemView(view: View) : RecyclerView.ViewHolder(view) {
-        }
-
     }
 }// Required empty public constructor
