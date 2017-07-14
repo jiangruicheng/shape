@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg"
+    android:layout_height="match_parent">
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:background="@mipmap/bg_quian"
+        app:layout_heightPercent="20%h"
+        app:layout_widthPercent="90%w"
+        >
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_heightPercent="80%h"
+            android:layout_gravity="center"
+            app:layout_widthPercent="60%w"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_marginTopPercent="30%"
+                app:layout_heightPercent="40%h"
+                app:layout_widthPercent="90%w"
+                android:text="抵用卷"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:layout_textSizePercent="10%w"
+                android:textColor="@color/contents_text"
+                />
+
+            <TextView
+                android:id="@+id/vouchers_time"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_heightPercent="30%h"
+                app:layout_widthPercent="90%w"
+                android:text="2017..01.10-2017.03.30"
+                android:gravity="center"
+                app:layout_textSizePercent="@string/text_size_bigC"
+                android:textColor="@color/gray"
+                />
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <TextView
+            android:id="@+id/vouchers_price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_heightPercent="90%h"
+            app:layout_widthPercent="20%w"
+            app:layout_marginLeftPercent="15%"
+            android:text="$100"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_textSizePercent="@string/text_size_bigC"
+            android:textColor="@color/titleRed"
+            />
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</com.zhy.android.percent.support.PercentLinearLayout>

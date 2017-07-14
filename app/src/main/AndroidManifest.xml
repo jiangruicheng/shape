@@ -128,8 +128,15 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity android:name=".activity.SignActivity" />
-        <!-- 二维码 -->
         <activity android:name=".activity.ZiXingActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+
         </activity>
         <activity android:name=".activity.ApplyActivity" />
         <activity android:name=".activity.SettingActivity" />

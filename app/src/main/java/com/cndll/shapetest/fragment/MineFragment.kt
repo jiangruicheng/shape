@@ -81,7 +81,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
      * */
     private fun initView(){
         // 头像，个人资料
-        binding.mineIcon.setImageURI("http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=false&word=%E5%A4%B4%E5%83%8F&step_word=&hs=0&pn=1&spn=0&di=182229183950&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=2&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=-1&cs=3797592229%2C3840448992&os=3100598133%2C668324230&simid=3517583087%2C254517939&adpicid=0&lpn=0&ln=3952&fr=&fmq=1461834053046_R&fm=&ic=0&s=0&se=&sme=&tab=0&width=&height=&face=undefined&ist=&jit=&cg=head&bdtype=0&oriquery=&objurl=http%3A%2F%2Fwww.shzbbc.com%2Fuploads%2Ftu%2Fztmb%2Fslt%2Fbd119308765.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bfizkkv_z%26e3Bv54AzdH3FpxAzdH3F8dd0nnm_z%26e3Bip4s&gsm=0&rpstart=0&rpnum=0")
+        binding.mineIcon.setImageURI("http://qmy.51edn.com/upload/images/20170706/cbea4d76ccbebfe8bdc3d3735ac690ce.jpg")
         binding.mineIcon.setOnClickListener {
             context.startActivity(Intent(context,UserInfoActivity::class.java))
         }
@@ -106,7 +106,8 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
             context.startActivity(Intent(context,ApplyActivity::class.java).putExtras(bundle)) }
         //我的拼团
         binding.mineLinBooking.setOnClickListener {
-            context.startActivity(Intent(context,VouchersActivity::class.java))
+            bundle.putString("type", "booking")
+            context.startActivity(Intent(context,VouchersActivity::class.java).putExtras(bundle))
         }
         //我的推广
         binding.mineLinGeneralize.setOnClickListener {
@@ -114,7 +115,8 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         }
         //我的抵用卷
         binding.mineLinVouchers.setOnClickListener {
-            context.startActivity(Intent(context,VouchersActivity::class.java))
+            bundle.putString("type", "voucher")
+            context.startActivity(Intent(context,VouchersActivity::class.java).putExtras(bundle))
         }
         //预约订单
         binding.mineLinAdvance.setOnClickListener {
@@ -200,6 +202,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         if(requestCode==REQUEST_CODE_SCAN && resultCode == Activity.RESULT_OK){
             if(data!=null){
                 val content = data.getStringExtra(DECODED_CONTENT_KEY)
+                //返回生成的二维码
 //                val bitmap = data.getParcelableExtra<Bitmap>(DECODED_BITMAP_KEY)
 
                 println("content:"+content)
