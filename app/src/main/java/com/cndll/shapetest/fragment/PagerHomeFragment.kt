@@ -54,7 +54,7 @@ class PagerHomeFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater?.inflate(R.layout.fragment_pager_home, container, false)
-        val vlayout = VirtualLayoutManager(activity)
+        val vlayout = VirtualLayoutManager(context)
         val recycler = view!!.findViewById(R.id.recycler) as RecyclerView
         recycler.layoutManager = vlayout
         adapter = DelegateAdapter(vlayout, true)
@@ -64,7 +64,7 @@ class PagerHomeFragment : Fragment() {
         val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val h = windowManager.defaultDisplay.height / 8
         val llh = LinearLayoutHelper()
-        bannerAdapter = BannerAdapter(context, llh, 1, layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, windowManager.defaultDisplay.height / 10 * 4))
+        bannerAdapter = BannerAdapter(context, llh, 1, layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, windowManager.defaultDisplay.height / 2))
         adapterList.add(bannerAdapter)
 
         val mLayoutParams = ViewGroup.LayoutParams(windowManager.defaultDisplay.width / 6, windowManager.defaultDisplay.height / 8)
@@ -91,9 +91,9 @@ class PagerHomeFragment : Fragment() {
         })
 
         val grid = GridLayoutHelper(2, 2)
-        grid.setPadding(0, 20, 0, 20)
-        grid.setMargin(0, 24, 0, 24)
-        adapterList.add(object : BannerAdapter(context, grid, 4, layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, windowManager.defaultDisplay.height / 2)) {
+        grid.setPadding(0, 12, 0, 12)
+        grid.setMargin(0, 6, 0, 6)
+        adapterList.add(object : BannerAdapter(context, grid, 4) {
             override fun onBindViewHolder(holder: BannerViewHolder?, position: Int) {
                 super.mLayoutParams
             }
@@ -106,7 +106,7 @@ class PagerHomeFragment : Fragment() {
             override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BannerViewHolder {
                 val view = LayoutInflater.from(context).inflate(R.layout.nearby_item, parent, false)
                 var lp = view.layoutParams
-                lp.height = windowManager.defaultDisplay.height / 10
+                lp.height = windowManager.defaultDisplay.height / 13 * 2
                 return BannerViewHolder(view)
             }
         })

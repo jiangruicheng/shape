@@ -13,27 +13,29 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <RelativeLayout
+        <com.zhy.android.percent.support.PercentRelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4">
+            android:layout_weight="1">
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/image"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
                 android:scaleType="centerInside"
                 app:actualImageScaleType="centerInside"
+                app:layout_marginLeftPercent="25%w"
+                app:layout_marginRightPercent="10%w"
                 app:placeholderImage="@mipmap/jkinkou"
                 app:roundAsCircle="true" />
 
-        </RelativeLayout>
+        </com.zhy.android.percent.support.PercentRelativeLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="6"
+            android:layout_weight="1.5"
             android:orientation="vertical">
 
             <TextView

@@ -35,6 +35,7 @@ class MenuGrid(view: ViewGroup?) {
 
     fun setMenuData(dataList: List<MenuBean>?) {
         thread {
+            Thread.sleep(100)
             val menu = view.findViewById(R.id.menu) as ViewGroup
             for (i in 0..menu.childCount - 1) {
                 val cmenu = menu.getChildAt(i) as ViewGroup
