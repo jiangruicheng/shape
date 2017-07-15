@@ -49,8 +49,6 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
         initBinding(R.layout.fragment_home, container)
         mView = binding.root
         initPageView()
-        initDownRefresh()
-
         binding.titlebar.root.setBackgroundResource(R.color.titleRed)
         binding.titlebar.title.text = "众享消费"
         binding.titlebar.title.setTextColor(Color.WHITE)
@@ -59,24 +57,7 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    fun initDownRefresh() {
-        binding.storeHousePtrFrame.disableWhenHorizontalMove(true)
-        binding.storeHousePtrFrame.setPtrHandler(object : PtrHandler {
-            override fun onRefreshBegin(frame: PtrFrameLayout) {
-                frame.postDelayed({ binding.storeHousePtrFrame.refreshComplete() }, 1800)
-            }
 
-            override fun checkCanDoRefresh(frame: PtrFrameLayout, content: View, header: View): Boolean {
-                // 默认实现，根据实际情况做改动
-                return (adapter.getItem(binding.viewPage.currentItem) as PagerHomeFragment).isFirstRecycler
-                // return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header)
-            }
-        })
-        val header = PtrClassicDefaultHeader(context)
-        header.setPadding(0, PtrLocalDisplay.dp2px(15F), 0, 0)
-        binding.storeHousePtrFrame.headerView = header
-        binding.storeHousePtrFrame.addPtrUIHandler(header)
-    }
 
     fun initPageView() {
         adapter = PagerAdapter(activity.supportFragmentManager)

@@ -45,6 +45,9 @@ dependencies {
     compile files('libs/open_sdk_r5043_lite.jar')
     compile files('libs/alipaySdk-20160825.jar')
     compile files('libs/core-3.0.0.jar')
+    compile('com.alibaba.android:vlayout:1.0.9@aar') {
+        transitive = true
+    }
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'io.reactivex:rxjava:1.2.1'
@@ -65,7 +68,4 @@ dependencies {
     compile 'com.contrarywind:Android-PickerView:3.2.4'
     testCompile 'junit:junit:4.12'
     kapt 'com.android.databinding:compiler:2.3.0'
-    compile('com.alibaba.android:vlayout:1.0.9@aar') {
-        transitive = true
-    }
 }

@@ -15,36 +15,12 @@ import java.util.ArrayList
 /**
  * Created by jiangruicheng on 2017/7/11.
  */
-open class BannerAdapter(context: Context, layoutHelper: LayoutHelper, count: Int) : DelegateAdapter.Adapter<BannerAdapter.BannerViewHolder>() {
+open class BannerAdapter(context: Context, layoutHelper: LayoutHelper, count: Int) : VLayoutAdapter(context, layoutHelper, count) {
     lateinit var view: MenuGrid
-
     constructor(context: Context, layoutHelper: LayoutHelper, count: Int, layoutParams: ViewGroup.LayoutParams) : this(context, layoutHelper, count) {
         mLayoutParams = layoutParams
     }
-
-    lateinit var mContext: Context
-    lateinit var mLayoutHelper: LayoutHelper
-    var mCount = 0
-    var mLayoutParams: ViewGroup.LayoutParams? = null
-
-    init {
-        mContext = context
-        mLayoutHelper = layoutHelper
-        mCount = count
-
-        if (mLayoutParams == null) {
-            val windowManager = mContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-            val height = windowManager.defaultDisplay.height / 2
-            mLayoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height)
-        }
-
-    }
-
     override fun onBindViewHolder(holder: BannerViewHolder?, position: Int) {
-    }
-
-    override fun getItemCount(): Int {
-        return mCount
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -91,11 +67,4 @@ open class BannerAdapter(context: Context, layoutHelper: LayoutHelper, count: In
         return BannerViewHolder(view.view)
     }
 
-    override fun onCreateLayoutHelper(): LayoutHelper {
-        return mLayoutHelper
-    }
-
-    inner class BannerViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-
-    }
 }

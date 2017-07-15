@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.cndll.shapetest.adapter.BannerAdapter;
+import com.cndll.shapetest.adapter.VLayoutAdapter;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,9 +17,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class VLayoutHelper {
 
-    private static BannerAdapter getAdapter(final Builder builder) {
+    private static VLayoutAdapter getAdapter(final Builder builder) {
         if (builder.params == null) {
-            return new BannerAdapter(builder.context, builder.layoutHelper, builder.count) {
+            return new VLayoutAdapter(builder.context, builder.layoutHelper, builder.count) {
                 @Override
                 public void onBindViewHolder(@Nullable BannerViewHolder holder, int position) {
                     if (builder.onBindView != null)
@@ -41,7 +43,7 @@ public class VLayoutHelper {
                 }
             };
         } else {
-            return new BannerAdapter(builder.context, builder.layoutHelper, builder.count, builder.params) {
+            return new VLayoutAdapter(builder.context, builder.layoutHelper, builder.count, builder.params) {
                 @Override
                 public void onBindViewHolder(@Nullable BannerViewHolder holder, int position) {
                     if (builder.onBindView != null)
@@ -122,7 +124,7 @@ public class VLayoutHelper {
             return this;
         }
 
-        public BannerAdapter creatAdapter() {
+        public VLayoutAdapter creatAdapter() {
             return VLayoutHelper.getAdapter(this);
         }
 

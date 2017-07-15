@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/commodity"
+    android:orientation="horizontal">
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5" />
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_button_black"
+            android:gravity="center"
+            android:text="仅剩4天0小时"
+            android:textSize="@dimen/text_size_small"
+            app:layout_heightPercent="6%h"
+            app:layout_marginTopPercent="12%h"
+            app:layout_widthPercent="55%w" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:text="美诺多婴儿羊奶粉"
+            android:textColor="#000000"
+            android:textSize="@dimen/text_size_big"
+            app:layout_heightPercent="6%h"
+            app:layout_marginTopPercent="1%h" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:text="婴儿配方 均衡营养"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_size_mid"
+            app:layout_heightPercent="6%h"
+            app:layout_marginTopPercent="1%h" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:text="仅剩4天0小时"
+            android:textSize="@dimen/text_size_small"
+            app:layout_heightPercent="8%h"
+            app:layout_marginTopPercent="4%h">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="￥95.0"
+                android:textColor="#000000"
+                android:textSize="@dimen/text_size_big"
+                app:layout_widthPercent="35%w" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="￥95.0"
+                android:textColor="#000000"
+
+                android:textSize="@dimen/text_size_mid"
+                app:layout_widthPercent="65%w" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:text="仅剩4天0小时"
+            android:textSize="@dimen/text_size_small"
+            app:layout_heightPercent="8%h"
+            app:layout_marginTopPercent="4%h">
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</LinearLayout>
