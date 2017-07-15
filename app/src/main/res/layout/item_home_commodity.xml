@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="2dp"
     android:background="@mipmap/commodity"
     android:orientation="horizontal">
 
@@ -24,7 +25,7 @@
             android:gravity="center"
             android:text="仅剩4天0小时"
             android:textSize="@dimen/text_size_small"
-            app:layout_heightPercent="6%h"
+            app:layout_heightPercent="12%h"
             app:layout_marginTopPercent="12%h"
             app:layout_widthPercent="55%w" />
 
@@ -35,7 +36,7 @@
             android:text="美诺多婴儿羊奶粉"
             android:textColor="#000000"
             android:textSize="@dimen/text_size_big"
-            app:layout_heightPercent="6%h"
+            app:layout_heightPercent="16%h"
             app:layout_marginTopPercent="1%h" />
 
         <TextView
@@ -45,7 +46,7 @@
             android:text="婴儿配方 均衡营养"
             android:textColor="@color/gray"
             android:textSize="@dimen/text_size_mid"
-            app:layout_heightPercent="6%h"
+            app:layout_heightPercent="14%h"
             app:layout_marginTopPercent="1%h" />
 
         <com.zhy.android.percent.support.PercentLinearLayout
@@ -55,7 +56,7 @@
             android:orientation="horizontal"
             android:text="仅剩4天0小时"
             android:textSize="@dimen/text_size_small"
-            app:layout_heightPercent="8%h"
+            app:layout_heightPercent="12%h"
             app:layout_marginTopPercent="4%h">
 
             <TextView
@@ -66,6 +67,7 @@
                 android:textColor="#000000"
                 android:textSize="@dimen/text_size_big"
                 app:layout_widthPercent="35%w" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

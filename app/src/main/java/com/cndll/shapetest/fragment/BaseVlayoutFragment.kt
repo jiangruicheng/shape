@@ -69,7 +69,10 @@ open class BaseVlayoutFragment : Fragment() {
         storeHousePtrFrame.disableWhenHorizontalMove(true)
         storeHousePtrFrame.setPtrHandler(object : PtrHandler {
             override fun onRefreshBegin(frame: PtrFrameLayout) {
-                frame.postDelayed({ storeHousePtrFrame.refreshComplete() }, 1800)
+                frame.postDelayed({
+                    updataRecycle()
+                    storeHousePtrFrame.refreshComplete()
+                }, 1800)
             }
 
             override fun checkCanDoRefresh(frame: PtrFrameLayout, content: View, header: View): Boolean {
@@ -84,6 +87,7 @@ open class BaseVlayoutFragment : Fragment() {
         storeHousePtrFrame.addPtrUIHandler(header)
     }
 
+    open var canLoad = true
     fun setScollListen(view: View) {
         val recycler = view!!.findViewById(R.id.recycler) as RecyclerView
         recycler.setOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -113,11 +117,25 @@ open class BaseVlayoutFragment : Fragment() {
                     // 判断是否滚动到底部，并且是向右滚动
                     if (lastVisibleItem == totalItemCount - 1 /*&& isSlidingToLast*/) {
                         //加载更多功能的代码
-
+                        loadMore()
                     }
                 }
             }
         })
+    }
+
+    open fun gotoFirstItem() {
+        if (adapter.itemCount > 12)
+            recycler.scrollToPosition(12)
+        recycler.smoothScrollToPosition(0)
+    }
+
+    open fun updataRecycle() {
+
+    }
+
+    open fun loadMore() {
+
     }
 
     open fun setVLayout() {

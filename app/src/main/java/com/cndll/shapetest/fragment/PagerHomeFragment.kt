@@ -5,6 +5,7 @@ import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
@@ -13,8 +14,10 @@ import com.alibaba.android.vlayout.layout.LinearLayoutHelper
 import com.alibaba.android.vlayout.layout.ScrollFixLayoutHelper
 import com.cndll.shapetest.R
 import com.cndll.shapetest.adapter.BannerAdapter
+import com.cndll.shapetest.adapter.VLayoutAdapter
 import com.cndll.shapetest.databinding.ItemNearbyBinding
 import com.cndll.shapetest.weight.VLayoutHelper
+import com.umeng.socialize.utils.Log
 
 
 /**
@@ -35,7 +38,7 @@ class PagerHomeFragment : BaseVlayoutFragment() {
         bannerAdapter = BannerAdapter(context, llh, 1, layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, windowManager.defaultDisplay.height / 2))
         adapter.addAdapter(bannerAdapter)
 
-        val mLayoutParams = ViewGroup.LayoutParams(windowManager.defaultDisplay.width / 6, windowManager.defaultDisplay.height / 8)
+        val mLayoutParams = ViewGroup.LayoutParams(windowManager.defaultDisplay.height / 12, windowManager.defaultDisplay.height / 12)
         val mScrollFixLayoutHelper = ScrollFixLayoutHelper(ScrollFixLayoutHelper.BOTTOM_RIGHT, 12, 12)
         mScrollFixLayoutHelper.setItemCount(1)
         mScrollFixLayoutHelper.showType = ScrollFixLayoutHelper.SHOW_ON_LEAVE
@@ -45,7 +48,10 @@ class PagerHomeFragment : BaseVlayoutFragment() {
                 setParams(mLayoutParams).
                 setViewType(1).
                 setCount(1).
-                setRes(R.layout.button_vlayout).
+                setRes(R.layout.button_vlayout).setOnBindView({ itemView, position ->
+            val button = itemView.findViewById(R.id.back_top)
+            button.setOnClickListener { gotoFirstItem() }
+        }).
                 creatAdapter())
 
 
@@ -74,13 +80,38 @@ class PagerHomeFragment : BaseVlayoutFragment() {
                 setViewType(3).
                 setRes(R.layout.item_home_commodity).
                 setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        windowManager.defaultDisplay.height / 13 * 2)).
+                        windowManager.defaultDisplay.height / 3)).
                 setOnBindView({ itemView, position ->
                     // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
                 }).creatAdapter())
 
     }
 
+
+    override fun loadMore() {
+        super.loadMore()
+        if (!canLoad) {
+            return
+        }
+        val linear = LinearLayoutHelper()
+        Log.d("COUNT", (adapter.findAdapterByIndex(3) as VLayoutAdapter).mCount.toString())
+        if ((adapter.findAdapterByIndex(3) as VLayoutAdapter).mCount >= 12) {
+            adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                    setContext(context).
+                    setCount(1).
+                    setLayoutHelper(linear).
+                    setViewType(1).
+                    setRes(R.layout.button_vlayout).
+
+                    setOnBindView({ itemView, position ->
+                        // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                    }).creatAdapter())
+            canLoad = false
+            return
+        }
+        (adapter.findAdapterByIndex(3) as VLayoutAdapter).mCount = (adapter.findAdapterByIndex(3) as VLayoutAdapter).mCount + 3
+        (adapter.findAdapterByIndex(3) as VLayoutAdapter).notifyDataSetChanged()
+    }
 
     override fun onPause() {
         super.onPause()
