@@ -81,17 +81,39 @@
                 app:layout_textSizePercent="@string/text_size_big"
                 android:textColor="@color/contents_text"
                 android:text="三人行流川店"
-                app:layout_heightPercent="90%h"
+                app:layout_heightPercent="95%h"
                 android:gravity="center|left"
                 app:layout_widthPercent="66%w"
                 />
 
-            <ImageView
+            <com.zhy.android.percent.support.PercentLinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/phone"
-                android:layout_gravity="center"
-                />
+                android:orientation="horizontal"
+                android:background="@drawable/shape_main_edit"
+                app:layout_heightPercent="99%h"
+                app:layout_widthPercent="25%w"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/phone"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/text"
+                    android:text="联系商家"
+                    android:layout_gravity="center"
+                    app:layout_heightPercent="55%h"
+                    app:layout_widthPercent="75%w"
+                    />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 

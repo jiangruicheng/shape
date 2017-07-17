@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.ListView
 import com.cndll.shapetest.R
+import com.cndll.shapetest.adapter.AdvanceOrderAdapter
 import com.cndll.shapetest.adapter.GroupBookingAdapter
 import com.cndll.shapetest.adapter.VouchersAdapter
 import com.cndll.shapetest.databinding.ActivityVouchersBinding
@@ -12,15 +13,16 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase
 import java.util.*
 
 /**
- * 我的抵用卷
+ * 我的抵用卷--预约订单--凭团
  * */
 class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
    lateinit var context: Context
     var moreList=ArrayList<ContentValues>()
-     var adapter:VouchersAdapter?=null
+    var adapter:VouchersAdapter?=null
     lateinit var listView:ListView
-
     var adapterBooking:GroupBookingAdapter?=null
+    var adapterAdv:AdvanceOrderAdapter?=null
+
 
     override fun initBindingVar() {
     }
@@ -61,11 +63,38 @@ class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
         }else if(type.equals("booking")){
             binding.titlebar.title.text="我的拼团"
             if(adapterBooking==null){
-                adapterBooking= GroupBookingAdapter(context,moreList)
+                adapterBooking= GroupBookingAdapter(context,moreList,0)
                 listView.adapter=adapterBooking
             }
             initBookingData()
+        }else if (type.equals("advance")){
+            binding.titlebar.title.text="预约订单"
+            if(adapterAdv==null){
+                adapterAdv= AdvanceOrderAdapter(moreList,context)
+                listView.adapter=adapterAdv
+            }
+           initAdvData()
         }
+    }
+
+    private fun initAdvData(){
+        var con:ContentValues= ContentValues()
+        con.put("advSim","http://qmy.51edn.com/upload/images/20170706/cbea4d76ccbebfe8bdc3d3735ac690ce.jpg")
+        con.put("advName","三人行概念店")
+        con.put("advType","等待用餐")
+        con.put("advTime","2017-8-8")
+        con.put("advData","22")
+        con.put("advDetails","鸡蛋等三件商品")
+        var con1:ContentValues= ContentValues()
+        con1.put("advSim","http://qmy.51edn.com/upload/images/20170706/cbea4d76ccbebfe8bdc3d3735ac690ce.jpg")
+        con1.put("advName","三人行概念店")
+        con1.put("advType","订单已完成")
+        con1.put("advTime","2017-8-8")
+        con1.put("advData","222.00")
+        con1.put("advDetails","鸡蛋等三件商品")
+        moreList.add(con1)
+        moreList.add(con)
+        adapterAdv!!.notifyDataSetChanged()
     }
 
 

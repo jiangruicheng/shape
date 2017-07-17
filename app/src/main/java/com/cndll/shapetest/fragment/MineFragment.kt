@@ -120,8 +120,11 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         }
         //预约订单
         binding.mineLinAdvance.setOnClickListener {
-            /////////////////////////////////////
-            context.startActivity(Intent(context,AppraiseActivity::class.java))
+            ////////////////pingjia/////////////////////
+//            context.startActivity(Intent(context,AppraiseActivity::class.java))
+
+            bundle.putString("type", "advance")
+            context.startActivity(Intent(context,VouchersActivity::class.java).putExtras(bundle))
         }
         //设置
         binding.mineSetting.setOnClickListener{
@@ -133,7 +136,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         }
         //消息
         binding.mineNews.setOnClickListener {
-            ////////////////////////////////////////////////
+            ////////////////////////退款详情////////////////////////
             context.startActivity(Intent(context,ReimburseActivity::class.java))
         }
 

@@ -17,7 +17,7 @@
     android:gravity="center"
     >
     <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/shop_img"
+        android:id="@+id/shop_all_img"
         android:layout_width="120dp"
         android:layout_height="100dp"
         android:background="@mipmap/booking_delivery"
@@ -32,7 +32,7 @@
         android:orientation="vertical"
         >
         <TextView
-            android:id="@+id/shop_name"
+            android:id="@+id/shop_all_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_heightPercent="40%h"
@@ -43,7 +43,7 @@
             app:layout_widthPercent="100%w"
             />
         <TextView
-            android:id="@+id/shop_type"
+            android:id="@+id/shop_all_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_heightPercent="30%h"
@@ -61,31 +61,19 @@
             app:layout_widthPercent="100%w"
             >
             <TextView
-                android:id="@+id/shop_price"
+                android:id="@+id/shop_all_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_heightPercent="100%h"
                 android:text="$148"
-                app:layout_textSizePercent="6%w"
+                app:layout_textSizePercent="7%w"
                 android:layout_gravity="center"
                 android:gravity="center|left"
                 android:textColor="@color/titleRed"
                 app:layout_widthPercent="20%w"
                 />
             <TextView
-                android:id="@+id/shop_old_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_heightPercent="100%h"
-                android:text="1222"
-                app:layout_textSizePercent="6%w"
-                android:layout_gravity="center"
-                android:gravity="center|right"
-                android:textColor="@color/gray"
-                app:layout_widthPercent="20%w"
-                />
-            <TextView
-                android:id="@+id/shop_count"
+                android:id="@+id/shop_all_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_heightPercent="100%h"
@@ -94,7 +82,7 @@
                 android:layout_gravity="center"
                 android:gravity="center|right"
                 android:textColor="@color/gray"
-                app:layout_widthPercent="55%w"
+                app:layout_widthPercent="75%w"
                 />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
@@ -124,24 +112,24 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_heightPercent="100%h"
-            app:layout_widthPercent="40%w"
+            app:layout_widthPercent="36%w"
             >
             <TextView
-                android:id="@+id/shop_type_text"
+                android:id="@+id/shop_all_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_heightPercent="100%h"
-                android:text="退款金额"
+                android:text="实付"
                 app:layout_marginPercent="5%"
                 app:layout_textSizePercent="8%w"
                 android:layout_gravity="center"
                 android:gravity="center|left"
                 android:textColor="@color/contents_text"
-                app:layout_widthPercent="50%w"
+                app:layout_widthPercent="35%w"
                 />
 
             <TextView
-                android:id="@+id/shop_money"
+                android:id="@+id/shop_all_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_heightPercent="100%h"
@@ -155,26 +143,38 @@
 
         </com.zhy.android.percent.support.PercentLinearLayout>
         <Button
-            android:id="@+id/shop_appeal"
+            android:id="@+id/shop_all_appeal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_heightPercent="80%h"
-            app:layout_widthPercent="22%w"
+            app:layout_widthPercent="20%w"
             android:textColor="@color/gray"
-            android:text="平台申诉"
+            android:text="查看物流"
             app:layout_textSizePercent="4%w"
             android:background="@drawable/shape_main_button_edit"
             />
         <Button
-            android:id="@+id/shop_details"
+            android:id="@+id/shop_all_apply"
             app:layout_heightPercent="80%h"
-            app:layout_widthPercent="30%w"
+            app:layout_widthPercent="20%w"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/gray"
-            android:text="查看退款详情"
+            android:text="退款详情"
             app:layout_textSizePercent="4%w"
-            app:layout_marginPercent="2%"
+            app:layout_marginPercent="1%"
+            android:background="@drawable/shape_main_button_edit"
+            />
+        <Button
+            android:id="@+id/shop_all_details"
+            app:layout_heightPercent="80%h"
+            app:layout_widthPercent="20%w"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            android:text="退款详情"
+            app:layout_textSizePercent="4%w"
+            app:layout_marginPercent="1%"
             android:background="@drawable/shape_main_button_edit"
             />
     </com.zhy.android.percent.support.PercentLinearLayout>

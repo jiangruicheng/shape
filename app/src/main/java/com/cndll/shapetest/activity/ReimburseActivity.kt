@@ -26,7 +26,8 @@ class ReimburseActivity : BaseActivity<ActivityReimburseBinding>() {
      * 加载控件
      * */
     private fun initView(){
-        var type=1
+        var bundle=this.intent.extras
+        var type=bundle.getInt("type")
         if (type==1){
             binding.reimburseType.setImageDrawable(resources.getDrawable(R.mipmap.audit))
         }else if (type==2){
