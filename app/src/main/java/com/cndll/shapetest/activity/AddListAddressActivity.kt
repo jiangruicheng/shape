@@ -1,8 +1,10 @@
 package com.cndll.shapetest.activity
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.bigkoo.pickerview.OptionsPickerView
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityAddListAddressBinding
@@ -15,17 +17,16 @@ import java.io.InputStream
  * 添加地址
  * */
 class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
-
+    lateinit var context:Context
    private var province = java.util.ArrayList<String>()
    private var city = java.util.ArrayList<List<String>>()
     private var region=java.util.ArrayList<List<List<String>>>()
     lateinit var address:String
-
+    var choseType:Int=0
     override fun initBindingVar() {
     }
 
     override fun initTitle() {
-        binding.titlebar.menu.visibility=View.GONE
         binding.titlebar.back.setOnClickListener{
             finish()
         }
@@ -38,25 +39,29 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_add_list_address)
+        context=this
         initView()
     }
 
 
     private fun initView(){
-        binding.addName
-        binding.addPhone
-        binding.addDetails
+        var bundle=this.intent.extras
+        var type=bundle.getString("type")
+        if(type.equals("edit")){
+            binding.addLinDelete.visibility=View.VISIBLE
+        }
+
         //选中
         binding.addChose.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
-
+                choseType=1
             }else{
-
+                choseType=2
             }
         }
         //保存
         binding.titlebar.titleRight.setOnClickListener{
-
+            isNull()
         }
         /** 选择地址 */
         binding.linAddChose.setOnClickListener{
@@ -67,6 +72,37 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
 
         }
     }
+
+    /**
+     * 非空判断
+     * */
+    private fun isNull(){
+        var isNull=true
+        var msg=""
+        if(binding.addName.text.trim().equals("")){
+            isNull=false
+            msg="请输入姓名"
+        }
+        if(binding.addPhone.text.trim().equals("")){
+            isNull=false
+            msg="请输入联系电话"
+        }
+        if (binding.addCity.text.trim().equals("")){
+            isNull=false
+            msg="请输入所在区"
+        }
+        if(binding.addDetails.text.trim().equals("")){
+            isNull=false
+            msg="请输入详细地址"
+        }
+        if (isNull){
+
+        }else{
+            Toast.makeText(context,msg,Toast.LENGTH_LONG).show()
+            return
+        }
+    }
+
 
 
     /** 解析地址 */
@@ -119,9 +155,6 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
         }
 
     }
-
-
-
 
     private fun initOptionPicker() {//条件选择器初始化
 

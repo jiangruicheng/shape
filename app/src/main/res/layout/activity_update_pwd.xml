@@ -43,10 +43,12 @@
                 app:layout_widthPercent="20%w" />
 
             <EditText
+                android:id="@+id/pwd_update"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:hint="原密码"
+                android:inputType="textWebPassword"
                 app:layout_heightPercent="80%h"
                 app:layout_paddingLeftPercent="2%"
                 app:layout_textSizePercent="@string/text_size_big"
@@ -80,10 +82,12 @@
                 app:layout_widthPercent="20%w" />
 
             <EditText
+                android:id="@+id/new_pwd_update"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:hint="新密码"
+                android:inputType="textWebPassword"
                 app:layout_heightPercent="80%h"
                 app:layout_paddingLeftPercent="2%"
                 app:layout_textSizePercent="@string/text_size_big"
@@ -104,6 +108,7 @@
         app:layout_widthPercent="100%w" />
 
     <Button
+        android:id="@+id/update_pwd"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"

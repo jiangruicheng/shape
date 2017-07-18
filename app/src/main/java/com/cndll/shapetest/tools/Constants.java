@@ -1,5 +1,7 @@
 package com.cndll.shapetest.tools;
 
+import java.util.regex.Pattern;
+
 /**
  * Created by Administrator on 2017/4/28 0028.
  */
@@ -19,7 +21,14 @@ public final class Constants {
         public static final boolean DEVELOPER_MODE = false;
     }
 
-
+    // 验证手机
+    public static Boolean validMobile(String pMobile) {
+        if (pMobile == null
+                || !Pattern.compile(Ini._REG_MOBILE).matcher(pMobile).matches()) {
+            return false;
+        }
+        return pMobile.length() <= 0 ? false : true;
+    }
 
 
 }

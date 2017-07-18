@@ -1,18 +1,37 @@
 package com.cndll.shapetest.activity
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityAuthenticationBinding
+import com.cndll.shapetest.tools.GetPathVideo
+import com.cndll.shapetest.tools.PhotoTools
+import java.io.File
 
 /***
  * 认证企业
  * */
 class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
+
+    var photo = PhotoTools()
+    lateinit var context: Context
+    var type = 1
+    lateinit var simCard: File
+    lateinit var simJust: File
+    lateinit var simVersa: File
+    lateinit var simLoan: File
+    lateinit var simBusiness: File
+    lateinit var simOpenAccount: File
+
     override fun initBindingVar() {
     }
 
     override fun initTitle() {
-        binding.titlebar.title.text="企业认证"
+        binding.titlebar.title.text = "企业认证"
         binding.titlebar.back.setOnClickListener { finish() }
     }
 
@@ -25,8 +44,135 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
     /**
      * 加载控件
      * */
-    private fun initView(){
+    private fun initView() {
+        binding.simCard.setOnClickListener {
+            //手持
+            type = 1
+            photo.getImageFromAlbum(this@AuthenticationActivity)
+        }
+        binding.simJust.setOnClickListener {
+            //法人-正
+            type = 2
+            photo.getImageFromAlbum(this@AuthenticationActivity)
+        }
+        binding.simVersa.setOnClickListener {
+            //法人-反
+            type = 3
+            photo.getImageFromAlbum(this@AuthenticationActivity)
+        }
+        binding.simLoan.setOnClickListener {
+            //信用
+            type = 4
+            photo.getImageFromAlbum(this@AuthenticationActivity)
+        }
+        binding.simBusiness.setOnClickListener {
+            //营业
+            type = 5
+            photo.getImageFromAlbum(this@AuthenticationActivity)
+        }
+        binding.simOpenAccount.setOnClickListener {
+            //卡U户
+            type = 6
+            photo.getImageFromAlbum(this@AuthenticationActivity)
+        }
+        binding.submitAuth.setOnClickListener {
+            isNull()
+        }
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == photo.ALBUM) {
+            if (resultCode == Activity.RESULT_OK) {
+                val uri = data!!.data
+                if (type == 1) {
+                    binding.cardText.visibility = View.GONE
+                    binding.simCard.setImageURI("file://" + GetPathVideo.getPath(context, uri))
+                    simCard = File(GetPathVideo.getPath(context, uri))
+                }
+
+                if (type == 2) {
+                    binding.justText.visibility = View.GONE
+                    binding.simJust.setImageURI("file://" + GetPathVideo.getPath(context, uri))
+                    simJust = File(GetPathVideo.getPath(context, uri))
+                }
+                if (type == 3) {
+                    binding.versaText.visibility = View.GONE
+                    binding.simVersa.setImageURI("file://" + GetPathVideo.getPath(context, uri))
+                    simVersa = File(GetPathVideo.getPath(context, uri))
+                }
+                if (type == 4) {
+                    binding.loanText.visibility = View.GONE
+                    binding.simLoan.setImageURI("file://" + GetPathVideo.getPath(context, uri))
+                    simLoan = File(GetPathVideo.getPath(context, uri))
+                }
+                if (type == 5) {
+                    binding.businessText.visibility = View.GONE
+                    binding.simBusiness.setImageURI("file://" + GetPathVideo.getPath(context, uri))
+                    simBusiness = File(GetPathVideo.getPath(context, uri))
+                }
+                if (type == 6) {
+                    binding.openAccount.visibility = View.GONE
+                    binding.simOpenAccount.setImageURI("file://" + GetPathVideo.getPath(context, uri))
+                    simOpenAccount = File(GetPathVideo.getPath(context, uri))
+                }
+            }
+        }
+    }
+
+
+    private fun isNull() {
+        var isNull = true
+        var msg = ""
+        if (binding.authCompanyEdit.text.toString().trim().equals("")) {
+            isNull = false
+            msg = "请填写企业名称"
+        }
+        if (binding.legalPersonEdit.text.toString().trim().equals("")) {
+            isNull = false
+            msg = "请填写企业法人"
+        }
+        if (binding.nameEdit.text.toString().trim().equals("")) {
+            isNull = false
+            msg = "请填写联系人"
+        }
+        if (binding.authPhoneEdit.text.toString().trim().equals("")) {
+            isNull = false
+            msg = "请填写联系方式"
+        }
+        if (simCard==null ) {
+            isNull = false
+            msg = "请选择手持身份证照片"
+        }
+        if (simJust==null ) {
+            isNull = false
+            msg = "请选择法人身份证正面"
+        }
+        if (simVersa==null) {
+            isNull = false
+            msg = "请选择法人身份证反面"
+        }
+        if (simLoan==null ) {
+            isNull = false
+            msg = "请选择信用贷款证照片"
+        }
+        if (simBusiness===null) {
+            isNull = false
+            msg = "请选择营业执照照片"
+        }
+
+        if (simOpenAccount == null) {
+            isNull = false
+            msg = "请选择开户许可证照片"
+        }
+
+        if (isNull){
+            Toast.makeText(context,"ok",Toast.LENGTH_LONG).show()
+        }else{
+            Toast.makeText(context,msg,Toast.LENGTH_LONG).show()
+            return
+        }
 
     }
+
+
 }

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
+    android:background="@color/bg"
     android:orientation="vertical"
     tools:context="com.cndll.shapetest.activity.SettingActivity">
     <include
@@ -20,7 +20,7 @@
         android:id="@+id/set_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_heightPercent="8%h"
         app:layout_marginTopPercent="2%"
@@ -55,7 +55,7 @@
         app:layout_marginTopPercent="1%"
         app:layout_widthPercent="100%w"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 
@@ -89,7 +89,7 @@
         app:layout_widthPercent="100%w"
         android:layout_marginTop="1dp"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 
@@ -120,7 +120,7 @@
         app:layout_widthPercent="100%w"
         android:layout_marginTop="1dp"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 
@@ -142,10 +142,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent"
-            app:layout_widthPercent="25%w"
+            app:layout_widthPercent="15%w"
             android:button="@drawable/toggle_btn"
             android:padding="5dp"
-            app:layout_marginLeftPercent="50%"
+            app:layout_marginLeftPercent="60%"
             android:checked="false"
             android:text=""
             android:textOff=""
@@ -160,7 +160,7 @@
         app:layout_widthPercent="100%w"
         android:layout_marginTop="1dp"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 
@@ -204,7 +204,7 @@
         app:layout_widthPercent="100%w"
         app:layout_marginTopPercent="1%"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 
@@ -248,7 +248,7 @@
         app:layout_widthPercent="100%w"
         app:layout_marginTopPercent="1%"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 
@@ -280,7 +280,7 @@
         app:layout_widthPercent="100%w"
         app:layout_marginTopPercent="2%"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 

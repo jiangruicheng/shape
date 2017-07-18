@@ -3,6 +3,7 @@ package com.cndll.shapetest.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivitySettingBinding
 import com.cndll.shapetest.tools.FilesUtlis
@@ -64,7 +65,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
         binding.mTogBtn.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
                 println("选中")
-                context.startActivity(Intent(context,AuthenticationActivity::class.java))
+                Toast.makeText(context,"选中",Toast.LENGTH_LONG).show()
             }else{
                 println("未选中")
             }
@@ -76,7 +77,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
             context.startActivity(Intent(context,SetPwdActivity::class.java).putExtras(bundle))
         }
         //退出登录
-        binding.outLogin.setOnClickListener { finish() }
+        binding.outLogin.setOnClickListener { System.exit(1) }
     }
 
 }

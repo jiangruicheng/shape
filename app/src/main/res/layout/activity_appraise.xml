@@ -28,6 +28,23 @@
         android:background="@color/white"
         />
 
+    <com.cndll.shapetest.view.MyGridView
+        android:id="@+id/app_imgs_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="4"
+        android:layout_gravity="center"
+        app:layout_widthPercent="90%w"
+        android:scrollbarSize="1px"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp"
+        android:columnWidth="90dp"
+        ></com.cndll.shapetest.view.MyGridView>
+
+
     <com.zhy.android.percent.support.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

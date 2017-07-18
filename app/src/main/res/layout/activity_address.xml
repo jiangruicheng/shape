@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
+    android:background="@color/bg"
     android:orientation="vertical"
     tools:context="com.cndll.shapetest.activity.AddressActivity">
     <include
@@ -17,11 +17,15 @@
         app:layout_widthPercent="100%w" />
 
     <ListView
+        android:id="@+id/address_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_heightPercent="85%h"
         android:layout_gravity="center"
-        app:layout_widthPercent="95%w"
+        app:layout_widthPercent="100%w"
+        android:dividerHeight="6dp"
+        android:divider="@color/bg"
+        android:scrollbars="none"
         ></ListView>
 
     <Button
@@ -29,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@drawable/shape_button_red"
+        android:background="@color/tabTextSelect"
         android:text="增加新地址"
         android:textColor="@color/titleBackGround"
         app:layout_heightPercent="7%h"

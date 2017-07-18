@@ -2,9 +2,6 @@ package com.cndll.shapetest.adapter
 
 import android.content.ContentValues
 import android.content.Context
-import android.content.Intent
-import android.graphics.Paint
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +9,6 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.TextView
 import com.cndll.shapetest.R
-import com.cndll.shapetest.activity.GroupBookingDetailsActivity
-import com.cndll.shapetest.activity.ReimburseActivity
 import com.facebook.drawee.view.SimpleDraweeView
 
 /**
@@ -42,7 +37,25 @@ class SalesAdapter(private  val context: Context, private val contentValues: Lis
         }
         if(contentValues!!.size <= position || contentValues==null){return convertView}
         holder.shopAllImg.setImageURI(contentValues[position].getAsString("shopAllImg"))
+        //全部----状态-支付状态判断
+        if(type==1){
 
+        }else if (type==2){
+            //待付款
+            holder.shopAllDetails.setBackgroundDrawable(context.resources.getDrawable(R.drawable.shape_button_red))
+        }else if(type==3){
+            //待发货
+
+        }else if(type==4){
+            //待收货
+
+        }else if(type==5){
+            //待激励
+            holder.shopAllDetails.setBackgroundDrawable(context.resources.getDrawable(R.drawable.shape_button_red))
+        }else if (type==6){
+            //待评价
+
+        }
         return convertView
     }
 
@@ -55,7 +68,7 @@ class SalesAdapter(private  val context: Context, private val contentValues: Lis
     }
 
     override fun getCount(): Int {
-        return contentValues?.size?:0
+        return contentValues?.size ?: 0
     }
 
     inner class ViewHolder{

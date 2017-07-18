@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
+    android:background="@color/bg"
     android:orientation="vertical"
     tools:context="com.cndll.shapetest.activity.SetPwdActivity">
 
@@ -38,7 +38,7 @@
         android:layout_marginTop="1dp"
         app:layout_widthPercent="100%w"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 
@@ -71,7 +71,7 @@
         android:layout_marginTop="1dp"
         app:layout_widthPercent="100%w"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 
@@ -104,7 +104,7 @@
         android:layout_marginTop="1dp"
         app:layout_widthPercent="100%w"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 
@@ -137,7 +137,7 @@
         android:layout_marginTop="1dp"
         app:layout_widthPercent="100%w"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 
@@ -170,7 +170,7 @@
         android:layout_marginTop="1dp"
         app:layout_widthPercent="100%w"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 
@@ -203,7 +203,7 @@
         android:layout_marginTop="1dp"
         app:layout_widthPercent="100%w"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 
@@ -235,7 +235,7 @@
         android:layout_marginTop="1dp"
         app:layout_widthPercent="100%w"
         app:layout_heightPercent="8%h"
-        android:background="@color/titleBackGround"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_paddingPercent="1%">
 
