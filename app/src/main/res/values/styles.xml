@@ -16,5 +16,8 @@
         <item name="android:minHeight">60dip</item>
         <item name="android:maxHeight">60dip</item>
     </style>
-
+    <declare-styleable name="RippleView">
+        <attr name="pressed" format="reference"/>
+        <attr name="normal" format="reference"/>
+    </declare-styleable>
 </resources>

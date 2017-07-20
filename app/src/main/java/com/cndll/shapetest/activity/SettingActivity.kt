@@ -77,7 +77,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
             context.startActivity(Intent(context,SetPwdActivity::class.java).putExtras(bundle))
         }
         //退出登录
-        binding.outLogin.setOnClickListener { System.exit(1) }
+        binding.outLogin.setOnClickListener { System.exit(0) }
     }
 
 }

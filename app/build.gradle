@@ -65,7 +65,7 @@ dependencies {
     compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2@aar'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.4.3'
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+//    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     compile 'com.contrarywind:Android-PickerView:3.2.4'
     testCompile 'junit:junit:4.12'
     kapt 'com.android.databinding:compiler:2.3.0'

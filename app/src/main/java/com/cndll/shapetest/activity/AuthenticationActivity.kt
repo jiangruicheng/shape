@@ -20,12 +20,12 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
     var photo = PhotoTools()
     lateinit var context: Context
     var type = 1
-    lateinit var simCard: File
-    lateinit var simJust: File
-    lateinit var simVersa: File
-    lateinit var simLoan: File
-    lateinit var simBusiness: File
-    lateinit var simOpenAccount: File
+    var simCard: File? = null
+    var simJust: File? = null
+    var simVersa: File? = null
+    var simLoan: File? = null
+    var simBusiness: File? = null
+    var simOpenAccount: File? = null
 
     override fun initBindingVar() {
     }
@@ -139,23 +139,23 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
             isNull = false
             msg = "请填写联系方式"
         }
-        if (simCard==null ) {
+        if (simCard == null) {
             isNull = false
             msg = "请选择手持身份证照片"
         }
-        if (simJust==null ) {
+        if (simJust == null) {
             isNull = false
             msg = "请选择法人身份证正面"
         }
-        if (simVersa==null) {
+        if (simVersa == null) {
             isNull = false
             msg = "请选择法人身份证反面"
         }
-        if (simLoan==null ) {
+        if (simLoan == null) {
             isNull = false
             msg = "请选择信用贷款证照片"
         }
-        if (simBusiness===null) {
+        if (simBusiness === null) {
             isNull = false
             msg = "请选择营业执照照片"
         }
@@ -165,10 +165,10 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
             msg = "请选择开户许可证照片"
         }
 
-        if (isNull){
-            Toast.makeText(context,"ok",Toast.LENGTH_LONG).show()
-        }else{
-            Toast.makeText(context,msg,Toast.LENGTH_LONG).show()
+        if (isNull) {
+            Toast.makeText(context, "ok", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
             return
         }
 

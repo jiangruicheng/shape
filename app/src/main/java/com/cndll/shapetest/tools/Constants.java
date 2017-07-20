@@ -1,5 +1,9 @@
 package com.cndll.shapetest.tools;
 
+import android.animation.ObjectAnimator;
+
+import com.cndll.shapetest.view.StereoView;
+
 import java.util.regex.Pattern;
 
 /**
@@ -31,4 +35,9 @@ public final class Constants {
     }
 
 
+    public static void startExitAnim(StereoView stereoView, int translateY) {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(stereoView, "translationX", 0, 100, -translateY);
+        animator.setDuration(500).start();
+//        ToastUtil.showInfo(LoginActivity.this, "登录成功 =.=");
+    }
 }

@@ -1,10 +1,13 @@
 package com.cndll.shapetest.activity
 
+import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
+import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivitySignBinding
+import com.cndll.shapetest.tools.Constants
 
 class SignActivity : BaseActivity<ActivitySignBinding>() {
     /** 输入的手机号 */
@@ -16,6 +19,7 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
 
     lateinit private var cT:MyCountTime
 
+    lateinit var context:Context
     override fun initBindingVar() {
 
     }
@@ -27,6 +31,7 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_sign)
+        context=this
         initData()
     }
 
@@ -35,6 +40,7 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
         val bundle = this.intent.extras
         val type:String=bundle.getString("type")
         if (type.equals("pwd")){
+            binding.titlebar.title.text = "忘记密码"
             binding.signRegisterPwd.text="修改密码"
             binding.signRegisterPwd.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_red))
             binding.signAgreement.visibility=View.GONE
@@ -45,6 +51,7 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
         cT=MyCountTime(60000,1000)
         binding.signRegisterPwd.setOnClickListener(Clicks())
         binding.signSendCode.setOnClickListener(Clicks())
+
     }
 
     /** 获取值 */
@@ -52,9 +59,30 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
         phone=binding.signPhone.text.toString().trim()
         pwd=binding.signPwd.text.toString().trim()
         code=binding.signCode.text.toString().trim()
-        println("phone:"+phone)
-        println("pwd:"+pwd)
-        println("code:"+code)
+        var isNull=true
+        var msg=""
+        if (!Constants.validMobile(phone)){
+            isNull=false
+            msg="请输入正确的手机号"
+        }
+        if (code.equals("")){
+            isNull=false
+            msg="请输入验证码"
+        }
+        if (pwd.equals("")){
+            isNull=false
+            msg="请输入密码"
+        }
+        if(pwd.length < 6 || pwd.length>20){
+            isNull=false
+            msg="请输入6至20位密码"
+        }
+        if (isNull){
+
+        }else{
+            Toast.makeText(context,msg,Toast.LENGTH_LONG).show()
+            return
+        }
     }
 
 

@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.TableDataLayoutBinding
+import com.cndll.shapetest.tools.Constants
 
 /**
  * Created by Administrator on 2017/7/4 0004.
  * 数据
  */
 class TableDataFragment : BaseFragment<TableDataLayoutBinding>() {
+    private var translateX: Int = 0
     override fun initBindingVar() {
     }
 
@@ -39,9 +41,36 @@ class TableDataFragment : BaseFragment<TableDataLayoutBinding>() {
         binding.titlebar.back.visibility=View.INVISIBLE
         binding.titlebar.title.text="众享消费（消费激励）"
         binding.titlebar.title.setTextColor(resources.getColor(R.color.white))
+
+
+        binding.str.setStartScreen(2)
+        binding.str.post(Runnable {
+            val location = IntArray(2)
+            binding.str.getLocationOnScreen(location)
+            translateX = location[1]
+        })
+
+
+//        binding.str.setiStereoListener(object : StereoView.IStereoListener() {
+//            fun toPre(curScreen: Int) {
+//            }
+//
+//            fun toNext(curScreen: Int) {
+//            }
+//        })
+
+        binding.ssa.setOnClickListener { binding.str.setItem(2)
+            Constants.startExitAnim(binding.str,translateX)
+        }
+        binding.tts.setOnClickListener { binding.str.setItem(1)
+            Constants.startExitAnim(binding.str,translateX)
+        }
+        binding.sxd.setOnClickListener { binding.str.setItem(0)
+            Constants.startExitAnim(binding.str,translateX)
+        }
+
+
     }
-
-
     companion object {
         private val ARG_PARAM1 = "param1"
         private val ARG_PARAM2 = "param2"
