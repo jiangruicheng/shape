@@ -10,7 +10,7 @@ import com.cndll.shapetest.fragment.HomeFragment
 import com.cndll.shapetest.fragment.MineFragment
 import com.cndll.shapetest.fragment.TableDataFragment
 
-class HomeActivity : BaseActivity<ActivityHomeBinding>(),BottomNavigationBar.OnTabSelectedListener {
+class HomeActivity : BaseActivity<ActivityHomeBinding>(), BottomNavigationBar.OnTabSelectedListener {
 
     override fun onTabReselected(position: Int) {
     }
@@ -19,7 +19,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(),BottomNavigationBar.OnT
     }
 
     override fun onTabSelected(position: Int) {
-        when(position){
+        when (position) {
             0 -> supportFragmentManager.beginTransaction().replace(R.id.frame, HomeFragment.newInstance("", "")).commit()
             2 -> supportFragmentManager.beginTransaction().replace(R.id.frame, TableDataFragment.newInstance("", "")).commit()
             4 -> supportFragmentManager.beginTransaction().replace(R.id.frame, MineFragment.newInstance("", "")).commit()
@@ -32,6 +32,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(),BottomNavigationBar.OnT
 
     override fun initBindingVar() {
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_home)

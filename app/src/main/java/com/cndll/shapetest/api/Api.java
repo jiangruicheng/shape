@@ -2,6 +2,7 @@ package com.cndll.shapetest.api;
 
 
 import com.cndll.shapetest.api.bean.BaseRequest;
+
 import com.cndll.shapetest.api.bean.BaseResponse;
 import com.cndll.shapetest.api.bean.response.TestResponse;
 
@@ -13,6 +14,6 @@ import rx.Observable;
  * Created by jiang_ruicheng on 16/10/27.
  */
 public interface Api {
-    @POST
+    @POST("/index/")
     Observable<TestResponse> test(@Body BaseRequest request);
 }

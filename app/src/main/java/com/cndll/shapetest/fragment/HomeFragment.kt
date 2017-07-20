@@ -58,7 +58,6 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
 
-
     fun initPageView() {
         adapter = PagerAdapter(activity.supportFragmentManager)
         binding.pageTab.tabMode = TabLayout.MODE_SCROLLABLE
@@ -120,8 +119,12 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
             list.add("美妆")
             list.add("海淘")
 
-            for (i in list) {
-                fragmentlist.add(PagerHomeFragment.newInstance("", ""))
+            for (i in 0..list.size) {
+                val fragment = PagerHomeFragment.newInstance("", "")
+                if (i != 0) {
+                    fragment.isHomePage = false
+                }
+                fragmentlist.add(fragment)
             }
         }
 

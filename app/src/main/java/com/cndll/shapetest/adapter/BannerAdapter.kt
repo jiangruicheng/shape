@@ -1,30 +1,36 @@
 package com.cndll.shapetest.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import com.alibaba.android.vlayout.DelegateAdapter
 import com.alibaba.android.vlayout.LayoutHelper
 import com.cndll.shapetest.R
+import com.cndll.shapetest.activity.TurnOnActivity
+import com.cndll.shapetest.fragment.CommodityInfoFragment
+import com.cndll.shapetest.fragment.LimitedSpikeFragment
+import com.cndll.shapetest.fragment.MissionToFightFragment
 import com.cndll.shapetest.tools.StringTools
 import com.cndll.shapetest.weight.MenuGrid
-import java.util.ArrayList
+import kotlin.collections.ArrayList
 
 /**
  * Created by jiangruicheng on 2017/7/11.
  */
 open class BannerAdapter(context: Context, layoutHelper: LayoutHelper, count: Int) : VLayoutAdapter(context, layoutHelper, count) {
     lateinit var view: MenuGrid
+    lateinit var meunBeans: ArrayList<MenuGrid.MenuBean>
+    lateinit var bannerBeas: ArrayList<MenuGrid.BannerBean>
+
     constructor(context: Context, layoutHelper: LayoutHelper, count: Int, layoutParams: ViewGroup.LayoutParams) : this(context, layoutHelper, count) {
         mLayoutParams = layoutParams
     }
+
     override fun onBindViewHolder(holder: BannerViewHolder?, position: Int) {
     }
 
     override fun getItemViewType(position: Int): Int {
-        return 0
+        return 3
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BannerViewHolder {
@@ -32,12 +38,15 @@ open class BannerAdapter(context: Context, layoutHelper: LayoutHelper, count: In
         val bean1 = MenuGrid.MenuBean()
         bean1.title = "限时秒杀"
         bean1.imageUrl = StringTools.getResUri(R.mipmap.miaosha, mContext)
+        bean1.onclick = View.OnClickListener { mContext.startActivity(Intent(mContext, TurnOnActivity::class.java).setAction(LimitedSpikeFragment.FLAG)) }
         val bean2 = MenuGrid.MenuBean()
         bean2.title = "品牌折扣"
         bean2.imageUrl = StringTools.getResUri(R.mipmap.zhekou, mContext)
+        bean2.onclick = View.OnClickListener { mContext.startActivity(Intent(mContext, TurnOnActivity::class.java).setAction(CommodityInfoFragment.FLAG)) }
         val bean3 = MenuGrid.MenuBean()
         bean3.title = "亲友拼团"
         bean3.imageUrl = StringTools.getResUri(R.mipmap.pintuan, mContext)
+        bean3.onclick = View.OnClickListener { mContext.startActivity(Intent(mContext, TurnOnActivity::class.java).setAction(MissionToFightFragment.FLAG)) }
         val bean4 = MenuGrid.MenuBean()
         bean4.title = "会员特权"
         bean4.imageUrl = StringTools.getResUri(R.mipmap.huiyuan, mContext)

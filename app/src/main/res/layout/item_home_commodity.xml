@@ -49,47 +49,12 @@
             app:layout_heightPercent="14%h"
             app:layout_marginTopPercent="1%h" />
 
-        <com.zhy.android.percent.support.PercentLinearLayout
+        <include
+            layout="@layout/layout_price_integral"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:text="仅剩4天0小时"
-            android:textSize="@dimen/text_size_small"
-            app:layout_heightPercent="12%h"
-            app:layout_marginTopPercent="4%h">
+            app:layout_heightPercent="24%h" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="￥95.0"
-                android:textColor="#000000"
-                android:textSize="@dimen/text_size_big"
-                app:layout_widthPercent="35%w" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="￥95.0"
-                android:textColor="#000000"
-
-                android:textSize="@dimen/text_size_mid"
-                app:layout_widthPercent="65%w" />
-
-        </com.zhy.android.percent.support.PercentLinearLayout>
-
-        <com.zhy.android.percent.support.PercentLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:text="仅剩4天0小时"
-            android:textSize="@dimen/text_size_small"
-            app:layout_heightPercent="8%h"
-            app:layout_marginTopPercent="4%h">
-
-        </com.zhy.android.percent.support.PercentLinearLayout>
     </com.zhy.android.percent.support.PercentLinearLayout>
 </LinearLayout>

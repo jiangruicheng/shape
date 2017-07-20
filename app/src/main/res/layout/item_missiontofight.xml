@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="2dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@mipmap/commodity"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="三文鱼"
+            android:textColor="#000000"
+            android:textSize="@dimen/text_size_small" />
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/tow_person"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="2人团"
+                android:textSize="@dimen/text_size_small"
+                app:layout_heightPercent="50%h"
+                app:layout_widthPercent="12%w" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_toRightOf="@id/tow_person"
+                android:gravity="center_vertical"
+                android:text="￥99.0"
+                android:textColor="@color/titleRed"
+                android:textSize="@dimen/text_size_mid"
+                app:layout_heightPercent="50%h"
+                app:layout_widthPercent="12%w" />
+
+            <TextView
+                android:id="@+id/sign_price"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_toRightOf="@id/price"
+                android:gravity="center_vertical"
+                android:text="单买价￥99.0"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/text_size_small"
+                app:layout_heightPercent="50%h"
+                app:layout_widthPercent="24%w" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_below="@+id/tow_person"
+                android:gravity="center_vertical"
+                android:text="积分：20"
+                android:textColor="@color/titleRed"
+                android:textSize="@dimen/text_size_small"
+                app:layout_heightPercent="50%h"
+                app:layout_widthPercent="12%w" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_below="@+id/price"
+                android:layout_toRightOf="@+id/tow_person"
+                android:drawableRight="@mipmap/right"
+                android:gravity="center_vertical"
+                android:text="分配细则"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/text_size_small"
+                app:layout_heightPercent="50%h"
+                app:layout_marginLeftPercent="6%w"
+                app:layout_widthPercent="16%w" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shape_button_titlered"
+                android:text="去开团"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_small"
+                app:layout_heightPercent="40%h"
+                app:layout_marginRightPercent="6%w"
+                app:layout_widthPercent="22%w" />
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

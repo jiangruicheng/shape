@@ -1,9 +1,13 @@
 package com.cndll.shapetest.weight;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
+import android.system.ErrnoException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.cndll.shapetest.adapter.BannerAdapter;
 import com.cndll.shapetest.adapter.VLayoutAdapter;
@@ -23,7 +27,12 @@ public class VLayoutHelper {
                 @Override
                 public void onBindViewHolder(@Nullable BannerViewHolder holder, int position) {
                     if (builder.onBindView != null)
-                        builder.onBindView.bindView(holder.itemView, position);
+                        builder.onBindView.bindView(holder, position);
+                }
+
+                @Override
+                protected void onBindViewHolderWithOffset(BannerViewHolder holder, int position, int offsetTotal) {
+
                 }
 
                 @Override
@@ -47,7 +56,7 @@ public class VLayoutHelper {
                 @Override
                 public void onBindViewHolder(@Nullable BannerViewHolder holder, int position) {
                     if (builder.onBindView != null)
-                        builder.onBindView.bindView(holder.itemView, position);
+                        builder.onBindView.bindView(holder, position);
                 }
 
                 @Override
@@ -55,15 +64,30 @@ public class VLayoutHelper {
                     return builder.viewType;
                 }
 
+                @Override
+                protected void onBindViewHolderWithOffset(BannerViewHolder holder, int position, int offsetTotal) {
+
+                }
+
                 @NotNull
                 @Override
                 public BannerViewHolder onCreateViewHolder(@Nullable ViewGroup parent, int viewType) {
                     View view = LayoutInflater.from(builder.context).inflate(builder.res, parent, false);
+                    ViewDataBinding dataBinding = null;
+                    try {
+                        dataBinding = DataBindingUtil.bind(view);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     if (getMLayoutParams() != null) {
                         view.getLayoutParams().width = super.getMLayoutParams().width;
                         view.getLayoutParams().height = super.getMLayoutParams().height;
                     }
-                    return new BannerViewHolder(view);
+                    BannerViewHolder viewHolder = new BannerViewHolder(view);
+                    if (dataBinding != null) {
+                        viewHolder.setDataBinding(dataBinding);
+                    }
+                    return viewHolder;
                 }
             };
         }
@@ -146,7 +170,11 @@ public class VLayoutHelper {
         private ViewGroup.LayoutParams params;
     }
 
+    public interface OnCreateView {
+        void createView();
+    }
+
     public interface OnBindView {
-        void bindView(View itemView, int position);
+        void bindView(VLayoutAdapter.BannerViewHolder itemView, int position);
     }
 }

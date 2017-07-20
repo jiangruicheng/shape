@@ -13,10 +13,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import com.alibaba.android.vlayout.DelegateAdapter
 import com.alibaba.android.vlayout.VirtualLayoutManager
+import com.alibaba.android.vlayout.layout.LinearLayoutHelper
+import com.alibaba.android.vlayout.layout.ScrollFixLayoutHelper
 
 import com.cndll.shapetest.R
+import com.cndll.shapetest.weight.VLayoutHelper
 
 /**
  * A simple [Fragment] subclass.
@@ -27,9 +31,10 @@ import com.cndll.shapetest.R
  * create an instance of this fragment.
  */
 open class BaseVlayoutFragment : Fragment() {
-
+    lateinit var windowManager: WindowManager
     var isFirstRecycler = true
     var offsetX = 0
+    lateinit var viewPool: RecyclerView.RecycledViewPool
     val adapterList = ArrayList<DelegateAdapter.Adapter<out RecyclerView.ViewHolder>>()
     lateinit var adapter: DelegateAdapter
     lateinit var recycler: RecyclerView
@@ -51,18 +56,46 @@ open class BaseVlayoutFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view: View = inflater?.inflate(R.layout.fragment_pager_home, container, false) as View
+        windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         recycler = view!!.findViewById(R.id.recycler) as RecyclerView
         val vlayout = VirtualLayoutManager(context)
         recycler.layoutManager = vlayout
         adapter = DelegateAdapter(vlayout, true)
         recycler.adapter = adapter
+        viewPool = RecyclerView.RecycledViewPool()
+        recycler.setRecycledViewPool(viewPool)
         initDownRefresh(view)
         setScollListen(view)
         setVLayout()
+        addBackTopButton()
         return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
+    fun addBackTopButton() {
+        val windowManager = activity.windowManager
+        val mLayoutParams = ViewGroup.LayoutParams(windowManager.defaultDisplay.height / 12, windowManager.defaultDisplay.height / 12)
+        val mScrollFixLayoutHelper = ScrollFixLayoutHelper(ScrollFixLayoutHelper.BOTTOM_RIGHT, 12, 12)
+        mScrollFixLayoutHelper.setItemCount(1)
+        mScrollFixLayoutHelper.showType = ScrollFixLayoutHelper.SHOW_ON_LEAVE
+
+        adapter.addAdapter(1, object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setLayoutHelper(mScrollFixLayoutHelper).
+                setParams(mLayoutParams).
+                setViewType(0).
+                setCount(1).
+                setRes(R.layout.button_vlayout).setOnBindView({ itemView, position ->
+            val button = itemView.itemView.findViewById(R.id.back_top)
+            button.setOnClickListener { gotoFirstItem() }
+        }).
+                creatAdapter())
+
+    }
+
+    open fun scrollToDo() {
+
+    }
 
     fun initDownRefresh(view: View) {
         val storeHousePtrFrame: PtrFrameLayout = view.findViewById(R.id.store_house_ptr_frame) as PtrFrameLayout
@@ -98,6 +131,33 @@ open class BaseVlayoutFragment : Fragment() {
                 if (offsetX > 0) {
                     isFirstRecycler = false
                 }
+                scrollToDo()
+                val manager = recyclerView!!.getLayoutManager() as LinearLayoutManager
+                val lastVisibleItem = manager.findLastVisibleItemPosition()
+                val totalItemCount = manager.getItemCount()
+                isFirstRecycler = manager.findFirstCompletelyVisibleItemPosition() == 0
+                if (isFirstRecycler) {
+                    offsetX = 0
+                    //back_top.visibility = View.GONE
+                }
+                // 判断是否滚动到底部，并且是向右滚动
+                if (lastVisibleItem >= totalItemCount - 5 && dy > 0/*&& isSlidingToLast*/) {
+                    //加载更多功能的代码
+                    val linear = LinearLayoutHelper()
+                    if (!loadMore() && canLoad) {
+                        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                                setContext(context).
+                                setCount(1).
+                                setLayoutHelper(linear).
+                                setViewType(1).
+                                setRes(R.layout.item_last).
+                                setParams(ViewGroup.LayoutParams(activity.windowManager.defaultDisplay.width, activity.windowManager.defaultDisplay.height / 10)).
+                                setOnBindView({ itemView, position ->
+                                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                                }).creatAdapter())
+                        canLoad = false
+                    }
+                }
 
             }
 
@@ -107,18 +167,13 @@ open class BaseVlayoutFragment : Fragment() {
 
                 if (newState === RecyclerView.SCROLL_STATE_IDLE) {
                     //获取最后一个完全显示的ItemPosition
-                    val lastVisibleItem = manager.findLastCompletelyVisibleItemPosition()
-                    val totalItemCount = manager.getItemCount()
                     isFirstRecycler = manager.findFirstCompletelyVisibleItemPosition() == 0
                     if (isFirstRecycler) {
                         offsetX = 0
                         //back_top.visibility = View.GONE
                     }
                     // 判断是否滚动到底部，并且是向右滚动
-                    if (lastVisibleItem == totalItemCount - 1 /*&& isSlidingToLast*/) {
-                        //加载更多功能的代码
-                        loadMore()
-                    }
+
                 }
             }
         })
@@ -127,15 +182,16 @@ open class BaseVlayoutFragment : Fragment() {
     open fun gotoFirstItem() {
         if (adapter.itemCount > 12)
             recycler.scrollToPosition(12)
-        recycler.smoothScrollToPosition(0)
+        recycler.scrollToPosition(0)
+
     }
 
     open fun updataRecycle() {
 
     }
 
-    open fun loadMore() {
-
+    open fun loadMore(): Boolean {
+        return false
     }
 
     open fun setVLayout() {

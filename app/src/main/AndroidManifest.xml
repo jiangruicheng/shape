@@ -162,7 +162,8 @@
         <activity android:name=".activity.FavoriteActivity" />
         <activity android:name=".activity.PersonalCertificateActivity" />
         <activity android:name=".activity.AppraiseActivity" />
-        <activity android:name=".activity.AddCarStareActivity"></activity>
+        <activity android:name=".activity.AddCarStareActivity" />
+        <activity android:name=".activity.TurnOnActivity"></activity>
     </application>
 
 </manifest>

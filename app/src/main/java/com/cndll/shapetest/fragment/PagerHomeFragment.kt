@@ -4,6 +4,7 @@ package com.cndll.shapetest.fragment
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +12,15 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.alibaba.android.vlayout.layout.GridLayoutHelper
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper
-import com.alibaba.android.vlayout.layout.ScrollFixLayoutHelper
 import com.cndll.shapetest.R
 import com.cndll.shapetest.adapter.BannerAdapter
-import com.cndll.shapetest.adapter.VLayoutAdapter
+import com.cndll.shapetest.databinding.ItemCheckoutmoreBinding
+import com.cndll.shapetest.databinding.ItemHeadBinding
 import com.cndll.shapetest.databinding.ItemNearbyBinding
+import com.cndll.shapetest.databinding.ItemTablayoutBinding
+import com.cndll.shapetest.weight.CountdownTextView
 import com.cndll.shapetest.weight.VLayoutHelper
-import com.umeng.socialize.utils.Log
+import kotlin.concurrent.thread
 
 
 /**
@@ -26,96 +29,174 @@ import com.umeng.socialize.utils.Log
  * create an instance of this fragment.
  */
 class PagerHomeFragment : BaseVlayoutFragment() {
-
-
+    var isHomePage = true
+    var itemTabPosition = 0
+    var time = 0
     lateinit var bannerAdapter: BannerAdapter
-
+    var tablayout: TabLayout? = null
     override fun setVLayout() {
 
-        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
         val llh = LinearLayoutHelper()
         bannerAdapter = BannerAdapter(context, llh, 1, layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, windowManager.defaultDisplay.height / 2))
         adapter.addAdapter(bannerAdapter)
 
-        val mLayoutParams = ViewGroup.LayoutParams(windowManager.defaultDisplay.height / 12, windowManager.defaultDisplay.height / 12)
-        val mScrollFixLayoutHelper = ScrollFixLayoutHelper(ScrollFixLayoutHelper.BOTTOM_RIGHT, 12, 12)
-        mScrollFixLayoutHelper.setItemCount(1)
-        mScrollFixLayoutHelper.showType = ScrollFixLayoutHelper.SHOW_ON_LEAVE
-        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
-                setContext(context).
-                setLayoutHelper(mScrollFixLayoutHelper).
-                setParams(mLayoutParams).
-                setViewType(1).
-                setCount(1).
-                setRes(R.layout.button_vlayout).setOnBindView({ itemView, position ->
-            val button = itemView.findViewById(R.id.back_top)
-            button.setOnClickListener { gotoFirstItem() }
-        }).
-                creatAdapter())
+        if (isHomePage) {
+            val grid = GridLayoutHelper(2, 2)
+            grid.setPadding(0, 12, 0, 0)
+            grid.setMargin(0, 6, 0, 0)
+            adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                    setContext(context).
+                    setCount(4).
+                    setLayoutHelper(grid).
+                    setViewType(2).
+                    setRes(R.layout.item_nearby).
+                    setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                            windowManager.defaultDisplay.height / 13 * 2)).
+                    setOnBindView({ itemView, position ->
+                        val binding = itemView.dataBinding as ItemNearbyBinding
+                        // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                        binding.image.setOnClickListener { Toast.makeText(context, position.toString(), Toast.LENGTH_SHORT).show() }
+                    }).creatAdapter())
+            adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                    setContext(context).
+                    setCount(1).
+                    setLayoutHelper(LinearLayoutHelper()).
+                    setViewType(5).
+                    setRes(R.layout.item_checkoutmore).
+                    setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                            windowManager.defaultDisplay.height / 15)).
+                    setOnBindView({ itemView, position ->
+                        val binding = itemView.dataBinding as ItemCheckoutmoreBinding
+                        // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                        binding.text.text = "查看更多附近 "
+
+                    }).creatAdapter())
+            adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                    setContext(context).
+                    setCount(1).
+                    setLayoutHelper(LinearLayoutHelper()).
+                    setViewType(11).
+                    setRes(R.layout.item_head).
+                    setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                            windowManager.defaultDisplay.height / 15)).
+                    setOnBindView({ itemView, position ->
+                        val binding = itemView.dataBinding as ItemHeadBinding
+                        // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                        binding.text.text = "今日特卖 "
+
+                    }).creatAdapter())
+            adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                    setContext(context).
+                    setCount(4).
+                    setLayoutHelper(LinearLayoutHelper()).
+                    setViewType(4).
+                    setRes(R.layout.item_home_commodity).
+                    setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                            windowManager.defaultDisplay.height / 3)).
+                    setOnBindView({ itemView, position ->
+                        // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                    }).creatAdapter())
+        } else {
+            adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                    setContext(context).
+                    setCount(1).
+                    setLayoutHelper(LinearLayoutHelper()).
+                    setViewType(6).
+                    setRes(R.layout.item_tablayout).
+                    setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                            windowManager.defaultDisplay.height / 15)).
+                    setOnBindView({ itemView, position ->
+                        if (itemView.dataBinding != null) {
+                            val tabBinding = itemView.dataBinding as ItemTablayoutBinding
+                            tablayout = tabBinding.tabLayout
+                            tabBinding.tabLayout.getTabAt(itemTabPosition)!!.select()
+                            tabBinding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                                override fun onTabReselected(tab: TabLayout.Tab?) {
+                                }
+
+                                override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+                                }
+
+                                override fun onTabSelected(tab: TabLayout.Tab?) {
+                                    when (tab!!.position) {
+                                        0 -> {
+                                            itemTabPosition = 0
+                                            adapter.removeAdapter(3)
+                                            adapter.addAdapter(3, object : VLayoutHelper.Builder() {}.
+                                                    setContext(context).
+                                                    setCount(16).
+                                                    setLayoutHelper(GridLayoutHelper(2, 2)).
+                                                    setViewType(7).
+                                                    setRes(R.layout.item_commodity_ver).
+                                                    setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                                            windowManager.defaultDisplay.height / 5 * 2)).
+                                                    setOnBindView({ itemView, position ->
+                                                        // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                                                    }).creatAdapter())
+                                        }
+
+                                        1 -> {
+                                            itemTabPosition = 1
+                                            adapter.removeAdapter(3)
+                                            adapter.addAdapter(3, object : VLayoutHelper.Builder() {}.
+                                                    setContext(context).
+                                                    setCount(4).
+                                                    setLayoutHelper(LinearLayoutHelper()).
+                                                    setViewType(8).
+                                                    setRes(R.layout.item_shop).
+                                                    setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                                            windowManager.defaultDisplay.height / 5 * 2)).
+                                                    setOnBindView({ itemView, position ->
+                                                        // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                                                    }).creatAdapter())
+                                        }
+
+                                    }
+                                }
+                            })
+
+                        }
+                    }).creatAdapter())
 
 
-        val grid = GridLayoutHelper(2, 2)
-        grid.setPadding(0, 12, 0, 12)
-        grid.setMargin(0, 6, 0, 6)
-        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
-                setContext(context).
-                setCount(4).
-                setLayoutHelper(grid).
-                setViewType(2).
-                setRes(R.layout.item_nearby).
-                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        windowManager.defaultDisplay.height / 13 * 2)).
-                setOnBindView({ itemView, position ->
-                    val binding: ItemNearbyBinding = DataBindingUtil.bind(itemView)
-                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
-                    binding.image.setOnClickListener { Toast.makeText(context, position.toString(), Toast.LENGTH_SHORT).show() }
-                }).creatAdapter())
 
-        val linear = LinearLayoutHelper()
-        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
-                setContext(context).
-                setCount(4).
-                setLayoutHelper(linear).
-                setViewType(3).
-                setRes(R.layout.item_home_commodity).
-                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        windowManager.defaultDisplay.height / 3)).
-                setOnBindView({ itemView, position ->
-                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
-                }).creatAdapter())
+            adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                    setContext(context).
+                    setCount(16).
+                    setLayoutHelper(GridLayoutHelper(2, 2)).
+                    setViewType(7).
+                    setRes(R.layout.item_commodity_ver).
+                    setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                            windowManager.defaultDisplay.height / 5 * 2)).
+                    setOnBindView({ itemView, position ->
+                        // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                    }).creatAdapter())
+        }
+
 
     }
 
 
-    override fun loadMore() {
-        super.loadMore()
-        if (!canLoad) {
-            return
+    override fun loadMore(): Boolean {
+        return super.loadMore()
+        /*if (!canLoad) {
+            return true
         }
-        val linear = LinearLayoutHelper()
         Log.d("COUNT", (adapter.findAdapterByIndex(3) as VLayoutAdapter).mCount.toString())
         if ((adapter.findAdapterByIndex(3) as VLayoutAdapter).mCount >= 12) {
-            adapter.addAdapter(object : VLayoutHelper.Builder() {}.
-                    setContext(context).
-                    setCount(1).
-                    setLayoutHelper(linear).
-                    setViewType(1).
-                    setRes(R.layout.button_vlayout).
 
-                    setOnBindView({ itemView, position ->
-                        // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
-                    }).creatAdapter())
-            canLoad = false
-            return
+            return false
         }
         (adapter.findAdapterByIndex(3) as VLayoutAdapter).mCount = (adapter.findAdapterByIndex(3) as VLayoutAdapter).mCount + 3
         (adapter.findAdapterByIndex(3) as VLayoutAdapter).notifyDataSetChanged()
+        return true*/
     }
 
     override fun onPause() {
         super.onPause()
-        bannerAdapter.view.stopBanner()
+        //bannerAdapter.view.stopBanner()
     }
 
     companion object {

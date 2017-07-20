@@ -1,6 +1,7 @@
 package com.cndll.shapetest.adapter
 
 import android.content.Context
+import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -50,6 +51,6 @@ open class VLayoutAdapter(context: Context, layoutHelper: LayoutHelper, count: I
     }
 
     inner class BannerViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-
+        var dataBinding: ViewDataBinding? = null
     }
 }
