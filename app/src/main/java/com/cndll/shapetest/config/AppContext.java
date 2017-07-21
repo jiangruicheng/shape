@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.ContentValues;
 import android.content.Context;
 
+import com.cndll.shapetest.tools.AppManager;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -77,7 +78,7 @@ public class AppContext extends Application implements UncaughtExceptionHandler 
 
     public void logoutApp() {
         cv.clear();
-//        AppManager.getAppManager().AppExit(mContext);
+        AppManager.getAppManager().AppExit(mContext);
     }
 
 

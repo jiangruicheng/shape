@@ -29,8 +29,8 @@
         app:layout_widthPercent="30%w"
         android:text="sd"
         android:gravity="center|left"
-        app:layout_textSizePercent="@string/text_size_big"
-        android:textColor="@color/gray"
+        app:layout_textSizePercent="@string/text_size_bigC"
+        android:textColor="@color/contents_text"
         />
 
     <TextView
@@ -42,7 +42,7 @@
         app:layout_widthPercent="30%w"
         android:text="2017-8-8"
         android:gravity="center|right"
-        app:layout_textSizePercent="@string/text_size_big"
+        app:layout_textSizePercent="@string/text_size_bigC"
         android:textColor="@color/gray"
         />
 </com.zhy.android.percent.support.PercentLinearLayout>

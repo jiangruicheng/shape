@@ -9,7 +9,7 @@
         android:id="@+id/app_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="3dp"
+        app:layout_marginPercent="1%"
         android:background="@color/white"
         />
 </com.zhy.android.percent.support.PercentFrameLayout>

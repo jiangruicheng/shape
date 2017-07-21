@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.TableDataLayoutBinding
 import com.cndll.shapetest.tools.Constants
+import com.cndll.shapetest.view.StereoView
 
 /**
  * Created by Administrator on 2017/7/4 0004.
@@ -43,14 +44,14 @@ class TableDataFragment : BaseFragment<TableDataLayoutBinding>() {
         binding.titlebar.title.setTextColor(resources.getColor(R.color.white))
 
 
-        binding.str.setStartScreen(2)
+        binding.str.setStartScreen(1)
         binding.str.post(Runnable {
             val location = IntArray(2)
             binding.str.getLocationOnScreen(location)
             translateX = location[1]
         })
 
-
+            //滑动的页数
 //        binding.str.setiStereoListener(object : StereoView.IStereoListener() {
 //            fun toPre(curScreen: Int) {
 //            }
@@ -58,16 +59,20 @@ class TableDataFragment : BaseFragment<TableDataLayoutBinding>() {
 //            fun toNext(curScreen: Int) {
 //            }
 //        })
-
-        binding.ssa.setOnClickListener { binding.str.setItem(2)
-            Constants.startExitAnim(binding.str,translateX)
-        }
-        binding.tts.setOnClickListener { binding.str.setItem(1)
-            Constants.startExitAnim(binding.str,translateX)
-        }
-        binding.sxd.setOnClickListener { binding.str.setItem(0)
-            Constants.startExitAnim(binding.str,translateX)
-        }
+        //翻页-----半数
+//        binding.ssa.setOnClickListener {
+//            binding.str.setItem(2)
+//            binding.str.toPre()
+//            Constants.startExitAnim(binding.str,translateX)
+//        }
+//        binding.tts.setOnClickListener { binding.str.setItem(1)
+//            binding.str.toPre()
+//            Constants.startExitAnim(binding.str,translateX)
+//        }
+//        binding.sxd.setOnClickListener { binding.str.setItem(0)
+//            binding.str.toPre()
+//            Constants.startExitAnim(binding.str,translateX)
+//        }
 
 
     }

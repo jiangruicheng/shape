@@ -481,10 +481,10 @@ public class StereoView extends ViewGroup {
 
         }
         if (itemId > mCurScreen) {
-            //setScrollY(mStartScreen * mHeight);
+            setScrollY(mStartScreen * mWidth);
             toNextAction(-standerSpeed - flingSpeed * (itemId - mCurScreen - 1));
         } else if (itemId < mCurScreen) {
-            //setScrollY(mStartScreen * mHeight);
+            setScrollY(mStartScreen * mWidth);
             toPreAction(standerSpeed + (mCurScreen - itemId - 1) * flingSpeed);
         }
 //        LogUtil.m("之后curScreen " + mCurScreen + " getScrollY " + getScrollY());

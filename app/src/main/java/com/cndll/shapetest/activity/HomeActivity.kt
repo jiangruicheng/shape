@@ -9,6 +9,7 @@ import com.cndll.shapetest.databinding.ActivityHomeBinding
 import com.cndll.shapetest.fragment.HomeFragment
 import com.cndll.shapetest.fragment.MineFragment
 import com.cndll.shapetest.fragment.TableDataFragment
+import com.cndll.shapetest.tools.AppManager
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>(),BottomNavigationBar.OnTabSelectedListener {
 
@@ -55,4 +56,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(),BottomNavigationBar.OnT
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        AppManager.getAppManager().finishActivity(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        AppManager.getAppManager().addActivity(this)
+    }
 }

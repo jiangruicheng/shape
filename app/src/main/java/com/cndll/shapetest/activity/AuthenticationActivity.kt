@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityAuthenticationBinding
+import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.tools.GetPathVideo
 import com.cndll.shapetest.tools.PhotoTools
 import java.io.File
@@ -38,6 +39,8 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_authentication)
+        Constants.verifyStoragePermissions(this@AuthenticationActivity)
+        context=this
         initView()
     }
 

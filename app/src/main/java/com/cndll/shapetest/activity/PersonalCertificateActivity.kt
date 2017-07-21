@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityPersonalCertificateBinding
+import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.tools.GetPathVideo
 import com.cndll.shapetest.tools.PhotoTools
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -40,6 +41,7 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_personal_certificate)
+        Constants.verifyStoragePermissions(this@PersonalCertificateActivity)
         context = this
         initView()
     }

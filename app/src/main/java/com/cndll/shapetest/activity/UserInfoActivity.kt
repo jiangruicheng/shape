@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityUserInfoBinding
+import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.tools.GetPathVideo
 import com.cndll.shapetest.tools.PhotoTools
 import java.io.File
@@ -29,6 +30,7 @@ class UserInfoActivity : BaseActivity<ActivityUserInfoBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_user_info)
+        Constants.verifyStoragePermissions(this@UserInfoActivity)
         context = this
         initView()
     }

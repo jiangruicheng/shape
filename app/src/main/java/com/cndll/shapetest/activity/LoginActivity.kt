@@ -8,8 +8,10 @@ import android.os.Message
 import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.bean.Login
+import com.cndll.shapetest.config.AppContext
 import com.cndll.shapetest.databinding.ActivityLoginBinding
 import com.cndll.shapetest.event.HandlerClick
+import com.cndll.shapetest.tools.AppManager
 import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.tools.Ini
 import com.cndll.shapetest.tools.UtilsUmeng
@@ -26,7 +28,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun initTitle() {
         binding.titlebar.title.text = "手机号登录"
         // 退出登录
-        binding.titlebar.back.setOnClickListener { System.exit(1) }
+        binding.titlebar.back.setOnClickListener { AppContext.getInstance().logoutApp() }
     }
 
     override fun initBindingVar() {
@@ -88,6 +90,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        AppManager.getAppManager().addActivity(this)
     }
 
 }

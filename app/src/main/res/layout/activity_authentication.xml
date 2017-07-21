@@ -191,6 +191,7 @@
                         android:id="@+id/sim_card"
                         android:layout_width="200dp"
                         android:layout_height="130dp"
+                        fresco:actualImageScaleType="fitXY"
                         android:layout_centerInParent="true"
                         android:background="@mipmap/approve_bg"
                         />
@@ -237,6 +238,7 @@
                         android:id="@+id/sim_just"
                         android:layout_width="200dp"
                         android:layout_height="130dp"
+                        fresco:actualImageScaleType="center"
                         android:layout_centerInParent="true"
                         android:background="@mipmap/approve_bg"
                         />
@@ -283,6 +285,7 @@
                         android:id="@+id/sim_versa"
                         android:layout_width="200dp"
                         android:layout_height="130dp"
+                        fresco:actualImageScaleType="centerCrop"
                         android:layout_centerInParent="true"
                         android:background="@mipmap/approve_bg"
                         />
@@ -329,6 +332,7 @@
                         android:id="@+id/sim_loan"
                         android:layout_width="200dp"
                         android:layout_height="130dp"
+                        fresco:actualImageScaleType="centerInside"
                         android:layout_centerInParent="true"
                         android:background="@mipmap/approve_bg"
                         />
@@ -421,6 +425,7 @@
                         android:id="@+id/sim_open_account"
                         android:layout_width="200dp"
                         android:layout_height="130dp"
+                        fresco:actualImageScaleType="focusCrop"
                         android:layout_centerInParent="true"
                         android:background="@mipmap/approve_bg"
                         />

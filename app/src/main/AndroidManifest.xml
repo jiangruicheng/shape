@@ -165,7 +165,9 @@
         <activity android:name=".activity.GroupBookingDetailsActivity" />
         <activity android:name=".activity.AdvanceOrderActivity" />
         <activity android:name=".activity.ReimburseActivity" />
-        <activity android:name=".activity.ApplyForRefundActivity"></activity>
+        <activity android:name=".activity.ApplyForRefundActivity" />
+        <activity android:name=".activity.LogisticsActivity" />
+        <activity android:name=".activity.InSpellingActivity"></activity>
     </application>
 
 </manifest>

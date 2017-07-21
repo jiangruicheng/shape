@@ -68,6 +68,7 @@ class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
             }
             initBookingData()
         }else if (type.equals("advance")){
+            listView.divider=resources.getDrawable(R.color.gray)
             binding.titlebar.title.text="预约订单"
             if(adapterAdv==null){
                 adapterAdv= AdvanceOrderAdapter(moreList,context)

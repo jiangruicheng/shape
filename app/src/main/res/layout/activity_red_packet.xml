@@ -151,6 +151,15 @@
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 
+    <ListView
+        android:id="@+id/packet_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_marginTopPercent="2%"
+        app:layout_paddingPercent="2%"
+        ></ListView>
+
 
 </com.zhy.android.percent.support.PercentLinearLayout>
 </layout>

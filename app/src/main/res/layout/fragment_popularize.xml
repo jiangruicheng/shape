@@ -20,9 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            app:layout_heightPercent="25%h"
+            app:layout_heightPercent="35%h"
             app:layout_marginTopPercent="10%"
-            app:layout_widthPercent="35%w"
+            app:layout_widthPercent="50%w"
             />
 
         <TextView
@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             xmlns:ptr="http://schemas.android.com/apk/res-auto"
-            android:background="@color/bg"
+            android:background="@color/white"
             android:dividerHeight="6px"
             android:paddingLeft="2px"
             android:paddingRight="2px"

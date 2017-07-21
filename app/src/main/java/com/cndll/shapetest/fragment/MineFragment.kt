@@ -133,8 +133,8 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         }
         //消息
         binding.mineNews.setOnClickListener {
-            //////////////////////////////
-            context.startActivity(Intent(context,AppraiseActivity::class.java))
+            ////////InSpellingActivity-- 拼团详情/////////////////AppraiseActivity -- 评价  LogisticsActivity--物流  /////
+            context.startActivity(Intent(context,InSpellingActivity::class.java))
         }
 
         //我的激励

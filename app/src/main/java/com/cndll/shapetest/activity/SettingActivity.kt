@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.cndll.shapetest.R
+import com.cndll.shapetest.config.AppContext
 import com.cndll.shapetest.databinding.ActivitySettingBinding
 import com.cndll.shapetest.tools.FilesUtlis
 
@@ -77,7 +78,9 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
             context.startActivity(Intent(context,SetPwdActivity::class.java).putExtras(bundle))
         }
         //退出登录
-        binding.outLogin.setOnClickListener { System.exit(0) }
+        binding.outLogin.setOnClickListener { AppContext.getInstance().logoutApp()
+        finish()
+        }
     }
 
 }
