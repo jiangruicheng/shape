@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -14,6 +15,7 @@ import com.alibaba.android.vlayout.layout.GridLayoutHelper
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper
 import com.cndll.shapetest.R
 import com.cndll.shapetest.adapter.BannerAdapter
+import com.cndll.shapetest.adapter.VLayoutAdapter
 import com.cndll.shapetest.databinding.ItemCheckoutmoreBinding
 import com.cndll.shapetest.databinding.ItemHeadBinding
 import com.cndll.shapetest.databinding.ItemNearbyBinding
@@ -34,6 +36,63 @@ class PagerHomeFragment : BaseVlayoutFragment() {
     var time = 0
     lateinit var bannerAdapter: BannerAdapter
     var tablayout: TabLayout? = null
+
+
+    lateinit var shopAdapter: VLayoutAdapter
+    lateinit var commodityAdapter: VLayoutAdapter
+    lateinit var onSelectListion: TabLayout.OnTabSelectedListener
+    override fun init() {
+        super.init()
+
+        shopAdapter = object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setCount(4).
+                setLayoutHelper(LinearLayoutHelper()).
+                setViewType(8).
+                setRes(R.layout.item_shop).
+                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        windowManager.defaultDisplay.height / 5 * 2)).
+                setOnBindView({ itemView, position ->
+                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                }).creatAdapter()
+        commodityAdapter = object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setCount(4).
+                setLayoutHelper(GridLayoutHelper(2)).
+                setViewType(7).
+                setRes(R.layout.item_commodity_ver).
+                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        windowManager.defaultDisplay.height / 5 * 2)).
+                setOnBindView({ itemView, position ->
+                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                }).creatAdapter()
+        onSelectListion = object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab!!.position) {
+                    0 -> {
+                        itemTabPosition = 0
+                        adapter.removeAdapter(2)
+                        adapter.addAdapter(2, commodityAdapter)
+                    }
+
+                    1 -> {
+                        itemTabPosition = 1
+                        adapter.removeAdapter(2)
+                        adapter.addAdapter(2, shopAdapter)
+                    }
+
+                }
+            }
+        }
+    }
+
     override fun setVLayout() {
 
 
@@ -98,6 +157,7 @@ class PagerHomeFragment : BaseVlayoutFragment() {
                         // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
                     }).creatAdapter())
         } else {
+
             adapter.addAdapter(object : VLayoutHelper.Builder() {}.
                     setContext(context).
                     setCount(1).
@@ -111,68 +171,12 @@ class PagerHomeFragment : BaseVlayoutFragment() {
                             val tabBinding = itemView.dataBinding as ItemTablayoutBinding
                             tablayout = tabBinding.tabLayout
                             tabBinding.tabLayout.getTabAt(itemTabPosition)!!.select()
-                            tabBinding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                                override fun onTabReselected(tab: TabLayout.Tab?) {
-                                }
-
-                                override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-                                }
-
-                                override fun onTabSelected(tab: TabLayout.Tab?) {
-                                    when (tab!!.position) {
-                                        0 -> {
-                                            itemTabPosition = 0
-                                            adapter.removeAdapter(3)
-                                            adapter.addAdapter(3, object : VLayoutHelper.Builder() {}.
-                                                    setContext(context).
-                                                    setCount(16).
-                                                    setLayoutHelper(GridLayoutHelper(2, 2)).
-                                                    setViewType(7).
-                                                    setRes(R.layout.item_commodity_ver).
-                                                    setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                                                            windowManager.defaultDisplay.height / 5 * 2)).
-                                                    setOnBindView({ itemView, position ->
-                                                        // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
-                                                    }).creatAdapter())
-                                        }
-
-                                        1 -> {
-                                            itemTabPosition = 1
-                                            adapter.removeAdapter(3)
-                                            adapter.addAdapter(3, object : VLayoutHelper.Builder() {}.
-                                                    setContext(context).
-                                                    setCount(4).
-                                                    setLayoutHelper(LinearLayoutHelper()).
-                                                    setViewType(8).
-                                                    setRes(R.layout.item_shop).
-                                                    setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                                                            windowManager.defaultDisplay.height / 5 * 2)).
-                                                    setOnBindView({ itemView, position ->
-                                                        // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
-                                                    }).creatAdapter())
-                                        }
-
-                                    }
-                                }
-                            })
+                            tabBinding.tabLayout.removeOnTabSelectedListener(onSelectListion)
+                            tabBinding.tabLayout.addOnTabSelectedListener(onSelectListion)
 
                         }
                     }).creatAdapter())
-
-
-
-            adapter.addAdapter(object : VLayoutHelper.Builder() {}.
-                    setContext(context).
-                    setCount(16).
-                    setLayoutHelper(GridLayoutHelper(2, 2)).
-                    setViewType(7).
-                    setRes(R.layout.item_commodity_ver).
-                    setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            windowManager.defaultDisplay.height / 5 * 2)).
-                    setOnBindView({ itemView, position ->
-                        // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
-                    }).creatAdapter())
+            adapter.addAdapter(commodityAdapter)
         }
 
 

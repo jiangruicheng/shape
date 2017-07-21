@@ -20,6 +20,7 @@ import com.alibaba.android.vlayout.layout.LinearLayoutHelper
 import com.alibaba.android.vlayout.layout.ScrollFixLayoutHelper
 
 import com.cndll.shapetest.R
+import com.cndll.shapetest.adapter.VLayoutAdapter
 import com.cndll.shapetest.weight.VLayoutHelper
 
 /**
@@ -52,49 +53,70 @@ open class BaseVlayoutFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view: View = inflater?.inflate(R.layout.fragment_pager_home, container, false) as View
+    open fun init() {
         windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        recycler = view!!.findViewById(R.id.recycler) as RecyclerView
         val vlayout = VirtualLayoutManager(context)
         recycler.layoutManager = vlayout
         adapter = DelegateAdapter(vlayout, true)
         recycler.adapter = adapter
         viewPool = RecyclerView.RecycledViewPool()
         recycler.setRecycledViewPool(viewPool)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        val view: View = inflater?.inflate(R.layout.fragment_pager_home, container, false) as View
+        recycler = view!!.findViewById(R.id.recycler) as RecyclerView
+
+        init()
         initDownRefresh(view)
         setScollListen(view)
         setVLayout()
-        addBackTopButton()
+        //addBackTopButton()
         return view
     }
 
+    var isBackTopShow = false
+    var backTop: VLayoutAdapter? = null
     // TODO: Rename method, update argument and hook method into UI event
     fun addBackTopButton() {
         val windowManager = activity.windowManager
         val mLayoutParams = ViewGroup.LayoutParams(windowManager.defaultDisplay.height / 12, windowManager.defaultDisplay.height / 12)
-        val mScrollFixLayoutHelper = ScrollFixLayoutHelper(ScrollFixLayoutHelper.BOTTOM_RIGHT, 12, 12)
+        val mScrollFixLayoutHelper = ScrollFixLayoutHelper(ScrollFixLayoutHelper.BOTTOM_RIGHT, 12, windowManager.defaultDisplay.height / 13)
         mScrollFixLayoutHelper.setItemCount(1)
-        mScrollFixLayoutHelper.showType = ScrollFixLayoutHelper.SHOW_ON_LEAVE
+        mScrollFixLayoutHelper.showType = ScrollFixLayoutHelper.SHOW_ALWAYS
+        if (backTop == null) {
+            backTop = object : VLayoutHelper.Builder() {}.
+                    setContext(context).
+                    setLayoutHelper(mScrollFixLayoutHelper).
+                    setParams(mLayoutParams).
+                    setViewType(0).
+                    setCount(1).
+                    setRes(R.layout.button_vlayout).setOnBindView({ itemView, position ->
+                val button = itemView.itemView.findViewById(R.id.back_top)
+                button.setOnClickListener { gotoFirstItem() }
+            }).creatAdapter()
+        }
+        if (!isBackTopShow) {
+            adapter.addAdapter(backTop)
+            isBackTopShow = true
+        }
+    }
 
-        adapter.addAdapter(1, object : VLayoutHelper.Builder() {}.
-                setContext(context).
-                setLayoutHelper(mScrollFixLayoutHelper).
-                setParams(mLayoutParams).
-                setViewType(0).
-                setCount(1).
-                setRes(R.layout.button_vlayout).setOnBindView({ itemView, position ->
-            val button = itemView.itemView.findViewById(R.id.back_top)
-            button.setOnClickListener { gotoFirstItem() }
-        }).
-                creatAdapter())
-
+    fun removeBackTopButton() {
+        if (backTop != null) {
+            adapter.removeAdapter(backTop)
+            isBackTopShow = false
+        }
     }
 
     open fun scrollToDo() {
-
+        if (offsetX > windowManager.defaultDisplay.height) {
+            addBackTopButton()
+        } else {
+            removeBackTopButton()
+        }
     }
 
     fun initDownRefresh(view: View) {
@@ -120,6 +142,7 @@ open class BaseVlayoutFragment : Fragment() {
         storeHousePtrFrame.addPtrUIHandler(header)
     }
 
+    var lastItem = 0
     open var canLoad = true
     fun setScollListen(view: View) {
         val recycler = view!!.findViewById(R.id.recycler) as RecyclerView
@@ -134,6 +157,7 @@ open class BaseVlayoutFragment : Fragment() {
                 scrollToDo()
                 val manager = recyclerView!!.getLayoutManager() as LinearLayoutManager
                 val lastVisibleItem = manager.findLastVisibleItemPosition()
+                lastItem = lastVisibleItem
                 val totalItemCount = manager.getItemCount()
                 isFirstRecycler = manager.findFirstCompletelyVisibleItemPosition() == 0
                 if (isFirstRecycler) {
@@ -170,6 +194,7 @@ open class BaseVlayoutFragment : Fragment() {
                     isFirstRecycler = manager.findFirstCompletelyVisibleItemPosition() == 0
                     if (isFirstRecycler) {
                         offsetX = 0
+                        removeBackTopButton()
                         //back_top.visibility = View.GONE
                     }
                     // 判断是否滚动到底部，并且是向右滚动
@@ -182,7 +207,7 @@ open class BaseVlayoutFragment : Fragment() {
     open fun gotoFirstItem() {
         if (adapter.itemCount > 12)
             recycler.scrollToPosition(12)
-        recycler.scrollToPosition(0)
+        recycler.smoothScrollToPosition(0)
 
     }
 

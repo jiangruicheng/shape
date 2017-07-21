@@ -1,3 +1,4 @@
+/*
 package com.cndll.shapetest.wxapi;
 
 import android.app.Activity;
@@ -26,12 +27,14 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+*/
 /**
  * 版 权：方直科技
  * 作 者：陈景坤
  * 创 建 日 期：2017/5/24
  * 描 述：
- */
+ *//*
+
 
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
@@ -52,9 +55,11 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
     }
-    /**
+    */
+/**
      * 微信获取订单号上传后台
-     * */
+     * *//*
+
 //    private void chaxunjieguo() {
 //        OkHttpClient client = new OkHttpClient();
 //        RequestBody requestBody = new FormBody.Builder()
@@ -144,3 +149,4 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
     }
 }
+*/

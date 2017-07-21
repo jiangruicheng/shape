@@ -2,19 +2,20 @@ package com.cndll.shapetest.fragment
 
 
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
+import android.view.Gravity
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.ImageView
-import android.widget.TextView
+import com.alibaba.android.vlayout.layout.GridLayoutHelper
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper
 import com.alibaba.android.vlayout.layout.ScrollFixLayoutHelper
 
 import com.cndll.shapetest.R
-import com.cndll.shapetest.tools.StringTools
+import com.cndll.shapetest.databinding.ItemCommodityinfoDetailBinding
+import com.cndll.shapetest.databinding.ItemCommodityinfoDetailHeadBinding
 import com.cndll.shapetest.weight.Banner
 import com.cndll.shapetest.weight.MenuGrid
 import com.cndll.shapetest.weight.VLayoutHelper
@@ -38,6 +39,13 @@ class CommodityInfoFragment : BaseVlayoutFragment() {
         }
     }
 
+    override fun scrollToDo() {
+        super.scrollToDo()
+/*        if (lastItem == 16) {
+            recycler.smoothScrollToPosition(17)
+        }*/
+    }
+
     override fun updataRecycle() {
         super.updataRecycle()
     }
@@ -59,6 +67,24 @@ class CommodityInfoFragment : BaseVlayoutFragment() {
                 setOnBindView({ itemView, position ->
                     // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
                 }).creatAdapter())*/
+        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setCount(1).
+                setLayoutHelper(LinearLayoutHelper()).
+                setViewType(5).
+                setRes(R.layout.item_commodityinfo_banner).
+                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        windowManager.defaultDisplay.height / 3)).
+                setOnBindView({ itemView, position ->
+                    val bannerBeans = ArrayList<MenuGrid.BannerBean>()
+                    bannerBeans.add(MenuGrid.BannerBean("http://pic.58pic.com/58pic/13/61/00/61a58PICtPr_1024.jpg", "http:www.baidu.com"))
+                    bannerBeans.add(MenuGrid.BannerBean("http://pic.58pic.com/58pic/15/24/50/43Q58PICkj4_1024.jpg", "http:www.baidu.com"))
+                    bannerBeans.add(MenuGrid.BannerBean("http://img0.imgtn.bdimg.com/it/u=3519309645,3088241677&fm=26&gp=0.jpg", "http:www.baidu.com"))
+                    val banner = Banner()
+                    banner.setBanner(itemView.itemView, bannerBeans)
+                    banner.startBanner(1500)
+                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                }).creatAdapter())
         val mScrollFixLayoutHelperL = ScrollFixLayoutHelper(ScrollFixLayoutHelper.TOP_LEFT, 12, 12)
         mScrollFixLayoutHelperL.setItemCount(1)
         mScrollFixLayoutHelperL.showType = ScrollFixLayoutHelper.SHOW_ALWAYS
@@ -88,24 +114,7 @@ class CommodityInfoFragment : BaseVlayoutFragment() {
                     val button = itemView.itemView.findViewById(R.id.top_button) as ImageView
                     button.setImageResource(R.mipmap.share)
                 }).creatAdapter())
-        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
-                setContext(context).
-                setCount(1).
-                setLayoutHelper(LinearLayoutHelper()).
-                setViewType(5).
-                setRes(R.layout.item_commodityinfo_banner).
-                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        windowManager.defaultDisplay.height / 3)).
-                setOnBindView({ itemView, position ->
-                    val bannerBeans = ArrayList<MenuGrid.BannerBean>()
-                    bannerBeans.add(MenuGrid.BannerBean("http://pic.58pic.com/58pic/13/61/00/61a58PICtPr_1024.jpg", "http:www.baidu.com"))
-                    bannerBeans.add(MenuGrid.BannerBean("http://pic.58pic.com/58pic/15/24/50/43Q58PICkj4_1024.jpg", "http:www.baidu.com"))
-                    bannerBeans.add(MenuGrid.BannerBean("http://img0.imgtn.bdimg.com/it/u=3519309645,3088241677&fm=26&gp=0.jpg", "http:www.baidu.com"))
-                    val banner = Banner()
-                    banner.setBanner(itemView.itemView, bannerBeans)
-                    banner.startBanner(1500)
-                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
-                }).creatAdapter())
+
         adapter.addAdapter(object : VLayoutHelper.Builder() {}.
                 setContext(context).
                 setCount(1).
@@ -113,11 +122,123 @@ class CommodityInfoFragment : BaseVlayoutFragment() {
                 setViewType(6).
                 setRes(R.layout.item_commodityinfo_info).
                 setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        windowManager.defaultDisplay.height / 7 * 3)).
+                        windowManager.defaultDisplay.height / 7 * 2)).
                 setOnBindView({ itemView, position ->
                     // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
                 }).creatAdapter())
+        val guaranteeHelper = GridLayoutHelper(3, 1)
+        /*guaranteeHelper.itemCount = 3*/
+        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setCount(3).
+                setLayoutHelper(guaranteeHelper).
+                setViewType(7).
+                setRes(R.layout.item_commdityinfo_guarantee).
+                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        windowManager.defaultDisplay.height / 15)).
+                setOnBindView({ itemView, position ->
+                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                }).creatAdapter())
+        val itemCommodityInfoChooseHelper = LinearLayoutHelper()
+        itemCommodityInfoChooseHelper.setMargin(0, 12, 0, 12)
+        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setCount(1).
+                setLayoutHelper(itemCommodityInfoChooseHelper).
+                setViewType(9).
+                setRes(R.layout.item_commodityinfo_choose).
+                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        windowManager.defaultDisplay.height / 15)).
+                setOnBindView({ itemView, position ->
+                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                }).creatAdapter())
+        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setCount(1).
+                setLayoutHelper(LinearLayoutHelper()).
+                setViewType(10).
+                setRes(R.layout.item_commodityinfo_comment).
+                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
+                        /*windowManager.defaultDisplay.height / 7 * 2*/)).
+                setOnBindView({ itemView, position ->
+                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                }).creatAdapter())
+        val shopHelper = LinearLayoutHelper()
+        shopHelper.setMargin(0, 12, 0, 12)
+        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setCount(1).
+                setLayoutHelper(shopHelper).
+                setViewType(11).
+                setRes(R.layout.item_commodityinfo_shop).
+                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        windowManager.defaultDisplay.height / 7 * 2)).
+                setOnBindView({ itemView, position ->
+                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                }).creatAdapter())
+        val detailHeadHelper = LinearLayoutHelper()
+        detailHeadHelper.setPadding(12, 12, 12, 0)
+        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setCount(1).
+                setLayoutHelper(detailHeadHelper).
+                setViewType(12).
+                setRes(R.layout.item_commodityinfo_detail_head).
+                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
+                        /*windowManager.defaultDisplay.height / 7 * 2*/)).
+                setOnBindView({ itemView, position ->
+                    val binding = itemView.dataBinding as ItemCommodityinfoDetailHeadBinding
+                    binding.text.text = "商品详情"
+                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                }).creatAdapter())
+        val detailHelper = GridLayoutHelper(2)
+        detailHelper.setAutoExpand(false)
+        detailHelper.bgColor = Color.WHITE
+        detailHelper.setPadding(12, 12, 12, 24)
+        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setCount(5).
+                setLayoutHelper(detailHelper).
+                setViewType(13).
+                setRes(R.layout.item_commodityinfo_detail).
+                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
+                        /*windowManager.defaultDisplay.height / 7 * 2*/)).
+                setOnBindView({ itemView, position ->
+                    val binding = itemView.dataBinding as ItemCommodityinfoDetailBinding
+                    binding.text.gravity = Gravity.CENTER_VERTICAL
+                    binding.text.text = "厂商：保时捷"
+                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                }).creatAdapter())
+        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setCount(1).
+                setLayoutHelper(LinearLayoutHelper()).
+                setViewType(8).
+                setRes(R.layout.item_webview).
+                setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT)).
+                setOnBindView({ itemView, position ->
+                    val web = itemView.itemView.findViewById(R.id.web) as WebView
+                    web.setWebViewClient(object : WebViewClient() {})
+                    web.loadUrl("http://www.baidu.com")
+                    web.settings.javaScriptCanOpenWindowsAutomatically = true
+                    web.settings.javaScriptEnabled = true
+                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                }).creatAdapter())
+        val mScrollFixLayoutHelperB = ScrollFixLayoutHelper(ScrollFixLayoutHelper.BOTTOM_RIGHT, 0, 0)
+        mScrollFixLayoutHelperL.showType = ScrollFixLayoutHelper.SHOW_ALWAYS
+        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setCount(1).
+                setLayoutHelper(mScrollFixLayoutHelperB).
+                setViewType(14).
+                setRes(R.layout.item_commodityinfo_bottom).
+                setParams(ViewGroup.LayoutParams(windowManager.defaultDisplay.width,
+                        windowManager.defaultDisplay.height / 14)).
+                setOnBindView({ itemView, position ->
 
+                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                }).creatAdapter())
     }
 
     companion object {

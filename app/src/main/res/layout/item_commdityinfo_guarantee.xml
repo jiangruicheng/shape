@@ -6,14 +6,12 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:drawableRight="@mipmap/right"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:text="选择规格"
+        android:layout_gravity="center"
+        android:drawableLeft="@mipmap/choose"
+        android:gravity="center"
+        android:text="7天退换"
         android:textColor="#000000"
-        android:textSize="@dimen/text_size_mid">
-
-    </TextView>
+        android:textSize="@dimen/text_size_small" />
 </LinearLayout>

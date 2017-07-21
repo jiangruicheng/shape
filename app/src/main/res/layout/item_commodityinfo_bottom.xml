@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:drawableTop="@mipmap/home32"
+        android:gravity="center_horizontal|bottom"
+        android:text="首页"
+        android:paddingTop="2dp"
+        android:paddingBottom="4dp"
+        android:textColor="#000000"
+        android:textSize="@dimen/text_size_small" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:drawableTop="@mipmap/service"
+        android:gravity="center_horizontal|bottom"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="客服"
+        android:textColor="#000000"
+        android:textSize="@dimen/text_size_small" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:paddingTop="2dp"
+        android:paddingBottom="4dp"
+        android:drawableTop="@mipmap/collected32"
+        android:gravity="center_horizontal|bottom"
+        android:text="收藏"
+        android:textColor="#000000"
+        android:textSize="@dimen/text_size_small" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:background="@color/titleRed"
+        android:gravity="center"
+        android:text="立即购买"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_mid" />
+</LinearLayout>
