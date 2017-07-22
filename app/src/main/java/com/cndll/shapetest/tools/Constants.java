@@ -3,6 +3,7 @@ package com.cndll.shapetest.tools;
 import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
@@ -90,5 +91,15 @@ public final class Constants {
             e.printStackTrace();
         }
     }
+    public static void requestCameraPermission(Context context){
+        XPermissionUtils.requestPermissions(context, 1, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS}, new XPermissionUtils.OnPermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+            }
 
+            @Override
+            public void onPermissionDenied() {
+            }
+        });
+    }
 }

@@ -40,6 +40,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_login)
+        context=this
         initView()
         binding.qq.setOnClickListener {
             UtilsUmeng.Login(this@LoginActivity, applicationContext, SHARE_MEDIA.QQ, mHandler)
@@ -63,7 +64,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             msg = "请输入密码"
         }
         if (isNull) {
-
+            binding.handler.login(binding.loginbtn)
         } else {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
             return

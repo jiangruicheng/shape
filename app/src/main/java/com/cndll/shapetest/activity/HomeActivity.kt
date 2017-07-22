@@ -10,6 +10,7 @@ import com.cndll.shapetest.fragment.HomeFragment
 import com.cndll.shapetest.fragment.MineFragment
 import com.cndll.shapetest.fragment.TableDataFragment
 import com.cndll.shapetest.tools.AppManager
+import com.cndll.shapetest.tools.XPermissionUtils
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>(),BottomNavigationBar.OnTabSelectedListener {
 
@@ -54,6 +55,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(),BottomNavigationBar.OnT
     fun addFragment(frame: Int, fragment: Fragment) {
         supportFragmentManager.beginTransaction().add(frame, fragment).commit()
 
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        XPermissionUtils.onRequestPermissionsResult(requestCode,permissions,grantResults)
     }
 
     override fun onDestroy() {

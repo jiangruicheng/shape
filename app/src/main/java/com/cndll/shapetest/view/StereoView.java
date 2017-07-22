@@ -196,7 +196,7 @@ public class StereoView extends ViewGroup {
 
     private void changeByState(float yVelocity) {
         alreadyAdd = 0;//重置滑动多页时的计数
-        if (getScrollY() != mHeight) {
+        if (getScrollX() != mWidth) {
             switch (mState) {
                 case Normal:
                     toNormalAction();
@@ -266,10 +266,10 @@ public class StereoView extends ViewGroup {
         addCount = flingSpeedCount / flingSpeed + 1;
         startY = getScrollX() - mWidth;
         setScrollX(startY);
-        delta = mHeight * mStartScreen - startY + (addCount - 1) * mHeight;
+        delta = mWidth * mStartScreen - startY + (addCount - 1) * mWidth;
 //        LogUtil.m("多后一页startY " + startY + " yVelocity " + yVelocity + " delta " + delta + "  getScrollY() " + getScrollY() + " addCount " + addCount);
         duration = (Math.abs(getScrollX())) * 2;
-        mScroller.startScroll(startY, 0, getScrollX(), 0, duration);
+        mScroller.startScroll(startY, 0, delta, 0, duration);
         addCount--;
     }
 

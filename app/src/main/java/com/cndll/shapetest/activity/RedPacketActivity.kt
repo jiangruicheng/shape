@@ -40,8 +40,8 @@ class RedPacketActivity : BaseActivity<ActivityRedPacketBinding>() {
         }
         //发出红包记录
         binding.packOut.setOnClickListener {
-            binding.packOut.setTextColor(resources.getColor(R.color.possible_result_points))
-            binding.packIn.setTextColor(resources.getColor(R.color.sit_title_text))
+            binding.packOut.setTextColor(resources.getColor(R.color.sit_title_text))
+            binding.packIn.setTextColor(resources.getColor(R.color.possible_result_points))
             binding.packType.text="共发出"
         }
         initData()
