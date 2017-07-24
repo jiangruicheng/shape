@@ -73,8 +73,7 @@ class PopularizeFragment : BaseFragment<FragmentPopularizeBinding>(){
         binding.popularPull.getLoadingLayoutProxy(false,true).setRefreshingLabel("刷新中")
         binding.popularPull.getLoadingLayoutProxy(false,true).setReleaseLabel("释放刷新")
         listView=binding.popularPull.refreshableView
-        listView.divider=resources.getDrawable(R.color.gray)
-        listView.dividerHeight=6
+        listView.dividerHeight=2
         if (adapter == null){
             adapter = PopularizeAdapter(context,moerList)
             listView.adapter=adapter

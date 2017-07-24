@@ -56,7 +56,9 @@ class GroupBookingDetailsActivity : BaseActivity<ActivityGroupBookingDetailsBind
             context.startActivity(Intent(context,ApplyForRefundActivity::class.java))
         }
         //2查看物流
-        binding.groupLogistics.setOnClickListener {  }
+        binding.groupLogistics.setOnClickListener {
+           context.startActivity(Intent(context,LogisticsActivity::class.java))
+        }
         //3确认激励
         binding.groupIncentive.setOnClickListener {  }
         //4

@@ -52,7 +52,7 @@ class GroupBookingAdapter(private  val context: Context, private val contentValu
             holder.shopMoney.visibility=View.INVISIBLE
             holder.shopOldPrice.paint.flags=Paint.STRIKE_THRU_TEXT_FLAG
             holder.shopOldPrice.paint.isAntiAlias=true
-            holder.shopText.setTextColor(context.resources.getColor(R.color.titleRed))
+            holder.shopText.setTextColor(context.resources.getColor(R.color.tabTextSelect))
             holder.shopOldPrice.text=contentValues[position].getAsString("shopOldPrice")
             holder.shopText.text="破in团长"
             holder.shopDetails.text="查看订单详情"

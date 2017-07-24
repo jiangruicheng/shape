@@ -80,7 +80,7 @@
         android:layout_gravity="center"
         android:text="进店"
         app:layout_textSizePercent="5%w"
-        android:textColor="@color/titleRed"
+        android:textColor="@color/tabTextSelect"
         android:background="@drawable/shape_main_red_edit"
         />
 

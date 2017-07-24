@@ -43,7 +43,7 @@
                 app:layout_widthPercent="90%w"
                 android:text="2017..01.10-2017.03.30"
                 android:gravity="center"
-                app:layout_textSizePercent="@string/text_size_bigC"
+                app:layout_textSizePercent="7%w"
                 android:textColor="@color/gray"
                 />
 

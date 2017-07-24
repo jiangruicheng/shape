@@ -14,7 +14,7 @@ import com.umeng.socialize.UMShareAPI
 import com.umeng.socialize.bean.SHARE_MEDIA
 
 /**
- * 拼团---
+ * 拼团---测试分享
  * */
 class InSpellingActivity : BaseActivity<ActivityInSpellingBinding>() {
     lateinit var context:Context

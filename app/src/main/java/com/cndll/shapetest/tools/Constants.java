@@ -7,6 +7,10 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import com.cndll.shapetest.view.StereoView;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -29,8 +33,8 @@ public final class Constants {
 
 
     public static final String APP_ID = "wxd96b8dd3e5733967";
-    public static final String APP_KEY="de1d138b686684274a39964f931b7eea";
-    public static final String APPQQ_ID="1105155596";
+    public static final String APP_KEY = "de1d138b686684274a39964f931b7eea";
+    public static final String APPQQ_ID = "1105155596";
 
     public static class ShowMsgActivity {
         public static final String STitle = "showmsg_title";
@@ -53,14 +57,15 @@ public final class Constants {
 
     // 平移动画
     public static void startExitAnim(StereoView stereoView, int translateY) {
-        ObjectAnimator animator = ObjectAnimator.ofFloat(stereoView, "Y", 100,50, -translateY);
+        ObjectAnimator animator = ObjectAnimator.ofFloat(stereoView, "Y", 100, 50, -translateY);
         animator.setDuration(300).start();
     }
+
     // 加载图片
-    public static void load(Uri uri, SimpleDraweeView draweeView, int width, int height){
+    public static void load(Uri uri, SimpleDraweeView draweeView, int width, int height) {
         ImageRequest request =
                 ImageRequestBuilder.newBuilderWithSource(uri)
-                        .setResizeOptions(new ResizeOptions(width,height))
+                        .setResizeOptions(new ResizeOptions(width, height))
                         //缩放,在解码前修改内存中的图片大小, 配合Downsampling可以处理所有图片,否则只能处理jpg,
                         // 开启Downsampling:在初始化时设置.setDownsampleEnabled(true)
                         .setProgressiveRenderingEnabled(true)//支持图片渐进式加载
@@ -91,7 +96,8 @@ public final class Constants {
             e.printStackTrace();
         }
     }
-    public static void requestCameraPermission(Context context){
+
+    public static void requestCameraPermission(Context context) {
         XPermissionUtils.requestPermissions(context, 1, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS}, new XPermissionUtils.OnPermissionListener() {
             @Override
             public void onPermissionGranted() {
@@ -102,4 +108,25 @@ public final class Constants {
             }
         });
     }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        // 获取ListView对应的Adapter
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount()+1; i++) { // listAdapter.getCount()返回数据项的数目
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0); // 计算子项View 的宽高
+            totalHeight += listItem.getMeasuredHeight(); // 统计所有子项的总高度
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        // listView.getDividerHeight()获取子项间分隔符占用的高度
+        // params.height最后得到整个ListView完整显示需要的高度
+        listView.setLayoutParams(params);
+    }
+
 }

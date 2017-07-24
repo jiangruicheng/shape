@@ -53,7 +53,7 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(){
         binding.salesPull.getLoadingLayoutProxy(false, true).setReleaseLabel("释放刷新")
         listView = binding.salesPull.refreshableView
         listView.divider = resources.getDrawable(R.color.gray)
-        listView.dividerHeight = 6
+        listView.dividerHeight =2
         if(moreList.size > 0 && moreList!=null){moreList.clear()}
         adapter=null
         if(mNumber==1){

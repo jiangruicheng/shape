@@ -61,6 +61,7 @@ class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
             }
             initData()
         }else if(type.equals("booking")){
+            listView.dividerHeight=10
             binding.titlebar.title.text="我的拼团"
             if(adapterBooking==null){
                 adapterBooking= GroupBookingAdapter(context,moreList,0)
@@ -68,7 +69,7 @@ class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
             }
             initBookingData()
         }else if (type.equals("advance")){
-            listView.divider=resources.getDrawable(R.color.gray)
+            listView.dividerHeight=50
             binding.titlebar.title.text="预约订单"
             if(adapterAdv==null){
                 adapterAdv= AdvanceOrderAdapter(moreList,context)

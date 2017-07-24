@@ -1,227 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg"
-    tools:context="com.cndll.shapetest.activity.ReimburseActivity">
-    <include
-        android:id="@+id/titlebar"
-        layout="@layout/titlebar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="8%h"
-        app:layout_widthPercent="100%w" />
 
-    <com.zhy.android.percent.support.PercentLinearLayout
+    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
         android:orientation="vertical"
-        android:background="@color/white"
-        app:layout_heightPercent="25%h"
-        app:layout_widthPercent="100%w"
-        android:gravity="center"
-        >
-        <ImageView
-            android:id="@+id/reimburse_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/no_pass"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="拒绝退款"
-            android:textStyle="bold"
-            app:layout_textSizePercent="@string/text_size_big"
-            android:textColor="@color/contents_text"
-            android:gravity="center"
-            app:layout_heightPercent="15%h"
-            app:layout_widthPercent="30%w"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="退款金额:148.00"
-            app:layout_textSizePercent="@string/text_size_big"
-            android:textColor="@color/text"
-            android:gravity="center"
-            app:layout_heightPercent="15%h"
-            app:layout_widthPercent="40%w"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="平台申诉"
-            app:layout_textSizePercent="@string/text_size_big"
-            android:textColor="@color/text"
-            android:gravity="center"
-            app:layout_heightPercent="15%h"
-            app:layout_widthPercent="30%w"
-            />
-    </com.zhy.android.percent.support.PercentLinearLayout>
+        tools:context="com.cndll.shapetest.activity.ReimburseActivity">
 
-    <com.zhy.android.percent.support.PercentLinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        app:layout_heightPercent="15%h"
-        app:layout_widthPercent="100%w"
-        app:layout_paddingLeftPercent="3%"
-        app:layout_marginTopPercent="1%"
-        app:layout_paddingPercent="1%"
-        >
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:background="@mipmap/booking_delivery"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="还米啊 原装进口。。。"
-            app:layout_textSizePercent="@string/text_size_big"
-            app:layout_marginPercent="2%"
-            android:textColor="@color/text"
-            />
-    </com.zhy.android.percent.support.PercentLinearLayout>
-
-    <com.zhy.android.percent.support.PercentLinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_heightPercent="45%h"
-        app:layout_widthPercent="100%w"
-        android:background="@color/white"
-        app:layout_marginTopPercent="1%"
-        app:layout_paddingLeftPercent="3%"
-        android:orientation="vertical"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="协商记录"
-            app:layout_textSizePercent="@string/text_size_mid"
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/titlebar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_heightPercent="8%h"
-            android:gravity="center|left"
-            app:layout_widthPercent="80%w"
-            app:layout_marginPercent="2%"
-            android:textColor="@color/text"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray"
-            ></View>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="商家拒绝退款申请"
-            app:layout_textSizePercent="@string/text_size_big"
-            app:layout_heightPercent="8%h"
-            android:gravity="center|left"
-            app:layout_widthPercent="80%w"
-            app:layout_marginPercent="1%"
-            android:textColor="@color/contents_text"
-            />
+            app:layout_widthPercent="100%w" />
 
-        <TextView
+        <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center|left"
-            android:text="2075-7-59"
-            android:textColor="@color/text"
-            app:layout_heightPercent="5%h"
-            app:layout_marginPercent="1%"
-            app:layout_textSizePercent="@string/text_size_small"
-            app:layout_widthPercent="80%w" />
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_heightPercent="25%h"
+            app:layout_widthPercent="100%w">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="内容：该订单未通过退款审核"
-            app:layout_textSizePercent="@string/text_size_mid"
-            app:layout_heightPercent="7%h"
-            android:gravity="center|left"
-            app:layout_widthPercent="80%w"
-            app:layout_marginPercent="1%"
-            android:textColor="@color/text"
-            />
+            <ImageView
+                android:id="@+id/reimburse_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/no_pass" />
 
-        <TextView
+            <TextView
+                android:id="@+id/reimburse_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="拒绝退款"
+                android:textColor="@color/contents_text"
+                android:textStyle="bold"
+                app:layout_heightPercent="15%h"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="30%w" />
+
+            <TextView
+                android:id="@+id/reimburse_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="退款金额:148.00"
+                android:textColor="@color/text"
+                app:layout_heightPercent="15%h"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="40%w" />
+
+            <TextView
+                android:id="@+id/reimburse_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="平台申诉"
+                android:textColor="@color/text"
+                app:layout_heightPercent="15%h"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="30%w" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="买家发起了退款申请，等待商家处理"
-            app:layout_textSizePercent="@string/text_size_big"
-            app:layout_heightPercent="9%h"
-            android:gravity="center|left"
-            app:layout_widthPercent="80%w"
-            app:layout_marginPercent="1%"
-            android:textColor="@color/contents_text"
-            />   <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="2075-7-59"
-        app:layout_textSizePercent="@string/text_size_small"
-        app:layout_heightPercent="5%h"
-        android:gravity="center|left"
-        app:layout_widthPercent="80%w"
-        app:layout_marginPercent="1%"
-        android:textColor="@color/text"
-        />
-        <TextView
+            android:background="@color/white"
+            android:orientation="horizontal"
+            app:layout_heightPercent="15%h"
+            app:layout_marginTopPercent="1%"
+            app:layout_paddingLeftPercent="3%"
+            app:layout_paddingPercent="1%"
+            app:layout_widthPercent="100%w">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/reimburse_sim"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:background="@mipmap/booking_delivery" />
+
+            <TextView
+                android:id="@+id/reimburse_content_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="还米啊 原装进口。。。"
+                android:textColor="@color/text"
+                app:layout_marginPercent="2%"
+                app:layout_textSizePercent="@string/text_size_big" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="退款类型：退货退款"
-            app:layout_textSizePercent="@string/text_size_mid"
-            app:layout_heightPercent="7%h"
-            android:gravity="center|left"
-            app:layout_widthPercent="80%w"
-            app:layout_marginPercent="1%"
-            android:textColor="@color/text"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="退款金额：148"
-            app:layout_textSizePercent="@string/text_size_mid"
-            app:layout_heightPercent="7%h"
-            android:gravity="center|left"
-            app:layout_widthPercent="80%w"
-            app:layout_marginPercent="1%"
-            android:textColor="@color/text"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="退款说明：不满意"
-            app:layout_textSizePercent="@string/text_size_mid"
-            app:layout_heightPercent="7%h"
-            android:gravity="center|left"
-            app:layout_widthPercent="80%w"
-            app:layout_marginPercent="1%"
-            android:textColor="@color/text"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="退款凭证"
-            app:layout_textSizePercent="@string/text_size_mid"
-            app:layout_heightPercent="7%h"
-            android:gravity="center|left"
-            app:layout_widthPercent="80%w"
-            app:layout_marginPercent="1%"
-            android:textColor="@color/text"
-            />
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layout_heightPercent="45%h"
+            app:layout_marginTopPercent="1%"
+            app:layout_paddingLeftPercent="3%"
+            app:layout_widthPercent="100%w">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="协商记录"
+                android:textColor="@color/text"
+                app:layout_heightPercent="8%h"
+                app:layout_marginPercent="2%"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="80%w" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"></View>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="商家拒绝退款申请"
+                android:textColor="@color/contents_text"
+                app:layout_heightPercent="8%h"
+                app:layout_marginPercent="1%"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="80%w" />
+
+            <TextView
+                android:id="@+id/re_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="2075-7-59"
+                android:textColor="@color/text"
+                app:layout_heightPercent="5%h"
+                app:layout_marginPercent="1%"
+                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_widthPercent="80%w" />
+
+            <TextView
+                android:id="@+id/re_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="内容：该订单未通过退款审核"
+                android:textColor="@color/text"
+                app:layout_heightPercent="7%h"
+                app:layout_marginPercent="1%"
+                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_widthPercent="80%w" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="买家发起了退款申请，等待商家处理"
+                android:textColor="@color/contents_text"
+                app:layout_heightPercent="9%h"
+                app:layout_marginPercent="1%"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="80%w" />
+
+            <TextView
+                android:id="@+id/reim_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="2075-7-59"
+                android:textColor="@color/text"
+                app:layout_heightPercent="5%h"
+                app:layout_marginPercent="1%"
+                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_widthPercent="80%w" />
+
+            <TextView
+                android:id="@+id/reim_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="退款类型：退货退款"
+                android:textColor="@color/text"
+                app:layout_heightPercent="7%h"
+                app:layout_marginPercent="1%"
+                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_widthPercent="80%w" />
+
+            <TextView
+                android:id="@+id/reim_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="退款金额：148"
+                android:textColor="@color/text"
+                app:layout_heightPercent="7%h"
+                app:layout_marginPercent="1%"
+                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_widthPercent="80%w" />
+
+            <TextView
+                android:id="@+id/reim_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="退款说明：不满意"
+                android:textColor="@color/text"
+                app:layout_heightPercent="7%h"
+                app:layout_marginPercent="1%"
+                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_widthPercent="80%w" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_widthPercent="95%w">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="退款凭证"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="95%h"
+                    app:layout_marginPercent="1%"
+                    app:layout_textSizePercent="@string/text_size_mid"
+                    app:layout_widthPercent="15%w" />
+
+                <com.cndll.shapetest.view.MyGridView
+                    android:id="@+id/reimburse_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:columnWidth="90dp"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:horizontalSpacing="10dp"
+                    android:numColumns="3"
+                    android:scrollbarSize="1px"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="10dp"
+                    app:layout_widthPercent="80%w"></com.cndll.shapetest.view.MyGridView>
+            </com.zhy.android.percent.support.PercentLinearLayout>
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
     </com.zhy.android.percent.support.PercentLinearLayout>
-
-
-
-
-</com.zhy.android.percent.support.PercentLinearLayout>
 </layout>
