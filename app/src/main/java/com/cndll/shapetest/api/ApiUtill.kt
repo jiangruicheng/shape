@@ -32,8 +32,23 @@ open class ApiUtill {
         api.put(TEST, AppRequest.getAPI().test(BaseRequest()))
     }
 
-    fun getApi(api: Observable<out BaseResponse>,next:(BaseResponse)->Unit) {
+    fun getApi(api: Observable<out BaseResponse>, next: (BaseResponse) -> Unit): Subscription? {
+        return api.subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).
+                subscribe(object : BaseObservable() {
 
+                    override fun onNext(t: BaseResponse?) {
+                        super.onNext(t)
+                    }
+
+                    override fun onError(e: Throwable?) {
+                        super.onError(e)
+                    }
+
+                    override fun onCompleted() {
+                        super.onCompleted()
+                    }
+                })
     }
 
     fun getApi(flag: Int, next: (BaseResponse) -> Unit): Subscription? {
