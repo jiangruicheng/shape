@@ -12,8 +12,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="4dp"
             android:background="@color/titleBackGround"
+            android:padding="4dp"
             android:scaleType="centerInside"
             android:src="@mipmap/back" />
 
@@ -28,21 +28,21 @@
         <TextView
             android:id="@+id/title_right"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
             android:text=""
-            android:visibility="gone"
-            />
+            android:visibility="gone" />
 
-        <ImageButton
+
+        <Button
             android:id="@+id/menu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/titleBackGround"
             android:scaleType="center"
-            android:visibility="invisible"
-            android:src="@mipmap/add_card" />
+            android:src="@mipmap/add_card"
+            android:visibility="invisible" />
     </LinearLayout>
 </layout>

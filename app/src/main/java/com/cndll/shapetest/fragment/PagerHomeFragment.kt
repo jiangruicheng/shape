@@ -35,7 +35,7 @@ class PagerHomeFragment : BaseVlayoutFragment() {
     var itemTabPosition = 0
     var time = 0
     lateinit var bannerAdapter: BannerAdapter
-    var tablayout: TabLayout? = null
+    //var tablayout: TabLayout? = null
 
 
     lateinit var shopAdapter: VLayoutAdapter
@@ -78,13 +78,13 @@ class PagerHomeFragment : BaseVlayoutFragment() {
                 when (tab!!.position) {
                     0 -> {
                         itemTabPosition = 0
-                        adapter.removeAdapter(2)
+                        adapter.removeAdapter(shopAdapter)
                         adapter.addAdapter(2, commodityAdapter)
                     }
 
                     1 -> {
                         itemTabPosition = 1
-                        adapter.removeAdapter(2)
+                        adapter.removeAdapter(commodityAdapter)
                         adapter.addAdapter(2, shopAdapter)
                     }
 
@@ -169,11 +169,10 @@ class PagerHomeFragment : BaseVlayoutFragment() {
                     setOnBindView({ itemView, position ->
                         if (itemView.dataBinding != null) {
                             val tabBinding = itemView.dataBinding as ItemTablayoutBinding
-                            tablayout = tabBinding.tabLayout
+                            //tablayout = tabBinding.tabLayout
                             tabBinding.tabLayout.getTabAt(itemTabPosition)!!.select()
                             tabBinding.tabLayout.removeOnTabSelectedListener(onSelectListion)
                             tabBinding.tabLayout.addOnTabSelectedListener(onSelectListion)
-
                         }
                     }).creatAdapter())
             adapter.addAdapter(commodityAdapter)

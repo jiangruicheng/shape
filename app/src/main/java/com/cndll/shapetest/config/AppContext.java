@@ -5,6 +5,8 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
@@ -19,7 +21,7 @@ public class AppContext extends Application implements UncaughtExceptionHandler 
 
     private Thread.UncaughtExceptionHandler mDefaultHandler;
     public static AppContext appContext;
-    //public IWXAPI msgApi;
+    public IWXAPI msgApi;
     public static ContentValues cv = new ContentValues();
     public static Context mContext;
 
@@ -37,9 +39,9 @@ public class AppContext extends Application implements UncaughtExceptionHandler 
         PlatformConfig.setSinaWeibo("3588954476", "66ee7a15a0301492373f82a42a80cd62", "http://www.sina.com");
         Config.isJumptoAppStore = true;
         UMShareAPI.get(this);
-/*        msgApi = WXAPIFactory.createWXAPI(appContext, null);
+        msgApi = WXAPIFactory.createWXAPI(appContext, null);
         // 将该app注册到微信
-        msgApi.registerApp("wxd96b8dd3e5733967");*/
+        msgApi.registerApp("wxd96b8dd3e5733967");
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
     }
 

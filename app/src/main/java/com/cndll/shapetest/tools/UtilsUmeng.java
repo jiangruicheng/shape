@@ -73,10 +73,10 @@ public class UtilsUmeng {
 //                AppContext.cv.put("icon", data.get("iconurl"));//头像
 //                SharedPreferenceUtil.insert("icon", data.get("iconurl"));
                 if (platform.equals(SHARE_MEDIA.SINA)) {
-//                    AppContext.cv.put("location", data.get("location"));//地址
-                    Log.e("UtilsUmeng",data.get("location"));
+//                    AppContext.cv.put("locat", data.get("locat"));//地址
+                    Log.e("UtilsUmeng",data.get("locat"));
                 } else {
-//                    AppContext.cv.put("location", data.get("province") + data.get("city"));//地址
+//                    AppContext.cv.put("locat", data.get("province") + data.get("city"));//地址
                    Log.e("UtilsUmeng",data.get("province") + data.get("city"));
                 }
                 Message msg = new Message();

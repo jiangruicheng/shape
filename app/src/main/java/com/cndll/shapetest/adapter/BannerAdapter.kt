@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import com.alibaba.android.vlayout.LayoutHelper
 import com.cndll.shapetest.R
 import com.cndll.shapetest.activity.TurnOnActivity
-import com.cndll.shapetest.fragment.CommodityInfoFragment
-import com.cndll.shapetest.fragment.LimitedSpikeFragment
-import com.cndll.shapetest.fragment.MissionToFightFragment
+import com.cndll.shapetest.fragment.*
 import com.cndll.shapetest.tools.StringTools
 import com.cndll.shapetest.weight.MenuGrid
 import kotlin.collections.ArrayList
@@ -59,9 +57,12 @@ open class BannerAdapter(context: Context, layoutHelper: LayoutHelper, count: In
         val bean7 = MenuGrid.MenuBean()
         bean7.title = "积分专区"
         bean7.imageUrl = StringTools.getResUri(R.mipmap.jifen, mContext)
+        bean7.onclick = View.OnClickListener { mContext.startActivity(Intent(mContext, TurnOnActivity::class.java).setAction(NearByShopFoodFragment.FLAG)) }
+
         val bean8 = MenuGrid.MenuBean()
         bean8.title = "线下体验"
         bean8.imageUrl = StringTools.getResUri(R.mipmap.tiyandian, mContext)
+        bean8.onclick = View.OnClickListener { mContext.startActivity(Intent(mContext, TurnOnActivity::class.java).setAction(LineaOffShopFragment.FLAG)) }
 
         val dataList = listOf<MenuGrid.MenuBean>(bean1, bean2, bean3, bean4, bean5, bean6, bean7, bean8)
         view.setMenuData(dataList)

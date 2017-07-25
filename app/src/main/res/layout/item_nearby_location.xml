@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:drawableLeft="@mipmap/locat_gray"
+        android:gravity="center_vertical"
+        android:text="美利坚合众国加利福尼亚州"
+        android:textColor="#000000"
+        android:textSize="@dimen/text_size_small" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scaleType="centerInside"
+        android:src="@mipmap/phone" />
+</LinearLayout>

@@ -226,7 +226,7 @@ class CommodityInfoFragment : BaseVlayoutFragment() {
                     // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
                 }).creatAdapter())
         val mScrollFixLayoutHelperB = ScrollFixLayoutHelper(ScrollFixLayoutHelper.BOTTOM_RIGHT, 0, 0)
-        mScrollFixLayoutHelperL.showType = ScrollFixLayoutHelper.SHOW_ALWAYS
+        mScrollFixLayoutHelperB.showType = ScrollFixLayoutHelper.SHOW_ALWAYS
         adapter.addAdapter(object : VLayoutHelper.Builder() {}.
                 setContext(context).
                 setCount(1).

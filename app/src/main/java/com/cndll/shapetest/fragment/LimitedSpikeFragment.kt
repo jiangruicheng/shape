@@ -6,9 +6,8 @@ import android.os.Bundle
 import android.provider.CalendarContract
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.widget.RecyclerView
+import android.view.*
 import android.widget.Button
 import android.widget.TabHost
 import android.widget.TextView
@@ -20,6 +19,7 @@ import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ItemLimitCommodityBinding
 import com.cndll.shapetest.databinding.ItemLimitTabBinding
 import com.cndll.shapetest.weight.VLayoutHelper
+import com.tencent.mm.opensdk.utils.Log
 
 
 /**
@@ -29,7 +29,8 @@ import com.cndll.shapetest.weight.VLayoutHelper
  */
 class LimitedSpikeFragment : BaseVlayoutFragment() {
 
-
+    lateinit var onGesture: GestureDetector.OnGestureListener
+    lateinit var gesture: GestureDetector
     var selectPosition = 0
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
@@ -51,7 +52,54 @@ class LimitedSpikeFragment : BaseVlayoutFragment() {
         return super.loadMore()
     }
 
+
     override fun setVLayout() {
+        onGesture = object : GestureDetector.OnGestureListener {
+            override fun onShowPress(e: MotionEvent?) {
+            }
+
+            override fun onSingleTapUp(e: MotionEvent?): Boolean {
+                return false
+            }
+
+            override fun onDown(e: MotionEvent?): Boolean {
+                return false
+
+            }
+
+            override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+                Toast.makeText(context, "yidong", Toast.LENGTH_SHORT).show()
+                return false
+            }
+
+            override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
+                return false
+
+            }
+
+            override fun onLongPress(e: MotionEvent?) {
+
+            }
+
+        }
+        gesture = GestureDetector(onGesture)
+        recycler.addOnItemTouchListener(object : RecyclerView.OnItemTouchListener {
+            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+            }
+
+            override fun onInterceptTouchEvent(rv: RecyclerView?, e: MotionEvent?): Boolean {
+                return gesture.onTouchEvent(e)
+                /*if (e!!.action == MotionEvent.ACTION_HOVER_MOVE) {
+                    Log.d("123", "123")
+                }
+                return false*/
+            }
+
+            override fun onTouchEvent(rv: RecyclerView?, e: MotionEvent?) {
+
+            }
+
+        })
         super.setVLayout()
         adapter.addAdapter(object : VLayoutHelper.Builder() {}.
                 setContext(context).

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="flag"
+            type="String" />
+
+        <variable
+            name="bundle"
+            type="android.os.Bundle" />
+
+        <variable
+            name="handler"
+            type="com.cndll.shapetest.event.HandlerClick" />
+    </data>
+
+    <com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="@{(view)->handler.turnOnFragment(view,flag,bundle)}">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/commodity"
+            android:scaleType="fitXY"
+            app:actualImageScaleType="fitXY"
+            app:layout_widthPercent="25%w" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/image"
+            android:layout_alignRight="@+id/image"
+            android:layout_margin="4dp"
+            android:background="#bf000000"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="共5张"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/image"
+            android:gravity="center"
+            android:text="撒尿牛丸（迪拜店）"
+            android:textColor="#000000"
+            android:textSize="@dimen/text_size_mid"
+            app:layout_heightPercent="30%h" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:drawableLeft="@mipmap/locat"
+            android:gravity="center"
+            android:text="500m"
+            android:textColor="@color/gray"
+            app:layout_heightPercent="30%h" />
+
+        <TextView
+            android:id="@+id/points"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/name"
+            android:layout_toRightOf="@+id/image"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="积分："
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_size_small"
+            app:layout_heightPercent="30%h" />
+
+        <TextView
+            android:id="@+id/points_numb"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/name"
+            android:layout_toRightOf="@+id/points"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="消费金额20%"
+            android:textColor="@color/titleRed"
+            android:textSize="@dimen/text_size_small"
+            app:layout_heightPercent="30%h" />
+
+        <TextView
+            android:id="@+id/points_rule"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/name"
+            android:layout_toRightOf="@+id/points_numb"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="(分配细则)"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_size_small"
+            app:layout_heightPercent="30%h" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/points"
+            android:layout_toRightOf="@+id/image"
+            android:gravity="center"
+            android:text="营业时间："
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_size_small"
+            app:layout_heightPercent="30%h" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray" />
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+</layout>

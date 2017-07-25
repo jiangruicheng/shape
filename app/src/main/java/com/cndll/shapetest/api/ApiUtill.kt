@@ -32,6 +32,10 @@ open class ApiUtill {
         api.put(TEST, AppRequest.getAPI().test(BaseRequest()))
     }
 
+    fun getApi(api: Observable<out BaseResponse>,next:(BaseResponse)->Unit) {
+
+    }
+
     fun getApi(flag: Int, next: (BaseResponse) -> Unit): Subscription? {
         if (api.get(flag) != null)
             return api.get(flag)!!.subscribeOn(Schedulers.io()).
@@ -40,9 +44,6 @@ open class ApiUtill {
 
                         override fun onNext(t: BaseResponse?) {
                             super.onNext(t)
-                            if (t != null) {
-                                next(t)
-                            }
                         }
 
                         override fun onError(e: Throwable?) {

@@ -9,6 +9,8 @@ import android.support.annotation.DrawableRes;
  */
 
 public class StringTools {
+    public static String FLAG = "商家店铺";
+
     public static String getResUri(@DrawableRes int res, Context context) {
         return ("res://" + context.getPackageName() + "/" + res);
     }

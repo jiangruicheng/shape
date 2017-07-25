@@ -1,4 +1,3 @@
-/*
 package com.cndll.shapetest.wxapi;
 
 import android.content.BroadcastReceiver;
@@ -19,4 +18,3 @@ public class AppRegister extends BroadcastReceiver {
 		api.registerApp(Constants.APP_ID);
 	}
 }
-*/
