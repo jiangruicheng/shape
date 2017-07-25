@@ -9,12 +9,13 @@ import android.widget.BaseAdapter
 import android.widget.CheckBox
 import android.widget.TextView
 import com.cndll.shapetest.R
+import com.cndll.shapetest.api.bean.response.AddressListResponse
 import com.zhy.android.percent.support.PercentLinearLayout
 
 /**
  * Created by Administrator on 2017/7/17 0017.
  */
-class AddressAdapter(private val contentValues: List<ContentValues>?, private val context: Context, val onClick: setOnClickLoction):BaseAdapter(){
+class AddressAdapter(private val contentValues: List<AddressListResponse.DatasBean.AddressListBean>?, private val context: Context, val onClick: setOnClickLoction):BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertView=convertView
         var holder:ViewHolder
@@ -34,9 +35,16 @@ class AddressAdapter(private val contentValues: List<ContentValues>?, private va
         if(contentValues!!.size <= position || contentValues==null){
             return convertView
         }
-        holder.arsName.text=contentValues[position].getAsString("arsName")
-        holder.arsPhone.text=contentValues[position].getAsString("arsPhone")
-        holder.arsDetalis.text=contentValues[position].getAsString("arsDetails")
+        holder.arsName.text=contentValues[position].true_name
+        holder.arsPhone.text=contentValues[position].tel_phone
+        holder.arsDetalis.text=contentValues[position].area_info+"\t"+contentValues[position].address
+        if(contentValues[position].is_default.equals("0")){
+            holder.arsChose.isChecked=false
+            holder.arsChose.setHintTextColor(context.resources.getColor(R.color.text))
+        }else if (contentValues[position].is_default.equals("1")){
+            holder.arsChose.isChecked=true
+            holder.arsChose.setHintTextColor(context.resources.getColor(R.color.titleRed))
+        }
         holder.arsChose.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
                 holder.arsChose.setHintTextColor(context.resources.getColor(R.color.titleRed))
