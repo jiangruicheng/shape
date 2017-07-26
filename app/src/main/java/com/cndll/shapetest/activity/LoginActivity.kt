@@ -7,16 +7,19 @@ import android.os.Handler
 import android.os.Message
 import android.widget.Toast
 import com.cndll.shapetest.R
+import com.cndll.shapetest.api.AppRequest
+import com.cndll.shapetest.api.BaseObservable
+import com.cndll.shapetest.api.bean.BaseResponse
+import com.cndll.shapetest.api.bean.response.RegisterResponse
 import com.cndll.shapetest.bean.Login
 import com.cndll.shapetest.config.AppContext
 import com.cndll.shapetest.databinding.ActivityLoginBinding
 import com.cndll.shapetest.event.HandlerClick
-import com.cndll.shapetest.tools.AppManager
-import com.cndll.shapetest.tools.Constants
-import com.cndll.shapetest.tools.Ini
-import com.cndll.shapetest.tools.UtilsUmeng
+import com.cndll.shapetest.tools.*
 import com.umeng.socialize.UMShareAPI
 import com.umeng.socialize.bean.SHARE_MEDIA
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     /**
@@ -64,13 +67,46 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             msg = "请输入密码"
         }
         if (isNull) {
-            binding.handler.login(binding.loginbtn)
+            binding.loginbtn.isClickable=false
+           httpLogin()
         } else {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
             return
         }
-
     }
+
+    /**
+     * 登录
+     * */
+    private fun httpLogin(){
+        AppRequest.getAPI().login("login","index",binding.username.text.toString().trim(),binding.password.text.toString().trim(),"android").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object  : BaseObservable(){
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                binding.loginbtn.isClickable=true
+                t as RegisterResponse
+                if(t.code==200){
+                    Toast.makeText(context,"登录成功",Toast.LENGTH_LONG).show()
+                    SharedPreferenceUtil.insert("key",t.datas.key)
+                    binding.handler.login(binding.loginbtn)
+                    finish()
+                }else{
+                    Toast.makeText(context,"登录失败,请检查密码和手机号",Toast.LENGTH_LONG).show()
+                    return
+                }
+            }
+
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+            }
+        })
+    }
+
+
+
 
     private fun initView() {
         mHandler = object : Handler() {

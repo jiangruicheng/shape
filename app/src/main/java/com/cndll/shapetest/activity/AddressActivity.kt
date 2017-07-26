@@ -10,7 +10,9 @@ import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.api.BaseObservable
 import com.cndll.shapetest.api.bean.BaseResponse
 import com.cndll.shapetest.api.bean.response.AddressListResponse
+import com.cndll.shapetest.api.bean.response.HttpCodeResponse
 import com.cndll.shapetest.databinding.ActivityAddressBinding
+import com.cndll.shapetest.tools.SharedPreferenceUtil
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -22,11 +24,29 @@ class AddressActivity : BaseActivity<ActivityAddressBinding>(), AddressAdapter.s
         bundle.putString("address_id", moreList[posit].address_id)
         bundle.putString("type", "edit")
         startActivityForResult(Intent(context, AddListAddressActivity::class.java).putExtras(bundle), 1)
-        Toast.makeText(context, "编辑", Toast.LENGTH_LONG).show()
     }
 
     override fun delete(position: Int) {
-        Toast.makeText(context, "删除", Toast.LENGTH_LONG).show()
+        AppRequest.getAPI().deleteAddress("member_address","address_del",SharedPreferenceUtil.read("key",""),moreList[position].address_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable(){
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                (t as HttpCodeResponse)
+                if (t.code == 200) {
+                    Toast.makeText(context,"删除成功！",Toast.LENGTH_LONG).show()
+                    httpAddressList()
+                }else{
+                    Toast.makeText(context,"删除失败！",Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+            }
+        })
     }
 
     override fun chose(position: Int) {
@@ -70,9 +90,14 @@ class AddressActivity : BaseActivity<ActivityAddressBinding>(), AddressAdapter.s
         httpAddressList()
     }
 
-
+    /**
+     * 请求地址列表
+     * */
     private fun httpAddressList() {
-        AppRequest.getAPI().addressList("member_address", "address_list", "8a07c70fb9369651f508ba4c9b55c886").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
+        if(moreList!=null && moreList.size>0){
+            moreList.clear()
+        }
+        AppRequest.getAPI().addressList("member_address", "address_list", SharedPreferenceUtil.read("key","")).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
 
             override fun onError(e: Throwable?) {
                 println("Throwable:" + e.toString())
@@ -88,17 +113,19 @@ class AddressActivity : BaseActivity<ActivityAddressBinding>(), AddressAdapter.s
                 super.onNext(t)
                 print("onNext:" + t.toString())
                 if ((t as AddressListResponse).code == 200) {
-                    Toast.makeText(context, "ok", Toast.LENGTH_LONG).show()
                     moreList.addAll(t.datas.address_list)
                     adapter!!.notifyDataSetChanged()
                 } else {
-                    Toast.makeText(context, "no", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "请求失败", Toast.LENGTH_LONG).show()
                 }
 
             }
         })
     }
 
+    /**
+     * 新增-编辑地址返回刷新
+     * */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == 1) {
             httpAddressList()

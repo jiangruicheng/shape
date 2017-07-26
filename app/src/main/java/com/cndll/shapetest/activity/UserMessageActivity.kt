@@ -33,6 +33,8 @@ class UserMessageActivity : BaseActivity<ActivityUserMessageBinding>() {
             binding.titlebar.title.text="使用协议"
         }else if (type.equals("help")){
             binding.titlebar.title.text="帮助中心"
+        }else if (type.equals("sign")){
+            binding.titlebar.title.text="用户协议"
         }
 
 

@@ -1,13 +1,22 @@
 package com.cndll.shapetest.activity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.widget.Toast
 import com.cndll.shapetest.R
+import com.cndll.shapetest.api.AppRequest
+import com.cndll.shapetest.api.BaseObservable
+import com.cndll.shapetest.api.bean.BaseResponse
+import com.cndll.shapetest.api.bean.response.HttpCodeResponse
+import com.cndll.shapetest.api.bean.response.RegisterResponse
 import com.cndll.shapetest.databinding.ActivitySignBinding
 import com.cndll.shapetest.tools.Constants
+import com.cndll.shapetest.tools.SharedPreferenceUtil
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 class SignActivity : BaseActivity<ActivitySignBinding>() {
     /** 输入的手机号 */
@@ -18,6 +27,7 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
     lateinit private var code:String
 
     lateinit private var cT:MyCountTime
+    lateinit var type:String
 
     lateinit var context:Context
     override fun initBindingVar() {
@@ -38,20 +48,27 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
     /** 点击事件*/
     private fun initData(){
         val bundle = this.intent.extras
-        val type:String=bundle.getString("type")
+        type=bundle.getString("type")
         if (type.equals("pwd")){
             binding.titlebar.title.text = "忘记密码"
             binding.signRegisterPwd.text="修改密码"
-            binding.signRegisterPwd.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_red))
             binding.signAgreement.visibility=View.GONE
         }else{
             binding.titlebar.title.text = "账号注册"
+            binding.signRegisterPwd.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_red))
         }
 
         cT=MyCountTime(60000,1000)
         binding.signRegisterPwd.setOnClickListener(Clicks())
         binding.signSendCode.setOnClickListener(Clicks())
-
+        /**
+         * 查看用户协议
+         * */
+        binding.signAgreement.setOnClickListener {
+            var bundle=Bundle()
+            bundle.putString("type","sign")
+            context.startActivity(Intent(context,UserMessageActivity::class.java).putExtras(bundle))
+        }
     }
 
     /** 获取值 */
@@ -78,7 +95,12 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
             msg="请输入6至20位密码"
         }
         if (isNull){
-
+            binding.signRegisterPwd.isClickable=false
+            if (type.equals("pwd")){ //忘记密码
+                httpNewPwd()
+            }else{ //注册
+                httpSign()
+            }
         }else{
             Toast.makeText(context,msg,Toast.LENGTH_LONG).show()
             return
@@ -93,11 +115,40 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
             when (v!!.id){
                 R.id.sign_register_pwd -> print() //注册
                 R.id.back -> finish()             //返回
-                R.id.sign_send_code -> cT.start() //发送验证码
+                R.id.sign_send_code -> sendCode() //发送验证码
             }
         }
     }
 
+    /**发送验证码*/
+    private fun sendCode(){
+        phone=binding.signPhone.text.toString().trim()
+        if (!Constants.validMobile(phone)){
+            Toast.makeText(context,"请输入正确的手机号",Toast.LENGTH_LONG).show()
+            return
+        }
+        AppRequest.getAPI().sendCode("login","sendCode",phone).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object  : BaseObservable(){
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+            }
+
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                t as HttpCodeResponse
+                if(t.code==200){
+                    Toast.makeText(context,"发送成功请注意查收",Toast.LENGTH_LONG).show()
+                    cT.start()
+                }else{
+                    Toast.makeText(context,"发送失败请重新发送",Toast.LENGTH_LONG).show()
+                    return
+                }
+            }
+        })
+    }
 
     /** 定时任务 */
     inner class MyCountTime(millisInFuture: Long, countDownInterval: Long) : CountDownTimer(millisInFuture, countDownInterval) {
@@ -112,5 +163,62 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
         }
     }
 
+    /**
+     * 注册
+     * */
+    private fun httpSign(){
+        AppRequest.getAPI().register("login","register",phone,pwd,pwd,code,"android").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object  : BaseObservable(){
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+            }
+
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                binding.signRegisterPwd.isClickable=true
+                t as RegisterResponse
+                if(t.code==200){
+                    Toast.makeText(context,"注册成功",Toast.LENGTH_LONG).show()
+                    finish()
+                }else{
+                    if(t.message==null){
+                        Toast.makeText(context,t.datas.error,Toast.LENGTH_LONG).show()
+                    }else{
+                        Toast.makeText(context,t.message,Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+        })
+    }
+
+    /**
+     * 找回密码
+     * */
+    private fun httpNewPwd(){
+        AppRequest.getAPI().newLoginPwd("login","forgotpassword",phone,pwd,code).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object  : BaseObservable(){
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+            }
+
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                binding.signRegisterPwd.isClickable=true
+                t as RegisterResponse
+                if(t.code==200){
+                    Toast.makeText(context,"找回密码成功",Toast.LENGTH_LONG).show()
+                    finish()
+                }else{
+                    Toast.makeText(context,t.message,Toast.LENGTH_LONG).show()
+                }
+            }
+        })
+
+    }
 
 }

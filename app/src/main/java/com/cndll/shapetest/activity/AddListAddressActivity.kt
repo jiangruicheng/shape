@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.bigkoo.pickerview.OptionsPickerView
 import com.cndll.shapetest.R
@@ -15,6 +16,7 @@ import com.cndll.shapetest.api.bean.response.AddressListResponse
 import com.cndll.shapetest.api.bean.response.AddressResponse
 import com.cndll.shapetest.api.bean.response.HttpCodeResponse
 import com.cndll.shapetest.databinding.ActivityAddListAddressBinding
+import com.cndll.shapetest.tools.SharedPreferenceUtil
 import com.google.gson.Gson
 import org.json.JSONArray
 import rx.Observable
@@ -49,7 +51,7 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
         binding.titlebar.back.setOnClickListener {
             finish()
         }
-        binding.titlebar.title.text = "增加新地址"
+
         binding.titlebar.titleRight.text = "保存"
         binding.titlebar.titleRight.visibility = View.VISIBLE
         binding.titlebar.titleRight.setTextColor(Color.RED)
@@ -67,9 +69,12 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
         var bundle = this.intent.extras
         type = bundle.getString("type")
         if (type.equals("edit")) {
+            binding.titlebar.title.text = "编辑地址"
             binding.addLinDelete.visibility = View.VISIBLE
             addressId = bundle.getString("address_id")
             httpAddressDetalis()
+        }else{
+            binding.titlebar.title.text = "增加新地址"
         }
 
         //选中
@@ -86,11 +91,18 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
         }
         /** 选择地址 */
         binding.linAddChose.setOnClickListener {
+            //隐藏键盘
+            var imm =getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            if(imm != null) {
+                imm.hideSoftInputFromWindow(window.decorView.windowToken, 0)
+            }
             httpAddressCity()
         }
         //删除地址
         binding.deleteAddress.setOnClickListener {
-
+            httpDeleteAddress()
+            setResult(1)
+            finish()
         }
     }
 
@@ -108,7 +120,7 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
             isNull = false
             msg = "请输入联系电话"
         }
-        if (binding.addCity.text.trim().equals("")) {
+        if (binding.addCity.text.trim().equals("请选择")) {
             isNull = false
             msg = "请输入所在区"
         }
@@ -174,7 +186,7 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
      * 地址提交
      * */
     private fun httpAddAddress(){
-        AppRequest.getAPI().addAddress("member_address", "address_add", "8a07c70fb9369651f508ba4c9b55c886",choseType,binding.addName.text.toString(),regionId,cityId,binding.addPhone.text.toString(), binding.addDetails.text.toString(),address).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
+        AppRequest.getAPI().addAddress("member_address", "address_add", SharedPreferenceUtil.read("key",""),choseType,binding.addName.text.toString(),regionId,cityId,binding.addPhone.text.toString(), binding.addDetails.text.toString(), binding.addCity.text.toString()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
             override fun onCompleted() {
                 super.onCompleted()
             }
@@ -184,6 +196,8 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
                 (t as HttpCodeResponse)
                 if (t.code == 200) {
                     Toast.makeText(context,"提交成功！",Toast.LENGTH_LONG).show()
+                }else{
+                    Toast.makeText(context,"提交失败！",Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -197,7 +211,7 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
      * 编辑地址提交
      * */
     private fun httpUpdateAddress(){
-        AppRequest.getAPI().updateAddress("member_address", "address_edit", "8a07c70fb9369651f508ba4c9b55c886", addressId,choseType,binding.addName.text.toString(),regionId,cityId,binding.addPhone.text.toString(), binding.addDetails.text.toString(),address).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
+        AppRequest.getAPI().updateAddress("member_address", "address_edit", SharedPreferenceUtil.read("key",""), addressId,choseType,binding.addName.text.toString(),regionId,cityId,binding.addPhone.text.toString(), binding.addDetails.text.toString(), binding.addCity.text.toString()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
             override fun onCompleted() {
                 super.onCompleted()
             }
@@ -207,6 +221,34 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
                 (t as HttpCodeResponse)
                 if (t.code == 200) {
                     Toast.makeText(context,"编辑成功！",Toast.LENGTH_LONG).show()
+                }else{
+                    Toast.makeText(context,"编辑失败！",Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+                e!!.printStackTrace()
+            }
+        })
+    }
+
+    /**
+     * 删除地址
+     * */
+    private fun httpDeleteAddress(){
+        AppRequest.getAPI().deleteAddress("member_address","address_del",SharedPreferenceUtil.read("key",""),addressId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable(){
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                (t as HttpCodeResponse)
+                if (t.code == 200) {
+                    Toast.makeText(context,"删除成功！",Toast.LENGTH_LONG).show()
+                }else{
+                    Toast.makeText(context,"删除失败！",Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -216,12 +258,11 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
         })
     }
 
-
     /**
      * 编辑----地址详情
      * */
     private fun httpAddressDetalis() {
-        AppRequest.getAPI().addressDetails("member_address", "address_info", "8a07c70fb9369651f508ba4c9b55c886", addressId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
+        AppRequest.getAPI().addressDetails("member_address", "address_info", SharedPreferenceUtil.read("key",""), addressId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
             override fun onCompleted() {
                 super.onCompleted()
             }
@@ -231,9 +272,11 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
                 (t as AddressDetailsResponse)
                 if (t.code == 200) {
                     binding.addName.setText(t.datas.address_info.true_name)
-                    binding.addPhone.setText(t.datas.address_info.mob_phone)
+                    binding.addPhone.setText(t.datas.address_info.tel_phone)
                     binding.addCity.text = t.datas.address_info.area_info
                     binding.addDetails.setText(t.datas.address_info.address)
+                    cityId=t.datas.address_info.city_id
+                    regionId=t.datas.address_info.area_id
                     if (t.datas.address_info.is_default.equals("0")) {
                         binding.addChose.isChecked = false
                     } else if (t.datas.address_info.is_default.equals("1")) {

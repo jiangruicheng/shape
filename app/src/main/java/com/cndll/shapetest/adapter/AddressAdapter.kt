@@ -1,6 +1,5 @@
 package com.cndll.shapetest.adapter
 
-import android.content.ContentValues
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
