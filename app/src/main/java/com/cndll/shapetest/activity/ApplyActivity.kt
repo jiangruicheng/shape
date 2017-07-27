@@ -1,6 +1,7 @@
 package com.cndll.shapetest.activity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -44,6 +45,22 @@ class ApplyActivity : BaseActivity<ActivityApplyBinding>() {
             binding.userName.visibility=View.GONE
         } else if (type.equals("apply")) {
             binding.titlebar.title.text = "申请商家"
+        }
+
+        //查看协议
+        binding.applyDeal.setOnClickListener {
+            var bundle=Bundle()
+            bundle.putString("type","apply")
+            context.startActivity(Intent(context,UserMessageActivity::class.java).putExtras(bundle))
+        }
+        binding.applyChose.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked){
+                binding.applySubmit.isClickable=true
+                binding.applySubmit.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_red))
+            }else{
+                binding.applySubmit.isClickable=false
+                binding.applySubmit.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_gray))
+            }
         }
         binding.applySubmit.setOnClickListener {
             isNull()

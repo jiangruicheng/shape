@@ -70,6 +70,11 @@ public interface Api {
     /**忘记密码**/
     @FormUrlEncoded
     @POST("mobile/index.php/")
-    Observable<RegisterResponse> newLoginPwd(@Field("act") String act,@Field("op") String op,@Field("username") String username,@Field("password") String password,@Field("code") String code);
+    Observable<RegisterResponse> newLoginPwd(@Field("act") String act,@Field("op") String op,@Field("username") String username,@Field("password") String password,@Field("code") String code,@Field("type") String type);
+
+    /**修改登錄密碼**/
+    @FormUrlEncoded
+    @POST("mobile/index.php/")
+    Observable<HttpCodeResponse> updateLoginPwd(@Field("act") String act,@Field("op") String op,@Field("key") String key,@Field("password") String password,@Field("new_password") String new_password);
 }
 

@@ -246,10 +246,11 @@
                         app:layout_textSizePercent="@string/text_size_bigC"
                         app:layout_widthPercent="100%w" />
                     <TextView
+                        android:id="@+id/data_count_details"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="累计投放捐赠额"
+                        android:text="累计投放捐赠额 ?"
                         android:textColor="@color/white"
                         app:layout_marginTopPercent="5%h"
                         app:layout_heightPercent="10%h"

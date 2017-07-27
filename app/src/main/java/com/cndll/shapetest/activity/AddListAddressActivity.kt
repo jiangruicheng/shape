@@ -73,7 +73,7 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
             binding.addLinDelete.visibility = View.VISIBLE
             addressId = bundle.getString("address_id")
             httpAddressDetalis()
-        }else{
+        }else if(type.equals("add")){
             binding.titlebar.title.text = "增加新地址"
         }
 
@@ -131,7 +131,7 @@ class AddListAddressActivity : BaseActivity<ActivityAddListAddressBinding>() {
         if (isNull) {
             if(type.equals("edit")){ //编辑地址
                 httpUpdateAddress()
-            }else{
+            }else if (type.equals("add")){
                 httpAddAddress()
             }
             setResult(1)

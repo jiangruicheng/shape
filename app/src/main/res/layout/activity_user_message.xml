@@ -18,11 +18,13 @@
         app:layout_widthPercent="100%w" />
 
     <TextView
+        android:id="@+id/message_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="信息"
+        android:textColor="@color/contents_text"
+        app:layout_widthPercent="95%w"
+        android:layout_gravity="center"
         />
-
 
 </com.zhy.android.percent.support.PercentLinearLayout>
 </layout>

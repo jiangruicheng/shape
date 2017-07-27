@@ -281,6 +281,7 @@
             app:layout_widthPercent="100%w">
 
             <CheckBox
+                android:id="@+id/apply_buy_chose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true" />
@@ -304,6 +305,7 @@
         </com.zhy.android.percent.support.PercentLinearLayout>
 
         <Button
+            android:id="@+id/apply_buy_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

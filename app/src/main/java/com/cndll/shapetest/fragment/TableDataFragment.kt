@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.TableDataLayoutBinding
 import com.cndll.shapetest.tools.Constants
@@ -74,8 +75,40 @@ class TableDataFragment : BaseFragment<TableDataLayoutBinding>() {
 //            Constants.startExitAnim(binding.str,translateX)
 //        }
 
+        binding.dataTime.text="2017 年 6 月 15 号"
+        //会员积分值
+        binding.dataMemberInter.text="60%"
+        //商家积分值
+        binding.dataShopInter.text="40%"
 
+        //会员人数
+        binding.dataMemberNum.text="88万"
+        //店铺总数量
+        binding.dataShopNum.text="18万"
+
+        //当日收到捐款额
+        binding.dataDayAccount.text="20W"
+        //累计收到捐款额
+        binding.dataReceiveAccount.text="20W"
+        //累计投放捐赠额
+        binding.dataPutInAccount.text="5W"
+
+        //? 查看列表
+        binding.dataCountDetails.setOnClickListener {  }
+
+        httpDatas()
     }
+
+    /**
+     * 获取数据
+     * */
+    private fun httpDatas(){
+        Toast.makeText(context,"获取数据",Toast.LENGTH_LONG).show()
+    }
+
+
+
+
     companion object {
         private val ARG_PARAM1 = "param1"
         private val ARG_PARAM2 = "param2"

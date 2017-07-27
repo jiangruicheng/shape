@@ -67,7 +67,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             msg = "请输入密码"
         }
         if (isNull) {
-            binding.loginbtn.isClickable=false
            httpLogin()
         } else {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
@@ -82,10 +81,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         AppRequest.getAPI().login("login","index",binding.username.text.toString().trim(),binding.password.text.toString().trim(),"android").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object  : BaseObservable(){
             override fun onNext(t: BaseResponse?) {
                 super.onNext(t)
-                binding.loginbtn.isClickable=true
                 t as RegisterResponse
                 if(t.code==200){
                     Toast.makeText(context,"登录成功",Toast.LENGTH_LONG).show()
+                    SharedPreferenceUtil.insert("userPhone",t.datas.username)
                     SharedPreferenceUtil.insert("key",t.datas.key)
                     binding.handler.login(binding.loginbtn)
                     finish()
@@ -101,6 +100,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
             override fun onError(e: Throwable?) {
                 super.onError(e)
+                e!!.printStackTrace()
             }
         })
     }

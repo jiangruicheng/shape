@@ -46,6 +46,7 @@
             android:layout_centerInParent="true"
             fresco:roundedCornerRadius="45dp"
             app:layout_marginLeftPercent="55%"
+            fresco:actualImageScaleType="centerInside"
             fresco:placeholderImageScaleType="fitCenter"
             fresco:roundingBorderColor="@color/white"
             fresco:roundingBorderWidth="1dp"/>

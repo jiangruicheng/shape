@@ -2,6 +2,7 @@ package com.cndll.shapetest.activity
 
 import android.content.ContentValues
 import android.content.Context
+import android.location.Address
 import android.os.Bundle
 import android.widget.ListView
 import com.cndll.shapetest.R
@@ -11,6 +12,7 @@ import com.cndll.shapetest.adapter.VouchersAdapter
 import com.cndll.shapetest.databinding.ActivityVouchersBinding
 import com.handmark.pulltorefresh.library.PullToRefreshBase
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * 我的抵用卷--预约订单--凭团
@@ -22,8 +24,8 @@ class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
     lateinit var listView:ListView
     var adapterBooking:GroupBookingAdapter?=null
     var adapterAdv:AdvanceOrderAdapter?=null
-
-
+    /**抵用卷*/
+    var vouchersList=ArrayList<Address>()
     override fun initBindingVar() {
     }
 
@@ -41,7 +43,7 @@ class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
 
     private fun initView(){
         binding.pull.setOnRefreshListener(onListener2)
-        binding.pull.getLoadingLayoutProxy(false,true).setPullLabel("上蜡烛")
+        binding.pull.getLoadingLayoutProxy(false,true).setPullLabel("上拉中")
         binding.pull.mode=PullToRefreshBase.Mode.BOTH
         binding.pull.getLoadingLayoutProxy(false, true).setRefreshingLabel("刷新中")
         binding.pull.getLoadingLayoutProxy(false, true).setReleaseLabel("释放刷新")
@@ -54,12 +56,13 @@ class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
         if(type.equals("voucher")){
             binding.titlebar.title.text="我的抵用卷"
             //我的优惠卷
+            binding.pull.mode=PullToRefreshBase.Mode.DISABLED
             listView.dividerHeight=50
             if(adapter==null){
                 adapter= VouchersAdapter(moreList,context)
                 listView.adapter=adapter
             }
-            initData()
+            httpVouchers()
         }else if(type.equals("booking")){
             listView.dividerHeight=10
             binding.titlebar.title.text="我的拼团"
@@ -118,7 +121,10 @@ class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
         adapterBooking!!.notifyDataSetChanged()
     }
 
-    private fun initData(){
+    /**
+     * 抵用卷
+     * */
+    private fun httpVouchers(){
         var con:ContentValues= ContentValues()
         con.put("time","1027-5-5")
         con.put("price","22.55")

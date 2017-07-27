@@ -14,7 +14,16 @@ public class HttpCodeResponse extends BaseResponse {
      */
 
     private int code;
-    private String datas;
+//    private String datas;
+    private String error_massage;
+
+    public String getError_massage() {
+        return error_massage;
+    }
+
+    public void setError_massage(String error_massage) {
+        this.error_massage = error_massage;
+    }
 
     public int getCode() {
         return code;
@@ -24,11 +33,12 @@ public class HttpCodeResponse extends BaseResponse {
         this.code = code;
     }
 
-    public String getDatas() {
-        return datas;
-    }
+//    public String getDatas() {
+//        return datas;
+//    }
+//
+//    public void setDatas(String datas) {
+//        this.datas = datas;
+//    }
 
-    public void setDatas(String datas) {
-        this.datas = datas;
-    }
 }

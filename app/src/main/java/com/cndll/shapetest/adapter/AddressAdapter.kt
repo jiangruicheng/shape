@@ -53,8 +53,8 @@ class AddressAdapter(private val contentValues: List<AddressListResponse.DatasBe
 
         }
         //选择默认地址
-        holder.arsChose.setOnClickListener {
-            onClick.chose(position)
+        holder.arsChose.setOnCheckedChangeListener { buttonView, isChecked ->
+            onClick.chose(position,isChecked)
         }
         //编辑地址
         holder.arsEdit.setOnClickListener {
@@ -91,6 +91,6 @@ class AddressAdapter(private val contentValues: List<AddressListResponse.DatasBe
     interface setOnClickLoction {
         fun edit(posit: Int)
         fun delete(position: Int)
-        fun chose(position: Int)
+        fun chose(position: Int,isChecked:Boolean)
     }
 }

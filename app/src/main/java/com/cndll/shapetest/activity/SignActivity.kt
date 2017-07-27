@@ -25,6 +25,9 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
     lateinit private var pwd:String
     /** 输入的验证码 */
     lateinit private var code:String
+    /** 推荐码 */
+     var vouCode=""
+
 
     lateinit private var cT:MyCountTime
     lateinit var type:String
@@ -53,6 +56,8 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
             binding.titlebar.title.text = "忘记密码"
             binding.signRegisterPwd.text="修改密码"
             binding.signAgreement.visibility=View.GONE
+            binding.viewCode.visibility=View.GONE
+            binding.linCode.visibility=View.GONE
         }else{
             binding.titlebar.title.text = "账号注册"
             binding.signRegisterPwd.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_red))
@@ -76,6 +81,7 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
         phone=binding.signPhone.text.toString().trim()
         pwd=binding.signPwd.text.toString().trim()
         code=binding.signCode.text.toString().trim()
+        vouCode=binding.signCodeNum.text.toString().trim()
         var isNull=true
         var msg=""
         if (!Constants.validMobile(phone)){
@@ -197,7 +203,7 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
      * 找回密码
      * */
     private fun httpNewPwd(){
-        AppRequest.getAPI().newLoginPwd("login","forgotpassword",phone,pwd,code).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object  : BaseObservable(){
+        AppRequest.getAPI().newLoginPwd("login","forgotpassword",phone,pwd,code,"password").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object  : BaseObservable(){
             override fun onError(e: Throwable?) {
                 super.onError(e)
             }

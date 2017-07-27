@@ -9,6 +9,7 @@ import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityUserInfoBinding
 import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.tools.GetPathVideo
+import com.cndll.shapetest.tools.ImageFactory
 import com.cndll.shapetest.tools.PhotoTools
 import java.io.File
 
@@ -54,6 +55,12 @@ class UserInfoActivity : BaseActivity<ActivityUserInfoBinding>() {
                 val uri = data!!.data
                 binding.userIcon.setImageURI("file://"+ GetPathVideo.getPath(context,uri))
                 userIcon=File(GetPathVideo.getPath(context,uri))
+                println("d:"+userIcon!!.length())
+
+                var b=ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+//                binding.userIcon.setImageBitmap(b)///测试数据
+                var ff= ImageFactory.saveFile(b,"qq")
+                println("ff:"+ff!!.length())
             }
         }
     }
