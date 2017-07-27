@@ -55,7 +55,7 @@ public interface Api {
     /**注册**/
     @FormUrlEncoded
     @POST("mobile/index.php/")
-    Observable<RegisterResponse> register(@Field("act") String act,@Field("op") String op,@Field("username") String username,@Field("password") String password,@Field("password_confirm") String password_confirm,@Field("code") String code,@Field("client") String client);
+    Observable<RegisterResponse> register(@Field("act") String act,@Field("op") String op,@Field("username") String username,@Field("password") String password,@Field("password_confirm") String password_confirm,@Field("code") String code,@Field("client") String client,@Field("member_code") String member_code);
 
     /**发送验证码**/
     @FormUrlEncoded

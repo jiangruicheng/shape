@@ -173,7 +173,7 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
      * 注册
      * */
     private fun httpSign(){
-        AppRequest.getAPI().register("login","register",phone,pwd,pwd,code,"android").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object  : BaseObservable(){
+        AppRequest.getAPI().register("login","register",phone,pwd,pwd,code,"android",vouCode).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object  : BaseObservable(){
             override fun onError(e: Throwable?) {
                 super.onError(e)
             }

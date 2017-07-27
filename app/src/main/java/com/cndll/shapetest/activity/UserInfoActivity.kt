@@ -59,7 +59,7 @@ class UserInfoActivity : BaseActivity<ActivityUserInfoBinding>() {
 
                 var b=ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
 //                binding.userIcon.setImageBitmap(b)///测试数据
-                var ff= ImageFactory.saveFile(b,"qq")
+                var ff= ImageFactory.saveFile(b,"qq.jpg")
                 println("ff:"+ff!!.length())
             }
         }
