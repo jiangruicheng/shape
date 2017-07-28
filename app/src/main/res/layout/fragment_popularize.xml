@@ -36,6 +36,7 @@
             app:layout_textSizePercent="@string/text_size_big" />
 
         <TextView
+            android:id="@+id/popu_code"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"

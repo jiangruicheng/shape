@@ -8,12 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
+import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.activity.*
+import com.cndll.shapetest.api.AppRequest
+import com.cndll.shapetest.api.BaseObservable
+import com.cndll.shapetest.api.bean.BaseResponse
+import com.cndll.shapetest.api.bean.response.UserInfoResponse
 import com.cndll.shapetest.databinding.FragmentMineBinding
+import com.cndll.shapetest.tools.SharedPreferenceUtil
 import com.cndll.shapetest.view.ObservableScrollView
 import com.cndll.shapetest.view.ObservableScrollView.ScrollViewListener
 import com.cndll.shapetest.zixing.android.CaptureActivity
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 
 /**
@@ -27,6 +35,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
     private var mParam1: String? = null
     private var mParam2: String? = null
     val bundle = Bundle()
+    var userInfo=UserInfoResponse.DatasBean()
     override fun initBindingVar() {
     }
 
@@ -46,6 +55,10 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
+    override fun onResume() {
+        super.onResume()
+        httpUserInfo()
+    }
     /**
      * 加载滑动标题栏变色
      * */
@@ -81,9 +94,9 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
      * */
     private fun initView(){
         // 头像，个人资料
-        binding.mineIcon.setImageURI("http://qmy.51edn.com/upload/images/20170706/cbea4d76ccbebfe8bdc3d3735ac690ce.jpg")
         binding.mineIcon.setOnClickListener {
-            context.startActivity(Intent(context,UserInfoActivity::class.java))
+            bundle.putSerializable("userInfo",userInfo)
+            context.startActivity(Intent(context,UserInfoActivity::class.java).putExtras(bundle))
         }
         //申请成为业务员
         binding.mineSalesMan.setOnClickListener{
@@ -195,7 +208,9 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         }
     }
 
-
+    /**
+     * 返回二维码的信息
+     * */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -205,10 +220,40 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
                 //返回生成的二维码
 //                val bitmap = data.getParcelableExtra<Bitmap>(DECODED_BITMAP_KEY)
 
-                println("content:"+content)
+                Toast.makeText(context,"content:"+content,Toast.LENGTH_LONG).show()
 
             }
         }
+    }
+
+
+    /**
+     * 会员信息
+     * */
+    private fun httpUserInfo(){
+        AppRequest.getAPI().userInfo("member_info","index",SharedPreferenceUtil.read("key","")).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable(){
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                t as UserInfoResponse
+                if(t.code==200){
+                    binding.mineIcon.setImageURI(t.datas.member_avatar)
+                    binding.mineNick.text=t.datas.member_username
+                    binding.mineID.text="ID:"+t.datas.member_num
+                    userInfo=t.datas
+                }else{
+                    Toast.makeText(context,t.error_massage,Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+                e!!.printStackTrace()
+            }
+        })
     }
 
 

@@ -58,7 +58,9 @@ public class ImageFactory {
         Log.d("d", "压缩后的大小=" + b.length);//1.5M的压缩后在100Kb以内，测试得值,压缩后的大小=94486,压缩后的大小=74473
         return Base64.encodeToString(b, Base64.DEFAULT);
     }
-
+    /**
+     * 压缩转换成file
+     * */
     public static File saveFile(Bitmap bm, String fileName) throws IOException {
         String path = getSDPath() +"/shape/";
         File dirFile = new File(path);
@@ -72,6 +74,9 @@ public class ImageFactory {
         bos.close();
         return myCaptureFile;
     }
+    /**
+     * 保存sd
+     * */
     public static String getSDPath(){
         File sdDir = null;
         boolean sdCardExist = Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED); //判断sd卡是否存在

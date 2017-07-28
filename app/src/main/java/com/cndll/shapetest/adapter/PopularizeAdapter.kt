@@ -1,6 +1,5 @@
 package com.cndll.shapetest.adapter
 
-import android.content.ContentValues
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +7,13 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.cndll.shapetest.R
+import com.cndll.shapetest.api.bean.response.UserInfoResponse
 import com.facebook.drawee.view.SimpleDraweeView
 
 /**
  * Created by Administrator on 2017/7/14 0014.
  */
-class PopularizeAdapter(private  val context: Context,private val contentValues: List<ContentValues>):BaseAdapter(){
+class PopularizeAdapter(private  val context: Context,private val contentValues: List<UserInfoResponse.DatasBean.MyRelationBean>):BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertView=convertView
         var holder:ViewHolder
@@ -28,9 +28,9 @@ class PopularizeAdapter(private  val context: Context,private val contentValues:
             holder=convertView.tag as ViewHolder
         }
         if(contentValues!!.size <= position || contentValues==null){return convertView}
-        holder.popuImg.setImageURI(contentValues[position].getAsString("img"))
-        holder.popuNick.text=contentValues[position].getAsString("name")
-        holder.popuTime.text=contentValues[position].getAsString("time")
+        holder.popuImg.setImageURI(contentValues[position].member_avatar)
+        holder.popuNick.text=contentValues[position].member_nick
+        holder.popuTime.text=contentValues[position].member_time
         return convertView
     }
 

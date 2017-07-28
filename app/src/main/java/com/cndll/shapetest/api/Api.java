@@ -8,11 +8,19 @@ import com.cndll.shapetest.api.bean.response.AddressResponse;
 import com.cndll.shapetest.api.bean.response.HttpCodeResponse;
 import com.cndll.shapetest.api.bean.response.RegisterResponse;
 import com.cndll.shapetest.api.bean.response.TestResponse;
+import com.cndll.shapetest.api.bean.response.UserInfoResponse;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 
+import java.io.File;
+import java.util.Map;
+
+import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PartMap;
 import rx.Observable;
 
 /**
@@ -76,5 +84,15 @@ public interface Api {
     @FormUrlEncoded
     @POST("mobile/index.php/")
     Observable<HttpCodeResponse> updateLoginPwd(@Field("act") String act,@Field("op") String op,@Field("key") String key,@Field("password") String password,@Field("new_password") String new_password);
+
+    /**会员信息**/
+    @FormUrlEncoded
+    @POST("mobile/index.php/")
+    Observable<UserInfoResponse> userInfo(@Field("act") String act,@Field("op") String op,@Field("key") String key);
+
+    /**修改个人信息**/
+    @Multipart
+    @POST("mobile/index.php/")
+    Observable<HttpCodeResponse> updateUserInfo(@PartMap Map<String, RequestBody> map);
 }
 
