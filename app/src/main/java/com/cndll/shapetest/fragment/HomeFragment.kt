@@ -14,8 +14,14 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.cndll.shapetest.R
+import com.cndll.shapetest.api.ApiUtill
+import com.cndll.shapetest.api.AppRequest
+import com.cndll.shapetest.api.bean.response.HomePageResponse
 import com.cndll.shapetest.databinding.FragmentHomeBinding
+import rx.Observable
+import rx.Observer
 
 
 /**
@@ -54,6 +60,14 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.titlebar.title.setTextColor(Color.WHITE)
         binding.titlebar.back.visibility = View.GONE
         binding.titlebar.menu.visibility = View.GONE
+
+        ApiUtill.getInstance().getApi(AppRequest.getAPI().homePage(/*"index",*/"1", "1"), {
+            baseResponse ->
+            baseResponse as HomePageResponse
+            adapter.setData(baseResponse.datas.tag)
+            Toast.makeText(context, (baseResponse as HomePageResponse).code.toString(), Toast.LENGTH_SHORT).show()
+
+        })
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -64,7 +78,6 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.pageTab.setupWithViewPager(binding.viewPage)
         binding.viewPage.adapter = adapter
         binding.pageTab.setupWithViewPager(binding.viewPage)
-
     }
 
     fun updatePageView(list: ArrayList<String>) {
@@ -101,32 +114,26 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
 
     inner class PagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-        private var fragmentlist: ArrayList<Fragment>
+        private lateinit var fragmentlist: ArrayList<Fragment>
         override fun getItem(p0: Int): Fragment {
             return fragmentlist[p0]
         }
 
-        open var list = arrayListOf<String>()
-
-        init {
+        open fun setData(list: List<HomePageResponse.DatasBean.TagBean>) {
             fragmentlist = ArrayList()
-            list.add("首页")
-            list.add("农产")
-            list.add("美食")
-            list.add("水果")
-            list.add("家居")
-            list.add("电器")
-            list.add("美妆")
-            list.add("海淘")
-
-            for (i in 0..list.size) {
+            binding.viewPage.offscreenPageLimit = list.size
+            for (i in 0..list.size - 1) {
+                this.list.add(list[i].gc_name)
                 val fragment = PagerHomeFragment.newInstance("", "")
-                if (i != 0) {
-                    fragment.isHomePage = false
-                }
+                val bundle = Bundle()
+                bundle.putString("gc_id", list[i].gc_id)
+                fragment.arguments = bundle
                 fragmentlist.add(fragment)
             }
+            notifyDataSetChanged()
         }
+
+        open var list = arrayListOf<String>()
 
         override fun getCount(): Int {
             return list.size

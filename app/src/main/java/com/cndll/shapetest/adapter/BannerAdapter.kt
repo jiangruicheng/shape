@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.alibaba.android.vlayout.LayoutHelper
 import com.cndll.shapetest.R
 import com.cndll.shapetest.activity.TurnOnActivity
+import com.cndll.shapetest.api.bean.response.HomePageResponse
 import com.cndll.shapetest.fragment.*
 import com.cndll.shapetest.tools.StringTools
 import com.cndll.shapetest.weight.MenuGrid
@@ -18,21 +19,13 @@ import kotlin.collections.ArrayList
 open class BannerAdapter(context: Context, layoutHelper: LayoutHelper, count: Int) : VLayoutAdapter(context, layoutHelper, count) {
     lateinit var view: MenuGrid
     lateinit var meunBeans: ArrayList<MenuGrid.MenuBean>
-    lateinit var bannerBeas: ArrayList<MenuGrid.BannerBean>
+    var bannerBeans: ArrayList<MenuGrid.BannerBean>? = null
 
     constructor(context: Context, layoutHelper: LayoutHelper, count: Int, layoutParams: ViewGroup.LayoutParams) : this(context, layoutHelper, count) {
         mLayoutParams = layoutParams
     }
 
     override fun onBindViewHolder(holder: BannerViewHolder?, position: Int) {
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return 3
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BannerViewHolder {
-        view = MenuGrid(parent)
         val bean1 = MenuGrid.MenuBean()
         bean1.title = "限时秒杀"
         bean1.imageUrl = StringTools.getResUri(R.mipmap.miaosha, mContext)
@@ -64,16 +57,32 @@ open class BannerAdapter(context: Context, layoutHelper: LayoutHelper, count: In
         bean8.imageUrl = StringTools.getResUri(R.mipmap.tiyandian, mContext)
         bean8.onclick = View.OnClickListener { mContext.startActivity(Intent(mContext, TurnOnActivity::class.java).setAction(LineaOffShopFragment.FLAG)) }
 
-        val dataList = listOf<MenuGrid.MenuBean>(bean1, bean2, bean3, bean4, bean5, bean6, bean7, bean8)
-        view.setMenuData(dataList)
-        val bannerBeans = ArrayList<MenuGrid.BannerBean>()
-        bannerBeans.add(MenuGrid.BannerBean("http://pic.58pic.com/58pic/13/61/00/61a58PICtPr_1024.jpg", "http:www.baidu.com"))
-        bannerBeans.add(MenuGrid.BannerBean("http://pic.58pic.com/58pic/15/24/50/43Q58PICkj4_1024.jpg", "http:www.baidu.com"))
-        bannerBeans.add(MenuGrid.BannerBean("http://img0.imgtn.bdimg.com/it/u=3519309645,3088241677&fm=26&gp=0.jpg", "http:www.baidu.com"))
+        meunBeans = arrayListOf<MenuGrid.MenuBean>(bean1, bean2, bean3, bean4, bean5, bean6, bean7, bean8)
+        view.setMenuData(meunBeans)
+
         view.view.layoutParams.height = mLayoutParams!!.height
         view.view.layoutParams.width = mLayoutParams!!.width
-        view.setBanner(bannerBeans)
-        view.startBanner(3500)
+        if (bannerBeans != null) {
+            view.setBanner(bannerBeans!!)
+            view.startBanner(3500)
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return 3
+    }
+
+    open fun setBanner(list: List<HomePageResponse.DatasBean.CarouselBean>) {
+        bannerBeans = ArrayList<MenuGrid.BannerBean>()
+        for (i in 0..list.size - 1) {
+            bannerBeans!!.add(MenuGrid.BannerBean(list[i].img, list[i].url))
+        }
+        notifyDataSetChanged()
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BannerViewHolder {
+        view = MenuGrid(parent)
+
         return BannerViewHolder(view.view)
     }
 

@@ -1,28 +1,23 @@
 package com.cndll.shapetest.fragment
 
 
-import android.content.Context
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
+import android.util.Log
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Toast
 import com.alibaba.android.vlayout.layout.GridLayoutHelper
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper
 import com.cndll.shapetest.R
 import com.cndll.shapetest.adapter.BannerAdapter
 import com.cndll.shapetest.adapter.VLayoutAdapter
-import com.cndll.shapetest.databinding.ItemCheckoutmoreBinding
-import com.cndll.shapetest.databinding.ItemHeadBinding
-import com.cndll.shapetest.databinding.ItemNearbyBinding
-import com.cndll.shapetest.databinding.ItemTablayoutBinding
-import com.cndll.shapetest.weight.CountdownTextView
+import com.cndll.shapetest.api.ApiUtill
+import com.cndll.shapetest.api.AppRequest
+import com.cndll.shapetest.api.bean.response.HomePageResponse
+import com.cndll.shapetest.databinding.*
+import com.cndll.shapetest.event.HandlerClick
 import com.cndll.shapetest.weight.VLayoutHelper
-import kotlin.concurrent.thread
 
 
 /**
@@ -31,19 +26,21 @@ import kotlin.concurrent.thread
  * create an instance of this fragment.
  */
 class PagerHomeFragment : BaseVlayoutFragment() {
-    var isHomePage = true
     var itemTabPosition = 0
     var time = 0
     lateinit var bannerAdapter: BannerAdapter
     //var tablayout: TabLayout? = null
-
+    var homePage: HomePageResponse? = null
 
     lateinit var shopAdapter: VLayoutAdapter
     lateinit var commodityAdapter: VLayoutAdapter
     lateinit var onSelectListion: TabLayout.OnTabSelectedListener
+    lateinit var todaySale: VLayoutAdapter
+    lateinit var todaySaleMode: ArrayList<HomePageResponse.DatasBean.TodaySaleBean>
+
     override fun init() {
         super.init()
-
+        todaySaleMode = ArrayList()
         shopAdapter = object : VLayoutHelper.Builder() {}.
                 setContext(context).
                 setCount(4).
@@ -91,16 +88,16 @@ class PagerHomeFragment : BaseVlayoutFragment() {
                 }
             }
         }
+        pullData()
     }
 
     override fun setVLayout() {
-
 
         val llh = LinearLayoutHelper()
         bannerAdapter = BannerAdapter(context, llh, 1, layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, windowManager.defaultDisplay.height / 2))
         adapter.addAdapter(bannerAdapter)
 
-        if (isHomePage) {
+        if (arguments.getString("gc_id").equals("1")) {
             val grid = GridLayoutHelper(2, 2)
             grid.setPadding(0, 12, 0, 0)
             grid.setMargin(0, 6, 0, 0)
@@ -114,9 +111,17 @@ class PagerHomeFragment : BaseVlayoutFragment() {
                             windowManager.defaultDisplay.height / 13 * 2)).
                     setOnBindView({ itemView, position ->
                         val binding = itemView.dataBinding as ItemNearbyBinding
-                        // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                        binding.handler = HandlerClick()
+                        binding.bundle = Bundle()
+                        binding.flag = ""
+                        when (position) {
+                            (0) -> {
+                                binding.flag = NearByShopFoodFragment.FLAG
+                            }
+                        }
                         binding.image.setOnClickListener { Toast.makeText(context, position.toString(), Toast.LENGTH_SHORT).show() }
-                    }).creatAdapter())
+                    }).
+                    creatAdapter())
             adapter.addAdapter(object : VLayoutHelper.Builder() {}.
                     setContext(context).
                     setCount(1).
@@ -145,19 +150,25 @@ class PagerHomeFragment : BaseVlayoutFragment() {
                         binding.text.text = "今日特卖 "
 
                     }).creatAdapter())
-            adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+            todaySale = object : VLayoutHelper.Builder() {}.
                     setContext(context).
-                    setCount(4).
+                    setCount(todaySaleMode.size).
                     setLayoutHelper(LinearLayoutHelper()).
                     setViewType(4).
                     setRes(R.layout.item_home_commodity).
                     setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                             windowManager.defaultDisplay.height / 3)).
                     setOnBindView({ itemView, position ->
+                        val binding = itemView.dataBinding as ItemHomeCommodityBinding
+                        if (homePage != null) {
+                            binding.image.setImageURI(todaySaleMode[position].image_url)
+                            binding.item = todaySaleMode[position]
+                            binding.position = position
+                        }
                         // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
-                    }).creatAdapter())
+                    }).creatAdapter()
+            adapter.addAdapter(todaySale)
         } else {
-
             adapter.addAdapter(object : VLayoutHelper.Builder() {}.
                     setContext(context).
                     setCount(1).
@@ -181,25 +192,53 @@ class PagerHomeFragment : BaseVlayoutFragment() {
 
     }
 
-
-    override fun loadMore(): Boolean {
-        return super.loadMore()
-        /*if (!canLoad) {
-            return true
-        }
-        Log.d("COUNT", (adapter.findAdapterByIndex(3) as VLayoutAdapter).mCount.toString())
-        if ((adapter.findAdapterByIndex(3) as VLayoutAdapter).mCount >= 12) {
-
-            return false
-        }
-        (adapter.findAdapterByIndex(3) as VLayoutAdapter).mCount = (adapter.findAdapterByIndex(3) as VLayoutAdapter).mCount + 3
-        (adapter.findAdapterByIndex(3) as VLayoutAdapter).notifyDataSetChanged()
-        return true*/
-    }
-
     override fun onPause() {
         super.onPause()
         //bannerAdapter.view.stopBanner()
+    }
+
+    override fun pullData(mode: Int): Boolean {
+        Log.e("pullData", arguments.getString("gc_id"))
+        if (arguments.getString("gc_id").equals("1")) {
+            if (mode == MODE_PULL) {
+                page = 1
+            }
+            ApiUtill.getInstance().getApi(AppRequest.getAPI().homePage(/*"index",*/arguments.getString("gc_id"), page.toString()), {
+                baseResponse ->
+                when (mode) {
+                    (MODE_PULL) -> {
+                        homePage = baseResponse as HomePageResponse
+                        bannerAdapter.setBanner(homePage!!.datas.carousel)
+                        if (todaySaleMode.isNotEmpty()) {
+                            todaySaleMode.clear()
+                        }
+                        todaySaleMode.addAll(baseResponse.datas.today_sale)
+                        todaySale.mCount = todaySaleMode.size
+                        todaySale.notifyDataSetChanged()
+                        Log.e("pull", page.toString())
+                    }
+                    (MODE_LOADMORE) -> {
+                        if ((baseResponse as HomePageResponse).datas.today_sale.isEmpty()) {
+                            loadOver()
+                        }
+                        todaySaleMode.addAll((baseResponse as HomePageResponse).datas.today_sale)
+                        todaySale.mCount = todaySaleMode.size
+                        todaySale.notifyDataSetChanged()
+                        loading = false
+                        Log.e("loadmore", page.toString())
+
+                    }
+                }
+                page++
+            })
+            return true
+        } else {
+            return false
+        }
+    }
+
+    fun pullData() {
+        pullData(MODE_PULL)
     }
 
     companion object {

@@ -1,60 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="2dp"
-    android:background="@mipmap/commodity"
-    android:orientation="horizontal">
+<layout>
 
-    <View
-        android:layout_width="0dp"
+    <data>
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="item"
+            type="com.cndll.shapetest.api.bean.response.HomePageResponse.DatasBean.TodaySaleBean" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.5" />
+        android:layout_marginTop="2dp">
 
-    <com.zhy.android.percent.support.PercentLinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/shape_button_black"
-            android:gravity="center"
-            android:text="仅剩4天0小时"
-            android:textSize="@dimen/text_size_small"
-            app:layout_heightPercent="12%h"
-            app:layout_marginTopPercent="12%h"
-            app:layout_widthPercent="55%w" />
-
-        <TextView
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_vertical"
-            android:text="美诺多婴儿羊奶粉"
-            android:textColor="#000000"
-            android:textSize="@dimen/text_size_big"
-            app:layout_heightPercent="16%h"
-            app:layout_marginTopPercent="1%h" />
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_vertical"
-            android:text="婴儿配方 均衡营养"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/text_size_mid"
-            app:layout_heightPercent="14%h"
-            app:layout_marginTopPercent="1%h" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <include
-            layout="@layout/layout_price_integral"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_heightPercent="24%h" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/shape_button_black"
+                    android:gravity="center"
+                    android:text="@{item.time}"
+                    android:textSize="@dimen/text_size_small"
+                    app:layout_heightPercent="12%h"
+                    app:layout_marginTopPercent="12%h"
+                    app:layout_widthPercent="55%w" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical"
+                    android:text="@{item.goods_name}"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/text_size_big"
+                    app:layout_heightPercent="16%h"
+                    app:layout_marginTopPercent="1%h" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical"
+                    android:text='@{"婴儿配方 均衡营养"}'
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text_size_mid"
+                    app:layout_heightPercent="14%h"
+                    app:layout_marginTopPercent="1%h" />
+
+                <include
+                    layout="@layout/layout_price_integral"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_heightPercent="24%h" />
 
 
-    </com.zhy.android.percent.support.PercentLinearLayout>
-</LinearLayout>
+            </com.zhy.android.percent.support.PercentLinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+
+</layout>

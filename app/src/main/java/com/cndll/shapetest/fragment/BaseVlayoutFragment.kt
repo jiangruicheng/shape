@@ -5,12 +5,12 @@ import `in`.srain.cube.views.ptr.PtrFrameLayout
 import `in`.srain.cube.views.ptr.PtrHandler
 import `in`.srain.cube.views.ptr.util.PtrLocalDisplay
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +36,9 @@ open class BaseVlayoutFragment : Fragment() {
     lateinit var windowManager: WindowManager
     var isFirstRecycler = true
     var offsetX = 0
+    var page = 1
+    var loading = false
+
     lateinit var viewPool: RecyclerView.RecycledViewPool
     val adapterList = ArrayList<DelegateAdapter.Adapter<out RecyclerView.ViewHolder>>()
     lateinit var adapter: DelegateAdapter
@@ -44,7 +47,7 @@ open class BaseVlayoutFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
-
+    private lateinit var lastItemAdapter: VLayoutAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +65,16 @@ open class BaseVlayoutFragment : Fragment() {
         recycler.adapter = adapter
         viewPool = RecyclerView.RecycledViewPool()
         recycler.setRecycledViewPool(viewPool)
+        lastItemAdapter = object : VLayoutHelper.Builder() {}.
+                setContext(context).
+                setCount(1).
+                setLayoutHelper(LinearLayoutHelper()).
+                setViewType(1).
+                setRes(R.layout.item_last).
+                setParams(ViewGroup.LayoutParams(activity.windowManager.defaultDisplay.width, activity.windowManager.defaultDisplay.height / 10)).
+                setOnBindView({ itemView, position ->
+                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
+                }).creatAdapter()
     }
 
     open fun addItemDecoration() {
@@ -131,6 +144,9 @@ open class BaseVlayoutFragment : Fragment() {
         storeHousePtrFrame.setPtrHandler(object : PtrHandler {
             override fun onRefreshBegin(frame: PtrFrameLayout) {
                 frame.postDelayed({
+                    adapter.removeAdapter(lastItemAdapter)
+                    canLoadLastItem = true
+                    loadOver = false
                     updataRecycle()
                     storeHousePtrFrame.refreshComplete()
                 }, 1800)
@@ -149,7 +165,7 @@ open class BaseVlayoutFragment : Fragment() {
     }
 
     var lastItem = 0
-    open var canLoad = true
+    open var canLoadLastItem = true
     fun setScollListen(view: View) {
         val recycler = view!!.findViewById(R.id.recycler) as RecyclerView
         recycler.setOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -170,25 +186,22 @@ open class BaseVlayoutFragment : Fragment() {
                     offsetX = 0
                     //back_top.visibility = View.GONE
                 }
-                // 判断是否滚动到底部，并且是向右滚动
-                if (lastVisibleItem >= totalItemCount - 5 && dy > 0/*&& isSlidingToLast*/) {
+
+                if (lastVisibleItem >= totalItemCount - 2 && dy > 0/*&& isSlidingToLast*/) {
                     //加载更多功能的代码
-                    val linear = LinearLayoutHelper()
-                    if (!loadMore() && canLoad) {
-                        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
-                                setContext(context).
-                                setCount(1).
-                                setLayoutHelper(linear).
-                                setViewType(1).
-                                setRes(R.layout.item_last).
-                                setParams(ViewGroup.LayoutParams(activity.windowManager.defaultDisplay.width, activity.windowManager.defaultDisplay.height / 10)).
-                                setOnBindView({ itemView, position ->
-                                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
-                                }).creatAdapter())
-                        canLoad = false
+                    if (!loadMore() && canLoadLastItem) {
+                        adapter.addAdapter(lastItemAdapter)
+                        canLoadLastItem = false
                     }
                 }
+                if (lastVisibleItem <= totalItemCount - 3 /*&& dy > 0*/) {
+                    if (!canLoadLastItem) {
+                        Log.e("Page", "removeLastItem")
+                        adapter.removeAdapter(lastItemAdapter)
+                        canLoadLastItem = true
+                    }
 
+                }
             }
 
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
@@ -217,16 +230,49 @@ open class BaseVlayoutFragment : Fragment() {
 
     }
 
-    open fun updataRecycle() {
-
+    open fun loadOver() {
+        loadOver = true
+        recycler.smoothScrollBy(recycler.scrollX + 1, recycler.scrollY)
     }
 
-    open fun loadMore(): Boolean {
-        return false
+    fun updataRecycle() {
+        pullData(MODE_PULL)
     }
+
+    fun loadMore(): Boolean {
+        Log.e("Page", "LoadMore")
+        if (!canLoadLastItem) {
+            Log.e("PageLoadMore", "canLoadLastItem" + canLoadLastItem)
+            return false
+        }
+        if (loading) {
+            Log.e("PageLoadMore", "loading" + loading)
+
+            return true
+        }
+        // Log.d("COUNT", (adapter.findAdapterByIndex(3) as VLayoutAdapter).mCount.toString())
+        if (loadOver) {
+            Log.e("PageLoadMore", "loadOver" + loadOver)
+
+            return false
+        } else {
+            loading = true
+            //  Log.e("pullData", arguments.getString("gc_id"))
+            Log.e("PageLoadMore", "LoadMore")
+
+            return pullData(MODE_LOADMORE)
+        }
+    }
+
 
     open fun setVLayout() {
 
+    }
+
+    var loadOver = false
+
+    open fun pullData(mode: Int): Boolean {
+        return false
     }
 
     override fun onDetach() {
@@ -248,7 +294,8 @@ open class BaseVlayoutFragment : Fragment() {
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
         private val ARG_PARAM1 = "param1"
         private val ARG_PARAM2 = "param2"
-
+        val MODE_PULL = 1
+        val MODE_LOADMORE = 0
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.

@@ -28,7 +28,11 @@ class Banner {
     }
 
     fun startBanner(time: Long) {
-        banner.startTurning(time)
+        if (banner.isTurning) {
+            // banner.stopTurning()
+        } else {
+            banner.startTurning(time)
+        }
     }
 
     fun stopBanner() {

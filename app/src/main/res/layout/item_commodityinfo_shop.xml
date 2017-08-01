@@ -1,139 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+<layout>
 
-    <com.zhy.android.percent.support.PercentLinearLayout
+    <data>
+
+        <variable
+            name="info"
+            type="com.cndll.shapetest.api.bean.response.CommodityResponse.DatasBean" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_margin="2dp"
-            android:scaleType="centerInside"
-            app:actualImageScaleType="centerInside"
-            app:layout_widthPercent="15%w"
-            app:placeholderImage="@mipmap/commodity" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="12dp"
-            android:gravity="center_vertical"
-            android:text="奶粉"
-            android:textColor="#000000"
-            android:textSize="@dimen/text_size_small" />
-    </com.zhy.android.percent.support.PercentLinearLayout>
-
-    <com.zhy.android.percent.support.PercentLinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.5"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/logo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="2dp"
+                android:scaleType="centerInside"
+                app:actualImageScaleType="centerInside"
+                app:layout_widthPercent="15%w"
+                app:placeholderImage="@mipmap/commodity" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_horizontal|bottom"
-                android:paddingBottom="8dp"
-                android:text="29400"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:gravity="center_vertical"
+                android:text="@{info.store_name}"
                 android:textColor="#000000"
                 android:textSize="@dimen/text_size_small" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center_horizontal|top"
-                android:paddingTop="8dp"
-                android:text="粉丝人数"
-                android:textColor="#000000"
-                android:textSize="@dimen/text_size_small" />
-        </LinearLayout>
+                android:orientation="vertical">
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/gray"
-            app:layout_marginBottomPercent="40%h"
-            app:layout_marginTopPercent="40%h" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|bottom"
+                    android:paddingBottom="8dp"
+                    android:text="@{info.store_collect}"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/text_size_small" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|top"
+                    android:paddingTop="8dp"
+                    android:text="粉丝人数"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray"
+                app:layout_marginBottomPercent="40%h"
+                app:layout_marginTopPercent="40%h" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|bottom"
+                    android:paddingBottom="8dp"
+                    android:text='@{info.store_count+""}'
+                    android:textColor="#000000"
+                    android:textSize="@dimen/text_size_small" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|top"
+                    android:paddingTop="8dp"
+                    android:text="全部商品"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center_horizontal|bottom"
-                android:paddingBottom="8dp"
-                android:text="29400"
-                android:textColor="#000000"
-                android:textSize="@dimen/text_size_small" />
+                android:background="@drawable/shape_button_solid_gray"
+                android:drawableLeft="@mipmap/notcollect"
+                android:text="收藏店铺"
+                android:textSize="@dimen/text_size_small"
+                app:layout_heightPercent="70%h"
+                app:layout_marginLeftPercent="5%w"
+                app:layout_marginRightPercent="5%w"
+                app:layout_paddingLeftPercent="10%w"
+                app:layout_paddingRightPercent="10%w" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center_horizontal|top"
-                android:paddingTop="8dp"
-                android:text="全部商品"
-                android:textColor="#000000"
-                android:textSize="@dimen/text_size_small" />
-        </LinearLayout>
-    </com.zhy.android.percent.support.PercentLinearLayout>
-
-    <com.zhy.android.percent.support.PercentLinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/shape_button_solid_gray"
-            android:drawableLeft="@mipmap/notcollect"
-            android:text="收藏店铺"
-            android:textSize="@dimen/text_size_small"
-            app:layout_heightPercent="70%h"
-            app:layout_marginLeftPercent="5%w"
-            app:layout_marginRightPercent="5%w"
-            app:layout_paddingLeftPercent="10%w"
-            app:layout_paddingRightPercent="10%w" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/shape_button_solid_gray"
-            android:drawableLeft="@mipmap/shop"
-            android:text="进入店铺"
-            android:textSize="@dimen/text_size_small"
-            app:layout_heightPercent="70%h"
-            app:layout_marginLeftPercent="5%w"
-            app:layout_marginRightPercent="5%w"
-            app:layout_paddingLeftPercent="10%w"
-            app:layout_paddingRightPercent="10%w" />
-    </com.zhy.android.percent.support.PercentLinearLayout>
-</LinearLayout>
+                android:background="@drawable/shape_button_solid_gray"
+                android:drawableLeft="@mipmap/shop"
+                android:text="进入店铺"
+                android:textSize="@dimen/text_size_small"
+                app:layout_heightPercent="70%h"
+                app:layout_marginLeftPercent="5%w"
+                app:layout_marginRightPercent="5%w"
+                app:layout_paddingLeftPercent="10%w"
+                app:layout_paddingRightPercent="10%w" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+    </LinearLayout>
+</layout>

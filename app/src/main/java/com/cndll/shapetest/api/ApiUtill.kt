@@ -4,6 +4,7 @@ import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.api.BaseObservable
 import com.cndll.shapetest.api.bean.BaseRequest
 import com.cndll.shapetest.api.bean.BaseResponse
+import com.cndll.shapetest.api.bean.response.HomePageResponse
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -39,10 +40,14 @@ open class ApiUtill {
 
                     override fun onNext(t: BaseResponse?) {
                         super.onNext(t)
+                        if (t != null) {
+                            next(t)
+                        }
                     }
 
                     override fun onError(e: Throwable?) {
                         super.onError(e)
+                        e!!.printStackTrace()
                     }
 
                     override fun onCompleted() {

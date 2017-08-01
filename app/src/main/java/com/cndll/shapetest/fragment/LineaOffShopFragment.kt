@@ -38,13 +38,7 @@ class LineaOffShopFragment : BaseVlayoutFragment() {
         super.init()
     }
 
-    override fun updataRecycle() {
-        super.updataRecycle()
-    }
 
-    override fun loadMore(): Boolean {
-        return super.loadMore()
-    }
 
     override fun setVLayout() {
         super.setVLayout()

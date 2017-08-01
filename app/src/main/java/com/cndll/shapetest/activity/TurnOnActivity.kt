@@ -34,13 +34,20 @@ class TurnOnActivity : BaseActivity<ActivityTurnOnBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_turn_on)
-        fragmentMap.put(LimitedSpikeFragment.FLAG, LimitedSpikeFragment.newInstance("", ""))
-        fragmentMap.put(MissionToFightFragment.FLAG, MissionToFightFragment.newInstance("", ""))
-        fragmentMap.put(CommodityInfoFragment.FLAG, CommodityInfoFragment.newInstance("", ""))
-        fragmentMap.put(LineaOffShopFragment.FLAG, LineaOffShopFragment.newInstance("", ""))
-        fragmentMap.put(NearByShopFoodFragment.FLAG, NearByShopFoodFragment.newInstance("", ""))
-        fragmentMap.put(NearByShopFoodStoreFragment.FLAG, NearByShopFoodStoreFragment.newInstance("", ""))
 
-        supportFragmentManager.beginTransaction().add(R.id.frame, fragmentMap.get(intent.action)).commit()
+        putFragment(LimitedSpikeFragment.FLAG, LimitedSpikeFragment.newInstance("", ""))
+        putFragment(MissionToFightFragment.FLAG, MissionToFightFragment.newInstance("", ""))
+        putFragment(CommodityInfoFragment.FLAG, CommodityInfoFragment.newInstance("", ""))
+        putFragment(LineaOffShopFragment.FLAG, LineaOffShopFragment.newInstance("", ""))
+        putFragment(NearByShopFoodFragment.FLAG, NearByShopFoodFragment.newInstance("", ""))
+        putFragment(NearByShopFoodStoreFragment.FLAG, NearByShopFoodStoreFragment.newInstance("", ""))
+        if (fragmentMap.containsKey(intent.action)) {
+            supportFragmentManager.beginTransaction().add(R.id.frame, fragmentMap.get(intent.action)).commit()
+        }
+    }
+
+    fun putFragment(flag: String, fragment: Fragment) {
+        fragmentMap.put(flag, fragment)
+        fragmentMap.get(flag)!!.arguments = intent.extras
     }
 }

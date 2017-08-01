@@ -1,21 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout>
 
-    <include
-        layout="@layout/item_commodityinfo_comment_head"
-        android:layout_width="match_parent"
-        android:layout_height="46dp" />
+    <data>
 
-    <include
-        layout="@layout/item_commodityinfo_comment_body"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <variable
+            name="info"
+            type="com.cndll.shapetest.api.bean.response.CommodityResponse.DatasBean" />
 
-    <include
-        layout="@layout/item_commodityinfo_comment_feet"
+        <variable
+            name="comment"
+            type="com.cndll.shapetest.api.bean.response.CommodityResponse.DatasBean.CommtentsBean" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="36dp" />
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/item_commodityinfo_comment_head"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            bind:info="@{info}" />
+
+        <include
+            android:id="@+id/body"
+            layout="@layout/item_commodityinfo_comment_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            bind:comment="@{comment}"
+            bind:info="@{info}" />
+
+        <include
+            layout="@layout/item_commodityinfo_comment_feet"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            bind:info="@{info}" />
+    </LinearLayout>
+</layout>

@@ -35,7 +35,9 @@ open class HandlerClick {
         if (b == null) {
             b = Bundle()
         }
-        view.context.startActivity(Intent(view.context, TurnOnActivity::class.java).putExtras(b).setAction(flag))
+        if (!flag.equals("")) {
+            view.context.startActivity(Intent(view.context, TurnOnActivity::class.java).putExtras(b).setAction(flag))
+        }
     }
 }
 

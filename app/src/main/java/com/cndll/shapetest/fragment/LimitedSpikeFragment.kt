@@ -19,7 +19,6 @@ import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ItemLimitCommodityBinding
 import com.cndll.shapetest.databinding.ItemLimitTabBinding
 import com.cndll.shapetest.weight.VLayoutHelper
-import com.tencent.mm.opensdk.utils.Log
 
 
 /**
@@ -42,14 +41,6 @@ class LimitedSpikeFragment : BaseVlayoutFragment() {
             mParam1 = arguments.getString(ARG_PARAM1)
             mParam2 = arguments.getString(ARG_PARAM2)
         }
-    }
-
-    override fun updataRecycle() {
-        super.updataRecycle()
-    }
-
-    override fun loadMore(): Boolean {
-        return super.loadMore()
     }
 
 
