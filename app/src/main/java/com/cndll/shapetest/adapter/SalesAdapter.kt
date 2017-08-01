@@ -1,31 +1,28 @@
 package com.cndll.shapetest.adapter
 
-import android.content.ContentValues
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.cndll.shapetest.R
+import com.cndll.shapetest.api.bean.response.OrderListResponse
 import com.facebook.drawee.view.SimpleDraweeView
 
 /**
  * Created by Administrator on 2017/7/14 0014.
  */
-class SalesAdapter(private  val context: Context, private val contentValues: List<ContentValues>,var type:Int):BaseAdapter(){
+class SalesAdapter(private  val context: Context, private val contentValues: List<OrderListResponse.DatasBean>):BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertView=convertView
         var holder:ViewHolder
         if(convertView==null){
             holder=ViewHolder()
             convertView=LayoutInflater.from(context).inflate(R.layout.sales_all_item_layout,null)
-            holder.shopAllImg=convertView!!.findViewById(R.id.shop_all_img) as SimpleDraweeView
-            holder.shopAllName=convertView!!.findViewById(R.id.shop_all_name) as TextView
-            holder.shopAllType=convertView!!.findViewById(R.id.shop_all_type) as TextView
-            holder.shopAllPrice=convertView!!.findViewById(R.id.shop_all_price) as TextView
-            holder.shopAllNum=convertView!!.findViewById(R.id.shop_all_count) as TextView
+            holder.shopLinList=convertView!!.findViewById(R.id.lin_order_list) as LinearLayout
             holder.shopAllText=convertView!!.findViewById(R.id.shop_all_text) as TextView
             holder.shopAllMoney=convertView!!.findViewById(R.id.shop_all_money) as TextView
             holder.shopAllApply=convertView!!.findViewById(R.id.shop_all_apply) as Button
@@ -36,25 +33,57 @@ class SalesAdapter(private  val context: Context, private val contentValues: Lis
             holder=convertView.tag as ViewHolder
         }
         if(contentValues!!.size <= position || contentValues==null){return convertView}
-        holder.shopAllImg.setImageURI(contentValues[position].getAsString("shopAllImg"))
         //全部----状态-支付状态判断
-        if(type==1){
-
-        }else if (type==2){
-            //待付款
+        holder.shopLinList.removeAllViews()
+        for (i in 0..(contentValues[position].goods_list.size-1)){
+            val view = LayoutInflater.from(context).inflate(R.layout.sales_item_new, null)
+            val shopImg = view.findViewById(R.id.shop_all_img) as SimpleDraweeView
+            val shopName=view.findViewById(R.id.shop_all_name) as TextView
+            val shopType=view.findViewById(R.id.shop_all_type) as TextView
+            val shopPrice=view.findViewById(R.id.shop_all_price) as TextView
+            val shopCount=view.findViewById(R.id.shop_all_count) as TextView
+            shopImg.setImageURI(contentValues[position].goods_list[i].img_url)
+            shopName.text=contentValues[position].goods_list[i].goods_name
+            shopType.text=contentValues[position].goods_list[i].goods_spec
+            shopPrice.text="￥"+contentValues[position].goods_list[i].goods_price
+            shopCount.text="x"+contentValues[position].goods_list[i].goods_num
+            holder.shopLinList.addView(view)
+        }
+        holder.shopAllMoney.text=contentValues[position].order_amount
+        if (contentValues[position].order_state.equals("0")){
+            holder.shopAllAppeal.visibility=View.INVISIBLE
+            holder.shopAllApply.text="取消订单"
+            holder.shopAllDetails.text="立即支付"
+            holder.shopAllDetails.setTextColor(context.resources.getColor(R.color.white))
             holder.shopAllDetails.setBackgroundDrawable(context.resources.getDrawable(R.drawable.shape_button_red))
-        }else if(type==3){
-            //待发货
-
-        }else if(type==4){
-            //待收货
-
-        }else if(type==5){
-            //待激励
+        }
+        if (contentValues[position].order_state.equals("10")){
+            holder.shopAllAppeal.visibility=View.INVISIBLE
+            holder.shopAllApply.visibility=View.INVISIBLE
+            holder.shopAllDetails.text="提醒发货"
+            holder.shopAllDetails.setTextColor(context.resources.getColor(R.color.white))
             holder.shopAllDetails.setBackgroundDrawable(context.resources.getDrawable(R.drawable.shape_button_red))
-        }else if (type==6){
-            //待评价
-
+        }
+        if (contentValues[position].order_state.equals("20")){
+            holder.shopAllApply.setTextColor(context.resources.getColor(R.color.white))
+            holder.shopAllApply.setBackgroundDrawable(context.resources.getDrawable(R.drawable.shape_button_red))
+            holder.shopAllAppeal.text="查看物流"
+            holder.shopAllApply.text="确认收货"
+            holder.shopAllDetails.text="确认激励"
+        }
+        if (contentValues[position].order_state.equals("30")){
+            holder.shopAllApply.setTextColor(context.resources.getColor(R.color.white))
+            holder.shopAllApply.setBackgroundDrawable(context.resources.getDrawable(R.drawable.shape_button_red))
+            holder.shopAllAppeal.text="查看物流"
+            holder.shopAllApply.text="确认激励"
+            holder.shopAllDetails.text="评价"
+        }
+        if (contentValues[position].order_state.equals("40")){
+            holder.shopAllAppeal.visibility=View.INVISIBLE
+            holder.shopAllApply.visibility=View.INVISIBLE
+            holder.shopAllDetails.text="评价"
+            holder.shopAllDetails.setTextColor(context.resources.getColor(R.color.white))
+            holder.shopAllDetails.setBackgroundDrawable(context.resources.getDrawable(R.drawable.shape_button_red))
         }
         return convertView
     }
@@ -72,11 +101,7 @@ class SalesAdapter(private  val context: Context, private val contentValues: Lis
     }
 
     inner class ViewHolder{
-        lateinit var shopAllImg:SimpleDraweeView
-        lateinit var shopAllName:TextView
-        lateinit var shopAllType:TextView
-        lateinit var shopAllPrice:TextView
-        lateinit var shopAllNum:TextView
+        lateinit var shopLinList:LinearLayout
         lateinit var shopAllText:TextView
         lateinit var shopAllMoney:TextView
         lateinit var shopAllApply:Button

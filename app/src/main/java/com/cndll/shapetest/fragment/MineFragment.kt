@@ -3,6 +3,7 @@ package com.cndll.shapetest.fragment
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,10 @@ import com.cndll.shapetest.view.ObservableScrollView.ScrollViewListener
 import com.cndll.shapetest.zixing.android.CaptureActivity
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import com.facebook.drawee.backends.pipeline.Fresco
+import com.facebook.imagepipeline.core.ImagePipeline
+
+
 
 
 /**
@@ -231,11 +236,18 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
      * 会员信息
      * */
     private fun httpUserInfo(){
+
         AppRequest.getAPI().userInfo("member_info","index",SharedPreferenceUtil.read("key","")).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable(){
             override fun onNext(t: BaseResponse?) {
                 super.onNext(t)
                 t as UserInfoResponse
                 if(t.code==200){
+
+                    val imgurl = Uri.parse(t.datas.member_avatar)
+                    val imagePipeline = Fresco.getImagePipeline()
+                    imagePipeline.evictFromMemoryCache(imgurl)
+                    imagePipeline.evictFromDiskCache(imgurl)
+                    imagePipeline.evictFromCache(imgurl)
                     binding.mineIcon.setImageURI(t.datas.member_avatar)
                     binding.mineNick.text=t.datas.member_username
                     binding.mineID.text="ID:"+t.datas.member_num

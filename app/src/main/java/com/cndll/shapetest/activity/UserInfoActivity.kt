@@ -76,10 +76,13 @@ class UserInfoActivity : BaseActivity<ActivityUserInfoBinding>() {
     private fun isNull() {
         var isNull = true
         var msg = ""
-        if (userIcon == null) {
-            isNull = false
-            msg = "请选择头像"
+        if (userInfo.member_avatar.equals("")){
+            if (userIcon == null) {
+                isNull = false
+                msg = "请选择头像"
+            }
         }
+
         if (binding.userNick.text.toString().trim().equals("")) {
             isNull = false
             msg = "请输入昵称"

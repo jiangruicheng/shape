@@ -34,8 +34,8 @@ public final class Constants {
             Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
 
-    public static final String APP_ID = "wxd96b8dd3e5733967";
-    public static final String APP_KEY = "de1d138b686684274a39964f931b7eea";
+    public static final String APP_ID = "wx11de741afcebadb2";
+    public static final String APP_KEY = "491fc397d1458b210fac32cc6e7053c2";
     public static final String APPQQ_ID = "1105155596";
 
     public static class ShowMsgActivity {

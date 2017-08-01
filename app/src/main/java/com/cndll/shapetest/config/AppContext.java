@@ -35,7 +35,7 @@ public class AppContext extends Application implements UncaughtExceptionHandler 
         // 获取系统默认的UncaughtException处理
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         //友盟配置三方平台的appkey
-        PlatformConfig.setWeixin("wxd96b8dd3e5733967", "de1d138b686684274a39964f931b7eea");
+        PlatformConfig.setWeixin("wx11de741afcebadb2","491fc397d1458b210fac32cc6e7053c2");
         PlatformConfig.setQQZone("1105155596", "bbRRZKif6xhk679w");
         PlatformConfig.setSinaWeibo("3588954476", "66ee7a15a0301492373f82a42a80cd62", "http://www.sina.com");
 //        Config.DEBUG = true; //测试----友盟
@@ -43,7 +43,7 @@ public class AppContext extends Application implements UncaughtExceptionHandler 
         UMShareAPI.get(this);
         msgApi = WXAPIFactory.createWXAPI(appContext, null);
         // 将该app注册到微信
-        msgApi.registerApp("wxd96b8dd3e5733967");
+        msgApi.registerApp("wx11de741afcebadb2");
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
     }
 

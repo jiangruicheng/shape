@@ -33,6 +33,12 @@ class ApplyBuyBackActivity : BaseActivity<ActivityApplyBuyBackBinding>() {
      * 加载控件
      * */
     private fun initView(){
+        binding.titlebar.titleRight.setOnClickListener {
+            var bundle=Bundle()
+            bundle.putString("type","buyBack")
+            context.startActivity(Intent(context,IntegralActivity::class.java).putExtras(bundle))
+        }
+
         //查看协议
         binding.applyDeal.setOnClickListener {
             var bundle=Bundle()

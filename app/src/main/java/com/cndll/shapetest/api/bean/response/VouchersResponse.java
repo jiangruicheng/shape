@@ -4,6 +4,7 @@ import com.cndll.shapetest.api.bean.BaseResponse;
 
 /**
  * Created by Administrator on 2017/7/27 0027.
+ * 抵用卷
  */
 
 public class VouchersResponse extends BaseResponse {

@@ -2,10 +2,12 @@ package com.cndll.shapetest.api;
 
 
 import com.cndll.shapetest.api.bean.BaseRequest;
+import com.cndll.shapetest.api.bean.response.AboutUsResponse;
 import com.cndll.shapetest.api.bean.response.AddressDetailsResponse;
 import com.cndll.shapetest.api.bean.response.AddressListResponse;
 import com.cndll.shapetest.api.bean.response.AddressResponse;
 import com.cndll.shapetest.api.bean.response.HttpCodeResponse;
+import com.cndll.shapetest.api.bean.response.OrderListResponse;
 import com.cndll.shapetest.api.bean.response.RegisterResponse;
 import com.cndll.shapetest.api.bean.response.TestResponse;
 import com.cndll.shapetest.api.bean.response.UserInfoResponse;
@@ -18,9 +20,11 @@ import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -31,14 +35,12 @@ public interface Api {
     Observable<TestResponse> test(@Body BaseRequest request);
 
     /**地区列表**/
-    @FormUrlEncoded
-    @POST("mobile/index.php/")
-    Observable<AddressResponse> addressList(@Field("act") String act,@Field("op") String op);
+    @GET("mobile/index.php/")
+    Observable<AddressResponse> addressList(@Query("act") String act,@Query("op") String op);
 
     /**地址列表**/
-    @FormUrlEncoded
-    @POST("mobile/index.php/")
-    Observable<AddressListResponse> addressList(@Field("act") String act,@Field("op") String op,@Field("key") String key);
+    @GET("mobile/index.php/")
+    Observable<AddressListResponse> addressList(@Query("act") String act,@Query("op") String op,@Query("key") String key);
 
     /**地址详情**/
     @FormUrlEncoded
@@ -86,13 +88,20 @@ public interface Api {
     Observable<HttpCodeResponse> updateLoginPwd(@Field("act") String act,@Field("op") String op,@Field("key") String key,@Field("password") String password,@Field("new_password") String new_password);
 
     /**会员信息**/
-    @FormUrlEncoded
-    @POST("mobile/index.php/")
-    Observable<UserInfoResponse> userInfo(@Field("act") String act,@Field("op") String op,@Field("key") String key);
+    @GET("mobile/index.php/")
+    Observable<UserInfoResponse> userInfo(@Query("act") String act,@Query("op") String op,@Query("key") String key);
 
     /**修改个人信息**/
     @Multipart
     @POST("mobile/index.php/")
     Observable<HttpCodeResponse> updateUserInfo(@PartMap Map<String, RequestBody> map);
+
+    /**关于我们**/
+    @GET("mobile/index.php/")
+    Observable<AboutUsResponse> aboutUs(@Query("act") String act,@Query("op") String op);
+
+    /**我的订单**/
+    @GET("mobile/index.php/")
+    Observable<OrderListResponse> orderList(@Query("act") String act, @Query("op") String op, @Query("key") String key, @Query("order_state") String order_state, @Query("page") String page);
 }
 

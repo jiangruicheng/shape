@@ -63,6 +63,26 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
             binding.titlebar.title.text="基金捐款"
             binding.manageTx.visibility=View.GONE
             binding.typeTx.visibility=View.GONE
+        }else if(type.equals("buyBack")){
+            binding.titlebar.title.text="回购记录"
+            binding.integralDataTable.visibility=View.GONE
+            binding.typeTx.visibility=View.GONE
+            binding.funTx.visibility=View.GONE
+            binding.manageTx.visibility=View.GONE
+            binding.accountTx.text="回购金额"
+        }else if (type.equals("donate")){
+            binding.titlebar.title.text="直捐记录"
+            binding.integralDataTable.visibility=View.GONE
+            binding.typeTx.visibility=View.GONE
+            binding.funTx.visibility=View.GONE
+            binding.manageTx.visibility=View.GONE
+            binding.accountTx.text="捐赠积分"
+        }else if(type.equals("remain")){
+            binding.titlebar.title.text="转增记录"
+            binding.integralDataTable.visibility=View.GONE
+            binding.typeTx.visibility=View.GONE
+            binding.funTx.text="昵称"
+            binding.manageTx.text="ID号"
         }
 
         initPopupWindow()

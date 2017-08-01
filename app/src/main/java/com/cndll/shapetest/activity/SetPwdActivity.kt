@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.cndll.shapetest.R
+import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.databinding.ActivitySetPwdBinding
 
 class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
