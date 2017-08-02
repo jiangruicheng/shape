@@ -49,6 +49,13 @@ open class BaseVlayoutFragment : Fragment() {
     private var mParam2: String? = null
     private lateinit var lastItemAdapter: VLayoutAdapter
 
+    fun setAlpha(float: Float) {
+        val wl = activity.window.attributes
+        wl.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+        wl.alpha = float
+        activity.window.setAttributes(wl)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {

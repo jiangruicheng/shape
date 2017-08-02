@@ -20,4 +20,8 @@
         <item name="android:maxHeight">60dip</item>
     </style>
 
+    <style name="popwin_anim_style">
+        <item name="android:windowEnterAnimation">@anim/show</item>
+        <item name="android:windowExitAnimation">@anim/hide</item>
+    </style>
 </resources>

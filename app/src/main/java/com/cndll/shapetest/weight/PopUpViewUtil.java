@@ -14,6 +14,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
+import com.cndll.shapetest.R;
+
 /**
  * Created by kongqing on 2017/3/29.
  */
@@ -57,6 +59,7 @@ public class PopUpViewUtil {
             popupWindow.setOutsideTouchable(isoutside);
             popupWindow.setBackgroundDrawable(new BitmapDrawable());
         }
+       // popupWindow.setAnimationStyle(R.style.popwin_anim_style);
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -67,11 +70,11 @@ public class PopUpViewUtil {
             }
         });
         if (null != locations && locations.length == 2) {
-            if (location==null||null == location.getWindowToken())
+            if (location == null || null == location.getWindowToken())
                 return;
             popupWindow.showAtLocation(location, gravity, locations[0], locations[1]);
         } else {
-            if (location==null||null == location.getWindowToken())
+            if (location == null || null == location.getWindowToken())
                 return;
             popupWindow.showAtLocation(location, gravity, 0, 0);
         }
@@ -85,7 +88,7 @@ public class PopUpViewUtil {
         popListWindow(location, view, width, height, gravity, locations, true);
     }
 
-    public void showDialog(@NonNull Activity context, @LayoutRes int layout, int locationX, int locationY, int width, int heigth) {
+    public void showDialog(@NonNull Context context, @LayoutRes int layout, int locationX, int locationY, int width, int heigth) {
         showDialog(context, layout, locationX, locationY, width, heigth, 0);
     }
 
@@ -113,7 +116,7 @@ public class PopUpViewUtil {
         });
     }
 
-    public void showDialog(@NonNull Activity context, @LayoutRes int layout, int locationX, int locationY, int width, int heigth, @StyleRes int style) {
+    public void showDialog(@NonNull Context context, @LayoutRes int layout, int locationX, int locationY, int width, int heigth, @StyleRes int style) {
         View view = LayoutInflater.from(context).inflate(layout, null, false);
         showDialog(context, view, locationX, locationY, width, heigth, style);
        /* AlertDialog.Builder dialog = new AlertDialog.Builder(context, style);

@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ImageView
@@ -20,10 +22,9 @@ import com.cndll.shapetest.adapter.VLayoutAdapter
 import com.cndll.shapetest.api.ApiUtill
 import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.api.bean.response.CommodityResponse
+import com.cndll.shapetest.bean.CommodityInfoMode
 import com.cndll.shapetest.databinding.*
-import com.cndll.shapetest.weight.Banner
-import com.cndll.shapetest.weight.MenuGrid
-import com.cndll.shapetest.weight.VLayoutHelper
+import com.cndll.shapetest.weight.*
 
 
 /**
@@ -126,6 +127,7 @@ class CommodityInfoFragment : BaseVlayoutFragment() {
                     val binding = itemView.dataBinding as ItemCommodityinfoInfoBinding
                     binding.info = modeCommodity
                     binding.goods = modeGoodsInfo
+                    binding.mode = CommodityResponse.TYPE_LIMITED
                 }).creatAdapter())
         val guaranteeHelper = GridLayoutHelper(3, 1)
         /*guaranteeHelper.itemCount = 3*/
@@ -151,6 +153,18 @@ class CommodityInfoFragment : BaseVlayoutFragment() {
                 setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         windowManager.defaultDisplay.height / 15)).
                 setOnBindView({ itemView, position ->
+                    val binding = itemView.dataBinding as ItemCommodityinfoChooseBinding
+                    binding.typeName = modeCommodity.goods_type
+                    binding.typeTx.setOnClickListener {
+                        val v = CommodityInfo()
+                        v.popview(recycler, context)
+                        /*val p = PopUpViewUtil.getInstance()
+                        val view = LayoutInflater.from(context).inflate(R.layout.popview_goodstype, null, false)
+                        setAlpha(0.6f)
+
+                        p.popListWindow(recycler, view, windowManager.defaultDisplay.width, windowManager.defaultDisplay.height / 2, Gravity.BOTTOM, null)
+                        p.setOnDismissAction { setAlpha(1.0f) }*/
+                    }
                     // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
                 }).creatAdapter())
         adapterlist.add(object : VLayoutHelper.Builder() {}.
@@ -164,7 +178,7 @@ class CommodityInfoFragment : BaseVlayoutFragment() {
                 setOnBindView({ itemView, position ->
                     val binding = itemView.dataBinding as ItemCommodityinfoCommentBinding
                     binding.info = modeCommodity
-                    if (modeCommodity.commtents != null) {
+                    if (modeCommodity.commtents != null && !modeCommodity.commtents.isEmpty()) {
                         binding.comment = modeCommodity.commtents[0]
                         binding.body.avatar.setImageURI(modeCommodity.commtents[0].geavl_memberimg)
                         binding.body.rating.rating = modeCommodity.commtents[0].geval_scores.toFloat()

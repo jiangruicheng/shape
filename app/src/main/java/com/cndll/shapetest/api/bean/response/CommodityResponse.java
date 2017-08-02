@@ -9,7 +9,9 @@ import java.util.List;
  */
 
 public class CommodityResponse extends BaseResponse {
-
+    public static final int TYPE_FIGHT = 0;
+    public static final int TYPE_LIMITED = 1;
+    public static final int TYPE_COMMON = 2;
     /**
      * code : 200
      * datas : {"detail_imgs":[],"goods_name":"乳霜面霜","goods_freight":"0.00","goods_commonid":"3","is_store_favorate":0,"goods_custom":[],"goods_type":"赵奕欢","goods_body":"","goods_salenum":5,"goods":[{"goods_type_name":"美女","goods_id":"7","goods_info":{"so_price":"100.00","now_price":"200.00","goods_storage":"97","end_time":"","is_goods_favorate":0,"score":"0","scoreprice":"","goods_score":""}},{"goods_type_name":"妹子","goods_id":"8","goods_info":{"so_price":"100.00","now_price":"200.00","goods_storage":"98","end_time":"","is_goods_favorate":0,"score":"0","scoreprice":"","goods_score":""}}],"groups_order_num":0,"carousel":["http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05524113961130819_60.jpg","http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05524113938243904_60.jpg","http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05524113913284285_60.jpg","http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05524113891840356_60.jpg","http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05524113983626143_60.jpg"],"store_id":"1","store_name":"好商城V5","store_label":"http://zhongxiang.51edn.com/data/upload/shop/store/05531864680209995.jpg","store_collect":"0","store_count":40,"evaluate_all":5,"evaluate_good":5,"good_percent":100,"commtents":[{"geval_image":["http://zhongxiang.51edn.com/data/upload/shop/member/2/2_05542082923462465_240.jpg"],"geval_addtime":"2017-07-24 | 美女","geavl_memberimg":"http://zhongxiang.51edn.com/data/upload/shop/common/default_user_portrait.gif","geval_content":"11111","geval_frommembername":"xiaofei","geval_id":"10","geval_scores":"5"},{"geval_image":["http://zhongxiang.51edn.com/data/upload/shop/common/default_goods_image_240.gif","http://zhongxiang.51edn.com/data/upload/shop/common/default_goods_image_240.gif"],"geval_addtime":"2017-06-13","geavl_memberimg":"http://zhongxiang.51edn.com/data/upload/shop/common/default_user_portrait.gif","geval_content":"再来","geval_frommembername":"xiaofei","geval_id":"7","geval_scores":"5"},{"geval_image":["http://zhongxiang.51edn.com/data/upload/shop/common/default_goods_image_240.gif"],"geval_addtime":"2017-06-13","geavl_memberimg":"http://zhongxiang.51edn.com/data/upload/shop/common/default_user_portrait.gif","geval_content":"使用","geval_frommembername":"xiaofei","geval_id":"6","geval_scores":"5"},{"geval_image":"","geval_addtime":"2017-06-13","geavl_memberimg":"http://zhongxiang.51edn.com/data/upload/shop/common/default_user_portrait.gif","geval_content":"很好","geval_frommembername":"xiaofei","geval_id":"5","geval_scores":"5"},{"geval_image":"","geval_addtime":"2017-06-13","geavl_memberimg":"http://zhongxiang.51edn.com/data/upload/shop/common/default_user_portrait.gif","geval_content":"完美","geval_frommembername":"xiaofei","geval_id":"4","geval_scores":"5"}],"areaid_1":"0","areaid_2":"0","provice":"","city":""}
@@ -62,6 +64,7 @@ public class CommodityResponse extends BaseResponse {
          * provice :
          * city :
          */
+        private int fight_groups_id;
 
         private String goods_name;
         private String goods_freight;
@@ -83,11 +86,21 @@ public class CommodityResponse extends BaseResponse {
         private String areaid_2;
         private String provice;
         private String city;
+        private List<OrderFightGroupsInfoBean> order_fight_groups_info;
+
         private List<?> detail_imgs;
         private List<?> goods_custom;
         private List<GoodsBean> goods;
         private List<String> carousel;
         private List<CommtentsBean> commtents;
+
+        public int getFight_groups_id() {
+            return fight_groups_id;
+        }
+
+        public void setFight_groups_id(int fight_groups_id) {
+            this.fight_groups_id = fight_groups_id;
+        }
 
         public String getGoods_name() {
             return goods_name;
@@ -249,6 +262,14 @@ public class CommodityResponse extends BaseResponse {
             this.city = city;
         }
 
+        public List<OrderFightGroupsInfoBean> getOrder_fight_groups_info() {
+            return order_fight_groups_info;
+        }
+
+        public void setOrder_fight_groups_info(List<OrderFightGroupsInfoBean> order_fight_groups_info) {
+            this.order_fight_groups_info = order_fight_groups_info;
+        }
+
         public List<?> getDetail_imgs() {
             return detail_imgs;
         }
@@ -289,11 +310,88 @@ public class CommodityResponse extends BaseResponse {
             this.commtents = commtents;
         }
 
+        public static class OrderFightGroupsInfoBean {
+
+
+            private String order_id;
+            private String buyer_id;
+            private String add_time;
+            private String end_time;
+            private String people_num;
+            private String now_people_num;
+            private String member_name;
+            private String member_avatar;
+
+            public String getOrder_id() {
+                return order_id;
+            }
+
+            public void setOrder_id(String order_id) {
+                this.order_id = order_id;
+            }
+
+            public String getBuyer_id() {
+                return buyer_id;
+            }
+
+            public void setBuyer_id(String buyer_id) {
+                this.buyer_id = buyer_id;
+            }
+
+            public String getAdd_time() {
+                return add_time;
+            }
+
+            public void setAdd_time(String add_time) {
+                this.add_time = add_time;
+            }
+
+            public String getEnd_time() {
+                return end_time;
+            }
+
+            public void setEnd_time(String end_time) {
+                this.end_time = end_time;
+            }
+
+            public String getPeople_num() {
+                return people_num;
+            }
+
+            public void setPeople_num(String people_num) {
+                this.people_num = people_num;
+            }
+
+            public String getNow_people_num() {
+                return now_people_num;
+            }
+
+            public void setNow_people_num(String now_people_num) {
+                this.now_people_num = now_people_num;
+            }
+
+            public String getMember_name() {
+                return member_name;
+            }
+
+            public void setMember_name(String member_name) {
+                this.member_name = member_name;
+            }
+
+            public String getMember_avatar() {
+                return member_avatar;
+            }
+
+            public void setMember_avatar(String member_avatar) {
+                this.member_avatar = member_avatar;
+            }
+        }
+
         public static class GoodsBean {
             /**
              * goods_type_name : 美女
              * goods_id : 7
-             * goods_info : {"so_price":"100.00","now_price":"200.00","goods_storage":"97","end_time":"","is_goods_favorate":0,"score":"0","scoreprice":"","goods_score":""}
+             * goods_info : {"so_price":"100.00","now_price"“:"200.00","goods_storage":"97","end_time":"","is_goods_favorate":0,"score":"0","scoreprice":"","goods_score":""}
              */
 
             private String goods_type_name;
@@ -335,14 +433,18 @@ public class CommodityResponse extends BaseResponse {
                  * scoreprice :
                  * goods_score :
                  */
-
+                private String once_price;
                 private String so_price;
                 private String now_price;
                 private String goods_storage;
+                private String groups_price;
+
                 private String end_time;
                 private int is_goods_favorate;
                 private String score;
                 private String scoreprice;
+                private String groups_people_num;
+
                 private String goods_score;
 
                 public String getSo_price() {
@@ -353,8 +455,16 @@ public class CommodityResponse extends BaseResponse {
                     this.so_price = so_price;
                 }
 
+                public String getOnce_price() {
+                    return once_price;
+                }
+
                 public String getNow_price() {
                     return now_price;
+                }
+
+                public void setOnce_price(String once_price) {
+                    this.once_price = once_price;
                 }
 
                 public void setNow_price(String now_price) {
@@ -369,8 +479,16 @@ public class CommodityResponse extends BaseResponse {
                     this.goods_storage = goods_storage;
                 }
 
+                public String getGroups_price() {
+                    return groups_price;
+                }
+
                 public String getEnd_time() {
                     return end_time;
+                }
+
+                public void setGroups_price(String groups_price) {
+                    this.groups_price = groups_price;
                 }
 
                 public void setEnd_time(String end_time) {
@@ -391,6 +509,14 @@ public class CommodityResponse extends BaseResponse {
 
                 public void setScore(String score) {
                     this.score = score;
+                }
+
+                public String getGroups_people_num() {
+                    return groups_people_num;
+                }
+
+                public void setGroups_people_num(String groups_people_num) {
+                    this.groups_people_num = groups_people_num;
                 }
 
                 public String getScoreprice() {

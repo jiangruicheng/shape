@@ -36,6 +36,8 @@ public interface Api {
     @GET("/mobile/index.php?act=fight_groups_goods&op=index")
     Observable<FightResponse> fightPage(/*@Query("act") String act,*/ @Query("page") String page);
 
-    @GET("/mobile/index.php?act=goods&op=index&goods_id=7")
+    /*@GET("/mobile/index.php?act=goods&op=index&goods_id=7")
+    Observable<CommodityResponse> commodiytPage();*/
+    @GET("/mobile/index.php?act=goods&op=index&goods_id=80&fight_groups_id=13")
     Observable<CommodityResponse> commodiytPage();
 }

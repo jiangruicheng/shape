@@ -4,6 +4,12 @@
     <data>
 
         <variable
+            name="mode"
+            type="Integer" />
+
+        <import type="com.cndll.shapetest.api.bean.response.CommodityResponse" />
+
+        <variable
             name="info"
             type="com.cndll.shapetest.api.bean.response.CommodityResponse.DatasBean" />
 
@@ -35,7 +41,7 @@
             android:layout_height="0dp"
             android:layout_below="@+id/commodity_title"
             android:gravity="center_vertical"
-            android:text="消费积分"
+            android:text='@{mode==CommodityResponse.TYPE_COMMON?"":mode==CommodityResponse.TYPE_LIMITED?"秒杀":mode==CommodityResponse.TYPE_FIGHT?goods.groups_people_num+"人团": "消费积分"}'
             android:textColor="@color/titleRed"
             android:textSize="@dimen/text_size_small"
             app:layout_heightPercent="15%" />
