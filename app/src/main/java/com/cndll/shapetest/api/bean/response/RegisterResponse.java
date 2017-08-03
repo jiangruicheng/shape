@@ -15,16 +15,10 @@ public class RegisterResponse extends BaseResponse {
      */
 
     private int code;
+    private String error_message;
     private String message;
     private DatasBean datas;
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
 
     public String getMessage() {
         return message;
@@ -34,6 +28,22 @@ public class RegisterResponse extends BaseResponse {
         this.message = message;
     }
 
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getError_message() {
+        return error_message;
+    }
+
+    public void setError_message(String error_message) {
+        this.error_message = error_message;
+    }
+
     public DatasBean getDatas() {
         return datas;
     }
@@ -41,6 +51,7 @@ public class RegisterResponse extends BaseResponse {
     public void setDatas(DatasBean datas) {
         this.datas = datas;
     }
+
 
     public static class DatasBean {
         /**

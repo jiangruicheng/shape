@@ -167,7 +167,9 @@
         <activity android:name=".activity.ReimburseActivity" />
         <activity android:name=".activity.ApplyForRefundActivity" />
         <activity android:name=".activity.LogisticsActivity" />
-        <activity android:name=".activity.InSpellingActivity"></activity>
+        <activity android:name=".activity.InSpellingActivity" />
+        <activity android:name=".activity.AuthenticationManagActivity" />
+        <activity android:name=".activity.PersonalCertificateManagActivity"></activity>
     </application>
 
 </manifest>

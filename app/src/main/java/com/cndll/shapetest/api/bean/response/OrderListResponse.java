@@ -143,6 +143,15 @@ public class OrderListResponse extends BaseResponse {
             private String goods_name;
             private String goods_spec;
             private String img_url;
+            private String rec_id;
+
+            public String getRec_id() {
+                return rec_id;
+            }
+
+            public void setRec_id(String rec_id) {
+                this.rec_id = rec_id;
+            }
 
             public String getGoods_num() {
                 return goods_num;

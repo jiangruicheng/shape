@@ -6,7 +6,9 @@ import com.cndll.shapetest.api.bean.response.AboutUsResponse;
 import com.cndll.shapetest.api.bean.response.AddressDetailsResponse;
 import com.cndll.shapetest.api.bean.response.AddressListResponse;
 import com.cndll.shapetest.api.bean.response.AddressResponse;
+import com.cndll.shapetest.api.bean.response.FileResponse;
 import com.cndll.shapetest.api.bean.response.HttpCodeResponse;
+import com.cndll.shapetest.api.bean.response.LogisticsResponse;
 import com.cndll.shapetest.api.bean.response.OrderListResponse;
 import com.cndll.shapetest.api.bean.response.RegisterResponse;
 import com.cndll.shapetest.api.bean.response.TestResponse;
@@ -103,5 +105,35 @@ public interface Api {
     /**我的订单**/
     @GET("mobile/index.php/")
     Observable<OrderListResponse> orderList(@Query("act") String act, @Query("op") String op, @Query("key") String key, @Query("order_state") String order_state, @Query("page") String page);
+
+    /**查看物流**/
+    @FormUrlEncoded
+    @POST("mobile/index.php/")
+    Observable<LogisticsResponse> logistics(@Field("act") String act,@Field("op") String op,@Field("key") String key,@Field("order_id") String order_id);
+
+    /**取消订单**/
+    @FormUrlEncoded
+    @POST("mobile/index.php/")
+    Observable<HttpCodeResponse> orderCancel(@Field("act") String act,@Field("op") String op,@Field("key") String key,@Field("order_id") String order_id);
+
+    /**上传文件-评论**/
+    @Multipart
+    @POST("mobile/index.php/")
+    Observable<FileResponse> uploadFile(@PartMap Map<String, RequestBody> map);
+
+    /**评论**/
+    @Multipart
+    @POST("mobile/index.php/")
+    Observable<HttpCodeResponse> appraise(@PartMap Map<String,RequestBody> map);
+
+    /**删除订单**/
+    @FormUrlEncoded
+    @POST("mobile/index.php/")
+    Observable<HttpCodeResponse> deleteOrder(@Field("act") String act,@Field("op") String op,@Field("key") String key,@Field("order_id") String order_id);
+
+    /**确认收货**/
+    @FormUrlEncoded
+    @POST("mobile/index.php/")
+    Observable<HttpCodeResponse> queryOrder(@Field("act") String act,@Field("op") String op,@Field("key") String key,@Field("order_id") String order_id);
 }
 

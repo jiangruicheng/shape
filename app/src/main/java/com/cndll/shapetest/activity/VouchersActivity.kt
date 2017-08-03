@@ -2,17 +2,17 @@ package com.cndll.shapetest.activity
 
 import android.content.ContentValues
 import android.content.Context
-import android.location.Address
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.view.View
 import android.widget.ListView
 import com.cndll.shapetest.R
 import com.cndll.shapetest.adapter.AdvanceOrderAdapter
 import com.cndll.shapetest.adapter.GroupBookingAdapter
-import com.cndll.shapetest.adapter.VouchersAdapter
+import com.cndll.shapetest.adapter.MyViewPagerAdapter
 import com.cndll.shapetest.databinding.ActivityVouchersBinding
+import com.cndll.shapetest.fragment.VouchersFragment
 import com.handmark.pulltorefresh.library.PullToRefreshBase
-import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * 我的抵用卷--预约订单--凭团
@@ -20,12 +20,14 @@ import kotlin.collections.ArrayList
 class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
    lateinit var context: Context
     var moreList=ArrayList<ContentValues>()
-    var adapter:VouchersAdapter?=null
     lateinit var listView:ListView
     var adapterBooking:GroupBookingAdapter?=null
     var adapterAdv:AdvanceOrderAdapter?=null
-    /**抵用卷*/
-    var vouchersList=ArrayList<Address>()
+
+    private var fragemnts=ArrayList<Fragment>()
+    private val titles = arrayOf("红包抵用卷", "普通抵用卷")
+    private var adapterPage: MyViewPagerAdapter?=null
+
     override fun initBindingVar() {
     }
 
@@ -55,14 +57,16 @@ class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
         var type=bundle.getString("type")
         if(type.equals("voucher")){
             binding.titlebar.title.text="我的抵用卷"
-            //我的优惠卷
-            binding.pull.mode=PullToRefreshBase.Mode.DISABLED
-            listView.dividerHeight=50
-            if(adapter==null){
-                adapter= VouchersAdapter(moreList,context)
-                listView.adapter=adapter
-            }
-            httpVouchers()
+            binding.pull.visibility= View.GONE
+            binding.vouchersViewpager.visibility=View.VISIBLE
+            binding.vouchersTab.visibility=View.VISIBLE
+            fragemnts.add(VouchersFragment().newInstance(1))
+            fragemnts.add(VouchersFragment().newInstance(2))
+            adapterPage=MyViewPagerAdapter(supportFragmentManager,fragemnts,titles)
+            binding.vouchersViewpager.adapter=adapterPage
+            binding.vouchersTab.setupWithViewPager(binding.vouchersViewpager)
+            binding.vouchersTab.setTabsFromPagerAdapter(adapterPage)
+
         }else if(type.equals("booking")){
             listView.dividerHeight=10
             binding.titlebar.title.text="我的拼团"
@@ -121,25 +125,7 @@ class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
         adapterBooking!!.notifyDataSetChanged()
     }
 
-    /**
-     * 抵用卷
-     * */
-    private fun httpVouchers(){
-        var con:ContentValues= ContentValues()
-        con.put("time","1027-5-5")
-        con.put("price","22.55")
-        moreList.add(con)
-        var con1:ContentValues= ContentValues()
-        con1.put("time","1027-5-5")
-        con1.put("price","22.55")
-        moreList.add(con1)
-        var con2:ContentValues= ContentValues()
-        con2.put("time","1027-5-5")
-        con2.put("price","22.55")
-        moreList.add(con2)
-        adapter!!.notifyDataSetChanged()
 
-    }
 
 
     internal var onListener2: PullToRefreshBase.OnRefreshListener2<ListView> = object : PullToRefreshBase.OnRefreshListener2<ListView> {

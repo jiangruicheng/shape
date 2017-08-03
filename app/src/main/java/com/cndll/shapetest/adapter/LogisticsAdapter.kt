@@ -1,6 +1,5 @@
 package com.cndll.shapetest.adapter
 
-import android.content.ContentValues
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.cndll.shapetest.R
+import com.cndll.shapetest.api.bean.response.LogisticsResponse
 
 /**
  * Created by Administrator on 2017/7/21 0021.
  */
-class LogisticsAdapter(private val contentValues: List<ContentValues>?, private val context: Context): BaseAdapter(){
+class LogisticsAdapter(private val contentValues: List<LogisticsResponse.DatasBean.DeliverInfoBean>?, private val context: Context): BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
        var convertView = convertView
         var holder:ViewHolder
@@ -30,13 +30,16 @@ class LogisticsAdapter(private val contentValues: List<ContentValues>?, private 
             return convertView
         }
 
-        if(0==position){
+        holder.logisChage.setBackgroundDrawable(context.resources.getDrawable(R.drawable.log))
+        holder.logisCompany.setTextColor(context.resources.getColor(R.color.gray))
+        holder.logisTime.setTextColor(context.resources.getColor(R.color.gray))
+        if(position==0){
             holder.logisChage.setBackgroundDrawable(context.resources.getDrawable(R.drawable.logis))
             holder.logisCompany.setTextColor(context.resources.getColor(R.color.logis))
             holder.logisTime.setTextColor(context.resources.getColor(R.color.logis))
         }
-        holder.logisCompany.text=contentValues[position].getAsString("company")
-        holder.logisTime.text=contentValues[position].getAsString("time")
+        holder.logisCompany.text=contentValues[position].context
+        holder.logisTime.text=contentValues[position].time
 
         return convertView
     }
@@ -50,7 +53,7 @@ class LogisticsAdapter(private val contentValues: List<ContentValues>?, private 
     }
 
     override fun getCount(): Int {
-        return contentValues?.size ?: 0
+        return contentValues!!.size ?: 0
     }
 
     inner class ViewHolder{

@@ -3,20 +3,20 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 android {
-     lintOptions{
-         checkReleaseBuilds false
-         abortOnError false
-     }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 
-    signingConfigs{
-        release{
+    signingConfigs {
+        release {
             keyAlias 'shape1'
             keyPassword 'shape1'
             storeFile file('C:/Users/Administrator/Desktop/zxxf/shape.jks')
             storePassword 'shape1'
         }
 
-        debug{
+        debug {
             storeFile file('C:/Users/Administrator/Desktop/zxxf/shape.jks')
             storePassword 'shape1'
             keyAlias 'shape1'

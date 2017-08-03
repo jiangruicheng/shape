@@ -38,12 +38,7 @@ class ApplyActivity : BaseActivity<ActivityApplyBinding>() {
             binding.titlebar.title.text = "申请成为业务员"
         } else if (type.equals("par")) {
             binding.titlebar.title.text = "申请服务合伙人"
-        } else if (type.equals("manag")) {
-            binding.titlebar.title.text = "申请管理合伙人"
-            binding.applyDeal.text = "管理合伙人协议"
-            binding.typeName.text="平台"
-            binding.userName.visibility=View.GONE
-        } else if (type.equals("apply")) {
+        }else if (type.equals("apply")) {
             binding.titlebar.title.text = "申请商家"
         }
 

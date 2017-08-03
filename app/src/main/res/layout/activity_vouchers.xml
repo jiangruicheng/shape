@@ -32,6 +32,30 @@
         ptr:ptrDrawable="@mipmap/phone"
         ptr:ptrMode="both"
         />
+    <android.support.design.widget.TabLayout
+        android:id="@+id/vouchers_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w"
+        app:tabIndicatorColor="@color/titleRed"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/titleRed"
+        app:tabTextColor="@android:color/black"
+        app:tabIndicatorHeight="1dp"
+        android:visibility="gone"
+        />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vouchers_viewpager"
+        android:layout_width="match_parent"
+        android:layout_marginTop="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/white"
+        android:visibility="gone"
+        />
 
 </com.zhy.android.percent.support.PercentLinearLayout>
 </layout>

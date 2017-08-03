@@ -69,7 +69,20 @@
             app:layout_textSizePercent="@string/text_size_big"
             app:layout_widthPercent="28%w"
             />
-
+        <TextView
+            android:id="@+id/bind_phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_marginTopPercent="2%h"
+            app:layout_marginBottomPercent="2%h"
+            android:gravity="center"
+            android:text="13048875254"
+            app:layout_marginLeftPercent="40%"
+            android:textColor="@color/contents_text"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="28%w"
+            android:visibility="gone"
+            />
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -77,7 +90,8 @@
             android:src="@mipmap/right"
             app:layout_paddingPercent="3%"
             app:layout_marginLeftPercent="62%"
-            app:layout_widthPercent="10%w" />
+            app:layout_widthPercent="10%w"
+            />
     </com.zhy.android.percent.support.PercentLinearLayout>
 
 

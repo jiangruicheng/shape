@@ -56,6 +56,14 @@ public final class Constants {
         }
         return pMobile.length() <= 0 ? false : true;
     }
+    // 验证邮箱
+    public static Boolean validEmail(String pEmail) {
+        if (pEmail == null
+                || !Pattern.compile(Ini._REG_MOBILE).matcher(pEmail).matches()) {
+            return false;
+        }
+        return pEmail.length() <= 0 ? false : true;
+    }
 
     // 平移动画
     public static void startExitAnim(StereoView stereoView, int translateY) {

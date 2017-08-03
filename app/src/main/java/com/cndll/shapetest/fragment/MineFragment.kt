@@ -116,7 +116,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         //申请管理合伙人
         binding.mineLinManaging.setOnClickListener {
             bundle.putString("type", "manag")
-            context.startActivity(Intent(context,ApplyActivity::class.java).putExtras(bundle))
+            context.startActivity(Intent(context,SetPwdActivity::class.java).putExtras(bundle))
         }
         //申请商家
         binding.mineLinApply.setOnClickListener {
@@ -151,7 +151,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         }
         //消息
         binding.mineNews.setOnClickListener {
-            ////////InSpellingActivity-- 拼团详情/////////////////AppraiseActivity -- 评价  LogisticsActivity--物流  /////
+            ////////InSpellingActivity-- 拼团详情
             context.startActivity(Intent(context,InSpellingActivity::class.java))
         }
 

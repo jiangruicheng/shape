@@ -9,9 +9,9 @@ public final class Ini {
     public static final boolean IS_DEBUG = true;
     // 正则-数字匹配公式
     public static final String _REG_DIGITS = "^\\d+$";
+    //正则-邮箱
+    public static final String _REG_EMAL = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
     // 正则-整数匹配格式
-
-
     public static final String _REG_INT = "^[-+]{0,1}[1-9]\\d*$";
     // 正则-整数匹配格式(包含0)
     public static final String _REG_INTNEW = "^[-+]{0,1}[0-9]\\d*$";

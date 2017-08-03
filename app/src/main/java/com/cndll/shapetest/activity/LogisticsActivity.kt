@@ -1,11 +1,18 @@
 package com.cndll.shapetest.activity
 
-import android.content.ContentValues
 import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.adapter.LogisticsAdapter
+import com.cndll.shapetest.api.AppRequest
+import com.cndll.shapetest.api.BaseObservable
+import com.cndll.shapetest.api.bean.BaseResponse
+import com.cndll.shapetest.api.bean.response.LogisticsResponse
 import com.cndll.shapetest.databinding.ActivityLogisticsBinding
+import com.cndll.shapetest.tools.SharedPreferenceUtil
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 /**
  * 物流
@@ -13,7 +20,7 @@ import com.cndll.shapetest.databinding.ActivityLogisticsBinding
 class LogisticsActivity : BaseActivity<ActivityLogisticsBinding>() {
     lateinit var context:Context
     var adapter:LogisticsAdapter?=null
-    var moreList=ArrayList<ContentValues>()
+    var moreList=ArrayList<LogisticsResponse.DatasBean.DeliverInfoBean>()
 
     override fun initBindingVar() {
     }
@@ -34,26 +41,45 @@ class LogisticsActivity : BaseActivity<ActivityLogisticsBinding>() {
      * 加载控件
      * */
     private fun initView(){
-        binding.logisSim.setImageURI("http://qmy.51edn.com/upload/images/20170706/cbea4d76ccbebfe8bdc3d3735ac690ce.jpg")
-
+        var bundle=this.intent.extras
         if(adapter==null){
             adapter= LogisticsAdapter(moreList,context)
             binding.logisDetailsList.adapter=adapter
         }
-
-        var cv=ContentValues()
-        cv.put("company","[深圳市]广东省深圳市宝安区流塘公司 已签收签收人： 已签收，感谢使用圆通速递，期待再次为你服务")
-        cv.put("time","2017-5-8 22:11:00")
-        var cv1=ContentValues()
-        cv1.put("company","[深圳市]广东省深圳市宝安区流塘公司 已签收签收人： 已签收，感谢使用圆通速递，期待再次为你服务")
-        cv1.put("time","2017-5-8 22:11:00")
-        var cv2=ContentValues()
-        cv2.put("company","[深圳市]广东省深圳市宝安区流塘公司 已签收签收人： 已签收，感谢使用圆通速递，期待再次为你服务")
-        cv2.put("time","2017-5-8 22:11:00")
-        moreList.add(cv)
-        moreList.add(cv1)
-        moreList.add(cv2)
-        adapter!!.notifyDataSetChanged()
+        httpLogistics(bundle.getString("order_id"))
     }
+
+
+    /**
+     * 物流
+     * */
+    private fun httpLogistics(order_id:String){
+        AppRequest.getAPI().logistics("member_order","search_deliver",SharedPreferenceUtil.read("key",""),order_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable(){
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                t as LogisticsResponse
+                if(t.code==200){
+                    binding.logisSim.setImageURI(t.datas.img_url)
+                    binding.logisCompany.text="承运公司："+t.datas.express_name
+                    binding.logisNum.text="运单编号："+t.datas.shipping_code
+                    moreList.addAll(t.datas.deliver_info)
+                    adapter!!.notifyDataSetChanged()
+                }else{
+                    Toast.makeText(context,t.datas.error,Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+                e!!.printStackTrace()
+            }
+        })
+
+    }
+
 
 }
