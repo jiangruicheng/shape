@@ -4,6 +4,7 @@ package com.cndll.shapetest.api;
 import com.cndll.shapetest.api.bean.BaseRequest;
 
 import com.cndll.shapetest.api.bean.BaseResponse;
+import com.cndll.shapetest.api.bean.response.BrandResponse;
 import com.cndll.shapetest.api.bean.response.CommodityResponse;
 import com.cndll.shapetest.api.bean.response.FightResponse;
 import com.cndll.shapetest.api.bean.response.HomePageResponse;
@@ -40,4 +41,7 @@ public interface Api {
     Observable<CommodityResponse> commodiytPage();*/
     @GET("/mobile/index.php?act=goods&op=index&goods_id=80&fight_groups_id=13")
     Observable<CommodityResponse> commodiytPage();
+
+    @GET("/mobile/index.php?act=goods&op=goods_type&goods_type=2&page=1")
+    Observable<BrandResponse> brandPage();
 }

@@ -2,6 +2,7 @@ package com.cndll.shapetest.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import com.alibaba.android.vlayout.LayoutHelper
@@ -33,7 +34,7 @@ open class BannerAdapter(context: Context, layoutHelper: LayoutHelper, count: In
         val bean2 = MenuGrid.MenuBean()
         bean2.title = "品牌折扣"
         bean2.imageUrl = StringTools.getResUri(R.mipmap.zhekou, mContext)
-        bean2.onclick = View.OnClickListener { mContext.startActivity(Intent(mContext, TurnOnActivity::class.java).setAction(CommodityInfoFragment.FLAG)) }
+        bean2.onclick = View.OnClickListener { mContext.startActivity(Intent(mContext, TurnOnActivity::class.java).setAction(BrandDiscountFragment.FLAG).putExtra("id", "1")) }
         val bean3 = MenuGrid.MenuBean()
         bean3.title = "亲友拼团"
         bean3.imageUrl = StringTools.getResUri(R.mipmap.pintuan, mContext)
@@ -44,9 +45,13 @@ open class BannerAdapter(context: Context, layoutHelper: LayoutHelper, count: In
         val bean5 = MenuGrid.MenuBean()
         bean5.title = "服饰箱包"
         bean5.imageUrl = StringTools.getResUri(R.mipmap.fushi, mContext)
+        bean5.onclick = View.OnClickListener { mContext.startActivity(Intent(mContext, TurnOnActivity::class.java).setAction(BrandDiscountFragment.FLAG).putExtra("id", "2")) }
+
         val bean6 = MenuGrid.MenuBean()
         bean6.title = "进口海购"
         bean6.imageUrl = StringTools.getResUri(R.mipmap.jkinkou, mContext)
+        bean6.onclick = View.OnClickListener { mContext.startActivity(Intent(mContext, TurnOnActivity::class.java).setAction(BrandDiscountFragment.FLAG).putExtra("id", "3")) }
+
         val bean7 = MenuGrid.MenuBean()
         bean7.title = "积分专区"
         bean7.imageUrl = StringTools.getResUri(R.mipmap.jifen, mContext)

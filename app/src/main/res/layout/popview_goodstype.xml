@@ -79,7 +79,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/type_name"
             android:layout_marginBottom="12dp"
-            app:layout_heightPercent="12%h" />
+            app:layout_heightPercent="8%h" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
             android:layout_below="@+id/recycler"
             app:layout_heightPercent="12%h"
             app:layout_widthPercent="60%w"
-            bind:info="@{info}" />
+            bind:info="@={info}" />
 
         <Button
             android:id="@+id/sure"
@@ -112,6 +112,6 @@
             android:text="确认"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_mid"
-            app:layout_heightPercent="24%h" />
+            app:layout_heightPercent="18%h" />
     </com.zhy.android.percent.support.PercentRelativeLayout>
 </layout>

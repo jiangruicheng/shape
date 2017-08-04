@@ -14,8 +14,24 @@ class TurnOnActivity : BaseActivity<ActivityTurnOnBinding>() {
 
     val fragmentMap = HashMap<String, Fragment>()
     override fun initTitle() {
-        if (intent.action.equals(CommodityInfoFragment.FLAG)) {
+        if (intent.action == CommodityInfoFragment.FLAG) {
             binding.titlebar.root.visibility = View.GONE
+            return
+        }
+        if (intent.action == BrandDiscountFragment.FLAG) {
+            when (intent.extras.get("id")) {
+                ("1") -> {
+                    binding.titlebar.title.text = "品牌折扣"
+
+                }
+                ("2") -> {
+                    binding.titlebar.title.text = "服饰箱包"
+                }
+                ("3") -> {
+                    binding.titlebar.title.text = "进口海淘"
+
+                }
+            }
             return
         }
         when (intent.action) {
@@ -28,7 +44,7 @@ class TurnOnActivity : BaseActivity<ActivityTurnOnBinding>() {
             }
         }
         binding.titlebar.title.text = intent.action
-
+        binding.titlebar.back.setOnClickListener { finish() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +57,8 @@ class TurnOnActivity : BaseActivity<ActivityTurnOnBinding>() {
         putFragment(LineaOffShopFragment.FLAG, LineaOffShopFragment.newInstance("", ""))
         putFragment(NearByShopFoodFragment.FLAG, NearByShopFoodFragment.newInstance("", ""))
         putFragment(NearByShopFoodStoreFragment.FLAG, NearByShopFoodStoreFragment.newInstance("", ""))
+        putFragment(BrandDiscountFragment.FLAG, BrandDiscountFragment.newInstance("", ""))
+
         if (fragmentMap.containsKey(intent.action)) {
             supportFragmentManager.beginTransaction().add(R.id.frame, fragmentMap.get(intent.action)).commit()
         }

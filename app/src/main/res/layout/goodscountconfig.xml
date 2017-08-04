@@ -28,7 +28,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/shape_main_edit"
-            android:text="@{info.count}" />
+            android:gravity="center"
+            android:inputType="number"
+            android:text="@={info.count}" />
 
         <ImageButton
             android:id="@+id/add"

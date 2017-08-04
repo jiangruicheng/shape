@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="select"
+            type="Boolean" />
+
+        <variable
+            name="name"
+            type="String" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:background="@{select?@drawable/shape_button_red:@drawable/shape_button_gray}"
+            android:gravity="center"
+            android:text="@{name}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_small" />
+    </LinearLayout>
+</layout>

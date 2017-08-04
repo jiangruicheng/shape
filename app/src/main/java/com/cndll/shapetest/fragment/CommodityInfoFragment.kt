@@ -157,13 +157,14 @@ class CommodityInfoFragment : BaseVlayoutFragment() {
                     binding.typeName = modeCommodity.goods_type
                     binding.typeTx.setOnClickListener {
                         val v = CommodityInfo()
-                        v.popview(recycler, context)
-                        /*val p = PopUpViewUtil.getInstance()
-                        val view = LayoutInflater.from(context).inflate(R.layout.popview_goodstype, null, false)
-                        setAlpha(0.6f)
+                        setAlpha(0.8f)
+                        val builder = CommodityInfo.Builder
+                        builder.msetContext(context).msetEvent({ setAlpha(1.0f) }).msetGoods(modeCommodity.goods).msetLocation(recycler).msetModeCommodity(modeCommodity)
+                        v.popview(builder)
+/*                        v.popview(recycler, context, modeCommodity.goods, {
+                            setAlpha(1.0f)
+                        })*/
 
-                        p.popListWindow(recycler, view, windowManager.defaultDisplay.width, windowManager.defaultDisplay.height / 2, Gravity.BOTTOM, null)
-                        p.setOnDismissAction { setAlpha(1.0f) }*/
                     }
                     // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
                 }).creatAdapter())

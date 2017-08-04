@@ -2,65 +2,125 @@ package com.cndll.shapetest.weight
 
 import android.content.Context
 import android.databinding.DataBindingUtil
-import android.support.annotation.LayoutRes
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.Toast
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.*
 import com.cndll.shapetest.R
 import com.cndll.shapetest.api.bean.response.CommodityResponse
 import com.cndll.shapetest.bean.CommodityInfoMode
+import com.cndll.shapetest.databinding.ItemGoodstypeBinding
 import com.cndll.shapetest.databinding.PopviewGoodstypeBinding
 
 /**
  * Created by jiangruicheng on 2017/8/2.
  */
-class CommodityInfo {
-    var i = 1
+open class CommodityInfo {
     lateinit var view: View
     lateinit var binding: PopviewGoodstypeBinding
-    fun initView(context: Context): CommodityInfo {
-        val infoMode = CommodityInfoMode()
-        view = LayoutInflater.from(context).inflate(R.layout.popview_goodstype, null, false)
+    val infoMode = CommodityInfoMode()
+    lateinit var goods: List<CommodityResponse.DatasBean.GoodsBean>
+    fun initView(builder: Builder): CommodityInfo {
+
+        infoMode.avatar = builder.modeCommodity.store_label
+        if (builder.modeCommodity.goods != null && !builder.modeCommodity.goods.isEmpty()) {
+            infoMode.choose = builder.modeCommodity.goods[0]
+        }
+        infoMode.commodityCount = infoMode.choose.goods_info.goods_storage
+        infoMode.price = infoMode.choose.goods_info.now_price
+        infoMode.count = "1"
+        view = LayoutInflater.from(builder.context).inflate(R.layout.popview_goodstype, null, false)
         binding = DataBindingUtil.bind(view)
         binding.info = infoMode
-        /*infoMode.price = "12"
-        val choose = CommodityResponse.DatasBean.GoodsBean()
-        choose.goods_type_name = "美容"
-        infoMode.choose = choose
-        infoMode.commodityCount = "123123"
-        infoMode.count = "2"*/
-        binding.countConfig.edit.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                Toast.makeText(context, infoMode.count.toString(), Toast.LENGTH_SHORT).show()
+        val a = Adapter()
+        val layout = GridLayoutManager(builder.context, goods.size, 1, false)
+        binding.recycler.layoutManager = layout as RecyclerView.LayoutManager?
+        binding.recycler.adapter = a
 
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            }
-
-        })
         binding.sure.setOnClickListener {
-            infoMode.price = (12 + i).toString()
-            val choose = CommodityResponse.DatasBean.GoodsBean()
-            choose.goods_type_name = "美容" + i.toString()
-            infoMode.choose = choose
-            infoMode.commodityCount = (123123 + i).toString()
-            infoMode.count = (2 + i).toString()
-            i++
+
         }
         return this
     }
 
-    fun popview(location: View, context: Context) {
+    fun popview(builder: Builder) {
+        this.goods = builder.goods
         val p = PopUpViewUtil.getInstance()
-        initView(context)
-        p.popListWindow(location, view, p.getWindowManager(context).defaultDisplay.width, p.getWindowManager(context).defaultDisplay.height / 2, Gravity.BOTTOM, null)
+        initView(builder)
+        p.setOnDismissAction { builder.event() }
+        p.popListWindow(builder.location, view,
+                p.getWindowManager(builder.context).defaultDisplay.width,
+                p.getWindowManager(builder.context).defaultDisplay.height / 2,
+                Gravity.BOTTOM, null)
+    }
 
+    inner class Adapter : RecyclerView.Adapter<Adapter.ItemView>() {
+        var select = 0
+        override fun onBindViewHolder(holder: Adapter.ItemView?, position: Int) {
+            holder!!.binding.name = goods[position].goods_type_name
+            holder!!.binding.select = select == position
+            holder!!.binding.text.setOnClickListener {
+
+                infoMode.choose = goods[position]
+                select = position
+                notifyDataSetChanged()
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Adapter.ItemView {
+            val view = LayoutInflater.from(parent!!.context).inflate(R.layout.item_goodstype, null, false)
+            val p = ViewGroup.LayoutParams((context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay.width / 5, ViewGroup.LayoutParams.MATCH_PARENT)
+            view.layoutParams = p
+            val item = ItemView(view)
+            return item
+        }
+
+        override fun getItemCount(): Int {
+            if (goods == null) {
+                return 0
+            }
+            return goods.size
+        }
+
+        inner class ItemView(view: View) : RecyclerView.ViewHolder(view) {
+            lateinit var binding: ItemGoodstypeBinding
+
+            init {
+                binding = DataBindingUtil.bind(view)
+            }
+        }
+    }
+
+    companion object Builder {
+        lateinit var context: Context
+        lateinit var location: View
+        lateinit var goods: List<CommodityResponse.DatasBean.GoodsBean>
+        lateinit var event: () -> Unit
+        lateinit var modeCommodity: CommodityResponse.DatasBean
+
+        fun msetContext(context: Context): Builder {
+            this.context = context
+            return this
+        }
+
+        fun msetLocation(location: View): Builder {
+            this.location = location
+            return this
+
+        }
+
+        fun msetGoods(goods: List<CommodityResponse.DatasBean.GoodsBean>): Builder {
+            this.goods = goods
+            return this
+        }
+
+        fun msetEvent(event: () -> Unit): Builder {
+            this.event = event
+            return this
+        }
+
+        fun msetModeCommodity(modeCommodity: CommodityResponse.DatasBean): Builder {
+            this.modeCommodity = modeCommodity
+            return this
+        }
     }
 }

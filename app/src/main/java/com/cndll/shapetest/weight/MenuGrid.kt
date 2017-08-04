@@ -52,7 +52,6 @@ class MenuGrid(view: ViewGroup?) {
                         if (v is ImageView) {
                             v.setOnClickListener(View.OnClickListener {
                                 dataList!![position].onclick.onClick(v)
-                                Toast.makeText(v.context, position.toString(), Toast.LENGTH_SHORT).show()
                             })
                             v.post {
 
