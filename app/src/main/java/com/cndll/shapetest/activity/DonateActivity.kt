@@ -6,11 +6,6 @@ import android.os.Bundle
 import android.view.View
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityDonateBinding
-import java.util.*
-import android.databinding.adapters.TextViewBindingAdapter.setText
-import android.widget.DatePicker
-import android.widget.Toast
-import com.cndll.shapetest.tools.DoubleDatePickerDialog
 
 
 /**
@@ -45,10 +40,16 @@ class DonateActivity : BaseActivity<ActivityDonateBinding>() {
         if (type.equals("Donate")) {
             binding.titlebar.title.text = "直捐"
             binding.idUserNum.visibility = View.GONE
+            binding.linDonateType.visibility = View.GONE
             binding.titlebar.titleRight.setOnClickListener {
                 var bundles = Bundle()
                 bundles.putString("type", "donate")
                 context.startActivity(Intent(context, IntegralActivity::class.java).putExtras(bundles))
+            }
+
+            binding.donateChoseText.setOnClickListener {
+                //选择选中类型
+                binding.donateChoseText.text = "普通积分"
             }
         } else if (type.equals("Remain")) {
             binding.titlebar.title.text = "积分转增"

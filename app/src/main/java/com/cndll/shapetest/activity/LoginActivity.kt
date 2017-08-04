@@ -27,7 +27,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
      * */
     lateinit private var mHandler: Handler
     lateinit var context: Context
-
+    var userNmae = ""
+    var passWord = ""
     override fun initTitle() {
         binding.titlebar.title.text = "手机号登录"
         // 退出登录
@@ -43,7 +44,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_login)
-        context=this
+        context = this
         initView()
         binding.qq.setOnClickListener {
             UtilsUmeng.Login(this@LoginActivity, applicationContext, SHARE_MEDIA.QQ, mHandler)
@@ -53,6 +54,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             UtilsUmeng.Login(this@LoginActivity, applicationContext, SHARE_MEDIA.WEIXIN, mHandler)
         }
         binding.loginbtn.setOnClickListener { isNull() }
+
     }
 
     private fun isNull() {
@@ -67,7 +69,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             msg = "请输入密码"
         }
         if (isNull) {
-           httpLogin()
+            userNmae = binding.username.text.toString().trim()
+            passWord = binding.password.text.toString().trim()
+            httpLogin(userNmae, passWord)
         } else {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
             return
@@ -77,19 +81,23 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     /**
      * 登录
      * */
-    private fun httpLogin(){
-        AppRequest.getAPI().login("login","index",binding.username.text.toString().trim(),binding.password.text.toString().trim(),"android").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object  : BaseObservable(){
+    private fun httpLogin(userName: String, paw: String) {
+        AppRequest.getAPI().login("login", "index", userName, paw, "android").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
             override fun onNext(t: BaseResponse?) {
                 super.onNext(t)
                 t as RegisterResponse
-                if(t.code==200){
-                    Toast.makeText(context,"登录成功",Toast.LENGTH_LONG).show()
-                    SharedPreferenceUtil.insert("userPhone",t.datas.username)
-                    SharedPreferenceUtil.insert("key",t.datas.key)
+                if (t.code == 200) {
+                    Toast.makeText(context, "登录成功", Toast.LENGTH_LONG).show()
+                    if (!SharedPreferenceUtil.hasKey("userName")) {
+                        SharedPreferenceUtil.insert("userName", binding.username.text.toString().trim())
+                        SharedPreferenceUtil.insert("passWord", binding.password.text.toString().trim())
+                        SharedPreferenceUtil.insert("userPhone", t.datas.username)
+                        SharedPreferenceUtil.insert("key", t.datas.key)
+                    }
                     binding.handler.login(binding.loginbtn)
                     finish()
-                }else{
-                    Toast.makeText(context,t.error_massage,Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(context, t.error_massage, Toast.LENGTH_LONG).show()
                     return
                 }
             }
@@ -106,9 +114,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
 
-
-
     private fun initView() {
+        if (SharedPreferenceUtil.hasKey("userName")) {
+            userNmae = SharedPreferenceUtil.read("userName", "")
+            passWord = SharedPreferenceUtil.read("passWord", "")
+            httpLogin(userNmae, passWord)
+        }
         mHandler = object : Handler() {
             override fun handleMessage(msg: Message) {
                 when (msg.what) {

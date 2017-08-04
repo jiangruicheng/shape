@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:gravity="center"
             android:orientation="horizontal"
             app:layout_heightPercent="8%h"
             app:layout_marginTopPercent="1%"
@@ -55,9 +56,11 @@
         </com.zhy.android.percent.support.PercentLinearLayout>
 
         <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/lin_donate_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:gravity="center"
             android:orientation="horizontal"
             app:layout_heightPercent="8%h"
             app:layout_marginTopPercent="1%"
@@ -65,6 +68,50 @@
             app:layout_widthPercent="100%w">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:padding="5dp"
+                android:text="转增类型"
+                android:textColor="@color/contents_text"
+                app:layout_heightPercent="90%h"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="25%w" />
+
+            <TextView
+                android:id="@+id/donate_chose_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="激励积分"
+                android:textColor="@color/contents_text"
+                app:layout_heightPercent="90%h"
+                app:layout_marginLeftPercent="40%"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="25%w" />
+
+            <ImageView
+                android:id="@+id/donate_chose_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/right" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%h"
+            app:layout_marginTopPercent="1%"
+            app:layout_paddingPercent="2%"
+            app:layout_widthPercent="100%w">
+
+            <TextView
+                android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -89,10 +136,12 @@
                 app:layout_widthPercent="73%w" />
         </com.zhy.android.percent.support.PercentLinearLayout>
 
+
         <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:gravity="center"
             android:orientation="horizontal"
             app:layout_heightPercent="8%h"
             app:layout_marginTopPercent="1%"
