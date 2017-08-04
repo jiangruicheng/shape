@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:orientation="vertical"
+        tools:context="com.cndll.shapetest.activity.AdvanceOrderActivity">
+
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/titlebar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%h"
+            app:layout_widthPercent="100%w" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_widthPercent="100%w">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/adv_order_sim"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="10dp"
+                        fresco:placeholderImage="@mipmap/ic_launcher"
+                        fresco:placeholderImageScaleType="fitCenter"
+                        fresco:roundedCornerRadius="35dp"
+                        fresco:roundingBorderColor="@color/white"
+                        fresco:roundingBorderWidth="1dp" />
+
+                    <TextView
+                        android:id="@+id/adv_order_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="等待用餐"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="30%w" />
+
+                    <TextView
+                        android:id="@+id/adv_order_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="用餐人数：6"
+                        android:textColor="@color/text"
+                        app:layout_textSizePercent="@string/text_size_mid"
+                        app:layout_widthPercent="30%w" />
+
+                    <TextView
+                        android:id="@+id/adv_order_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="用餐人数：6"
+                        android:textColor="@color/text"
+                        app:layout_textSizePercent="@string/text_size_mid"
+                        app:layout_widthPercent="30%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    app:layout_widthPercent="100%w">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_heightPercent="10%h"
+                        app:layout_widthPercent="97%w">
+
+                        <TextView
+                            android:id="@+id/adv_order_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|left"
+                            android:padding="10dp"
+                            android:text="三人行流川店"
+                            android:textColor="@color/contents_text"
+                            app:layout_textSizePercent="@string/text_size_big"
+                            app:layout_widthPercent="70%w" />
+
+                        <com.zhy.android.percent.support.PercentLinearLayout
+                            android:id="@+id/adv_order_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/shape_main_button_edit"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            app:layout_widthPercent="27%w">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/phone" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:text="联系商家"
+                                android:textColor="@color/text"
+                                app:layout_widthPercent="70%w" />
+
+                        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray"></View>
+
+                    <ListView
+                        android:id="@+id/adv_order_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:divider="@color/white"
+                        android:padding="10dp"
+                        android:scrollbars="none"></ListView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray"></View>
+
+                    <TextView
+                        android:id="@+id/adv_order_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:gravity="center|right"
+                        android:padding="10dp"
+                        android:text="实付：54.00"
+                        android:textColor="@color/titleRed"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="90%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    app:layout_widthPercent="97%w">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:padding="10dp"
+                        android:text="订单信息"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="80%w" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray"></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:padding="10dp"
+                        android:text="订单号：123456789"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="80%w" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray"></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:padding="10dp"
+                        android:text="支付方式：在线支付"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="80%w" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray"></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:padding="10dp"
+                        android:text="支付时间：2017-5-5"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="80%w" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    app:layout_widthPercent="97%w">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:padding="10dp"
+                        android:text="用户信息"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="80%w" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray"></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:padding="10dp"
+                        android:text="姓名：鲸鱼"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="80%w" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray"></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:padding="10dp"
+                        android:text="手机号：13528767940"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="80%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

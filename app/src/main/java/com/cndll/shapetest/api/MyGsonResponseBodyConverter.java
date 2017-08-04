@@ -39,13 +39,11 @@ public class MyGsonResponseBodyConverter<T extends BaseResponse> implements Conv
             code = jsonPrimitive.getAsInt();
         }
         // 解析message
-
-        JsonElement jsonElement = jsonObject.get("extra");
-        String extra = null;
-        if (jsonElement != null) {
-            extra = jsonElement.getAsString();
-        }
-
+//        JsonElement jsonElement = jsonObject.get("extra");
+//        String extra = null;
+//        if (jsonElement != null) {
+//            extra = jsonElement.getAsString();
+//        }
         T t = null;
         try {
             // 通过反射获取泛型的实例对象

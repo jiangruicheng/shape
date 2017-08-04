@@ -71,7 +71,8 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
         }
         //我的抵用卷
         binding.offsetVolume.setOnClickListener {
-            context.startActivity(Intent(context,VouchersActivity::class.java))
+            bundle.putString("type", "voucher")
+            context.startActivity(Intent(context,VouchersActivity::class.java).putExtras(bundle))
         }
         //积分转增
         binding.integralRemainderLin.setOnClickListener {
@@ -80,7 +81,8 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
         }
         //回购记录
         binding.buybackRecordLin.setOnClickListener {
-            context.startActivity(Intent(context,IntegralActivity::class.java))
+            bundle.putString("type","score")
+            context.startActivity(Intent(context,IntegralActivity::class.java).putExtras(bundle))
         }
 
 

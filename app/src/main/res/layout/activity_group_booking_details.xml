@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:orientation="vertical"
+        tools:context="com.cndll.shapetest.activity.GroupBookingDetailsActivity">
+
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/titlebar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%h"
+            app:layout_widthPercent="100%w" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/group_booking"
+            android:orientation="horizontal"
+            app:layout_heightPercent="15%h"
+            app:layout_widthPercent="100%w">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_heightPercent="65%h"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginTopPercent="35%"
+                app:layout_widthPercent="73%w">
+
+                <TextView
+                    android:id="@+id/group_text_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="拼团中"
+                    android:textColor="@color/white"
+                    app:layout_heightPercent="45%h"
+                    app:layout_textSizePercent="7%w"
+                    app:layout_widthPercent="100%w" />
+
+                <TextView
+                    android:id="@+id/group_text_finsh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="还差1人，剩余"
+                    android:textColor="@color/white"
+                    app:layout_heightPercent="35%h"
+                    app:layout_textSizePercent="@string/text_size_bigC"
+                    app:layout_widthPercent="100%w" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <ImageView
+                android:id="@+id/group_booking_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/group_booking" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            app:layout_heightPercent="13%h"
+            app:layout_paddingPercent="3%"
+            app:layout_widthPercent="100%w">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/group_site" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_heightPercent="75%h"
+                app:layout_marginLeftPercent="5%"
+                app:layout_widthPercent="80%w">
+
+                <TextView
+                    android:id="@+id/group_name_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="金鱼 1352876952"
+                    android:textColor="@color/contents_text"
+                    app:layout_heightPercent="40%h"
+                    app:layout_textSizePercent="@string/text_size_bigC"
+                    app:layout_widthPercent="100%w" />
+
+                <TextView
+                    android:id="@+id/group_address_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="广东省深圳市宝安区沙井街道新"
+                    android:textColor="@color/contents_text"
+                    app:layout_heightPercent="30%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="100%w" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_heightPercent="19%h"
+            app:layout_widthPercent="100%w">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/group_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/group_booking"
+                app:layout_heightPercent="80%h"
+                app:layout_widthPercent="23%w" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_heightPercent="80%h"
+                app:layout_marginLeftPercent="2%"
+                app:layout_widthPercent="65%w">
+
+                <TextView
+                    android:id="@+id/group_text_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="熟食洪泽湖特产海鲜手机  小龙虾尾麻辣 熟食洪泽湖特产海鲜手机"
+                    android:textColor="@color/contents_text"
+                    app:layout_heightPercent="45%h"
+                    app:layout_textSizePercent="6%w"
+                    app:layout_widthPercent="100%w" />
+
+                <TextView
+                    android:id="@+id/group_qu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="麻辣味"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="30%h"
+                    app:layout_textSizePercent="@string/text_size_bigC"
+                    app:layout_widthPercent="100%w" />
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="30%h"
+                    app:layout_widthPercent="100%w">
+
+                    <TextView
+                        android:id="@+id/group_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="78"
+                        android:textColor="@color/titleRed"
+                        app:layout_heightPercent="99%h"
+                        app:layout_textSizePercent="6%w"
+                        app:layout_widthPercent="45%w" />
+
+                    <TextView
+                        android:id="@+id/group_account"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|right"
+                        android:text="x1"
+                        android:textColor="@color/text"
+                        app:layout_heightPercent="99%h"
+                        app:layout_textSizePercent="@string/text_size_bigC"
+                        app:layout_widthPercent="55%w" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layout_heightPercent="20%h"
+            app:layout_paddingLeftPercent="3%"
+            app:layout_widthPercent="100%w">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="23%h"
+                app:layout_widthPercent="96%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="抵用卷"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="50%w" />
+
+                <TextView
+                    android:id="@+id/group_vouch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|right"
+                    android:text="-1.0"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="48%w" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="23%h"
+                app:layout_widthPercent="96%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="抵扣积分"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="50%w" />
+
+                <TextView
+                    android:id="@+id/group_inter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|right"
+                    android:text="-51.0"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="48%w" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="23%h"
+                app:layout_widthPercent="96%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="运费"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="50%w" />
+
+                <TextView
+                    android:id="@+id/group_carriage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|right"
+                    android:text="01.0"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="48%w" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="27%h"
+                app:layout_widthPercent="96%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="订单合计"
+                    android:textColor="@color/contents_text"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="50%w" />
+
+                <TextView
+                    android:id="@+id/group_account_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|right"
+                    android:text="78.0"
+                    android:textColor="@color/titleRed"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_bigC"
+                    app:layout_widthPercent="48%w" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layout_heightPercent="13%h"
+            app:layout_marginBottomPercent="2%"
+            app:layout_paddingLeftPercent="3%"
+            app:layout_widthPercent="100%w">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="35%h"
+                app:layout_widthPercent="100%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="订单编号"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="20%w" />
+
+                <TextView
+                    android:id="@+id/group_order_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="5685226445"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="50%w" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="35%h"
+                app:layout_widthPercent="100%w">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="下单时间"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="20%w" />
+
+                <TextView
+                    android:id="@+id/group_order_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="2017-5-6 22：30"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="50%w" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="35%h"
+                app:layout_widthPercent="100%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="支付方式"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="20%w" />
+
+                <TextView
+                    android:id="@+id/group_pay_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="微信"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="100%h"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="50%w" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center|right"
+            android:orientation="horizontal"
+            app:layout_heightPercent="9%h"
+            app:layout_widthPercent="100%w">
+
+            <Button
+                android:id="@+id/group_booking_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_main_button_edit"
+                android:text="查看团详情"
+                app:layout_heightPercent="70%h"
+                app:layout_marginPercent="1%"
+                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_widthPercent="20%w" />
+
+            <Button
+                android:id="@+id/group_logistics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_main_button_edit"
+                android:text="查看物流"
+                android:visibility="gone"
+                app:layout_heightPercent="70%h"
+                app:layout_marginPercent="1%"
+                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_widthPercent="20%w" />
+
+            <Button
+                android:id="@+id/group_incentive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_button_red"
+                android:text="确认激励"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                app:layout_heightPercent="70%h"
+                app:layout_marginPercent="1%"
+                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_widthPercent="20%w" />
+
+            <Button
+                android:id="@+id/group_ball"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_main_button_edit"
+                android:text="查看团详情"
+                android:visibility="gone"
+                app:layout_heightPercent="70%h"
+                app:layout_marginPercent="1%"
+                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_widthPercent="20%w" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

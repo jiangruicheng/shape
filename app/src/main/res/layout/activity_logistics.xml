@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg"
+    tools:context="com.cndll.shapetest.activity.LogisticsActivity">
+
+
+    <include
+        android:id="@+id/titlebar"
+        layout="@layout/titlebar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w" />
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_heightPercent="15%h"
+        app:layout_widthPercent="100%w"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/logis_sim"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:layout_marginLeftPercent="2%"
+            />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_heightPercent="85%h"
+            app:layout_widthPercent="75%w"
+            app:layout_marginLeftPercent="2%"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/logis_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_heightPercent="40%h"
+                app:layout_widthPercent="75%w"
+                android:text="承运公司：圆通快递"
+                android:textColor="@color/contents_text"
+                app:layout_marginTopPercent="10%"
+                />
+
+            <TextView
+                android:id="@+id/logis_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_heightPercent="40%h"
+                app:layout_widthPercent="75%w"
+                android:text="运单编号：547812366556"
+                />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <ListView
+        android:id="@+id/logis_details_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_marginTopPercent="2%"
+        app:layout_paddingPercent="2%"
+        ></ListView>
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

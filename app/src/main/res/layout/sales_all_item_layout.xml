@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:id="@+id/lin_order_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        ></LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        ></View>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_heightPercent="7%h"
+        app:layout_widthPercent="100%w"
+        app:layout_paddingPercent="1%"
+        android:background="@color/white"
+        android:gravity="center"
+        >
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_heightPercent="100%h"
+            app:layout_widthPercent="36%w"
+            >
+            <TextView
+                android:id="@+id/shop_all_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_heightPercent="100%h"
+                android:text="实付 : "
+                app:layout_marginPercent="5%"
+                app:layout_textSizePercent="10%w"
+                android:layout_gravity="center"
+                android:gravity="center|left"
+                android:textColor="@color/contents_text"
+                app:layout_widthPercent="35%w"
+                />
+
+            <TextView
+                android:id="@+id/shop_all_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_heightPercent="100%h"
+                android:text="148.00"
+                app:layout_textSizePercent="10%w"
+                android:layout_gravity="center"
+                android:gravity="center|left"
+                android:textColor="@color/contents_text"
+                app:layout_widthPercent="40%w"
+                />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+        <Button
+            android:id="@+id/shop_all_appeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_heightPercent="80%h"
+            app:layout_widthPercent="20%w"
+            android:textColor="@color/gray"
+            android:text="查看物流"
+            app:layout_textSizePercent="4%w"
+            android:background="@drawable/shape_main_button_edit"
+            />
+        <Button
+            android:id="@+id/shop_all_apply"
+            app:layout_heightPercent="80%h"
+            app:layout_widthPercent="20%w"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            android:text="退款详情"
+            app:layout_textSizePercent="4%w"
+            app:layout_marginPercent="1%"
+            android:background="@drawable/shape_main_button_edit"
+            />
+        <Button
+            android:id="@+id/shop_all_details"
+            app:layout_heightPercent="80%h"
+            app:layout_widthPercent="20%w"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            android:text="退款详情"
+            app:layout_textSizePercent="4%w"
+            app:layout_marginPercent="1%"
+            android:background="@drawable/shape_main_button_edit"
+            />
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</com.zhy.android.percent.support.PercentLinearLayout>

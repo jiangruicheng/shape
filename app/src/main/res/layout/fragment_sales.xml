@@ -5,5 +5,21 @@
     android:background="@color/bg"
     android:layout_height="match_parent">
 
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/sales_pull"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:background="@color/bg"
+        android:dividerHeight="6px"
+        android:paddingLeft="2px"
+        android:paddingRight="2px"
+        android:paddingTop="2px"
+        android:layout_marginBottom="10px"
+        ptr:ptrHeaderTextColor="@color/group_booking"
+        ptr:ptrDrawable="@mipmap/phone"
+        ptr:ptrMode="both"
+        />
+
 </com.zhy.android.percent.support.PercentLinearLayout>
 </layout>

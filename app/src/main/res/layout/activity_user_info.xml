@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
+    android:background="@color/bg"
     android:orientation="vertical"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     tools:context="com.cndll.shapetest.activity.UserInfoActivity">
@@ -40,12 +40,13 @@
 
 
         <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/user_icon"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_centerInParent="true"
             fresco:roundedCornerRadius="45dp"
             app:layout_marginLeftPercent="55%"
-            fresco:placeholderImage="@mipmap/ic_launcher"
+            fresco:actualImageScaleType="centerInside"
             fresco:placeholderImageScaleType="fitCenter"
             fresco:roundingBorderColor="@color/white"
             fresco:roundingBorderWidth="1dp"/>
@@ -72,11 +73,12 @@
             app:layout_widthPercent="20%w" />
 
         <EditText
+            android:id="@+id/user_nick"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:hint="卖屋先生"
             android:gravity="right|center"
+            android:hint="卖屋先生"
             app:layout_heightPercent="75%h"
             app:layout_paddingLeftPercent="2%"
             app:layout_paddingRightPercent="3%"
@@ -105,13 +107,16 @@
             app:layout_textSizePercent="@string/text_size_big"
             app:layout_widthPercent="20%w" />
 
-        <EditText
+        <TextView
+            android:id="@+id/user_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:hint="123456"
+            android:text="123456"
             android:gravity="right|center"
             app:layout_heightPercent="75%h"
+            android:clickable="false"
+            android:focusable="false"
             app:layout_paddingRightPercent="3%"
             app:layout_paddingLeftPercent="2%"
             app:layout_textSizePercent="@string/text_size_big"
@@ -119,6 +124,7 @@
     </com.zhy.android.percent.support.PercentLinearLayout>
 
     <Button
+        android:id="@+id/user_submit"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_heightPercent="8%h"
@@ -131,6 +137,7 @@
         />
 
     <Button
+        android:id="@+id/user_click"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_heightPercent="8%h"

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:layout_heightPercent="25%h"
+        app:layout_widthPercent="20%w"
+        >
+        <TextView
+            android:id="@+id/logis_item_chang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/log"
+            />
+        <View
+        android:layout_width="2dp"
+        android:layout_height="fill_parent"
+        android:background="@color/gray"></View>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center|left"
+        app:layout_heightPercent="20%h"
+        app:layout_widthPercent="80%w"
+        >
+        <TextView
+            android:id="@+id/logis_item_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_heightPercent="60%h"
+            app:layout_widthPercent="98%w"
+            android:text="[深圳市]广东省深圳市宝安区流塘公司 已签收签收人： 已签收，感谢使用圆通速递，期待再次为你服务"
+            android:textColor="@color/gray"
+            />
+        <TextView
+            android:id="@+id/logis_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2017-03-22 07:42:12"
+            app:layout_heightPercent="23%h"
+            app:layout_widthPercent="98%w"
+            android:textColor="@color/gray"
+            />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</com.zhy.android.percent.support.PercentLinearLayout>

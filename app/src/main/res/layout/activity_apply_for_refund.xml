@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:orientation="vertical"
+        tools:context="com.cndll.shapetest.activity.ApplyForRefundActivity">
+
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/titlebar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%h"
+            app:layout_widthPercent="100%w" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg"
+            android:scrollbars="none"
+            app:layout_heightPercent="84%h"
+            app:layout_widthPercent="100%w">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/titleRed"
+                        app:layout_textSizePercent="@string/text_size_big" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="退款类型"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="30%w" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/apply_refund_lin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                   >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我要退款"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="30%w" />
+
+                    <ImageView
+                        android:id="@+id/apply_refund"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|right"
+                        android:src="@mipmap/apply_chose"
+                        android:textColor="@color/titleRed"
+                        app:layout_marginLeftPercent="60%"
+                        app:layout_textSizePercent="@string/text_size_big" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="right"
+                    android:background="@color/gray"
+                    app:layout_widthPercent="90%w"></View>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/apply_sales_refund_lin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我要退货"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="30%w" />
+
+                    <ImageView
+                        android:id="@+id/apply_sales_refund"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|right"
+                        android:src="@mipmap/apply_chose"
+                        android:textColor="@color/titleRed"
+                        app:layout_marginLeftPercent="60%"
+                        android:visibility="gone"
+                        app:layout_textSizePercent="@string/text_size_big" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/titleRed"
+                        app:layout_textSizePercent="@string/text_size_big" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="收货状态"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="30%w" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/apply_not_shop_lin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="未收到货"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="30%w" />
+
+                    <ImageView
+                        android:id="@+id/apply_not_shop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|right"
+                        android:src="@mipmap/apply_chose"
+                        android:textColor="@color/titleRed"
+                        app:layout_marginLeftPercent="60%"
+                        app:layout_textSizePercent="@string/text_size_big" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="right"
+                    android:background="@color/gray"
+                    app:layout_widthPercent="90%w"></View>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/apply_shop_lin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                   >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="已收到货"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="30%w" />
+
+                    <ImageView
+                        android:id="@+id/apply_shop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|right"
+                        android:src="@mipmap/apply_chose"
+                        android:textColor="@color/titleRed"
+                        android:visibility="gone"
+                        app:layout_marginLeftPercent="60%"
+                        app:layout_textSizePercent="@string/text_size_big" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    >
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="@color/titleRed"
+                            app:layout_textSizePercent="@string/text_size_big" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="退款金额"
+                            android:textColor="@color/contents_text"
+                            app:layout_textSizePercent="@string/text_size_big"
+                            app:layout_widthPercent="20%w" />
+
+                        <TextView
+                            android:id="@+id/apply_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="最多82.50"
+                            android:textColor="@color/text"
+                            app:layout_textSizePercent="@string/text_size_mid"
+                            app:layout_widthPercent="30%w" />
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <EditText
+                        android:id="@+id/apply_refund_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/shape_main_button_edit"
+                        android:hint="请输入退款金额"
+                        android:inputType="numberDecimal"
+                        android:padding="10dp"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="100%w" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                   >
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="@color/titleRed"
+                            app:layout_textSizePercent="@string/text_size_big" />
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="退款说明"
+                            android:textColor="@color/contents_text"
+                            app:layout_textSizePercent="@string/text_size_big"
+                            app:layout_widthPercent="20%w" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/shape_main_button_edit"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/apply_refund_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="start"
+                            android:padding="5dp"
+                            android:hint="请输入退款说明"
+                            android:lines="6"
+                            android:maxEms="300"
+                            app:layout_textSizePercent="@string/text_size_big"
+                            app:layout_widthPercent="100%w" />
+
+                        <TextView
+                            android:id="@+id/apply_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:text="2/300"
+                            android:textColor="@color/contents_text"
+                            app:layout_textSizePercent="@string/text_size_mid"
+                            app:layout_widthPercent="10%w" />
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/titleRed"
+                        app:layout_textSizePercent="@string/text_size_big" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:text="上传凭证"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="20%w" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/apply_sim_a"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerInParent="true"
+                        android:background="@mipmap/up_images" />
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/apply_sim_b"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerInParent="true"
+                        android:background="@mipmap/up_images"
+                        app:layout_marginLeftPercent="3%" />
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/apply_sim_c"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerInParent="true"
+                        android:background="@mipmap/up_images"
+                        app:layout_marginLeftPercent="3%" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/submit_apply_refund"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/titleRed"
+            android:gravity="center"
+            android:text="提交申请"
+            android:textColor="@color/white"
+            app:layout_heightPercent="8%h"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="100%w" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

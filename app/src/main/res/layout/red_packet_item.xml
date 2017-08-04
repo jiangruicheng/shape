@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_heightPercent="15%h"
+        app:layout_widthPercent="45%w">
+
+        <TextView
+            android:id="@+id/packet_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个人红包"
+            android:gravity="center|left"
+            android:textColor="@color/contents_text"
+            app:layout_heightPercent="35%h"
+            app:layout_marginTopPercent="20%"
+            app:layout_widthPercent="98%w" />
+
+        <TextView
+            android:id="@+id/packet_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5月8号"
+            android:gravity="center|left"
+            android:textColor="@color/gray"
+            app:layout_heightPercent="35%h"
+            app:layout_widthPercent="98%w" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_heightPercent="15%h"
+        app:layout_widthPercent="45%w">
+
+        <TextView
+            android:id="@+id/packet_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11积分"
+            android:textColor="@color/contents_text"
+            app:layout_heightPercent="90%h"
+            android:gravity="center|right"
+            app:layout_widthPercent="98%w" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</com.zhy.android.percent.support.PercentLinearLayout>

@@ -152,7 +152,6 @@
         <activity android:name=".activity.RedPacketActivity" />
         <activity android:name=".activity.VouchersActivity" />
         <activity android:name=".activity.IntegralActivity" />
-        <activity android:name=".activity.DataActivity" />
         <activity android:name=".activity.OrdersListActivity" />
         <activity android:name=".activity.ApplyBuyBackActivity" />
         <activity android:name=".activity.DonateActivity" />
@@ -162,6 +161,15 @@
         <activity android:name=".activity.FavoriteActivity" />
         <activity android:name=".activity.PersonalCertificateActivity" />
         <activity android:name=".activity.AppraiseActivity" />
+        <activity android:name=".activity.AddCarStareActivity" />
+        <activity android:name=".activity.GroupBookingDetailsActivity" />
+        <activity android:name=".activity.AdvanceOrderActivity" />
+        <activity android:name=".activity.ReimburseActivity" />
+        <activity android:name=".activity.ApplyForRefundActivity" />
+        <activity android:name=".activity.LogisticsActivity" />
+        <activity android:name=".activity.InSpellingActivity" />
+        <activity android:name=".activity.AuthenticationManagActivity" />
+        <activity android:name=".activity.PersonalCertificateManagActivity"></activity>
         <activity android:name=".activity.AddCarStareActivity" />
         <activity android:name=".activity.TurnOnActivity"></activity>
     </application>

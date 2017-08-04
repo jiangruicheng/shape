@@ -8,25 +8,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/popular_image"
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/lin_popular_code"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        app:layout_heightPercent="25%h"
-        app:layout_marginTopPercent="10%"
-        app:layout_widthPercent="35%w"
-        />
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:id="@+id/popular_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:layout_heightPercent="35%h"
+            app:layout_marginTopPercent="10%"
+            app:layout_widthPercent="50%w"
+            />
 
-    <TextView
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="扫码与我关联"
+            android:textColor="@color/text"
+            app:layout_heightPercent="8%h"
+            app:layout_textSizePercent="@string/text_size_big" />
+
+        <TextView
+            android:id="@+id/popu_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="123456"
+            android:textColor="@color/contents_text"
+            app:layout_heightPercent="8%h"
+            app:layout_textSizePercent="@string/text_size_big" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="我的推荐码"
+            android:textColor="@color/text"
+            app:layout_heightPercent="8%h"
+            app:layout_textSizePercent="@string/text_size_big" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/lin_popular_data"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="扫码与我关联"
-        android:textColor="@color/text"
-        app:layout_heightPercent="8%h"
-        app:layout_textSizePercent="@string/text_size_big" />
+        android:orientation="vertical"
+        >
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/popular_pull"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:ptr="http://schemas.android.com/apk/res-auto"
+            android:background="@color/white"
+            android:dividerHeight="6px"
+            android:paddingLeft="2px"
+            android:paddingRight="2px"
+            android:paddingTop="2px"
+            android:layout_marginBottom="10px"
+            ptr:ptrHeaderTextColor="@color/group_booking"
+            ptr:ptrDrawable="@mipmap/phone"
+            ptr:ptrMode="both"
+            />
+    </com.zhy.android.percent.support.PercentLinearLayout>
 
 
 </com.zhy.android.percent.support.PercentLinearLayout>

@@ -130,6 +130,7 @@
             app:layout_widthPercent="100%w">
 
             <CheckBox
+                android:id="@+id/apply_chose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true" />

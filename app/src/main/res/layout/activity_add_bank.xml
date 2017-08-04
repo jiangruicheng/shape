@@ -130,6 +130,7 @@
             />
 
         <EditText
+            android:id="@+id/bank_phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/gray"
@@ -150,6 +151,7 @@
         android:orientation="horizontal"
         android:background="@color/white"
         app:layout_heightPercent="8%h"
+        android:gravity="center"
         app:layout_widthPercent="100%w">
 
         <TextView
@@ -174,12 +176,13 @@
             app:layout_widthPercent="45%w" />
 
         <TextView
+            android:id="@+id/bank_send_code"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/gray"
             android:gravity="center"
             android:text="@string/sign_send_code"
-            app:layout_heightPercent="65%h"
+            app:layout_heightPercent="80%h"
             app:layout_textSizePercent="@string/text_size_big"
             app:layout_widthPercent="25%w" />
 
@@ -194,6 +197,7 @@
         app:layout_widthPercent="100%w">
 
         <CheckBox
+            android:id="@+id/bank_chose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true" />

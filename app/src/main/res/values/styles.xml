@@ -24,4 +24,8 @@
         <item name="android:windowEnterAnimation">@anim/show</item>
         <item name="android:windowExitAnimation">@anim/hide</item>
     </style>
+    <declare-styleable name="RippleView">
+        <attr name="pressed" format="reference"/>
+        <attr name="normal" format="reference"/>
+    </declare-styleable>
 </resources>

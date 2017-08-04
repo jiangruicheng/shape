@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_heightPercent="15%h"
+        app:layout_paddingPercent="2%"
+        app:layout_widthPercent="100%w">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/adv_sim"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_heightPercent="90%h"
+            app:layout_marginLeftPercent="2%"
+            app:layout_widthPercent="75%w">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="50%h"
+                app:layout_widthPercent="100%w"
+                >
+                <TextView
+                    android:id="@+id/adv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="三人行概念店"
+                    app:layout_textSizePercent="@string/text_size_bigC"
+                    android:textColor="@color/contents_text"
+                    app:layout_heightPercent="100%h"
+                    android:gravity="center|left"
+                    app:layout_widthPercent="50%w"
+                    />
+                <TextView
+                    android:id="@+id/adv_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="等待用餐"
+                    app:layout_textSizePercent="@string/text_size_bigC"
+                    android:textColor="@color/contents_text"
+                    android:gravity="center|right"
+                    app:layout_heightPercent="100%h"
+                    app:layout_widthPercent="45%w"
+                    />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="50%h"
+                app:layout_widthPercent="100%w"
+                >
+                <TextView
+                    android:id="@+id/adv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2017-8-8"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    android:textColor="@color/text"
+                    app:layout_heightPercent="100%h"
+                    android:gravity="center|left"
+                    app:layout_widthPercent="50%w"
+                    />
+                <TextView
+                    android:id="@+id/adv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="剩余时间六天"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    android:textColor="@color/text"
+                    android:gravity="center|right"
+                    app:layout_heightPercent="100%h"
+                    app:layout_widthPercent="45%w"
+                    />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_widthPercent="80%w"
+        android:layout_gravity="center|right"
+        android:background="@color/bg"></View>
+
+    <TextView
+        android:id="@+id/adv_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|right"
+        android:gravity="center_vertical"
+        android:text="鸡蛋等三件商品"
+        android:textColor="@color/text"
+        app:layout_heightPercent="8%h"
+        app:layout_textSizePercent="@string/text_size_mid"
+        app:layout_widthPercent="80%w" />
+
+</com.zhy.android.percent.support.PercentLinearLayout>

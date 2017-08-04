@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/data_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/databg"
+        android:background="@drawable/databg"
         android:orientation="vertical">
 
         <include
@@ -17,8 +19,8 @@
             app:layout_heightPercent="8%h"
             app:layout_widthPercent="100%w" />
 
-
         <TextView
+            android:id="@+id/data_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -28,51 +30,249 @@
             app:layout_textSizePercent="@string/text_size_mid"
             app:layout_widthPercent="100%w" />
 
-        <TextView
+
+        <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="运营数据总汇"
-            android:textColor="@color/white"
-            app:layout_marginTopPercent="20%h"
-            app:layout_textSizePercent="@string/text_size_bigC"
-            app:layout_widthPercent="100%w" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="会员人数"
-            android:textColor="@color/white"
-            app:layout_marginTopPercent="3%h"
-            app:layout_textSizePercent="@string/text_size_big"
-            app:layout_widthPercent="100%w" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="88万"
-            android:textColor="@color/white"
-            app:layout_marginTopPercent="1%h"
-            app:layout_textSizePercent="@string/text_size_big"
-            app:layout_widthPercent="100%w" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="店铺总数量"
-            android:textColor="@color/white"
-            app:layout_marginTopPercent="5%h"
-            app:layout_textSizePercent="@string/text_size_big"
-            app:layout_widthPercent="100%w" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="18万"
-            android:textColor="@color/white"
-            app:layout_marginTopPercent="1%h"
-            app:layout_textSizePercent="@string/text_size_big"
-            app:layout_widthPercent="100%w" />
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            app:layout_heightPercent="50%h"
+            app:layout_marginTopPercent="15%"
+            app:layout_widthPercent="50%w">
+
+            <com.cndll.shapetest.view.StereoView
+                android:id="@+id/str"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_widthPercent="100%w"
+                app:layout_heightPercent="100%h"
+                >
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/tts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/data_table_two"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    app:layout_heightPercent="100%h"
+                    app:layout_widthPercent="100%w"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="积分值"
+                        android:textColor="@color/white"
+                        app:layout_heightPercent="15%h"
+                        app:layout_textSizePercent="8%w"
+                        app:layout_widthPercent="100%w" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="会员积分值"
+                        android:textColor="@color/white"
+                        app:layout_heightPercent="10%h"
+                        app:layout_textSizePercent="6%w"
+                        app:layout_widthPercent="100%w" />
+
+                    <TextView
+                        android:id="@+id/data_member_inter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="60%"
+                        app:layout_heightPercent="8%h"
+                        android:textColor="@color/white"
+                        app:layout_textSizePercent="@string/text_size_bigC"
+                        app:layout_widthPercent="100%w" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="商家积分值"
+                        android:textColor="@color/white"
+                        app:layout_marginTopPercent="5%h"
+                        app:layout_heightPercent="10%h"
+                        app:layout_textSizePercent="6%w"
+                        app:layout_widthPercent="100%w" />
+
+                    <TextView
+                        android:id="@+id/data_shop_inter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="40%"
+                        app:layout_heightPercent="8%h"
+                        android:textColor="@color/white"
+                        app:layout_textSizePercent="@string/text_size_bigC"
+                        app:layout_widthPercent="100%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/ssa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/data_table_one"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    app:layout_heightPercent="100%h"
+                    app:layout_widthPercent="100%w"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="运营数据总汇"
+                        android:textColor="@color/white"
+                        app:layout_heightPercent="15%h"
+                        app:layout_textSizePercent="8%w"
+                        app:layout_widthPercent="100%w" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="会员人数"
+                        android:textColor="@color/white"
+                        app:layout_heightPercent="10%h"
+                        app:layout_textSizePercent="6%w"
+                        app:layout_widthPercent="100%w" />
+
+                    <TextView
+                        android:id="@+id/data_member_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="88万"
+                        app:layout_heightPercent="8%h"
+                        android:textColor="@color/white"
+                        app:layout_textSizePercent="@string/text_size_bigC"
+                        app:layout_widthPercent="100%w" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="店铺总数量"
+                        android:textColor="@color/white"
+                        app:layout_marginTopPercent="5%h"
+                        app:layout_heightPercent="10%h"
+                        app:layout_textSizePercent="6%w"
+                        app:layout_widthPercent="100%w" />
+
+                    <TextView
+                        android:id="@+id/data_shop_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="18万"
+                        app:layout_heightPercent="8%h"
+                        android:textColor="@color/white"
+                        app:layout_textSizePercent="@string/text_size_bigC"
+                        app:layout_widthPercent="100%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/sxd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/data_table_s"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    app:layout_heightPercent="100%h"
+                    app:layout_widthPercent="100%w">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="创业基金"
+                        android:textColor="@color/white"
+                        app:layout_heightPercent="15%h"
+                        app:layout_textSizePercent="8%w"
+                        app:layout_widthPercent="100%w" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="当日收到捐赠额"
+                        android:textColor="@color/white"
+                        app:layout_heightPercent="10%h"
+                        app:layout_textSizePercent="6%w"
+                        app:layout_widthPercent="100%w" />
+
+                    <TextView
+                        android:id="@+id/data_day_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="20W"
+                        app:layout_heightPercent="8%h"
+                        android:textColor="@color/white"
+                        app:layout_textSizePercent="@string/text_size_bigC"
+                        app:layout_widthPercent="100%w" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="累计收到捐赠额"
+                        android:textColor="@color/white"
+                        app:layout_marginTopPercent="5%h"
+                        app:layout_heightPercent="10%h"
+                        app:layout_textSizePercent="6%w"
+                        app:layout_widthPercent="100%w" />
+
+                    <TextView
+                        android:id="@+id/data_receive_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="20W"
+                        app:layout_heightPercent="8%h"
+                        android:textColor="@color/white"
+                        app:layout_textSizePercent="@string/text_size_bigC"
+                        app:layout_widthPercent="100%w" />
+                    <TextView
+                        android:id="@+id/data_count_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="累计投放捐赠额 ?"
+                        android:textColor="@color/white"
+                        app:layout_marginTopPercent="5%h"
+                        app:layout_heightPercent="10%h"
+                        app:layout_textSizePercent="6%w"
+                        app:layout_widthPercent="100%w" />
+
+                    <TextView
+                        android:id="@+id/data_put_in_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="5W"
+                        app:layout_heightPercent="8%h"
+                        android:textColor="@color/white"
+                        app:layout_textSizePercent="@string/text_size_bigC"
+                        app:layout_widthPercent="100%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+            </com.cndll.shapetest.view.StereoView>
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
 
 
     </com.zhy.android.percent.support.PercentLinearLayout>

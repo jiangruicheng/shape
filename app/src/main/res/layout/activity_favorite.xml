@@ -9,12 +9,12 @@
     android:background="@color/bg"
     tools:context="com.cndll.shapetest.activity.FavoriteActivity">
     <include
-        android:id="@+id/titlebar"
-        layout="@layout/titlebar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="8%h"
-        app:layout_widthPercent="100%w" />
+    android:id="@+id/titlebar"
+    layout="@layout/titlebar"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:layout_heightPercent="8%h"
+    app:layout_widthPercent="100%w" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/fav_tab"

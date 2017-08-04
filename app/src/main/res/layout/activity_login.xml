@@ -6,13 +6,13 @@
         <variable
             name="login"
             type="com.cndll.shapetest.bean.Login" />
-
         <variable
             name="handler"
-            type="com.cndll.shapetest.event.HandlerClick" />
+            type="com.cndll.shapetest.event.HandlerClick"/>
     </data>
 
-    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.zhy.android.percent.support.PercentLinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="horizontal"
-            app:layout_heightPercent="9%h"
+            app:layout_heightPercent="10%h"
             app:layout_widthPercent="90%w">
 
             <TextView
@@ -42,17 +42,18 @@
                 android:gravity="center|left"
                 android:text="@string/sign_register_phone"
                 android:textColor="@color/contents_text"
-                app:layout_heightPercent="90%h"
                 app:layout_textSizePercent="@string/text_size_big"
+                app:layout_heightPercent="90%h"
                 app:layout_widthPercent="20%w" />
 
 
             <EditText
-                android:id="@+id/user"
+                android:id="@+id/username"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@null"
                 android:hint="请输入11位手机号"
+                android:inputType="phone"
                 android:text="@={login.userName}"
                 app:layout_heightPercent="90%h"
                 app:layout_marginTopPercent="2%"
@@ -61,14 +62,18 @@
                 app:layout_widthPercent="80%w" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg"
+            ></View>
 
         <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="horizontal"
-            app:layout_heightPercent="9%h"
+            app:layout_heightPercent="10%h"
             app:layout_widthPercent="90%w">
 
             <TextView
@@ -94,6 +99,11 @@
                 app:layout_textSizePercent="@string/text_size_big"
                 app:layout_widthPercent="80%w" />
         </com.zhy.android.percent.support.PercentLinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg"
+            ></View>
 
         <Button
             android:id="@+id/loginbtn"
@@ -101,7 +111,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@drawable/shape_button_gray"
-            android:onClick="@{(view)->handler.login(view)}"
             android:text="登录"
             android:textColor="@color/text"
             app:layout_heightPercent="8%h"
@@ -115,7 +124,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:orientation="horizontal"
-            app:layout_heightPercent="5%h"
+            app:layout_heightPercent="7%h"
             app:layout_marginBottomPercent="20%"
             app:layout_marginTopPercent="2%"
             app:layout_widthPercent="90%w">
@@ -167,7 +176,7 @@
                 android:gravity="center"
                 android:text="第三方登录"
                 android:textColor="@color/text"
-                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_textSizePercent="@string/text_size_big"
                 app:layout_widthPercent="30%w" />
 
             <View

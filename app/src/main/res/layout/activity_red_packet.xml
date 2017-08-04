@@ -35,10 +35,11 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="发出的红包"
-            app:layout_heightPercent="90%h"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_heightPercent="100%h"
             app:layout_widthPercent="30%w"
             android:textColor="@color/sit_title_text"
-            app:layout_marginLeftPercent="20%"
+            app:layout_marginLeftPercent="15%"
             />
 
         <TextView
@@ -46,8 +47,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="收到的红包"
+            android:gravity="center"
+            app:layout_textSizePercent="@string/text_size_big"
             android:textColor="@color/possible_result_points"
-            app:layout_heightPercent="90%h"
+            app:layout_heightPercent="100%h"
             app:layout_widthPercent="30%w"
             />
 
@@ -150,6 +153,15 @@
         </com.zhy.android.percent.support.PercentLinearLayout>
 
     </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <ListView
+        android:id="@+id/packet_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_marginTopPercent="2%"
+        app:layout_paddingPercent="2%"
+        ></ListView>
 
 
 </com.zhy.android.percent.support.PercentLinearLayout>

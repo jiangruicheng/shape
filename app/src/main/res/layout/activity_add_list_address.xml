@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
+    android:background="@color/bg"
     android:orientation="vertical"
     tools:context="com.cndll.shapetest.activity.AddListAddressActivity">
     <include
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_heightPercent="9%h"
-        android:background="@color/bg"
+        android:background="@color/white"
         android:layout_marginTop="1dp"
         app:layout_paddingLeftPercent="5%"
         app:layout_widthPercent="100%w">
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_heightPercent="9%h"
-        android:background="@color/bg"
+        android:background="@color/white"
         android:layout_marginTop="1dp"
         app:layout_paddingLeftPercent="5%"
         app:layout_widthPercent="100%w">
@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_heightPercent="9%h"
-        android:background="@color/bg"
+        android:background="@color/white"
         android:layout_marginTop="1dp"
         app:layout_paddingLeftPercent="5%"
         app:layout_widthPercent="100%w">
@@ -108,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:hint="请选择"
+            android:text="请选择"
             app:layout_heightPercent="75%h"
             app:layout_paddingLeftPercent="1%"
             app:layout_textSizePercent="@string/text_size_big"
@@ -127,7 +127,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/bg"
+        android:background="@color/white"
         android:layout_marginTop="1dp"
         app:layout_paddingLeftPercent="5%"
         app:layout_widthPercent="100%w">
@@ -151,7 +151,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_heightPercent="9%h"
-        android:background="@color/bg"
+        android:background="@color/white"
         app:layout_marginTopPercent="1%"
         app:layout_paddingLeftPercent="5%"
         app:layout_widthPercent="100%w">
@@ -172,17 +172,20 @@
             android:layout_height="wrap_content"
             app:layout_widthPercent="10%w"
             app:layout_marginLeftPercent="55%"
-            android:checked="true" />
+            android:checked="false" />
     </com.zhy.android.percent.support.PercentLinearLayout>
     <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/add_lin_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_heightPercent="9%h"
-        android:background="@color/bg"
+        android:background="@color/white"
         app:layout_marginTopPercent="1%"
         app:layout_paddingLeftPercent="5%"
-        app:layout_widthPercent="100%w">
+        app:layout_widthPercent="100%w"
+        android:visibility="gone"
+        >
 
         <TextView
             android:id="@+id/delete_address"

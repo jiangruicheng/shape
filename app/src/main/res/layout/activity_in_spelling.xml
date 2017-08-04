@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:orientation="vertical"
+        tools:context="com.cndll.shapetest.activity.InSpellingActivity">
+
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/titlebar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%h"
+            app:layout_widthPercent="100%w" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            app:layout_heightPercent="20%h"
+            app:layout_widthPercent="100%w">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/spelling_shop_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@mipmap/booking_delivery"
+                app:layout_marginLeftPercent="2%" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                app:layout_heightPercent="90%h"
+                app:layout_widthPercent="70%w">
+
+                <TextView
+                    android:id="@+id/spelling_shop_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="新款PC行李箱万向轮20寸密码登机箱28寸破 损旅行箱男24寸拉杆箱"
+                    android:textColor="@color/contents_text"
+                    app:layout_heightPercent="60%h"
+                    app:layout_textSizePercent="@string/text_size_bigC"
+                    app:layout_widthPercent="95%w" />
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="35%h"
+                    app:layout_widthPercent="95%w">
+
+                    <TextView
+                        android:id="@+id/spelling_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="两人团购:"
+                        android:textColor="@color/contents_text"
+                        app:layout_heightPercent="60%h"
+                        app:layout_textSizePercent="@string/text_size_bigC" />
+
+                    <TextView
+                        android:id="@+id/spelling_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="$78"
+                        android:textColor="@color/titleRed"
+                        app:layout_heightPercent="60%h"
+                        app:layout_textSizePercent="@string/text_size_bigC"
+                        app:layout_widthPercent="85%w" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layout_heightPercent="70%h"
+            app:layout_marginTopPercent="2%"
+            app:layout_widthPercent="100%w">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_heightPercent="70%h"
+                app:layout_widthPercent="100%w">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_heightPercent="30%h"
+                    app:layout_widthPercent="100%w">
+                    <!--   this is imgs -->
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="15%h"
+                    app:layout_widthPercent="90%w">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="还差"
+                        android:textColor="@color/contents_text"
+                        app:layout_heightPercent="90%h"
+                        app:layout_textSizePercent="@string/text_size_big" />
+
+                    <TextView
+                        android:id="@+id/spelling_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="@color/titleRed"
+                        app:layout_heightPercent="90%h"
+                        app:layout_textSizePercent="@string/text_size_big" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="人，赶紧邀请好友来拼团吧！"
+                        android:textColor="@color/contents_text"
+                        app:layout_heightPercent="90%h"
+                        app:layout_textSizePercent="@string/text_size_big" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="10%h"
+                    app:layout_widthPercent="90%w">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="剩余"
+                        android:textColor="@color/contents_text"
+                        app:layout_heightPercent="90%h"
+                        app:layout_textSizePercent="@string/text_size_big" />
+
+                    <TextView
+                        android:id="@+id/spelling_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="23:35:22"
+                        android:textColor="@color/titleRed"
+                        app:layout_heightPercent="90%h"
+                        app:layout_textSizePercent="@string/text_size_big" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="结束"
+                        android:textColor="@color/contents_text"
+                        app:layout_heightPercent="90%h"
+                        app:layout_textSizePercent="@string/text_size_big" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_heightPercent="4%h">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    app:layout_widthPercent="25%w" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="邀请好友拼团"
+                    android:textColor="@color/text"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="30%w" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    app:layout_widthPercent="25%w" />
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_heightPercent="25%h">
+
+                <ImageView
+                    android:id="@+id/wechat"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/wechat"
+                    app:layout_heightPercent="15%w"
+                    app:layout_marginLeftPercent="5%w"
+                    app:layout_widthPercent="15%w" />
+
+
+                <ImageView
+                    android:id="@+id/qq"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_toRightOf="@id/wechat"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/qq"
+                    app:layout_heightPercent="15%w"
+                    app:layout_marginLeftPercent="10%w"
+                    app:layout_widthPercent="15%w" />
+
+                <ImageView
+                    android:id="@+id/weibo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_toRightOf="@id/qq"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/qq"
+                    app:layout_heightPercent="15%w"
+                    app:layout_marginLeftPercent="10%w"
+                    app:layout_widthPercent="15%w" />
+
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_toRightOf="@id/weibo"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/qq"
+                    app:layout_heightPercent="15%w"
+                    app:layout_marginLeftPercent="10%w"
+                    app:layout_widthPercent="15%w" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/qq"
+                    android:gravity="center"
+                    android:text="微信"
+                    app:layout_marginLeftPercent="7%w"
+                    app:layout_marginTopPercent="4%h"
+                    app:layout_textSizePercent="@string/text_size_mid"
+                    app:layout_widthPercent="10%" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/qq"
+                    android:gravity="center"
+                    android:text="微博"
+                    app:layout_marginLeftPercent="33%w"
+                    app:layout_marginTopPercent="4%h"
+                    app:layout_textSizePercent="@string/text_size_mid"
+                    app:layout_widthPercent="10%" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/qq"
+                    android:gravity="center"
+                    android:text="朋友圈"
+                    app:layout_marginLeftPercent="57%w"
+                    app:layout_marginTopPercent="4%h"
+                    app:layout_textSizePercent="@string/text_size_mid"
+                    app:layout_widthPercent="10%" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/qq"
+                    android:gravity="center"
+                    android:text="QQ"
+                    app:layout_marginLeftPercent="82%w"
+                    app:layout_marginTopPercent="4%h"
+                    app:layout_textSizePercent="@string/text_size_mid"
+                    app:layout_widthPercent="10%" />
+
+
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</layout>
