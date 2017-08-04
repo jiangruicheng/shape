@@ -4,15 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityAuthenticationManagBinding
-import com.cndll.shapetest.tools.Constants
-import com.cndll.shapetest.tools.GetPathVideo
-import com.cndll.shapetest.tools.ImageFactory
-import com.cndll.shapetest.tools.PhotoTools
+import com.cndll.shapetest.tools.*
 import java.io.File
+import java.util.*
 
 class AuthenticationManagActivity : BaseActivity<ActivityAuthenticationManagBinding>() {
     lateinit var context: Context
@@ -23,7 +20,7 @@ class AuthenticationManagActivity : BaseActivity<ActivityAuthenticationManagBind
     var simVersa: File? = null
     var simLoan: File? = null
     var simBusiness: File? = null
-
+    val c = Calendar.getInstance()
     override fun initBindingVar() {
     }
 
@@ -72,6 +69,24 @@ class AuthenticationManagActivity : BaseActivity<ActivityAuthenticationManagBind
             photo.getImageFromAlbum(this@AuthenticationManagActivity)
         }
         binding.authManagSubmit.setOnClickListener { isNull() }
+
+        //时间
+        binding.authManagDateStart.setOnClickListener {
+            DoubleDatePickerDialog(this@AuthenticationManagActivity, 0, DoubleDatePickerDialog.OnDateSetListener { startDatePicker, startYear, startMonthOfYear, startDayOfMonth ->
+                val textString = String.format("%d-%d-%d\n", startYear,
+                        startMonthOfYear + 1, startDayOfMonth)
+                binding.authManagDateStartText.text = textString
+            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show()
+
+        }
+        binding.authManagDateEnd.setOnClickListener {
+            DoubleDatePickerDialog(this@AuthenticationManagActivity, 0, DoubleDatePickerDialog.OnDateSetListener { startDatePicker, startYear, startMonthOfYear, startDayOfMonth ->
+                val textString = String.format("%d-%d-%d\n", startYear,
+                        startMonthOfYear + 1, startDayOfMonth)
+                binding.authManagDateEndText.text = textString
+            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show()
+        }
+
 
     }
 
@@ -139,29 +154,29 @@ class AuthenticationManagActivity : BaseActivity<ActivityAuthenticationManagBind
                 val uri = data!!.data
                 if (type == 1) {
                     binding.authManagHandPhoto.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
-                    simCard= ImageFactory.saveFile(bm,"shape.jpg")
+                    var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
+                    simCard = ImageFactory.saveFile(bm, "shape.jpg")
                 }
 
                 if (type == 2) {
                     binding.authManagJust.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
-                    simJust= ImageFactory.saveFile(bm,"shape.jpg")
+                    var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
+                    simJust = ImageFactory.saveFile(bm, "shape.jpg")
                 }
                 if (type == 3) {
                     binding.authManagVersa.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
-                    simVersa= ImageFactory.saveFile(bm,"shape.jpg")
+                    var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
+                    simVersa = ImageFactory.saveFile(bm, "shape.jpg")
                 }
                 if (type == 4) {
                     binding.authManagWater.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
-                    simLoan= ImageFactory.saveFile(bm,"shape.jpg")
+                    var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
+                    simLoan = ImageFactory.saveFile(bm, "shape.jpg")
                 }
                 if (type == 5) {
                     binding.authManagRest.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
-                    simBusiness= ImageFactory.saveFile(bm,"shape.jpg")
+                    var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
+                    simBusiness = ImageFactory.saveFile(bm, "shape.jpg")
                 }
             }
         }

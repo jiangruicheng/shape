@@ -89,7 +89,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text='@{"积分："+info.score}'
+                android:text='@{info.score}'
                 android:textColor="#000000"
                 android:textSize="@dimen/text_size_small"
                 app:layout_widthPercent="35%w" />

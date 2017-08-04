@@ -160,7 +160,7 @@ class SetPhoneActivity : BaseActivity<ActivitySetPhoneBinding>() {
                     Toast.makeText(context,"发送成功请注意查收",Toast.LENGTH_LONG).show()
                     cT.start()
                 }else{
-                    Toast.makeText(context,"发送失败请重新发送",Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,t.message,Toast.LENGTH_LONG).show()
                     return
                 }
             }

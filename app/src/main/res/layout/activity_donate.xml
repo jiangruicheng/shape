@@ -1,143 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg"
-    android:orientation="vertical"
-    tools:context="com.cndll.shapetest.activity.DonateActivity">
-    <include
-        android:id="@+id/titlebar"
-        layout="@layout/titlebar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="8%h"
-        app:layout_widthPercent="100%w" />
 
-    <com.zhy.android.percent.support.PercentLinearLayout
-        android:id="@+id/id_userNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_heightPercent="8%h"
-        app:layout_paddingPercent="2%"
-        app:layout_marginTopPercent="1%"
-        android:background="@color/white"
-        app:layout_widthPercent="100%w"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/contents_text"
-            android:text="ID："
-            app:layout_widthPercent="25%w"
-            app:layout_heightPercent="90%h"
-            android:gravity="center"
-            android:padding="5dp"
-            app:layout_textSizePercent="@string/text_size_big"
-            />
-
-        <EditText
-            android:id="@+id/donate_ID"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/gray"
-            app:layout_widthPercent="73%w"
-            app:layout_heightPercent="90%h"
-            android:gravity="center|left"
-            android:background="@null"
-            android:hint="输入被转赠人ID"
-            android:inputType="numberDecimal"
-            app:layout_textSizePercent="@string/text_size_big"
-            />
-    </com.zhy.android.percent.support.PercentLinearLayout>
-
-    <com.zhy.android.percent.support.PercentLinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_heightPercent="8%h"
-        app:layout_paddingPercent="2%"
-        app:layout_marginTopPercent="1%"
-        android:background="@color/white"
-        app:layout_widthPercent="100%w"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/contents_text"
-            android:text="直捐额度："
-            app:layout_widthPercent="25%w"
-            app:layout_heightPercent="90%h"
-            android:gravity="center"
-            android:padding="5dp"
-            app:layout_textSizePercent="@string/text_size_big"
-            />
-
-        <EditText
-            android:id="@+id/donate_account"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/gray"
-            app:layout_widthPercent="73%w"
-            app:layout_heightPercent="90%h"
-            android:gravity="center|left"
-            android:background="@null"
-            android:hint="输入直捐的积分额度"
-            android:inputType="numberDecimal"
-            app:layout_textSizePercent="@string/text_size_big"
-            />
-    </com.zhy.android.percent.support.PercentLinearLayout>
-
-    <com.zhy.android.percent.support.PercentLinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_heightPercent="8%h"
-        app:layout_paddingPercent="2%"
-        app:layout_marginTopPercent="1%"
-        android:background="@color/white"
-        app:layout_widthPercent="100%w"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/contents_text"
-            android:text="支付密码："
-            app:layout_widthPercent="25%w"
-            app:layout_heightPercent="90%h"
-            android:gravity="center"
-            android:padding="5dp"
-            app:layout_textSizePercent="@string/text_size_big"
-            />
-
-        <EditText
-            android:id="@+id/donate_pay_pwd"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/gray"
-            app:layout_widthPercent="73%w"
-            app:layout_heightPercent="90%h"
-            android:gravity="center|left"
-            android:background="@null"
-            android:hint="请输入支付密码"
-            android:inputType="textPassword"
-            app:layout_textSizePercent="@string/text_size_big"
-            />
-    </com.zhy.android.percent.support.PercentLinearLayout>
-    <Button
-        android:id="@+id/donate_submit"
+    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/shape_button_red"
-        android:text="确认转增"
-        app:layout_heightPercent="7%h"
-        android:textColor="@color/titleBackGround"
-        app:layout_marginTopPercent="5%"
-        app:layout_textSizePercent="@string/text_size_big"
-        app:layout_widthPercent="90%w" />
-</com.zhy.android.percent.support.PercentLinearLayout>
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:orientation="vertical"
+        tools:context="com.cndll.shapetest.activity.DonateActivity">
+
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/titlebar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%h"
+            app:layout_widthPercent="100%w" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/id_userNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%h"
+            app:layout_marginTopPercent="1%"
+            app:layout_paddingPercent="2%"
+            app:layout_widthPercent="100%w">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="ID："
+                android:textColor="@color/contents_text"
+                app:layout_heightPercent="90%h"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="25%w" />
+
+            <EditText
+                android:id="@+id/donate_ID"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center|left"
+                android:hint="输入被转赠人ID"
+                android:inputType="numberDecimal"
+                android:textColor="@color/gray"
+                app:layout_heightPercent="90%h"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="73%w" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%h"
+            app:layout_marginTopPercent="1%"
+            app:layout_paddingPercent="2%"
+            app:layout_widthPercent="100%w">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="直捐额度："
+                android:textColor="@color/contents_text"
+                app:layout_heightPercent="90%h"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="25%w" />
+
+            <EditText
+                android:id="@+id/donate_account"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center|left"
+                android:hint="输入直捐的积分额度"
+                android:inputType="numberDecimal"
+                android:textColor="@color/gray"
+                app:layout_heightPercent="90%h"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="73%w" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%h"
+            app:layout_marginTopPercent="1%"
+            app:layout_paddingPercent="2%"
+            app:layout_widthPercent="100%w">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="支付密码："
+                android:textColor="@color/contents_text"
+                app:layout_heightPercent="90%h"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="25%w" />
+
+            <EditText
+                android:id="@+id/donate_pay_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center|left"
+                android:hint="请输入支付密码"
+                android:inputType="textPassword"
+                android:textColor="@color/gray"
+                app:layout_heightPercent="90%h"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="73%w" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <Button
+            android:id="@+id/donate_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_button_red"
+            android:text="确认转增"
+            android:textColor="@color/titleBackGround"
+            app:layout_heightPercent="7%h"
+            app:layout_marginTopPercent="5%"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="90%w" />
+    </com.zhy.android.percent.support.PercentLinearLayout>
 </layout>

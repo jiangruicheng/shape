@@ -16,6 +16,15 @@ public class HttpCodeResponse extends BaseResponse {
     private int code;
 //    private String datas;
     private String error_massage;
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public String getError_massage() {
         return error_massage;
