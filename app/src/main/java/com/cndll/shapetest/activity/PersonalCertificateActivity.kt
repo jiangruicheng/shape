@@ -3,9 +3,7 @@ package com.cndll.shapetest.activity
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityPersonalCertificateBinding
@@ -13,11 +11,6 @@ import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.tools.GetPathVideo
 import com.cndll.shapetest.tools.ImageFactory
 import com.cndll.shapetest.tools.PhotoTools
-import com.facebook.drawee.backends.pipeline.Fresco
-import com.facebook.drawee.backends.pipeline.PipelineDraweeController
-import com.facebook.drawee.view.SimpleDraweeView
-import com.facebook.imagepipeline.common.ResizeOptions
-import com.facebook.imagepipeline.request.ImageRequestBuilder
 import java.io.File
 
 /**
@@ -83,23 +76,23 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
                 val uri = data!!.data
                 if (type == 1) {
                     binding.simUserCard.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
-                    simUserCard= ImageFactory.saveFile(bm,"shape.jpg")
+                    var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
+                    simUserCard = ImageFactory.saveFile(bm, "shape.jpg")
                 }
                 if (type == 2) {
                     binding.simCardZ.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
-                    simCardZ= ImageFactory.saveFile(bm,"shape.jpg")
+                    var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
+                    simCardZ = ImageFactory.saveFile(bm, "shape.jpg")
                 }
                 if (type == 3) {
                     binding.simCardF.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
-                    simCardF= ImageFactory.saveFile(bm,"shape.jpg")
+                    var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
+                    simCardF = ImageFactory.saveFile(bm, "shape.jpg")
                 }
-                if(type==4){
+                if (type == 4) {
                     binding.simCardOther.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
-                    simCardOther= ImageFactory.saveFile(bm,"shape.jpg")
+                    var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
+                    simCardOther = ImageFactory.saveFile(bm, "shape.jpg")
                 }
             }
         }
@@ -114,12 +107,12 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             msg = "请填写姓名"
         }
 
-        if(!Constants.validMobile(binding.cerPhoneEdit.text.toString().trim())){
+        if (!Constants.validMobile(binding.cerPhoneEdit.text.toString().trim())) {
             isNull = false
             msg = "请填写正确手机号"
         }
 
-        if (!Constants.validMobile(binding.cerRealPhoneEdit.text.toString().trim())){
+        if (!Constants.validMobile(binding.cerRealPhoneEdit.text.toString().trim())) {
             isNull = false
             msg = "请填写正确手机号"
         }
@@ -128,12 +121,14 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             isNull = false
             msg = "请填写身份证号"
         }
-        if (!Constants.validEmail(binding.cerEmail.text.toString().trim())){
+        if (!Constants.validEmail(binding.cerEmail.text.toString().trim())) {
             isNull = false
             msg = "请填写正确的邮箱"
         }
-
-
+        if (binding.cerCardNum.text.toString().trim().equals("")) {
+            isNull = false
+            msg = "请填写收款账号"
+        }
 
         if (simUserCard == null) {
             isNull = false
