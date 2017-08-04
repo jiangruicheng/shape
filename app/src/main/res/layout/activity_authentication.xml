@@ -160,11 +160,117 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="1352867940"
+                    android:inputType="phone"
                     app:layout_heightPercent="8%h"
                     app:layout_paddingLeftPercent="2%"
                     app:layout_textSizePercent="@string/text_size_big"
                     app:layout_widthPercent="65%w" />
             </com.zhy.android.percent.support.PercentLinearLayout>
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_marginTop="1dp"
+                app:layout_paddingLeftPercent="5%"
+                app:layout_widthPercent="100%w">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="联系人邮箱："
+                    app:layout_heightPercent="9%h"
+                    android:textColor="@color/contents_text"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="30%w" />
+
+                <EditText
+                    android:id="@+id/auth_Email_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="1352867940"
+                    android:inputType="phone"
+                    app:layout_heightPercent="8%h"
+                    app:layout_paddingLeftPercent="2%"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="65%w" />
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_marginTop="1dp"
+                app:layout_paddingLeftPercent="5%"
+                app:layout_widthPercent="100%w">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="公司统一信用代码："
+                    app:layout_heightPercent="8%h"
+                    android:textColor="@color/contents_text"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="40%w" />
+
+                <EditText
+                    android:id="@+id/auth_code_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="1352867940"
+                    app:layout_heightPercent="8%h"
+                    app:layout_paddingLeftPercent="2%"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="55%w" />
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_marginTop="1dp"
+                app:layout_paddingLeftPercent="5%"
+                app:layout_widthPercent="100%w">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="收款账号："
+                    app:layout_heightPercent="8%h"
+                    android:textColor="@color/contents_text"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="30%w" />
+
+                <EditText
+                    android:id="@+id/auth_card_num_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="1352867940"
+                    android:inputType="phone"
+                    app:layout_heightPercent="8%h"
+                    app:layout_paddingLeftPercent="2%"
+                    app:layout_textSizePercent="@string/text_size_big"
+                    app:layout_widthPercent="65%w" />
+            </com.zhy.android.percent.support.PercentLinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="1dp"
+                android:text="收款户名默认企业名称"
+                android:textColor="@color/text"
+                app:layout_textSizePercent="@string/text_size_mid"
+                app:layout_paddingPercent="2%"
+                />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
