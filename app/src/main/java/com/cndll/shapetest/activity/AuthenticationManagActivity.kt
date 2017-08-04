@@ -10,6 +10,7 @@ import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityAuthenticationManagBinding
 import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.tools.GetPathVideo
+import com.cndll.shapetest.tools.ImageFactory
 import com.cndll.shapetest.tools.PhotoTools
 import java.io.File
 
@@ -138,24 +139,29 @@ class AuthenticationManagActivity : BaseActivity<ActivityAuthenticationManagBind
                 val uri = data!!.data
                 if (type == 1) {
                     binding.authManagHandPhoto.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simCard = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simCard= ImageFactory.saveFile(bm,"shape.jpg")
                 }
 
                 if (type == 2) {
                     binding.authManagJust.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simJust = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simJust= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 3) {
                     binding.authManagVersa.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simVersa = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simVersa= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 4) {
                     binding.authManagWater.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simLoan = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simLoan= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 5) {
                     binding.authManagRest.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simBusiness = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simBusiness= ImageFactory.saveFile(bm,"shape.jpg")
                 }
             }
         }

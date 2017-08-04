@@ -6,11 +6,12 @@
     android:background="@color/bg"
     android:layout_height="match_parent">
     <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/lin_bg_quan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center"
-        android:background="@mipmap/bg_quian"
+        android:background="@mipmap/qtwo"
         app:layout_heightPercent="20%h"
         app:layout_widthPercent="90%w"
         >
@@ -32,7 +33,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 app:layout_textSizePercent="10%w"
-                android:textColor="@color/contents_text"
+                android:textColor="@color/white"
                 />
 
             <TextView
@@ -61,7 +62,7 @@
             android:textStyle="bold"
             android:gravity="center"
             app:layout_textSizePercent="@string/text_size_bigC"
-            android:textColor="@color/titleRed"
+            android:textColor="@color/white"
             />
     </com.zhy.android.percent.support.PercentLinearLayout>
 </com.zhy.android.percent.support.PercentLinearLayout>

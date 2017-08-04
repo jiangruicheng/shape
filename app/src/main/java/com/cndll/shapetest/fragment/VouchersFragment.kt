@@ -44,13 +44,13 @@ class VouchersFragment : BaseFragment<FragmentVouchersBinding>(){
     private fun initView(){
         if(mNumber==1){
             if(adapter==null){
-                adapter= VouchersAdapter(moreList,context)
+                adapter= VouchersAdapter(moreList,context,1)
                 binding.vouchersList.adapter=adapter
             }
             httpVouchers()
         }else if (mNumber==2){
             if(adapter==null){
-                adapter= VouchersAdapter(moreList,context)
+                adapter= VouchersAdapter(moreList,context,2)
                 binding.vouchersList.adapter=adapter
             }
             httpVouchers()

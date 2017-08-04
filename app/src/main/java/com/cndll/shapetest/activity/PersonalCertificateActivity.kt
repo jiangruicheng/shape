@@ -11,6 +11,7 @@ import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityPersonalCertificateBinding
 import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.tools.GetPathVideo
+import com.cndll.shapetest.tools.ImageFactory
 import com.cndll.shapetest.tools.PhotoTools
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.backends.pipeline.PipelineDraweeController
@@ -29,6 +30,7 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
     var simUserCard: File? = null
     var simCardZ: File? = null
     var simCardF: File? = null
+    var simCardOther: File? = null
 
     override fun initBindingVar() {
     }
@@ -65,7 +67,11 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             type = 3
             photo.getImageFromAlbum(this@PersonalCertificateActivity)
         }
-
+        binding.simCardOther.setOnClickListener {
+            //其他
+            type = 4
+            photo.getImageFromAlbum(this@PersonalCertificateActivity)
+        }
         binding.authSubmitUser.setOnClickListener {
             isNull()
         }
@@ -76,19 +82,24 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             if (resultCode == Activity.RESULT_OK) {
                 val uri = data!!.data
                 if (type == 1) {
-                    binding.addCardText.visibility = View.GONE
                     binding.simUserCard.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simUserCard = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simUserCard= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 2) {
-                    binding.addCardZText.visibility = View.GONE
                     binding.simCardZ.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simCardZ = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simCardZ= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 3) {
-                    binding.addCardFText.visibility = View.GONE
                     binding.simCardF.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simCardF = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simCardF= ImageFactory.saveFile(bm,"shape.jpg")
+                }
+                if(type==4){
+                    binding.simCardOther.setImageURI("file://" + GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simCardOther= ImageFactory.saveFile(bm,"shape.jpg")
                 }
             }
         }
@@ -102,10 +113,28 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             isNull = false
             msg = "请填写姓名"
         }
+
+        if(!Constants.validMobile(binding.cerPhoneEdit.text.toString().trim())){
+            isNull = false
+            msg = "请填写正确手机号"
+        }
+
+        if (!Constants.validMobile(binding.cerRealPhoneEdit.text.toString().trim())){
+            isNull = false
+            msg = "请填写正确手机号"
+        }
+
         if (binding.cerCardEdit.text.toString().trim().equals("")) {
             isNull = false
             msg = "请填写身份证号"
         }
+        if (!Constants.validEmail(binding.cerEmail.text.toString().trim())){
+            isNull = false
+            msg = "请填写正确的邮箱"
+        }
+
+
+
         if (simUserCard == null) {
             isNull = false
             msg = "请选择手持身份证照片"

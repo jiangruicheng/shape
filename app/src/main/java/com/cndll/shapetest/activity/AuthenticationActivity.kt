@@ -124,57 +124,6 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
 
 
     private fun isNull() {
-        var isNull = true
-        var msg = ""
-        if (binding.authCompanyEdit.text.toString().trim().equals("")) {
-            isNull = false
-            msg = "请填写企业名称"
-        }
-        if (binding.legalPersonEdit.text.toString().trim().equals("")) {
-            isNull = false
-            msg = "请填写企业法人"
-        }
-        if (binding.nameEdit.text.toString().trim().equals("")) {
-            isNull = false
-            msg = "请填写联系人"
-        }
-        if (binding.authPhoneEdit.text.toString().trim().equals("")) {
-            isNull = false
-            msg = "请填写联系方式"
-        }
-        if (simCard == null) {
-            isNull = false
-            msg = "请选择手持身份证照片"
-        }
-        if (simJust == null) {
-            isNull = false
-            msg = "请选择法人身份证正面"
-        }
-        if (simVersa == null) {
-            isNull = false
-            msg = "请选择法人身份证反面"
-        }
-        if (simLoan == null) {
-            isNull = false
-            msg = "请选择信用贷款证照片"
-        }
-        if (simBusiness === null) {
-            isNull = false
-            msg = "请选择营业执照照片"
-        }
-
-        if (simOpenAccount == null) {
-            isNull = false
-            msg = "请选择开户许可证照片"
-        }
-
-        if (isNull) {
-            Toast.makeText(context, "ok", Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
-            return
-        }
-
     }
 
 

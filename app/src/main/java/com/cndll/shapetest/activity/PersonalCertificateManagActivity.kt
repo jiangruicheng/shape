@@ -9,6 +9,7 @@ import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityPersonalCertificateManagBinding
 import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.tools.GetPathVideo
+import com.cndll.shapetest.tools.ImageFactory
 import com.cndll.shapetest.tools.PhotoTools
 import kotlinx.android.synthetic.main.menubutton.view.*
 import java.io.File
@@ -167,32 +168,39 @@ class PersonalCertificateManagActivity : BaseActivity<ActivityPersonalCertificat
                 val uri = data!!.data
                 if (type == 1) {
                     binding.perManagHandPhoto.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simCard = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simCard= ImageFactory.saveFile(bm,"shape.jpg")
                 }
 
                 if (type == 2) {
                     binding.perManagJust.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simJust = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simJust= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 3) {
                     binding.perManagTurn.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simVersa = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simVersa= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 4) {
                     binding.perManagBusiness.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simLoan = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simLoan= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 5) {
                     binding.perManagLicence.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simBusiness = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simBusiness= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 6) {
                     binding.perManagWater.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simWater = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simWater= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 7) {
                     binding.perManagAuth.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simAuth = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simAuth= ImageFactory.saveFile(bm,"shape.jpg")
                 }
             }
         }
