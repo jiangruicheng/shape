@@ -53,7 +53,7 @@
             android:layout_below="@+id/commodity_title"
             android:layout_toRightOf="@+id/price_title"
             android:gravity="center_vertical"
-            android:text='@{goods.score+" +￥ "+goods.now_price}'
+            android:text='@{goods.now_price}'
             android:textColor="@color/titleRed"
             android:textSize="@dimen/text_size_big"
             app:layout_heightPercent="15%" />
@@ -64,7 +64,7 @@
             android:layout_height="0dp"
             android:layout_below="@+id/price_title"
             android:gravity="center_vertical"
-            android:text='@{"原价"+goods.so_price}'
+            android:text='@{goods.so_price}'
             android:textColor="@color/gray"
             android:textSize="@dimen/text_size_small"
             app:layout_heightPercent="15%" />
@@ -75,7 +75,7 @@
             android:layout_height="0dp"
             android:layout_below="@+id/old_price"
             android:gravity="center_vertical"
-            android:text='@{"积分："+goods.score}'
+            android:text='@{goods.score}'
             android:textColor="@color/titleRed"
             android:textSize="@dimen/text_size_small"
             app:layout_heightPercent="15%" />
@@ -108,7 +108,7 @@
             android:layout_height="0dp"
             android:layout_below="@+id/jifen"
             android:gravity="center_vertical"
-            android:text='@{"快递："+ info.goods_freight}'
+            android:text='@{info.goods_freight}'
             android:textColor="@color/gray"
             android:textSize="@dimen/text_size_small"
             app:layout_heightPercent="15%"
@@ -121,7 +121,7 @@
             android:layout_below="@+id/jifen"
             android:layout_toRightOf="@+id/express_price"
             android:gravity="center"
-            android:text='@{"销量 "+info.goods_salenum}'
+            android:text='@{info.goods_salenum}'
             android:textColor="@color/gray"
             android:textSize="@dimen/text_size_small"
             app:layout_heightPercent="15%"

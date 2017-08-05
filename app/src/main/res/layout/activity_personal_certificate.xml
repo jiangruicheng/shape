@@ -140,7 +140,7 @@
                         android:textColor="@color/contents_text"
                         app:layout_heightPercent="8%h"
                         app:layout_textSizePercent="@string/text_size_big"
-                        app:layout_widthPercent="25%w" />
+                        app:layout_widthPercent="35%w" />
 
                     <EditText
                         android:id="@+id/cer_real_phone_edit"
@@ -152,7 +152,7 @@
                         app:layout_heightPercent="8%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
-                        app:layout_widthPercent="70%w" />
+                        app:layout_widthPercent="60%w" />
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
@@ -193,7 +193,9 @@
                     android:background="@color/white"
                     android:orientation="horizontal"
                     app:layout_paddingLeftPercent="5%"
-                    app:layout_widthPercent="100%w">
+                    app:layout_widthPercent="100%w"
+
+                    >
 
                     <TextView
                         android:layout_width="match_parent"
@@ -205,15 +207,68 @@
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="30%w" />
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:hint="13528679401352867940"
-                        app:layout_heightPercent="8%h"
-                        app:layout_paddingLeftPercent="2%"
-                        app:layout_textSizePercent="@string/text_size_big"
-                        app:layout_widthPercent="65%w" />
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/cer_date_start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        app:layout_widthPercent="25%w"
+                        android:background="@drawable/shape_main_button_edit"
+                        >
+                        <TextView
+                            android:id="@+id/cer_date_start_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="2014-7-8"
+                            app:layout_widthPercent="80%w"
+                            android:padding="5dp"
+                            />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/up_down"
+                            android:layout_gravity="center"
+                            />
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:background="@color/gray"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        app:layout_widthPercent="3%w"
+                        ></View>
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/cer_date_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        app:layout_widthPercent="25%w"
+                        android:background="@drawable/shape_main_button_edit"
+                        >
+                        <TextView
+                            android:id="@+id/cer_date_end_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="2014-7-8"
+                            app:layout_widthPercent="80%w"
+                            android:padding="5dp"
+                            />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/up_down"
+                            android:layout_gravity="center"
+                            />
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
 

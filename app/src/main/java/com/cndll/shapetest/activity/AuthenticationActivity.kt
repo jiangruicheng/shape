@@ -10,6 +10,7 @@ import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityAuthenticationBinding
 import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.tools.GetPathVideo
+import com.cndll.shapetest.tools.ImageFactory
 import com.cndll.shapetest.tools.PhotoTools
 import java.io.File
 
@@ -40,7 +41,7 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_authentication)
         Constants.verifyStoragePermissions(this@AuthenticationActivity)
-        context=this
+        context = this
         initView()
     }
 
@@ -64,7 +65,7 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
             photo.getImageFromAlbum(this@AuthenticationActivity)
         }
         binding.simLoan.setOnClickListener {
-            //信用
+            //其他证件照片
             type = 4
             photo.getImageFromAlbum(this@AuthenticationActivity)
         }
@@ -88,42 +89,102 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
             if (resultCode == Activity.RESULT_OK) {
                 val uri = data!!.data
                 if (type == 1) {
-                    binding.cardText.visibility = View.GONE
                     binding.simCard.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simCard = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simCard= ImageFactory.saveFile(bm,"shape.jpg")
                 }
 
                 if (type == 2) {
-                    binding.justText.visibility = View.GONE
                     binding.simJust.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simJust = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simJust= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 3) {
-                    binding.versaText.visibility = View.GONE
                     binding.simVersa.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simVersa = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simVersa= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 4) {
-                    binding.loanText.visibility = View.GONE
                     binding.simLoan.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simLoan = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simLoan= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 5) {
-                    binding.businessText.visibility = View.GONE
                     binding.simBusiness.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simBusiness = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simBusiness= ImageFactory.saveFile(bm,"shape.jpg")
                 }
                 if (type == 6) {
-                    binding.openAccount.visibility = View.GONE
                     binding.simOpenAccount.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    simOpenAccount = File(GetPathVideo.getPath(context, uri))
+                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
+                    simOpenAccount= ImageFactory.saveFile(bm,"shape.jpg")
                 }
             }
         }
     }
 
-
+    /**
+     * 非空判断
+     * */
     private fun isNull() {
+        var isNull = true
+        var msg = ""
+        if (binding.authCompanyEdit.text.toString().trim().equals("")) {
+            isNull = false
+            msg = "请输入企业名称"
+        }
+        if (binding.legalPersonEdit.text.toString().trim().equals("")) {
+            isNull = false
+            msg = "请输入联系人姓名"
+        }
+        if (!Constants.validMobile(binding.authPhoneEdit.text.toString().trim())){
+            isNull=false
+            msg="请输入正确的手机号"
+        }
+        if(!Constants.validEmail(binding.authEmailEdit.text.toString().trim())){
+            isNull=false
+            msg="请输入正确邮箱"
+        }
+        if (binding.authCode.text.toString().trim().equals("")){
+            isNull=false
+            msg="请输入公司统一信用代码"
+        }
+        if(binding.authCardNum.text.toString().trim().equals("")){
+            isNull=false
+            msg="请输入收款账号"
+        }
+        if(binding.authCardAddress.text.toString().trim().equals("")){
+            isNull=false
+            msg="请输入开户行"
+        }
+        if (simCard==null){
+            isNull=false
+            msg="请选择手持照片"
+        }
+        if(simJust==null){
+            isNull=false
+            msg="请选择手持照片正面"
+        }
+        if(simVersa==null){
+            isNull=false
+            msg="请选择手持照片反面"
+        }
+        if(simBusiness==null){
+            isNull=false
+            msg="请选择营业执照"
+        }
+        if(simOpenAccount==null){
+            isNull=false
+            msg="请选择开户许可证"
+        }
+        if(isNull){
+
+        }else{
+            Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
+            return
+        }
+
+
     }
 
 

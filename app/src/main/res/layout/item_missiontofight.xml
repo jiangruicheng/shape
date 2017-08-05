@@ -49,7 +49,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
-                    android:text='@{item.fight_groups_people+"人团"}'
+                    android:text='@{item.fight_groups_people}'
                     android:textSize="@dimen/text_size_small"
                     app:layout_heightPercent="50%h"
                     app:layout_widthPercent="12%w" />
@@ -60,7 +60,7 @@
                     android:layout_height="0dp"
                     android:layout_toRightOf="@id/tow_person"
                     android:gravity="center_vertical"
-                    android:text='@{"￥"+item.fight_groups_price}'
+                    android:text='@{item.fight_groups_price}'
                     android:textColor="@color/titleRed"
                     android:textSize="@dimen/text_size_mid"
                     app:layout_heightPercent="50%h"
@@ -72,7 +72,7 @@
                     android:layout_height="0dp"
                     android:layout_toRightOf="@id/price"
                     android:gravity="center_vertical"
-                    android:text='@{"单买价"+item.fight_groups_aloneprice}'
+                    android:text='@{item.fight_groups_aloneprice}'
                     android:textColor="@color/gray"
                     android:textSize="@dimen/text_size_small"
                     app:layout_heightPercent="50%h"
@@ -83,7 +83,7 @@
                     android:layout_height="0dp"
                     android:layout_below="@+id/tow_person"
                     android:gravity="center_vertical"
-                    android:text='@{"积分："+item.score}'
+                    android:text='@{item.score}'
                     android:textColor="@color/titleRed"
                     android:textSize="@dimen/text_size_small"
                     app:layout_heightPercent="50%h" />

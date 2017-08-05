@@ -65,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
-                    android:text='@{"婴儿配方 均衡营养"}'
+                    android:text="123"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/text_size_mid"
                     app:layout_heightPercent="14%h"

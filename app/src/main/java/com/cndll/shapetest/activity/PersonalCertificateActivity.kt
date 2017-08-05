@@ -9,16 +9,14 @@ import android.view.View
 import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityPersonalCertificateBinding
-import com.cndll.shapetest.tools.Constants
-import com.cndll.shapetest.tools.GetPathVideo
-import com.cndll.shapetest.tools.ImageFactory
-import com.cndll.shapetest.tools.PhotoTools
+import com.cndll.shapetest.tools.*
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.backends.pipeline.PipelineDraweeController
 import com.facebook.drawee.view.SimpleDraweeView
 import com.facebook.imagepipeline.common.ResizeOptions
 import com.facebook.imagepipeline.request.ImageRequestBuilder
 import java.io.File
+import java.util.*
 
 /**
  * 个人认证
@@ -31,7 +29,7 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
     var simCardZ: File? = null
     var simCardF: File? = null
     var simCardOther: File? = null
-
+    val c = Calendar.getInstance()
     override fun initBindingVar() {
     }
 
@@ -75,6 +73,24 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
         binding.authSubmitUser.setOnClickListener {
             isNull()
         }
+        //日期选择
+        binding.cerDateStart.setOnClickListener {
+
+            DoubleDatePickerDialog(this@PersonalCertificateActivity, 0, DoubleDatePickerDialog.OnDateSetListener { startDatePicker, startYear, startMonthOfYear, startDayOfMonth ->
+                val textString = String.format("%d-%d-%d\n", startYear,
+                        startMonthOfYear + 1, startDayOfMonth)
+                binding.cerDateStartText.text = textString
+            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show()
+        }
+        binding.cerDateEnd.setOnClickListener {
+            DoubleDatePickerDialog(this@PersonalCertificateActivity, 0, DoubleDatePickerDialog.OnDateSetListener { startDatePicker, startYear, startMonthOfYear, startDayOfMonth ->
+                val textString = String.format("%d-%d-%d\n", startYear,
+                        startMonthOfYear + 1, startDayOfMonth)
+                binding.cerDateEndText.text = textString
+            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show()
+        }
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -83,23 +99,23 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
                 val uri = data!!.data
                 if (type == 1) {
                     binding.simUserCard.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
-                    simUserCard= ImageFactory.saveFile(bm,"shape.jpg")
+                    var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
+                    simUserCard = ImageFactory.saveFile(bm, "shape.jpg")
                 }
                 if (type == 2) {
                     binding.simCardZ.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
-                    simCardZ= ImageFactory.saveFile(bm,"shape.jpg")
+                    var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
+                    simCardZ = ImageFactory.saveFile(bm, "shape.jpg")
                 }
                 if (type == 3) {
                     binding.simCardF.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
-                    simCardF= ImageFactory.saveFile(bm,"shape.jpg")
+                    var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
+                    simCardF = ImageFactory.saveFile(bm, "shape.jpg")
                 }
-                if(type==4){
+                if (type == 4) {
                     binding.simCardOther.setImageURI("file://" + GetPathVideo.getPath(context, uri))
-                    var bm= ImageFactory.getSmallBitmap(GetPathVideo.getPath(context,uri))
-                    simCardOther= ImageFactory.saveFile(bm,"shape.jpg")
+                    var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
+                    simCardOther = ImageFactory.saveFile(bm, "shape.jpg")
                 }
             }
         }
@@ -114,12 +130,12 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             msg = "请填写姓名"
         }
 
-        if(!Constants.validMobile(binding.cerPhoneEdit.text.toString().trim())){
+        if (!Constants.validMobile(binding.cerPhoneEdit.text.toString().trim())) {
             isNull = false
             msg = "请填写正确手机号"
         }
 
-        if (!Constants.validMobile(binding.cerRealPhoneEdit.text.toString().trim())){
+        if (!Constants.validMobile(binding.cerRealPhoneEdit.text.toString().trim())) {
             isNull = false
             msg = "请填写正确手机号"
         }
@@ -128,7 +144,7 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             isNull = false
             msg = "请填写身份证号"
         }
-        if (!Constants.validEmail(binding.cerEmail.text.toString().trim())){
+        if (!Constants.validEmail(binding.cerEmail.text.toString().trim())) {
             isNull = false
             msg = "请填写正确的邮箱"
         }

@@ -37,7 +37,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="clip_vertical"
-                android:text='@{"￥"+info.price}'
+                android:text='@{info.price}'
                 android:textColor="@color/titleRed"
                 android:textSize="@dimen/text_size_small" />
 
@@ -46,7 +46,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="clip_vertical"
-                android:text='@{"库存"+info.commodityCount}'
+                android:text='@{info.commodityCount}'
                 android:textColor="#000000"
                 android:textSize="@dimen/text_size_small" />
 
