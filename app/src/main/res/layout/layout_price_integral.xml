@@ -3,9 +3,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="info"
-            type="com.cndll.shapetest.api.bean.response.BrandResponse.DatasBean" />
+            type="com.cndll.shapetest.bean.CommodityVerInfoMode" />
     </data>
 
     <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -34,22 +36,24 @@
                     android:layout_weight="1">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:ellipsize="end"
                         android:gravity="center_vertical"
-                        android:text="@{info.goods_price}"
+                        android:lines="1"
+                        android:text="@{info.nowPrice}"
                         android:textColor="#000000"
-                        android:textSize="@dimen/text_size_mid"
-                        app:layout_widthPercent="45%w" />
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="@{info.goods_marketprice}"
+                        android:text="@{info.oldPreci}"
                         android:textColor="#000000"
-                        android:textSize="@dimen/text_size_small"
-                        app:layout_widthPercent="55%w" />
+                        android:textSize="@dimen/text_size_small" />
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <TextView
@@ -72,7 +76,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_button_limit_notify"
                 android:textSize="@dimen/text_size_small"
-                android:visibility="gone"
+                android:visibility="@{info.showButton?View.VISIBLE:View.GONE}"
                 app:layout_marginBottomPercent="10%h"
                 app:layout_marginTopPercent="10%h" />
         </com.zhy.android.percent.support.PercentLinearLayout>

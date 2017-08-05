@@ -42,6 +42,7 @@ open class BannerAdapter(context: Context, layoutHelper: LayoutHelper, count: In
         val bean4 = MenuGrid.MenuBean()
         bean4.title = "会员特权"
         bean4.imageUrl = StringTools.getResUri(R.mipmap.huiyuan, mContext)
+        bean4.onclick = View.OnClickListener { mContext.startActivity(Intent(mContext, TurnOnActivity::class.java).setAction(MemberFragment.FLAG)) }
         val bean5 = MenuGrid.MenuBean()
         bean5.title = "服饰箱包"
         bean5.imageUrl = StringTools.getResUri(R.mipmap.fushi, mContext)
@@ -55,7 +56,7 @@ open class BannerAdapter(context: Context, layoutHelper: LayoutHelper, count: In
         val bean7 = MenuGrid.MenuBean()
         bean7.title = "积分专区"
         bean7.imageUrl = StringTools.getResUri(R.mipmap.jifen, mContext)
-        bean7.onclick = View.OnClickListener { mContext.startActivity(Intent(mContext, TurnOnActivity::class.java).setAction(NearByShopFoodFragment.FLAG)) }
+        bean7.onclick = View.OnClickListener { mContext.startActivity(Intent(mContext, TurnOnActivity::class.java).setAction(ScoreFragment.FLAG)) }
 
         val bean8 = MenuGrid.MenuBean()
         bean8.title = "线下体验"

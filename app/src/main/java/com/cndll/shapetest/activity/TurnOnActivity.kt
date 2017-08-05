@@ -58,6 +58,8 @@ class TurnOnActivity : BaseActivity<ActivityTurnOnBinding>() {
         putFragment(NearByShopFoodFragment.FLAG, NearByShopFoodFragment.newInstance("", ""))
         putFragment(NearByShopFoodStoreFragment.FLAG, NearByShopFoodStoreFragment.newInstance("", ""))
         putFragment(BrandDiscountFragment.FLAG, BrandDiscountFragment.newInstance("", ""))
+        putFragment(ScoreFragment.FLAG, ScoreFragment.newInstance("", ""))
+        putFragment(MemberFragment.FLAG, MemberFragment.newInstance("", ""))
 
         if (fragmentMap.containsKey(intent.action)) {
             supportFragmentManager.beginTransaction().add(R.id.frame, fragmentMap.get(intent.action)).commit()

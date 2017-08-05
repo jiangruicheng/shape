@@ -1,6 +1,7 @@
 package com.cndll.shapetest.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -10,6 +11,7 @@ import android.widget.Toast
 import com.alibaba.android.vlayout.layout.GridLayoutHelper
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper
 import com.cndll.shapetest.R
+import com.cndll.shapetest.activity.TurnOnActivity
 import com.cndll.shapetest.adapter.BannerAdapter
 import com.cndll.shapetest.adapter.VLayoutAdapter
 import com.cndll.shapetest.api.ApiUtill
@@ -164,6 +166,7 @@ class PagerHomeFragment : BaseVlayoutFragment() {
                             binding.image.setImageURI(todaySaleMode[position].image_url)
                             binding.item = todaySaleMode[position]
                             binding.position = position
+                            binding.root.setOnClickListener { context.startActivity(Intent(context, TurnOnActivity::class.java).setAction(CommodityInfoFragment.FLAG)) }
                         }
                         // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
                     }).creatAdapter()

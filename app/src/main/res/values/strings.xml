@@ -158,4 +158,8 @@
 
     <string name="viewfinderview_status_text1">将二维码/条码放入取景框内</string>
     <string name="viewfinderview_status_text2">即可自动扫描</string>
+
+    <!--vip-->
+    <string name="isvip">恭喜成为瓶体VIP会员</string>
+    <string name="notvip">你还不是平台VIP会员</string>
 </resources>

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="info"
-            type="com.cndll.shapetest.api.bean.response.BrandResponse.DatasBean"/>
+            type="com.cndll.shapetest.bean.CommodityVerInfoMode"/>
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -28,7 +28,7 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:lines="2"
-            android:text="@{info.goods_name}"
+            android:text="@{info.name}"
             android:textColor="#000000"
             android:textSize="@dimen/text_size_mid" />
 

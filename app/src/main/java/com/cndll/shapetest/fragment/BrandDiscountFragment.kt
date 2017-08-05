@@ -19,6 +19,7 @@ import com.cndll.shapetest.adapter.VLayoutAdapter
 import com.cndll.shapetest.api.ApiUtill
 import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.api.bean.response.BrandResponse
+import com.cndll.shapetest.bean.CommodityVerInfoMode
 import com.cndll.shapetest.databinding.ItemCommodityVerBinding
 import com.cndll.shapetest.databinding.ItemLimitTabBinding
 import com.cndll.shapetest.weight.VLayoutHelper
@@ -29,13 +30,13 @@ import com.cndll.shapetest.weight.VLayoutHelper
  * Use the [BrandDiscountFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class BrandDiscountFragment : BaseVlayoutFragment() {
+open class BrandDiscountFragment : BaseVlayoutFragment() {
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
     var selectPosition = 0
-    var brandMode: ArrayList<BrandResponse.DatasBean> = arrayListOf()
+    open var brandMode: ArrayList<CommodityVerInfoMode> = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
@@ -61,7 +62,7 @@ class BrandDiscountFragment : BaseVlayoutFragment() {
                 setOnBindView({ itemView, position ->
                     val binding = itemView.dataBinding as ItemCommodityVerBinding
                     binding.info = brandMode[position]
-                    binding.image.setImageURI(brandMode[position].img_url)
+                    binding.image.setImageURI(brandMode[position].imgUrl)
                 }).creatAdapter()
     }
 
@@ -125,7 +126,18 @@ class BrandDiscountFragment : BaseVlayoutFragment() {
                     baseResponse ->
                     when (mode) {
                         (MODE_PULL) -> {
-                            brandMode = (baseResponse as BrandResponse).datas
+                            for (i in (baseResponse as BrandResponse).datas) {
+                                val c = CommodityVerInfoMode()
+                                c.goodsID = i.goods_id
+                                c.nowPrice = i.goods_price
+                                c.oldPreci = i.goods_marketprice
+                                c.name = i.goods_name
+                                c.imgUrl = i.img_url
+                                c.goodsUrl = i.goods_url
+                                c.score = i.score
+                                c.storeID = i.store_id
+                                brandMode.add(c)
+                            }
                             commodityAdapter.mCount = baseResponse.datas.size
                             commodityAdapter.notifyDataSetChanged()
                         }

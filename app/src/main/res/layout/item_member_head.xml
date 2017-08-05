@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="isvipimage"
+            type="Integer" />
+
+        <variable
+            name="notvipimage"
+            type="Integer" />
+
+        <variable
+            name="info"
+            type="com.cndll.shapetest.bean.InfoMode" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:background="@mipmap/member_head_bg"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/avatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12dp"
+                android:scaleType="fitXY"
+                app:actualImageScaleType="fitXY"
+                app:layout_heightPercent="25%w"
+                app:layout_widthPercent="25%w"
+                app:placeholderImage="@mipmap/ic_launcher_round"
+                app:roundAsCircle="true" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/avatar"
+                android:layout_marginBottom="6dp"
+                android:layout_toRightOf="@id/avatar"
+                android:gravity="center"
+                android:text="@{info.info}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_big"
+                app:layout_heightPercent="12%w" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/avatar"
+                android:layout_below="@+id/name"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@id/avatar"
+                android:gravity="center"
+                android:text='@{info.mBoolean? @string/isvip:@string/notvip}'
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_small"
+                app:layout_heightPercent="12%h" />
+
+            <ImageView
+                android:id="@+id/status_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/avatar"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@id/name"
+                android:background="@mipmap/vip"
+                android:scaleType="fitXY"
+                android:src="@{info.mBoolean?isvipimage:notvipimage}"
+                app:layout_heightPercent="12%w"
+                app:layout_widthPercent="12%w" />
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:text="平台VIP会员可以购买以下商品"
+            android:textSize="@dimen/text_size_small" />
+    </LinearLayout>
+</layout>

@@ -76,10 +76,10 @@ dependencies {
     compile('com.alibaba.android:vlayout:1.0.9@aar') {
         transitive = true
     }
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     compile('com.alibaba.android:vlayout:1.0.9@aar') {
         transitive = true
     }
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'io.reactivex:rxjava:1.2.1'
