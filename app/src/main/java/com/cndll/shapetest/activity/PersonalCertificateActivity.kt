@@ -16,6 +16,7 @@ import com.facebook.drawee.view.SimpleDraweeView
 import com.facebook.imagepipeline.common.ResizeOptions
 import com.facebook.imagepipeline.request.ImageRequestBuilder
 import java.io.File
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -30,6 +31,8 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
     var simCardF: File? = null
     var simCardOther: File? = null
     val c = Calendar.getInstance()
+    var dateStart:String=""
+    var dateEnd:String=""
     override fun initBindingVar() {
     }
 
@@ -77,16 +80,16 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
         binding.cerDateStart.setOnClickListener {
 
             DoubleDatePickerDialog(this@PersonalCertificateActivity, 0, DoubleDatePickerDialog.OnDateSetListener { startDatePicker, startYear, startMonthOfYear, startDayOfMonth ->
-                val textString = String.format("%d-%d-%d\n", startYear,
+                dateStart = String.format("%d-%d-%d\n", startYear,
                         startMonthOfYear + 1, startDayOfMonth)
-                binding.cerDateStartText.text = textString
+                binding.cerDateStartText.text = dateStart
             }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show()
         }
         binding.cerDateEnd.setOnClickListener {
             DoubleDatePickerDialog(this@PersonalCertificateActivity, 0, DoubleDatePickerDialog.OnDateSetListener { startDatePicker, startYear, startMonthOfYear, startDayOfMonth ->
-                val textString = String.format("%d-%d-%d\n", startYear,
+                dateEnd = String.format("%d-%d-%d\n", startYear,
                         startMonthOfYear + 1, startDayOfMonth)
-                binding.cerDateEndText.text = textString
+                binding.cerDateEndText.text = dateEnd
             }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show()
         }
 
@@ -148,9 +151,15 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             isNull = false
             msg = "请填写正确的邮箱"
         }
+        if(dateStart.equals("") || dateEnd.equals("")){
+            isNull=false
+            msg="请选择身份证有效期"
+        }
 
-
-
+        if(Constants.compare_date(binding.cerDateStartText.text.toString().trim(),binding.cerDateEndText.text.toString().trim())==1){
+            isNull = false
+            msg = "结束日期不能大于，等于开始日期"
+        }
         if (simUserCard == null) {
             isNull = false
             msg = "请选择手持身份证照片"

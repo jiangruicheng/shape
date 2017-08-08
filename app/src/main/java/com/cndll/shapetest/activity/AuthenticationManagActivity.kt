@@ -21,6 +21,8 @@ class AuthenticationManagActivity : BaseActivity<ActivityAuthenticationManagBind
     var simLoan: File? = null
     var simBusiness: File? = null
     val c = Calendar.getInstance()
+    var dateStart:String=""
+    var dateEnd:String=""
     override fun initBindingVar() {
     }
 
@@ -73,17 +75,17 @@ class AuthenticationManagActivity : BaseActivity<ActivityAuthenticationManagBind
         //时间
         binding.authManagDateStart.setOnClickListener {
             DoubleDatePickerDialog(this@AuthenticationManagActivity, 0, DoubleDatePickerDialog.OnDateSetListener { startDatePicker, startYear, startMonthOfYear, startDayOfMonth ->
-                val textString = String.format("%d-%d-%d\n", startYear,
+                dateStart = String.format("%d-%d-%d\n", startYear,
                         startMonthOfYear + 1, startDayOfMonth)
-                binding.authManagDateStartText.text = textString
+                binding.authManagDateStartText.text = dateStart
             }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show()
 
         }
         binding.authManagDateEnd.setOnClickListener {
             DoubleDatePickerDialog(this@AuthenticationManagActivity, 0, DoubleDatePickerDialog.OnDateSetListener { startDatePicker, startYear, startMonthOfYear, startDayOfMonth ->
-                val textString = String.format("%d-%d-%d\n", startYear,
+                dateEnd = String.format("%d-%d-%d\n", startYear,
                         startMonthOfYear + 1, startDayOfMonth)
-                binding.authManagDateEndText.text = textString
+                binding.authManagDateEndText.text = dateEnd
             }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show()
         }
 
@@ -123,6 +125,14 @@ class AuthenticationManagActivity : BaseActivity<ActivityAuthenticationManagBind
         if (binding.authManagReferralCode.text.toString().trim().equals("")) {
             isNull = false
             msg = "请输入推荐码"
+        }
+        if(dateStart.equals("") || dateEnd.equals("")){
+            isNull=false
+            msg="请选择身份证有效期"
+        }
+        if(Constants.compare_date(binding.authManagDateStartText.text.toString().trim(),binding.authManagDateEndText.text.toString().trim())==1){
+            isNull=false
+            msg="结束日期不能大于,等于开始日期"
         }
         if (simCard == null) {
             isNull = false

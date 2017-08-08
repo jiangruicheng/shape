@@ -22,6 +22,10 @@ import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 /**
@@ -56,6 +60,7 @@ public final class Constants {
         }
         return pMobile.length() <= 0 ? false : true;
     }
+
     // 验证邮箱
     public static Boolean validEmail(String pEmail) {
         if (pEmail == null
@@ -126,7 +131,7 @@ public final class Constants {
             return;
         }
         int totalHeight = 0;
-        for (int i = 0; i < listAdapter.getCount()+1; i++) { // listAdapter.getCount()返回数据项的数目
+        for (int i = 0; i < listAdapter.getCount() + 1; i++) { // listAdapter.getCount()返回数据项的数目
             View listItem = listAdapter.getView(i, null, listView);
             listItem.measure(0, 0); // 计算子项View 的宽高
             totalHeight += listItem.getMeasuredHeight(); // 统计所有子项的总高度
@@ -138,6 +143,7 @@ public final class Constants {
         // params.height最后得到整个ListView完整显示需要的高度
         listView.setLayoutParams(params);
     }
+
     /**
      * 检查当前网络是否可用
      *
@@ -145,28 +151,21 @@ public final class Constants {
      * @return
      */
 
-    public static boolean isNetworkAvailable(Activity activity)
-    {
+    public static boolean isNetworkAvailable(Activity activity) {
         Context context = activity.getApplicationContext();
         // 获取手机所有连接管理对象（包括对wi-fi,net等连接的管理）
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        if (connectivityManager == null)
-        {
+        if (connectivityManager == null) {
             return false;
-        }
-        else
-        {
+        } else {
             // 获取NetworkInfo对象
             NetworkInfo[] networkInfo = connectivityManager.getAllNetworkInfo();
 
-            if (networkInfo != null && networkInfo.length > 0)
-            {
-                for (int i = 0; i < networkInfo.length; i++)
-                {
+            if (networkInfo != null && networkInfo.length > 0) {
+                for (int i = 0; i < networkInfo.length; i++) {
                     // 判断当前网络状态是否为连接状态
-                    if (networkInfo[i].getState() == NetworkInfo.State.CONNECTED)
-                    {
+                    if (networkInfo[i].getState() == NetworkInfo.State.CONNECTED) {
                         return true;
                     }
                 }
@@ -174,4 +173,35 @@ public final class Constants {
         }
         return false;
     }
+
+    /**
+     * 日期比较
+     */
+    public static int compare_date(String DATE1, String DATE2) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date dt1 = df.parse(DATE1);
+            Date dt2 = df.parse(DATE2);
+            if (dt1.getTime() > dt2.getTime()) {
+                return 1;
+            } else if (dt1.getTime() < dt2.getTime()) {
+                return -1;
+            } else {
+                return 1;
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return 0;
+    }
+
+    /**
+     * 转换日期
+     * */
+    public static String strDate(String dateNum) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String datetime = sdf.format(Long.parseLong(dateNum)*1000);
+        return datetime;
+    }
+
 }

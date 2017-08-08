@@ -102,7 +102,7 @@ class PersonalCertificateManagActivity : BaseActivity<ActivityPersonalCertificat
             isNull = false
             msg = "请输入联系人姓名"
         }
-        if (!Constants.validMobile(binding.perManagHandPhoto.text.toString().trim())) {
+        if (!Constants.validMobile(binding.perManagPhone.text.toString().trim())) {
             isNull = false
             msg = "请输入正确手机号"
         }

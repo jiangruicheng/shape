@@ -1,5 +1,6 @@
 package com.cndll.shapetest.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -13,6 +14,7 @@ import com.cndll.shapetest.databinding.ActivityDonateBinding
  * */
 class DonateActivity : BaseActivity<ActivityDonateBinding>() {
     lateinit var context: Context
+    var bundles = Bundle()
     override fun initBindingVar() {
     }
 
@@ -42,25 +44,34 @@ class DonateActivity : BaseActivity<ActivityDonateBinding>() {
             binding.idUserNum.visibility = View.GONE
             binding.linDonateType.visibility = View.GONE
             binding.titlebar.titleRight.setOnClickListener {
-                var bundles = Bundle()
                 bundles.putString("type", "donate")
                 context.startActivity(Intent(context, IntegralActivity::class.java).putExtras(bundles))
             }
-
-            binding.donateChoseText.setOnClickListener {
-                //选择选中类型
-                binding.donateChoseText.text = "普通积分"
-            }
         } else if (type.equals("Remain")) {
             binding.titlebar.title.text = "积分转增"
+            bundles.putString("type", "remain")
             binding.titlebar.titleRight.setOnClickListener {
-                var bundles = Bundle()
-                bundles.putString("type", "remain")
+                //查看记录
                 context.startActivity(Intent(context, IntegralActivity::class.java).putExtras(bundles))
+            }
+            binding.donateChoseText.setOnClickListener {
+                //选择选中类型
+                startActivityForResult(Intent(context,SetPwdActivity::class.java).putExtras(bundles),101)
             }
         }
 
 
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==101){
+            if(resultCode== 101){
+                binding.donateChoseText.text = data!!.extras.getString("chers")
+            }
+
+        }
+    }
+
 
 }

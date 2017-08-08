@@ -328,6 +328,38 @@
             app:layout_widthPercent="10%w" />
     </com.zhy.android.percent.support.PercentLinearLayout>
 
+    <TextView
+        android:id="@+id/don_code_account"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="1dp"
+        android:gravity="center|left"
+        app:layout_heightPercent="8%h"
+        android:background="@color/white"
+        android:text="激励积分"
+        app:layout_paddingLeftPercent="10%"
+        android:textColor="@color/contents_text"
+        app:layout_textSizePercent="@string/text_size_big"
+        app:layout_widthPercent="100%w"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/don_red_vouchers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="1dp"
+        android:gravity="center|left"
+        app:layout_heightPercent="8%h"
+        android:background="@color/white"
+        android:text="红包抵用卷"
+        app:layout_paddingLeftPercent="10%"
+        android:textColor="@color/contents_text"
+        app:layout_textSizePercent="@string/text_size_big"
+        app:layout_widthPercent="100%w"
+        android:visibility="gone"
+        />
+
+
 
 </com.zhy.android.percent.support.PercentLinearLayout>
 </layout>

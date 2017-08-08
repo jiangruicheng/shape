@@ -6,23 +6,32 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.adapter.VouchersAdapter
+import com.cndll.shapetest.api.AppRequest
+import com.cndll.shapetest.api.BaseObservable
+import com.cndll.shapetest.api.bean.BaseResponse
+import com.cndll.shapetest.api.bean.response.VouchersResponse
 import com.cndll.shapetest.databinding.FragmentVouchersBinding
+import com.cndll.shapetest.tools.SharedPreferenceUtil
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 /**
  * Created by Administrator on 2017/8/2 0002.
+ * 抵用卷
  */
 
-class VouchersFragment : BaseFragment<FragmentVouchersBinding>(){
-    var adapter:VouchersAdapter?=null
-    var moreList=ArrayList<ContentValues>()
-    var mNumber:Int?=null
+class VouchersFragment : BaseFragment<FragmentVouchersBinding>() {
+    var adapter: VouchersAdapter? = null
+    var moreList = ArrayList<VouchersResponse.DatasBean>()
+    var mNumber: Int? = null
     fun newInstance(number: Int): Fragment {
-        var bundle=Bundle()
-        bundle.putInt("type",number)
+        var bundle = Bundle()
+        bundle.putInt("type", number)
         val fragment = VouchersFragment()
-        fragment.arguments=bundle
+        fragment.arguments = bundle
         return fragment
     }
 
@@ -35,23 +44,26 @@ class VouchersFragment : BaseFragment<FragmentVouchersBinding>(){
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        initBinding(R.layout.fragment_vouchers,null)
-        mView=binding.root
+        initBinding(R.layout.fragment_vouchers, null)
+        mView = binding.root
         initView()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    private fun initView(){
-        if(mNumber==1){
-            if(adapter==null){
-                adapter= VouchersAdapter(moreList,context,1)
-                binding.vouchersList.adapter=adapter
+    /**
+     * 加载数据
+     * */
+    private fun initView() {
+        if (mNumber == 1) {
+            if (adapter == null) {
+                adapter = VouchersAdapter(moreList, context, 1)
+                binding.vouchersList.adapter = adapter
             }
             httpVouchers()
-        }else if (mNumber==2){
-            if(adapter==null){
-                adapter= VouchersAdapter(moreList,context,2)
-                binding.vouchersList.adapter=adapter
+        } else if (mNumber == 2) {
+            if (adapter == null) {
+                adapter = VouchersAdapter(moreList, context, 2)
+                binding.vouchersList.adapter = adapter
             }
             httpVouchers()
         }
@@ -61,20 +73,31 @@ class VouchersFragment : BaseFragment<FragmentVouchersBinding>(){
     /**
      * 抵用卷
      * */
-    private fun httpVouchers(){
-        var con: ContentValues = ContentValues()
-        con.put("time","1027-5-5")
-        con.put("price","22.55")
-        moreList.add(con)
-        var con1: ContentValues = ContentValues()
-        con1.put("time","1027-5-5")
-        con1.put("price","22.55")
-        moreList.add(con1)
-        var con2: ContentValues = ContentValues()
-        con2.put("time","1027-5-5")
-        con2.put("price","22.55")
-        moreList.add(con2)
-        adapter!!.notifyDataSetChanged()
-    }
+    private fun httpVouchers() {
 
+        AppRequest.getAPI().vouchersRed("voucher", "redPacket", SharedPreferenceUtil.read("key", "")).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                t as VouchersResponse
+                if (t.code == 200) {
+                    moreList.addAll(t.datas)
+                    adapter!!.notifyDataSetChanged()
+                } else {
+                    Toast.makeText(context, t.error_massage, Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+                e!!.printStackTrace()
+            }
+        })
+
+
+    }
 }

@@ -316,8 +316,13 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>(), SalesAdapter.setOn
                     moerList.addAll(cah)
                     adapter!!.notifyDataSetChanged()
                     binding.ordersPull.onRefreshComplete()
+                    if(t.datas.size<=0){
+                        binding.ordersPull.mode = PullToRefreshBase.Mode.PULL_FROM_START
+                    }else{
+                        binding.ordersPull.mode = PullToRefreshBase.Mode.BOTH
+                    }
                 } else {
-                    binding.ordersPull.mode = PullToRefreshBase.Mode.PULL_FROM_START
+                   Toast.makeText(context,"请求失败",Toast.LENGTH_SHORT).show()
                 }
             }
         })

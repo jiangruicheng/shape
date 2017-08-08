@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/bg"
+            android:divider="@color/bg"
             android:dividerHeight="50px"></ListView>
 
     </com.zhy.android.percent.support.PercentLinearLayout>

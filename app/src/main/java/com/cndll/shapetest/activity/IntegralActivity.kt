@@ -10,6 +10,7 @@ import com.cndll.shapetest.R
 import com.cndll.shapetest.databinding.ActivityIntegralBinding
 import java.util.*
 import android.widget.PopupWindow
+import com.cndll.shapetest.adapter.IntergralRecodeAdapter
 import kotlin.collections.ArrayList
 
 /**
@@ -21,6 +22,9 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
     lateinit var pwMyPopWindow: PopupWindow
     lateinit var lvPopupList: ListView
     val NUM_OF_VISIBLE_LIST_ROWS: Int = 6
+    //适配器
+    var context: Context? = null
+    var adapter: IntergralRecodeAdapter? = null
 
     override fun initBindingVar() {
     }
@@ -34,6 +38,7 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_integral)
+        context = this
         initView()
     }
 
@@ -132,8 +137,9 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
         }
         listDate.forEach(::println)
     }
-
-
+    /**
+     * 日期选择
+     * */
     private fun initPopupWindow() {
         date()
         val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

@@ -57,13 +57,10 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         mView = binding.root
         initSrco()
         initView()
+        httpUserInfo()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun onResume() {
-        super.onResume()
-        httpUserInfo()
-    }
     /**
      * 加载滑动标题栏变色
      * */
@@ -101,7 +98,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
         // 头像，个人资料
         binding.mineIcon.setOnClickListener {
             bundle.putSerializable("userInfo",userInfo)
-            context.startActivity(Intent(context,UserInfoActivity::class.java).putExtras(bundle))
+            startActivityForResult(Intent(context,UserInfoActivity::class.java).putExtras(bundle),102)
         }
         //申请成为业务员
         binding.mineSalesMan.setOnClickListener{
@@ -228,6 +225,9 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
                 Toast.makeText(context,"content:"+content,Toast.LENGTH_LONG).show()
 
             }
+        }
+        if(requestCode==102 && resultCode==102){
+            httpUserInfo()
         }
     }
 

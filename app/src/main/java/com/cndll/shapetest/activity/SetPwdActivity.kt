@@ -72,6 +72,18 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
             binding.pwdHelp.visibility = View.GONE
             binding.linEnterprise.visibility = View.GONE
             binding.linUser.visibility = View.GONE
+        }else if (type.equals("remain")){
+            binding.pwdSig.visibility = View.GONE
+            binding.pwdPay.visibility = View.GONE
+            binding.pwdCopy.visibility = View.GONE
+            binding.pwdDeal.visibility = View.GONE
+            binding.pwdHelp.visibility = View.GONE
+            binding.linEnterprise.visibility = View.GONE
+            binding.linUser.visibility = View.GONE
+            binding.linManagEnterprise.visibility = View.GONE
+            binding.linManagUser.visibility = View.GONE
+            binding.donRedVouchers.visibility=View.VISIBLE
+            binding.donCodeAccount.visibility=View.VISIBLE
         }
 
         //申请企业合伙人
@@ -116,6 +128,16 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
         // 个人认证
         binding.linUser.setOnClickListener {
             context.startActivity(Intent(context, PersonalCertificateActivity::class.java))
+        }
+        //选择红包
+        binding.donRedVouchers.setOnClickListener {
+            setResult(101,Intent().putExtra("chers","红包抵用卷"))
+            finish()
+        }
+        //选择抵用卷
+        binding.donCodeAccount.setOnClickListener {
+            setResult(101,Intent().putExtra("chers","激励积分"))
+            finish()
         }
     }
 }
