@@ -12,6 +12,7 @@ import com.cndll.shapetest.adapter.VouchersAdapter
 import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.api.BaseObservable
 import com.cndll.shapetest.api.bean.BaseResponse
+import com.cndll.shapetest.api.bean.response.ScoreIndexResponse
 import com.cndll.shapetest.api.bean.response.VouchersResponse
 import com.cndll.shapetest.databinding.FragmentVouchersBinding
 import com.cndll.shapetest.tools.SharedPreferenceUtil
@@ -56,24 +57,20 @@ class VouchersFragment : BaseFragment<FragmentVouchersBinding>() {
     private fun initView() {
         if (mNumber == 1) {
             if (adapter == null) {
-                adapter = VouchersAdapter(moreList, context, 1)
+                adapter = VouchersAdapter(moreList, context, 1, null)
                 binding.vouchersList.adapter = adapter
             }
-            httpVouchers()
+            httpVouchersRed()
         } else if (mNumber == 2) {
-            if (adapter == null) {
-                adapter = VouchersAdapter(moreList, context, 2)
-                binding.vouchersList.adapter = adapter
-            }
             httpVouchers()
         }
 
     }
 
     /**
-     * 抵用卷
+     * 红包抵用卷
      * */
-    private fun httpVouchers() {
+    private fun httpVouchersRed() {
 
         AppRequest.getAPI().vouchersRed("voucher", "redPacket", SharedPreferenceUtil.read("key", "")).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
             override fun onNext(t: BaseResponse?) {
@@ -97,7 +94,39 @@ class VouchersFragment : BaseFragment<FragmentVouchersBinding>() {
                 e!!.printStackTrace()
             }
         })
-
-
     }
+
+    /***
+     * 通用抵用卷
+     * */
+    private fun httpVouchers() {
+        AppRequest.getAPI().vouchers("voucher", "score_voucher", SharedPreferenceUtil.read("key", "")).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                t as ScoreIndexResponse
+                if (t.code == 200) {
+                    var vou = VouchersResponse.DatasBean()
+                    moreList.add(0, vou)
+                    if (adapter == null) {
+                        adapter = VouchersAdapter(moreList, context, 2, t.datas.score_voucher)
+                        binding.vouchersList.adapter = adapter
+                    }
+                } else {
+                    Toast.makeText(context, t.error_massage, Toast.LENGTH_SHORT).show()
+                }
+
+
+            }
+
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+                e!!.printStackTrace()
+            }
+        })
+    }
+
 }

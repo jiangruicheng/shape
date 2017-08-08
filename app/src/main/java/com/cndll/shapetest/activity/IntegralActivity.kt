@@ -11,6 +11,14 @@ import com.cndll.shapetest.databinding.ActivityIntegralBinding
 import java.util.*
 import android.widget.PopupWindow
 import com.cndll.shapetest.adapter.IntergralRecodeAdapter
+import com.cndll.shapetest.api.AppRequest
+import com.cndll.shapetest.api.BaseObservable
+import com.cndll.shapetest.api.bean.BaseResponse
+import com.cndll.shapetest.api.bean.response.ScoreAllResponse
+import com.cndll.shapetest.tools.SharedPreferenceUtil
+import com.handmark.pulltorefresh.library.PullToRefreshBase
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 import kotlin.collections.ArrayList
 
 /**
@@ -24,15 +32,19 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
     val NUM_OF_VISIBLE_LIST_ROWS: Int = 6
     //适配器
     var context: Context? = null
+    lateinit var listView: ListView
+    var page: Int = 1
     var adapter: IntergralRecodeAdapter? = null
+    var moreList = ArrayList<ScoreAllResponse.DatasBean.ScoreBean>()
+    var cahList = ArrayList<ScoreAllResponse.DatasBean.ScoreBean>()
 
     override fun initBindingVar() {
     }
 
     override fun initTitle() {
         binding.titlebar.back.setOnClickListener { finish() }
-        binding.titlebar.menu.visibility = View.VISIBLE
-        binding.titlebar.menu.setBackgroundResource(R.mipmap.date_sache)
+        binding.titlebar.menuDate.visibility = View.VISIBLE
+        binding.titlebar.menuDate.setImageResource(R.mipmap.date_sache)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,24 +58,52 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
      * 加载控件
      * */
     private fun initView() {
+        binding.integralPull.setOnRefreshListener(onListener2)
+        binding.integralPull.getLoadingLayoutProxy(false, true).setPullLabel("上拉中")
+        binding.integralPull.mode = PullToRefreshBase.Mode.BOTH
+        binding.integralPull.getLoadingLayoutProxy(false, true).setRefreshingLabel("刷新中")
+        binding.integralPull.getLoadingLayoutProxy(false, true).setReleaseLabel("释放刷新")
+        listView = binding.integralPull.refreshableView
+        listView.divider = resources.getDrawable(R.color.gray)
+        listView.dividerHeight = 6
+
         var bundle = this.intent.extras
         var type = bundle.getString("type")
 
         if (type.equals("incentive")) {
             binding.titlebar.title.text = "激励积分"
             binding.manageTx.visibility = View.GONE
+            if (adapter == null) {
+                adapter = IntergralRecodeAdapter(context, moreList, 1)
+                listView.adapter = adapter
+            }
+            page = 1
+            httpScore("score", "excitation_score")
 
         } else if (type.equals("score")) {
             binding.titlebar.title.text = "消费积分"
             binding.manageTx.visibility = View.GONE
             binding.funTx.visibility = View.GONE
             binding.typeTx.text = "消费店铺"
+            if (adapter == null) {
+                adapter = IntergralRecodeAdapter(context, moreList, 2)
+                listView.adapter = adapter
+            }
+            page = 1
+            httpScore("score", "shop_score")
+
 
         } else if (type.equals("subsidiary")) {
             binding.titlebar.title.text = "积分明细"
             binding.manageTx.visibility = View.GONE
             binding.funTx.visibility = View.GONE
             binding.typeTx.text = "商品名称"
+            if (adapter == null) {
+                adapter = IntergralRecodeAdapter(context, moreList, 3)
+                listView.adapter = adapter
+            }
+            page = 1
+            httpScore("score", "score_info")
         } else if (type.equals("fund")) {
             binding.titlebar.title.text = "基金捐款"
             binding.manageTx.visibility = View.GONE
@@ -91,18 +131,43 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
         }
 
         initPopupWindow()
-        binding.titlebar.menu.setOnClickListener {
+        binding.titlebar.menuDate.setOnClickListener {
             if (pwMyPopWindow.isShowing) {
                 pwMyPopWindow.dismiss()// 关闭
             } else {
                 Toast.makeText(this@IntegralActivity, "点击", Toast.LENGTH_LONG).show()
                 var location = intArrayOf(1, 2)
-                binding.titlebar.menu.getLocationOnScreen(location)
-                pwMyPopWindow.showAtLocation(binding.titlebar.menu, Gravity.NO_GRAVITY, location[0], location[1] + binding.titlebar.menu.height)// 显示
+                binding.titlebar.menuDate.getLocationOnScreen(location)
+                pwMyPopWindow.showAtLocation(binding.titlebar.menuDate, Gravity.NO_GRAVITY, location[0], location[1] + binding.titlebar.menuDate.height)// 显示
             }
 
         }
     }
+
+
+    /**
+     * 刷新数据
+     * */
+    internal var onListener2: PullToRefreshBase.OnRefreshListener2<ListView> = object : PullToRefreshBase.OnRefreshListener2<ListView> {
+        override fun onPullUpToRefresh(refreshView: PullToRefreshBase<ListView>?) {
+            if (cahList != null && cahList.size > 0) {
+                cahList.clear()
+            }
+            page = page + 1
+
+        }
+
+        override fun onPullDownToRefresh(refreshView: PullToRefreshBase<ListView>?) {
+            if (cahList != null && cahList.size > 0) {
+                cahList.clear()
+            }
+            if (moreList != null && moreList.size > 0) {
+                moreList.clear()
+            }
+            page = 1
+        }
+    }
+
 
     /**
      * 获取日期
@@ -137,6 +202,7 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
         }
         listDate.forEach(::println)
     }
+
     /**
      * 日期选择
      * */
@@ -152,7 +218,7 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
                 intArrayOf(R.id.tv_list_item))
         lvPopupList.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             Toast.makeText(this@IntegralActivity,
-                    listDate.get(position).get("share_key"),
+                    "选择的日期" + listDate.get(position).get("share_key"),
                     Toast.LENGTH_LONG).show()
         }
         // 控制popupwindow的宽度和高度自适应
@@ -164,6 +230,44 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
         pwMyPopWindow.setBackgroundDrawable(this.resources.getDrawable(
                 R.drawable.bg_popupwindow))// 设置背景图片，不能在布局中设置，要通过代码来设置
         pwMyPopWindow.isOutsideTouchable = true// 触摸popupwindow外部，popupwindow消失。这个要求你的popupwindow要有背景图片才可以成功，如上
+
+
+    }
+
+
+    /**
+     * 积分列表
+     * */
+    private fun httpScore(act: String, op: String) {
+        AppRequest.getAPI().score(act, op, SharedPreferenceUtil.read("key", ""), page.toString()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+                e!!.printStackTrace()
+            }
+
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                t as ScoreAllResponse
+                if (t.code == 200) {
+                    cahList.addAll(t.datas.score)
+                    moreList.addAll(cahList)
+                    adapter!!.notifyDataSetChanged()
+                    binding.integralPull.onRefreshComplete()
+                    if (t.datas.score.size <= 0) {
+                        binding.integralPull.mode = PullToRefreshBase.Mode.PULL_FROM_START
+                    } else {
+                        binding.integralPull.mode = PullToRefreshBase.Mode.BOTH
+                    }
+                } else {
+                    Toast.makeText(context, t.error_massage, Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        })
 
 
     }

@@ -20,6 +20,8 @@ import com.cndll.shapetest.api.bean.response.LogisticsResponse;
 import com.cndll.shapetest.api.bean.response.MemberResponse;
 import com.cndll.shapetest.api.bean.response.OrderListResponse;
 import com.cndll.shapetest.api.bean.response.RegisterResponse;
+import com.cndll.shapetest.api.bean.response.ScoreAllResponse;
+import com.cndll.shapetest.api.bean.response.ScoreIndexResponse;
 import com.cndll.shapetest.api.bean.response.ScoreResponse;
 import com.cndll.shapetest.api.bean.response.TestResponse;
 import com.cndll.shapetest.api.bean.response.UserInfoResponse;
@@ -189,5 +191,17 @@ public interface Api {
     @FormUrlEncoded
     @POST("mobile/index.php/")
     Observable<VouchersResponse> vouchersRed(@Field("act") String act, @Field("op") String op, @Field("key") String key);
+
+    /**普通抵用卷**/
+    @GET("mobile/index.php/")
+    Observable<ScoreIndexResponse> vouchers(@Query("act") String act,@Query("op") String op,@Query("key") String key);
+
+    /**我的激励首页**/
+    @GET("mobile/index.php/")
+    Observable<ScoreIndexResponse> soreIndex(@Query("act") String act,@Query("op") String op,@Query("key") String key);
+
+    /**激励积分-消费积分-积分明细**/
+    @GET("mobile/index.php/")
+    Observable<ScoreAllResponse> score(@Query("act") String act,@Query("op") String op,@Query("key") String key,@Query("page") String page);
 }
 

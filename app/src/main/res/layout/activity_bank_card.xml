@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg"
-    tools:context="com.cndll.shapetest.activity.BankCardActivity">
 
-    <include
-        android:id="@+id/titlebar"
-        layout="@layout/titlebar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="8%h"
-        app:layout_widthPercent="100%w" />
+    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:orientation="vertical"
+        tools:context="com.cndll.shapetest.activity.BankCardActivity">
 
-</com.zhy.android.percent.support.PercentLinearLayout>
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/titlebar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%h"
+            app:layout_widthPercent="100%w" />
+
+        <ListView
+            android:id="@+id/bank_card_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/bg"
+            android:dividerHeight="50px"></ListView>
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
 </layout>

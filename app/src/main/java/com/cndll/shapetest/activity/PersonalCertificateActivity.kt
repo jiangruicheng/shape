@@ -31,8 +31,8 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
     var simCardF: File? = null
     var simCardOther: File? = null
     val c = Calendar.getInstance()
-    var dateStart:String=""
-    var dateEnd:String=""
+    var dateStart: String = ""
+    var dateEnd: String = ""
     override fun initBindingVar() {
     }
 
@@ -142,7 +142,10 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             isNull = false
             msg = "请填写正确手机号"
         }
-
+        if (binding.cerPhoneEdit.text.toString().trim().equals(binding.cerRealPhoneEdit.text.toString().trim())) {
+            isNull = false
+            msg = "输入手机号需要相同"
+        }
         if (binding.cerCardEdit.text.toString().trim().equals("")) {
             isNull = false
             msg = "请填写身份证号"
@@ -151,12 +154,12 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             isNull = false
             msg = "请填写正确的邮箱"
         }
-        if(dateStart.equals("") || dateEnd.equals("")){
-            isNull=false
-            msg="请选择身份证有效期"
+        if (dateStart.equals("") || dateEnd.equals("")) {
+            isNull = false
+            msg = "请选择身份证有效期"
         }
 
-        if(Constants.compare_date(binding.cerDateStartText.text.toString().trim(),binding.cerDateEndText.text.toString().trim())==1){
+        if (Constants.compare_date(binding.cerDateStartText.text.toString().trim(), binding.cerDateEndText.text.toString().trim()) == 1) {
             isNull = false
             msg = "结束日期不能大于，等于开始日期"
         }
@@ -173,10 +176,18 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             msg = "请选择身份证反面"
         }
         if (isNull) {
-            Toast.makeText(context, "ok", Toast.LENGTH_LONG).show()
+            httpPerson()
         } else {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
             return
         }
+    }
+
+    /***
+     * 认证
+     * */
+    private fun httpPerson() {
+
+
     }
 }

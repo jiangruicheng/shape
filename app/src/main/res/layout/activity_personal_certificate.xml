@@ -212,62 +212,59 @@
                         android:id="@+id/cer_date_start"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        app:layout_widthPercent="25%w"
-                        app:layout_heightPercent="10%h"
+                        android:layout_gravity="center"
                         android:background="@drawable/shape_main_button_edit"
-                        >
+                        android:orientation="horizontal"
+                        app:layout_heightPercent="10%h"
+                        app:layout_widthPercent="25%w">
+
                         <TextView
                             android:id="@+id/cer_date_start_text"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="2014-7-8"
-                            app:layout_widthPercent="80%w"
                             android:padding="5dp"
-                            />
+                            android:text="2014-7-8"
+                            app:layout_widthPercent="80%w" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/up_down"
                             android:layout_gravity="center"
-                            />
+                            android:src="@mipmap/up_down" />
                     </com.zhy.android.percent.support.PercentLinearLayout>
-
 
 
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="1dp"
-                        android:background="@color/gray"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
-                        app:layout_widthPercent="3%w"
-                        ></View>
+                        android:background="@color/gray"
+                        app:layout_widthPercent="3%w"></View>
+
                     <com.zhy.android.percent.support.PercentLinearLayout
                         android:id="@+id/cer_date_end"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        app:layout_widthPercent="25%w"
-                        app:layout_heightPercent="10%h"
+                        android:layout_gravity="center"
                         android:background="@drawable/shape_main_button_edit"
-                        >
+                        android:orientation="horizontal"
+                        app:layout_heightPercent="10%h"
+                        app:layout_widthPercent="25%w">
+
                         <TextView
                             android:id="@+id/cer_date_end_text"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="2014-7-8"
-                            app:layout_widthPercent="80%w"
                             android:padding="5dp"
-                            />
+                            android:text="2014-7-8"
+                            app:layout_widthPercent="80%w" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/up_down"
                             android:layout_gravity="center"
-                            />
+                            android:src="@mipmap/up_down" />
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
 
@@ -321,7 +318,7 @@
                         android:gravity="center|left"
                         android:text="收款账号："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="14%h"
+                        app:layout_heightPercent="15%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="20%w" />
 
@@ -330,8 +327,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="5555555555"
-                        app:layout_heightPercent="14%h"
+                        android:hint="6173992811423"
+                        app:layout_heightPercent="15%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="70%w" />
