@@ -196,12 +196,59 @@ public final class Constants {
     }
 
     /**
-     * 转换日期
-     * */
+     * 转换日期----时间戳转换时间
+     */
     public static String strDate(String dateNum) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String datetime = sdf.format(Long.parseLong(dateNum)*1000);
+        String datetime = sdf.format(Long.parseLong(dateNum) * 1000);
         return datetime;
     }
 
+    /**
+     * 转换日期----日期转换时间戳
+     */
+    public static String dateToStamp(String s) throws ParseException {
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
+        Date date = simpleDateFormat.parse(s);
+        long ts = date.getTime() / 1000;
+        res = String.valueOf(ts);
+        return res;
+    }
+
+    /**
+     * 显示银行卡号------截取
+     */
+    private String replaceCard(String src) {
+        StringBuilder builder = new StringBuilder();
+//        String str1=src.substring(0,src.length()-2);
+        String str2 = src.substring(src.length() - 12, src.length());
+//        builder.append(str1);
+        builder.append("**** **** **** ");
+        builder.append(str2);
+        return builder.toString();
+    }
+
+    public static String strEndTime(String time) {
+        StringBuilder builder = new StringBuilder();
+        int str2 = Integer.valueOf(time.substring(5, time.length()));
+        int str1 = Integer.valueOf(time.substring(0, 4));
+        if (str2 == 12) {
+            str1 = str1 + 1;
+            str2 = 1;
+        } else {
+            str2 = str2 + 1;
+        }
+        if (str2 == 10 || str2 == 11 || str2 == 12) {
+            builder.append(str1);
+            builder.append("-");
+            builder.append(str2);
+        } else {
+            builder.append(str1);
+            builder.append("-0");
+            builder.append(str2);
+        }
+
+        return builder.toString();
+    }
 }

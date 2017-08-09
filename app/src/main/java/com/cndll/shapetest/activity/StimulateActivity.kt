@@ -19,6 +19,7 @@ import rx.schedulers.Schedulers
  * */
 class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
     private lateinit var context: Context
+    var scoreBean=ScoreIndexResponse.DatasBean()
     var bundle = Bundle()
     override fun initBindingVar() {
     }
@@ -57,11 +58,13 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
         //激励积分
         binding.incentivePointsLin.setOnClickListener {
             bundle.putString("type", "incentive")
+            bundle.putString("score", scoreBean.member_excitation_score)
             context.startActivity(Intent(context, IntegralActivity::class.java).putExtras(bundle))
         }
         //积分明细
         binding.subsidiaryLin.setOnClickListener {
             bundle.putString("type", "subsidiary")
+            bundle.putString("score", (scoreBean.member_excitation_score.toDouble() + scoreBean.shop_score.toDouble()).toString())
             context.startActivity(Intent(context, IntegralActivity::class.java).putExtras(bundle))
         }
         //基金捐款
@@ -76,6 +79,7 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
         //消费积分
         binding.scoreLin.setOnClickListener {
             bundle.putString("type", "score")
+            bundle.putString("score", scoreBean.shop_score)
             context.startActivity(Intent(context, IntegralActivity::class.java).putExtras(bundle))
         }
         //我的抵用卷
@@ -90,10 +94,15 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
         }
         //回购记录
         binding.buybackRecordLin.setOnClickListener {
-            bundle.putString("type", "score")
+            bundle.putString("type", "buyBack")
             context.startActivity(Intent(context, IntegralActivity::class.java).putExtras(bundle))
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        httpScore()
     }
 
     /**
@@ -114,7 +123,7 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
                 super.onNext(t)
                 t as ScoreIndexResponse
                 if (t.code == 200) {
-
+                    scoreBean=t.datas
                     if (t.datas.state == 0) {
                         binding.stimulateType.text = "身份认证中，请等待认证"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"
@@ -145,6 +154,4 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
             }
         })
     }
-
-
 }

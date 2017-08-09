@@ -10,23 +10,14 @@ import java.util.List;
 
 public class ScoreAllResponse extends BaseResponse {
 
+
     /**
      * code : 200
-     * error_massage : 未登录
-     * datas : {"score":[{"type":"1","score":"1111.00","time":"1111","operation_type":"0"}]}
+     * datas : [{"type":"0","score":"11.00","time":"1502258579","operation_type":"0"},{"type":"1","score":"111.00","time":"1502258579","operation_type":"1"}]
      */
 
     private int code;
     private String error_massage;
-    private DatasBean datas;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
 
     public String getError_massage() {
         return error_massage;
@@ -36,87 +27,85 @@ public class ScoreAllResponse extends BaseResponse {
         this.error_massage = error_massage;
     }
 
-    public DatasBean getDatas() {
+    private List<DatasBean> datas;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public List<DatasBean> getDatas() {
         return datas;
     }
 
-    public void setDatas(DatasBean datas) {
+    public void setDatas(List<DatasBean> datas) {
         this.datas = datas;
     }
 
     public static class DatasBean {
-        private List<ScoreBean> score;
+        /**
+         * type : 0
+         * score : 11.00
+         * time : 1502258579
+         * operation_type : 0
+         */
 
-        public List<ScoreBean> getScore() {
+        private String type;
+        private String score;
+        private String time;
+        private String operation_type;
+        private String store_name;
+        private String goods_name;
+
+        public String getStore_name() {
+            return store_name;
+        }
+
+        public void setStore_name(String store_name) {
+            this.store_name = store_name;
+        }
+
+        public String getGoods_name() {
+            return goods_name;
+        }
+
+        public void setGoods_name(String goods_name) {
+            this.goods_name = goods_name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getScore() {
             return score;
         }
 
-        public void setScore(List<ScoreBean> score) {
+        public void setScore(String score) {
             this.score = score;
         }
 
-        public static class ScoreBean {
-            /**
-             * type : 1
-             * score : 1111.00
-             * time : 1111
-             * operation_type : 0
-             */
+        public String getTime() {
+            return time;
+        }
 
-            private String type;
-            private String score;
-            private String time;
-            private String operation_type;
-            private String store_name;
-            private String goods_name;
+        public void setTime(String time) {
+            this.time = time;
+        }
 
-            public String getGoods_name() {
-                return goods_name;
-            }
+        public String getOperation_type() {
+            return operation_type;
+        }
 
-            public void setGoods_name(String goods_name) {
-                this.goods_name = goods_name;
-            }
-
-            public String getStore_name() {
-                return store_name;
-            }
-
-            public void setStore_name(String store_name) {
-                this.store_name = store_name;
-            }
-
-            public String getType() {
-                return type;
-            }
-
-            public void setType(String type) {
-                this.type = type;
-            }
-
-            public String getScore() {
-                return score;
-            }
-
-            public void setScore(String score) {
-                this.score = score;
-            }
-
-            public String getTime() {
-                return time;
-            }
-
-            public void setTime(String time) {
-                this.time = time;
-            }
-
-            public String getOperation_type() {
-                return operation_type;
-            }
-
-            public void setOperation_type(String operation_type) {
-                this.operation_type = operation_type;
-            }
+        public void setOperation_type(String operation_type) {
+            this.operation_type = operation_type;
         }
     }
 }

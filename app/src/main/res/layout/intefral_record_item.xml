@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/bg"
     android:orientation="vertical">
 
     <com.zhy.android.percent.support.PercentLinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal"
         app:layout_heightPercent="8%h"
@@ -20,13 +20,13 @@
         <TextView
             android:id="@+id/record_time_tx"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
             android:text="时间"
             android:textColor="@color/contents_text"
-            app:layout_heightPercent="85%h"
+            app:layout_heightPercent="10%h"
             app:layout_textSizePercent="@string/text_size_big" />
 
         <TextView
@@ -38,7 +38,7 @@
             android:gravity="center"
             android:text="类型"
             android:textColor="@color/contents_text"
-            app:layout_heightPercent="85%h"
+            app:layout_heightPercent="10%h"
             app:layout_textSizePercent="@string/text_size_big" />
 
         <TextView
@@ -50,7 +50,7 @@
             android:gravity="center"
             android:text="方式"
             android:textColor="@color/contents_text"
-            app:layout_heightPercent="85%h"
+            app:layout_heightPercent="10%h"
             app:layout_textSizePercent="@string/text_size_big" />
 
         <TextView
@@ -62,7 +62,7 @@
             android:gravity="center"
             android:text="管理费"
             android:textColor="@color/contents_text"
-            app:layout_heightPercent="85%h"
+            app:layout_heightPercent="10%h"
             app:layout_textSizePercent="@string/text_size_big" />
 
         <TextView
@@ -74,7 +74,7 @@
             android:gravity="center"
             android:text="积分"
             android:textColor="@color/contents_text"
-            app:layout_heightPercent="85%h"
+            app:layout_heightPercent="10%h"
             app:layout_textSizePercent="@string/text_size_big" />
 
     </com.zhy.android.percent.support.PercentLinearLayout>

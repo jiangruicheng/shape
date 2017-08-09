@@ -129,7 +129,7 @@ public interface Api {
     /**忘记密码**/
     @FormUrlEncoded
     @POST("mobile/index.php/")
-    Observable<RegisterResponse> newLoginPwd(@Field("act") String act,@Field("op") String op,@Field("username") String username,@Field("password") String password,@Field("code") String code,@Field("type") String type);
+    Observable<HttpCodeResponse> newLoginPwd(@Field("act") String act,@Field("op") String op,@Field("username") String username,@Field("password") String password,@Field("code") String code,@Field("type") String type);
 
     /**修改登錄密碼**/
     @FormUrlEncoded
@@ -202,6 +202,11 @@ public interface Api {
 
     /**激励积分-消费积分-积分明细**/
     @GET("mobile/index.php/")
-    Observable<ScoreAllResponse> score(@Query("act") String act,@Query("op") String op,@Query("key") String key,@Query("page") String page);
+    Observable<ScoreAllResponse> score(@Query("act") String act,@Query("op") String op,@Query("key") String key,@Query("page") String page,@Query("start_time") String start_time,@Query("end_time") String end_time);
+
+    /**积分转增**/
+    @FormUrlEncoded
+    @POST("mobile/index.php/")
+    Observable<HttpCodeResponse> scoreOperation(@Field("act") String act,@Field("op") String op,@Field("key") String key,@Field("score") String score,@Field("pay_password") String pay_password,@Field("member_num") String member_num,@Field("type") String type);
 }
 

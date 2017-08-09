@@ -30,7 +30,40 @@
         app:layout_textSizePercent="@string/text_size_mid"
         app:layout_widthPercent="90%w"
         />
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/pwd_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        app:layout_widthPercent="100%w"
+        app:layout_heightPercent="8%h"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        app:layout_paddingPercent="1%"
+        android:visibility="gone"
+        >
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_marginTopPercent="2%h"
+            app:layout_marginBottomPercent="2%h"
+            android:gravity="center"
+            android:text="设置支付密码"
+            android:textColor="@color/contents_text"
+            app:layout_textSizePercent="@string/text_size_big"
+            app:layout_widthPercent="30%w"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@mipmap/right"
+            app:layout_paddingPercent="3%"
+            app:layout_marginLeftPercent="60%"
+            app:layout_widthPercent="10%w" />
+    </com.zhy.android.percent.support.PercentLinearLayout>
     <com.zhy.android.percent.support.PercentLinearLayout
         android:id="@+id/pwd_sig"
         android:layout_width="match_parent"
@@ -351,7 +384,7 @@
         android:gravity="center|left"
         app:layout_heightPercent="8%h"
         android:background="@color/white"
-        android:text="红包抵用卷"
+        android:text="通用抵用卷"
         app:layout_paddingLeftPercent="10%"
         android:textColor="@color/contents_text"
         app:layout_textSizePercent="@string/text_size_big"

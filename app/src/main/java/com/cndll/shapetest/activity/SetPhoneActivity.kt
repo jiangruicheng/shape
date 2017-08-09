@@ -14,6 +14,7 @@ import com.cndll.shapetest.api.bean.response.RegisterResponse
 import com.cndll.shapetest.databinding.ActivitySetPhoneBinding
 import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.tools.SharedPreferenceUtil
+import retrofit2.http.HTTP
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -50,8 +51,8 @@ class SetPhoneActivity : BaseActivity<ActivitySetPhoneBinding>() {
             binding.oldPhone.visibility = View.GONE
             binding.newPwd.visibility = View.GONE
             binding.phoneSedCode.setOnClickListener {
-                if(!Constants.validMobile(binding.phoneNum.text.toString().trim())){
-                    Toast.makeText(context,"请输入正确的手机号",Toast.LENGTH_LONG).show()
+                if (!Constants.validMobile(binding.phoneNum.text.toString().trim())) {
+                    Toast.makeText(context, "请输入正确的手机号", Toast.LENGTH_LONG).show()
                     return@setOnClickListener
                 }
                 sendCode(binding.phoneNum.text.toString().trim())
@@ -61,9 +62,18 @@ class SetPhoneActivity : BaseActivity<ActivitySetPhoneBinding>() {
             binding.bindPhone.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_red))
             binding.bindPhone.text = "修改密码"
             binding.newPhone.visibility = View.GONE
-            binding.oldPhone.text="请获取"+SharedPreferenceUtil.read("userPhone","")+"手机号验证码"
+            binding.oldPhone.text = "请获取" + SharedPreferenceUtil.read("userPhone", "") + "手机号验证码"
             binding.phoneSedCode.setOnClickListener {
-                sendCode(SharedPreferenceUtil.read("userPhone",""))
+                sendCode(SharedPreferenceUtil.read("userPhone", ""))
+            }
+        } else if (type.equals("sendPwd")) {
+            binding.titlebar.title.text = "设置支付密码"
+            binding.bindPhone.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_red))
+            binding.bindPhone.text = "设置密码"
+            binding.newPhone.visibility = View.GONE
+            binding.oldPhone.text = "请获取" + SharedPreferenceUtil.read("userPhone", "") + "手机号验证码"
+            binding.phoneSedCode.setOnClickListener {
+                sendCode(SharedPreferenceUtil.read("userPhone", ""))
             }
         }
 
@@ -91,14 +101,16 @@ class SetPhoneActivity : BaseActivity<ActivitySetPhoneBinding>() {
             }
         }
 
-        if(isNull){
-            if(type.equals("payPwd")){
+        if (isNull) {
+            if (type.equals("payPwd")) {
                 updatePayPhone()
-            }else if(type.equals("bPhone")){
-            //////////////////////////////////////////////////////////////////////////////////////////
+            } else if (type.equals("bPhone")) {
+                //////////////////////////////////////////////////////////////////////////////////////////
+            } else if (type.equals("sendPwd")) {
+                updatePayPhone()
             }
-        }else{
-            Toast.makeText(context,msg,Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
             return
         }
     }
@@ -118,10 +130,11 @@ class SetPhoneActivity : BaseActivity<ActivitySetPhoneBinding>() {
     }
 
     /** 修改支付密码*/
-    private fun updatePayPhone(){
-        AppRequest.getAPI().newLoginPwd("login","forgotpassword",SharedPreferenceUtil.read("userPhone",""),binding.userNewPwd.text.toString().trim(),binding.phoneCode.text.toString().trim(),"pay_password").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object  : BaseObservable(){
+    private fun updatePayPhone() {
+        AppRequest.getAPI().newLoginPwd("login", "forgotpassword", SharedPreferenceUtil.read("userPhone", ""), binding.userNewPwd.text.toString().trim(), binding.phoneCode.text.toString().trim(), "pay_password").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
             override fun onError(e: Throwable?) {
                 super.onError(e)
+                e!!.printStackTrace()
             }
 
             override fun onCompleted() {
@@ -130,12 +143,12 @@ class SetPhoneActivity : BaseActivity<ActivitySetPhoneBinding>() {
 
             override fun onNext(t: BaseResponse?) {
                 super.onNext(t)
-                t as RegisterResponse
-                if(t.code==200){
-                    Toast.makeText(context,"设置新密码成功",Toast.LENGTH_LONG).show()
+                t as HttpCodeResponse
+                if (t.code == 200) {
+                    Toast.makeText(context, "设置新密码成功", Toast.LENGTH_LONG).show()
                     finish()
-                }else{
-                    Toast.makeText(context,t.message,Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
                 }
             }
         })
@@ -143,8 +156,8 @@ class SetPhoneActivity : BaseActivity<ActivitySetPhoneBinding>() {
 
 
     /**发送验证码*/
-    private fun sendCode(phone:String){
-        AppRequest.getAPI().sendCode("login","sendCode",phone).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object  : BaseObservable(){
+    private fun sendCode(phone: String) {
+        AppRequest.getAPI().sendCode("login", "sendCode", phone).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
             override fun onError(e: Throwable?) {
                 super.onError(e)
             }
@@ -156,11 +169,11 @@ class SetPhoneActivity : BaseActivity<ActivitySetPhoneBinding>() {
             override fun onNext(t: BaseResponse?) {
                 super.onNext(t)
                 t as HttpCodeResponse
-                if(t.code==200){
-                    Toast.makeText(context,"发送成功请注意查收",Toast.LENGTH_LONG).show()
+                if (t.code == 200) {
+                    Toast.makeText(context, "发送成功请注意查收", Toast.LENGTH_LONG).show()
                     cT.start()
-                }else{
-                    Toast.makeText(context,t.message,Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
                     return
                 }
             }

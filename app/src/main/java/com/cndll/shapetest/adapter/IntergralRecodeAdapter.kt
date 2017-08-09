@@ -13,7 +13,7 @@ import com.cndll.shapetest.tools.Constants
 /**
  * Created by Administrator on 2017/8/7 0007.
  */
-class IntergralRecodeAdapter(private val context: Context?, private val contentValues: List<ScoreAllResponse.DatasBean.ScoreBean>, private val type: Int) : BaseAdapter() {
+class IntergralRecodeAdapter(private val context: Context?, private val contentValues: List<ScoreAllResponse.DatasBean>, private val type: Int) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertView = convertView
         var holder: ViewHolder
