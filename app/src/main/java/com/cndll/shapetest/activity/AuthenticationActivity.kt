@@ -178,7 +178,7 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding>() {
             msg="请选择开户许可证"
         }
         if(isNull){
-
+            //弃用---------等待开启
         }else{
             Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
             return

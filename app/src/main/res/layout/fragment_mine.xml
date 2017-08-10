@@ -475,6 +475,7 @@
                     android:padding="5dp">
 
                     <TextView
+                        android:id="@+id/mine_apply_text"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
@@ -505,6 +506,7 @@
                     android:padding="5dp">
 
                     <TextView
+                        android:id="@+id/mine_managing_text"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
@@ -535,6 +537,7 @@
                     android:padding="5dp">
 
                     <TextView
+                        android:id="@+id/mine_partner_text"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
@@ -565,6 +568,7 @@
                     android:padding="5dp">
 
                     <TextView
+                        android:id="@+id/mine_sales_text"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"

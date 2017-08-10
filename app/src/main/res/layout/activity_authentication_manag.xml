@@ -134,12 +134,13 @@
                     app:layout_widthPercent="100%w">
 
                     <TextView
+                        android:id="@+id/textView9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
                         android:text="再次输入手机号："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="10%h"
+                        app:layout_heightPercent="11%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="35%w" />
 
@@ -150,7 +151,7 @@
                         android:background="@null"
                         android:hint="13196367367"
                         android:inputType="phone"
-                        app:layout_heightPercent="8%h"
+                        app:layout_heightPercent="11%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="60%w" />
@@ -167,11 +168,11 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="32dp"
                         android:gravity="center|left"
                         android:text="身份证号："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="10%h"
+                        app:layout_heightPercent="11%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="20%w" />
 
@@ -181,7 +182,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="755164563434632"
-                        app:layout_heightPercent="8%h"
+                        app:layout_heightPercent="11%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="75%w" />
@@ -203,7 +204,7 @@
                         android:gravity="center|left"
                         android:text="身份证有效期："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="11%h"
+                        app:layout_heightPercent="12%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="35%w" />
 
@@ -211,6 +212,7 @@
                         android:id="@+id/auth_manag_date_start"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        app:layout_heightPercent="11%h"
                         android:background="@drawable/shape_main_button_edit"
                         android:orientation="horizontal"
                         app:layout_widthPercent="25%w">
@@ -243,6 +245,7 @@
                         android:id="@+id/auth_manag_date_end"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        app:layout_heightPercent="11%h"
                         android:background="@drawable/shape_main_button_edit"
                         android:orientation="horizontal"
                         app:layout_widthPercent="25%w">
@@ -278,7 +281,7 @@
                         android:gravity="center|left"
                         android:text="个人邮箱："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="11%h"
+                        app:layout_heightPercent="12%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="20%w" />
 
@@ -288,7 +291,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="123456@qq.com"
-                        app:layout_heightPercent="8%h"
+                        app:layout_heightPercent="12%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="75%w" />
@@ -309,7 +312,7 @@
                         android:gravity="center|left"
                         android:text="收款账号："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="12%h"
+                        app:layout_heightPercent="13%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="20%w" />
 
@@ -319,7 +322,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="755164563434632"
-                        app:layout_heightPercent="8%h"
+                        app:layout_heightPercent="13%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="75%w" />
@@ -350,7 +353,7 @@
                         android:gravity="center|left"
                         android:text="推荐码："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="12%h"
+                        app:layout_heightPercent="14%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="20%w" />
 
@@ -360,7 +363,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="123459"
-                        app:layout_heightPercent="11%h"
+                        app:layout_heightPercent="14%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="75%w" />

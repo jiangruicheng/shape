@@ -16,60 +16,63 @@ import com.cndll.shapetest.wxapi.AppRegister
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
+/**
+ * 添加银行卡
+ * */
 class AddBankActivity : BaseActivity<ActivityAddBankBinding>() {
-    lateinit var context:Context
-    lateinit var cT:MyCountTime
+    lateinit var context: Context
+    lateinit var cT: MyCountTime
     override fun initBindingVar() {
     }
 
     override fun initTitle() {
-        binding.titlebar.title.text="添加银行卡"
+        binding.titlebar.title.text = "添加银行卡"
         binding.titlebar.back.setOnClickListener { finish() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_add_bank)
-        context=this
-        cT=MyCountTime(60000,1000)
+        context = this
+        cT = MyCountTime(60000, 1000)
         /**
          * 成功，失败跳转
          * */
         binding.bankNext.setOnClickListener {
-            context.startActivity(Intent(context,AddCarStareActivity::class.java))
+            context.startActivity(Intent(context, AddCarStareActivity::class.java))
         }
 
         //查看协议
         binding.applyDeal.setOnClickListener {
-            var bundle=Bundle()
-            bundle.putString("type","bank")
-            context.startActivity(Intent(context,UserMessageActivity::class.java).putExtras(bundle))
+            var bundle = Bundle()
+            bundle.putString("type", "bank")
+            context.startActivity(Intent(context, UserMessageActivity::class.java).putExtras(bundle))
         }
 
         binding.bankChose.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked){
-                binding.bankNext.isClickable=true
+            if (isChecked) {
+                binding.bankNext.isClickable = true
                 binding.bankNext.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_red))
-            }else{
-                binding.bankNext.isClickable=false
+            } else {
+                binding.bankNext.isClickable = false
                 binding.bankNext.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_gray))
             }
         }
         //发送验证码
         binding.bankSendCode.setOnClickListener {
-        if (!Constants.validMobile(binding.bankPhone.text.toString().trim())){
-            Toast.makeText(context,"请输入正确的验证码",Toast.LENGTH_LONG).show()
-            return@setOnClickListener
-        }
-            AppRequest.getAPI().sendCode("login","sendCode",binding.bankPhone.text.toString()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object  : BaseObservable(){
+            if (!Constants.validMobile(binding.bankPhone.text.toString().trim())) {
+                Toast.makeText(context, "请输入正确的手机号", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            AppRequest.getAPI().sendCode("login", "sendCode", binding.bankPhone.text.toString().trim()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
                 override fun onNext(t: BaseResponse?) {
                     super.onNext(t)
                     t as HttpCodeResponse
-                    if(t.code==200){
-                        Toast.makeText(context,"发送成功请注意查收",Toast.LENGTH_LONG).show()
+                    if (t.code == 200) {
+                        Toast.makeText(context, "发送成功请注意查收", Toast.LENGTH_LONG).show()
                         cT.start()
-                    }else{
-                        Toast.makeText(context,t.message,Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
                         return
                     }
                 }
@@ -91,15 +94,15 @@ class AddBankActivity : BaseActivity<ActivityAddBankBinding>() {
     /**
      * 验证码-定时任务
      * */
-    inner class MyCountTime(millisInFuture:Long,countDownInterval:Long):CountDownTimer(millisInFuture, countDownInterval){
+    inner class MyCountTime(millisInFuture: Long, countDownInterval: Long) : CountDownTimer(millisInFuture, countDownInterval) {
         override fun onFinish() {
-            binding.bankSendCode.text="重新获取"
-            binding.bankSendCode.isClickable=true
+            binding.bankSendCode.text = "重新获取"
+            binding.bankSendCode.isClickable = true
         }
 
         override fun onTick(millisUntilFinished: Long) {
-            binding.bankSendCode.text=(""+millisUntilFinished/1000+"s后重新获取")
-            binding.bankSendCode.isClickable=false
+            binding.bankSendCode.text = ("" + millisUntilFinished / 1000 + "s后重新获取")
+            binding.bankSendCode.isClickable = false
         }
     }
 }

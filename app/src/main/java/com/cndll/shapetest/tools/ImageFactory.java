@@ -5,7 +5,8 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.util.Base64;
 
-import com.tencent.mm.opensdk.utils.Log;
+
+import com.umeng.socialize.utils.Log;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;

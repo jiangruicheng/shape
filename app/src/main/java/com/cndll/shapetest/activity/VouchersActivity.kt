@@ -25,7 +25,7 @@ class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
     var adapterAdv:AdvanceOrderAdapter?=null
 
     private var fragemnts=ArrayList<Fragment>()
-    private val titles = arrayOf("红包抵用卷", "普通抵用卷")
+    private val titles = arrayOf("红包抵用卷", "通用抵用卷")
     private var adapterPage: MyViewPagerAdapter?=null
 
     override fun initBindingVar() {

@@ -37,6 +37,7 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
 
         if (type.equals("pwd")) {
             binding.titlebar.title.text = "修改密码"
+            binding.pwdPayment.visibility = View.VISIBLE
             binding.pwdCopy.visibility = View.GONE
             binding.pwdDeal.visibility = View.GONE
             binding.pwdHelp.visibility = View.GONE
@@ -72,6 +73,18 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
             binding.pwdHelp.visibility = View.GONE
             binding.linEnterprise.visibility = View.GONE
             binding.linUser.visibility = View.GONE
+        } else if (type.equals("remain")) {
+            binding.pwdSig.visibility = View.GONE
+            binding.pwdPay.visibility = View.GONE
+            binding.pwdCopy.visibility = View.GONE
+            binding.pwdDeal.visibility = View.GONE
+            binding.pwdHelp.visibility = View.GONE
+            binding.linEnterprise.visibility = View.GONE
+            binding.linUser.visibility = View.GONE
+            binding.linManagEnterprise.visibility = View.GONE
+            binding.linManagUser.visibility = View.GONE
+            binding.donRedVouchers.visibility = View.VISIBLE
+            binding.donCodeAccount.visibility = View.VISIBLE
         }
 
         //申请企业合伙人
@@ -86,6 +99,11 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
         //修改登录密码
         binding.pwdSig.setOnClickListener {
             context.startActivity(Intent(context, UpdatePwdActivity::class.java))
+        }
+        //设置支付密码
+        binding.pwdPayment.setOnClickListener {
+            bundle.putString("type", "sendPwd")
+            context.startActivity(Intent(context, SetPhoneActivity::class.java).putExtras(bundle))
         }
         //修改支付密码
         binding.pwdPay.setOnClickListener {
@@ -116,6 +134,16 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
         // 个人认证
         binding.linUser.setOnClickListener {
             context.startActivity(Intent(context, PersonalCertificateActivity::class.java))
+        }
+        //选择红包
+        binding.donRedVouchers.setOnClickListener {
+            setResult(101, Intent().putExtra("chers", "voucher"))
+            finish()
+        }
+        //选择抵用卷
+        binding.donCodeAccount.setOnClickListener {
+            setResult(101, Intent().putExtra("chers", "score"))
+            finish()
         }
     }
 }

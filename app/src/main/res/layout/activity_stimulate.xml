@@ -45,6 +45,7 @@
                 app:layout_widthPercent="45%w" />
 
             <TextView
+                android:id="@+id/stimulate_money_safety"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -89,6 +90,7 @@
                 app:layout_widthPercent="70%w">
 
                 <TextView
+                    android:id="@+id/stimulate_name_context"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -107,6 +109,7 @@
                     app:layout_widthPercent="100%w">
 
                     <TextView
+                        android:id="@+id/stimulate_code"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center|right"
@@ -144,8 +147,7 @@
                         android:gravity="center"
                         android:text="回购"
                         android:textColor="@color/white"
-                        app:layout_textSizePercent="@string/text_size_big"
-                      />
+                        app:layout_textSizePercent="@string/text_size_big" />
 
                     <TextView
                         android:id="@+id/sit_donate_text"
@@ -156,8 +158,7 @@
                         android:text="直捐"
                         android:textColor="@color/white"
                         app:layout_marginLeftPercent="3%"
-                        app:layout_textSizePercent="@string/text_size_big"
-                         />
+                        app:layout_textSizePercent="@string/text_size_big" />
 
                 </com.zhy.android.percent.support.PercentLinearLayout>
             </com.zhy.android.percent.support.PercentLinearLayout>
@@ -215,6 +216,7 @@
                             app:layout_widthPercent="100%w" />
 
                         <TextView
+                            android:id="@+id/stimulate_purst_code"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center|left"
@@ -266,6 +268,7 @@
                             app:layout_widthPercent="100%w" />
 
                         <TextView
+                            android:id="@+id/stimulate_integ_code"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center|left"
@@ -317,6 +320,7 @@
                             app:layout_widthPercent="100%w" />
 
                         <TextView
+                            android:id="@+id/stimulate_donate_code"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center|left"
@@ -369,6 +373,7 @@
                             app:layout_widthPercent="100%w" />
 
                         <TextView
+                            android:id="@+id/stimulate_bank_code"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center|left"
@@ -430,6 +435,7 @@
                             app:layout_widthPercent="100%w" />
 
                         <TextView
+                            android:id="@+id/stimulate_banlance_code"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center|left"
@@ -481,6 +487,7 @@
                             app:layout_widthPercent="95%w" />
 
                         <TextView
+                            android:id="@+id/stimulate_roll_code"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center|left"
