@@ -8,13 +8,15 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.BaseAdapter
+import android.widget.BaseExpandableListAdapter
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.cndll.shapetest.R
 import com.cndll.shapetest.RXbus.EventType
 import com.cndll.shapetest.RXbus.RxBus
 import com.cndll.shapetest.activity.SearchActivity
 import com.cndll.shapetest.databinding.FragmentClassificationBinding
-import com.facebook.drawee.view.SimpleDraweeView
 import kotlinx.android.synthetic.main.fragment_classification.*
 import rx.Observer
 
@@ -89,14 +91,14 @@ class ClassificationFragment : BaseFragment<FragmentClassificationBinding>() {
         binding.titlebar.root.setBackgroundResource(R.color.titleRed)
         binding.titlebar.title.text = "众享消费"
         binding.titlebar.title.setTextColor(Color.WHITE)
-        binding.titlebar.back.visibility = View.GONE
-        binding.titlebar.menu.visibility = View.VISIBLE
-        val drawable = resources.getDrawable(R.mipmap.search)
+        binding.titlebar.back.visibility = View.INVISIBLE
+        binding.titlebar.menuDate.visibility = View.VISIBLE
+        val drawable = resources.getDrawable(R.mipmap.search_title)
         drawable.setBounds(0, 0, drawable.getMinimumWidth(),
                 drawable.getMinimumHeight())
-        binding.titlebar.menu.setCompoundDrawables(drawable, null, null, null)
-        binding.titlebar.menu.setBackgroundResource(R.color.titleRed)
-        binding.titlebar.menu.setOnClickListener { activity.startActivity(Intent(activity, SearchActivity::class.java)) }
+        binding.titlebar.menuDate.setImageDrawable(drawable)
+        binding.titlebar.menuDate.setBackgroundResource(R.color.titleRed)
+        binding.titlebar.menuDate.setOnClickListener { activity.startActivity(Intent(activity, SearchActivity::class.java)) }
     }
 
     fun initTab() {

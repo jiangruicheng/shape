@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_button_gray"
+        app:layout_marginBottomPercent="12%w"
+        app:layout_marginRightPercent="4%w"
+        app:layout_marginTopPercent="12%w">
+
+        <EditText
+            android:id="@+id/edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:drawableLeft="@mipmap/search_title"
+            android:drawablePadding="4dp"
+            android:textSize="@dimen/text_size_small"
+            app:layout_marginLeftPercent="2%w"
+            app:layout_marginRightPercent="2%w" />
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/edit"
+            android:layout_centerVertical="true"
+            android:scaleType="centerInside"
+            android:src="@mipmap/delete_title" />
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+</layout>

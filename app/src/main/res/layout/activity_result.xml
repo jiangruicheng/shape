@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.cndll.shapetest.activity.ResultActivity">
+
+        <include
+            android:id="@+id/classi_title"
+            layout="@layout/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:layout_heightPercent="8%h" />
+
+        <include
+            android:id="@+id/search_title"
+            layout="@layout/titlebar_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_heightPercent="8%h" />
+
+        <FrameLayout
+            android:id="@+id/frame_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+</layout>

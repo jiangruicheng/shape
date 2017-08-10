@@ -1,10 +1,5 @@
 package com.cndll.shapetest.fragment
 
-import `in`.srain.cube.views.ptr.PtrClassicDefaultHeader
-import `in`.srain.cube.views.ptr.PtrDefaultHandler
-import `in`.srain.cube.views.ptr.PtrFrameLayout
-import `in`.srain.cube.views.ptr.PtrHandler
-import `in`.srain.cube.views.ptr.util.PtrLocalDisplay
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -20,8 +15,6 @@ import com.cndll.shapetest.api.ApiUtill
 import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.api.bean.response.HomePageResponse
 import com.cndll.shapetest.databinding.FragmentHomeBinding
-import rx.Observable
-import rx.Observer
 
 
 /**
@@ -58,7 +51,7 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.titlebar.root.setBackgroundResource(R.color.titleRed)
         binding.titlebar.title.text = "众享消费"
         binding.titlebar.title.setTextColor(Color.WHITE)
-        binding.titlebar.back.visibility = View.GONE
+        binding.titlebar.back.visibility = View.INVISIBLE
         binding.titlebar.menu.visibility = View.GONE
 
         ApiUtill.getInstance().getApi(AppRequest.getAPI().homePage(/*"index",*/"1", "1"), {

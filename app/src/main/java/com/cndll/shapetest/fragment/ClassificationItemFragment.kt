@@ -1,22 +1,23 @@
 package com.cndll.shapetest.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Looper
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import com.alibaba.android.vlayout.layout.GridLayoutHelper
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper
 import com.cndll.shapetest.R
 import com.cndll.shapetest.RXbus.EventType
 import com.cndll.shapetest.RXbus.RxBus
+import com.cndll.shapetest.activity.ResultActivity
 import com.cndll.shapetest.api.bean.response.ClassItemResponse
 import com.cndll.shapetest.weight.VLayoutHelper
 import rx.Observer
-import java.util.ArrayList
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -64,7 +65,7 @@ class ClassificationItemFragment : BaseVlayoutFragment() {
 
         if (titlePositions.contains((recycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())) {
             RxBus.getDefault().post(EventType().setType(EventType.LISTTAB).setExtra(titlePositions.indexOf((recycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()).toString()))
-            Toast.makeText(context, (recycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition().toString(), Toast.LENGTH_SHORT).show()
+            // Toast.makeText(context, (recycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition().toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -83,7 +84,7 @@ class ClassificationItemFragment : BaseVlayoutFragment() {
                     setViewType(5).
                     setRes(R.layout.classification_head).
                     setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            windowManager.defaultDisplay.height / 15)).
+                            windowManager.defaultDisplay.height / 10)).
                     setOnBindView({ itemView, position ->
 
                     }).creatAdapter())
@@ -96,20 +97,15 @@ class ClassificationItemFragment : BaseVlayoutFragment() {
                     setViewType(6).
                     setRes(R.layout.classfication_body).
                     setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            windowManager.defaultDisplay.height / 15)).
+                            windowManager.defaultDisplay.height / 12)).
                     setOnBindView({ itemView, position ->
-
+                        itemView.itemView.setOnClickListener { context.startActivity(Intent(context, ResultActivity::class.java).putExtra(ResultActivity.MODE, ResultActivity.SEARCH).putExtra(ResultActivity.TYPE, ResultActivity.COMMODIYT)) }
                     }).setOnBindViewOffset({ itemView, position ->
                 (itemView.itemView.findViewById(R.id.text) as TextView).setText(position.toString())
             }).creatAdapter())
             titlePosition = titlePosition + 12
             titlePositions.add(titlePosition)
         }
-
-        recycler.postDelayed({
-            recycler.smoothScrollToPosition(24)
-        }, 1000)
-
     }
 
     override fun pullData(mode: Int): Boolean {

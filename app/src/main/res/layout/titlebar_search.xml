@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/titleBackGround"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/titleBackGround"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/back" />
+
+        <include
+            android:id="@+id/edit"
+            layout="@layout/search_edit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="10"
+            android:background="@drawable/shape_button_gray"
+
+            />
+        <!--app:layout_marginBottomPercent="12%w"
+                    app:layout_marginRightPercent="4%w"
+                    app:layout_marginTopPercent="12%w"-->
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

@@ -45,12 +45,20 @@
                     android:textSize="@dimen/text_size_mid" />
 
                 <ImageView
+                    android:id="@+id/skew"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/search_type"
                     android:layout_marginLeft="2dp"
                     android:layout_toRightOf="@+id/search_type"
                     android:src="@mipmap/skew" />
+
+                <include
+                    android:layout_toRightOf="@+id/skew"
+                    layout="@layout/search_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true" />
             </com.zhy.android.percent.support.PercentRelativeLayout>
         </com.zhy.android.percent.support.PercentLinearLayout>
 
