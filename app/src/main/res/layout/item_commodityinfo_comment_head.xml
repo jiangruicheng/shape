@@ -3,6 +3,7 @@
 
     <data>
 
+
         <variable
             name="info"
             type="com.cndll.shapetest.api.bean.response.CommodityResponse.DatasBean" />
@@ -37,7 +38,7 @@
             android:layout_height="match_parent"
             android:layout_toLeftOf="@+id/location"
             android:gravity="center_vertical"
-            android:text='@{info.good_percent}'
+            android:text='@{info.good_percent+@string/tab}'
             android:textColor="@color/titleRed"
             android:textSize="@dimen/text_size_small" />
     </RelativeLayout>

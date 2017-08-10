@@ -169,9 +169,10 @@
         <activity android:name=".activity.LogisticsActivity" />
         <activity android:name=".activity.InSpellingActivity" />
         <activity android:name=".activity.AuthenticationManagActivity" />
-        <activity android:name=".activity.PersonalCertificateManagActivity"></activity>
+        <activity android:name=".activity.PersonalCertificateManagActivity" />
         <activity android:name=".activity.AddCarStareActivity" />
-        <activity android:name=".activity.TurnOnActivity"></activity>
+        <activity android:name=".activity.TurnOnActivity" />
+        <activity android:name=".activity.SearchActivity"></activity>
     </application>
 
 </manifest>

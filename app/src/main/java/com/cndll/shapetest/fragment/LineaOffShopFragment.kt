@@ -10,6 +10,11 @@ import android.view.ViewGroup
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper
 
 import com.cndll.shapetest.R
+import com.cndll.shapetest.adapter.VLayoutAdapter
+import com.cndll.shapetest.api.ApiUtill
+import com.cndll.shapetest.api.AppRequest
+import com.cndll.shapetest.api.bean.response.LineaOffResponse
+import com.cndll.shapetest.databinding.ItemLineoffShopBinding
 import com.cndll.shapetest.weight.VLayoutHelper
 
 /**
@@ -25,6 +30,7 @@ class LineaOffShopFragment : BaseVlayoutFragment() {
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
+    var lineaOffMode = arrayListOf<LineaOffResponse.DatasBean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,25 +40,60 @@ class LineaOffShopFragment : BaseVlayoutFragment() {
         }
     }
 
+    lateinit var commodityAdapter: VLayoutAdapter
     override fun init() {
         super.init()
-    }
-
-
-
-    override fun setVLayout() {
-        super.setVLayout()
-        adapter.addAdapter(object : VLayoutHelper.Builder() {}.
+        commodityAdapter = object : VLayoutHelper.Builder() {}.
                 setContext(context).
-                setCount(4).
+                setCount(lineaOffMode.size).
                 setLayoutHelper(LinearLayoutHelper()).
                 setViewType(3).
                 setRes(R.layout.item_lineoff_shop).
                 setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         windowManager.defaultDisplay.height / 5 * 2)).
                 setOnBindView({ itemView, position ->
-                    // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
-                }).creatAdapter())
+                    val binding = itemView.dataBinding as ItemLineoffShopBinding
+                    binding.info = lineaOffMode[position]
+                    binding.image.setImageURI(lineaOffMode[position].img_url)
+                }).creatAdapter()
+        pullData(MODE_PULL)
+    }
+
+
+    override fun pullData(mode: Int): Boolean {
+        if (mode == MODE_PULL) {
+            page = 1
+        }
+        ApiUtill.getInstance().getApi(AppRequest.getAPI().lineaOffPage(page.toString()), {
+            baseResponse ->
+            when (mode) {
+                (MODE_PULL) -> {
+                    lineaOffMode = (baseResponse as LineaOffResponse).datas as ArrayList<LineaOffResponse.DatasBean>
+                    commodityAdapter.mCount = lineaOffMode.size
+                    commodityAdapter.notifyDataSetChanged()
+                    page++
+                    if (page < 4) {
+                        pullData(MODE_LOADMORE)
+                    }
+                }
+                (MODE_LOADMORE) -> {
+                    if ((baseResponse as LineaOffResponse).datas.isEmpty()) {
+                        loadOver()
+                    }
+                    lineaOffMode.addAll((baseResponse as LineaOffResponse).datas)
+                    commodityAdapter.mCount = lineaOffMode.size
+                    commodityAdapter.notifyDataSetChanged()
+                    loading = false
+                    page++
+                }
+            }
+        })
+        return true
+    }
+
+    override fun setVLayout() {
+        super.setVLayout()
+        adapter.addAdapter(commodityAdapter)
     }
 
     companion object {

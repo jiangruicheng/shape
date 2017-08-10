@@ -3,6 +3,7 @@
 
     <data>
 
+
         <variable
             name="mode"
             type="Integer" />
@@ -121,7 +122,7 @@
             android:layout_below="@+id/jifen"
             android:layout_toRightOf="@+id/express_price"
             android:gravity="center"
-            android:text='@{info.goods_salenum}'
+            android:text='@{info.goods_salenum+@string/tab}'
             android:textColor="@color/gray"
             android:textSize="@dimen/text_size_small"
             app:layout_heightPercent="15%"

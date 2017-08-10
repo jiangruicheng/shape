@@ -39,13 +39,16 @@ class NearByShopFoodStoreFragment : BaseVlayoutFragment() {
         super.init()
         // addItemDecoration()
         webview = WebView(context)
+/*
         webview.loadUrl("http://www.baidu.com")
+*/
+        val html = "<div>店铺介绍。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。</div><img src=\"http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05527585873091159_1280.jpg\"><div>（1）每次插入文字不能超过500个字，标点、特殊字符按照一个字计算； （2）请手动输入文字，不要复制粘贴网页上的文字，防止出现乱码； （3）以下特殊字符“”、“”、“”、“”、“”会被替换为空。 建议：不要添加太多的文字，这样看起来更清晰。</div><img src=\"http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05526720925778907_1280.jpg\"><div>测试数据标签</div><img src=\"http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05525053245767266_1280.jpg\"><img src=\"http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05524114805035914_1280.jpg\"><img src=\"http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05526719863643949_1280.jpg\"><img src=\"http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05525927428271725_1280.jpg\"><img src=\"http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05527585873091159_1280.jpg\"><img src=\"http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05531865893135280_1280.jpg\"><img src=\"http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05524112317113129_1280.jpg\"><img src=\"http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05524113261952806_1280.jpg\">"
         webview.settings.javaScriptCanOpenWindowsAutomatically = true
         webview.settings.javaScriptEnabled = true
         val params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         webview.layoutParams = params
         webview.setWebViewClient(object : WebViewClient() {})
-
+        webview.loadData(html, "text/html", "UTF-8")
         val mScrollFixLayoutHelperB = ScrollFixLayoutHelper(ScrollFixLayoutHelper.BOTTOM_RIGHT, 0, 0)
         mScrollFixLayoutHelperB.showType = ScrollFixLayoutHelper.SHOW_ALWAYS
         shoppingCartAdapter = object : VLayoutHelper.Builder() {}.

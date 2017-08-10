@@ -4,8 +4,22 @@
     <data>
 
         <variable
+            name="range"
+            type="String" />
+
+        <variable
+            name="textShow"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
+        <variable
             name="flag"
             type="String" />
+
+        <variable
+            name="info"
+            type="com.cndll.shapetest.api.bean.response.NearByResponse.DatasBean.StoreBean" />
 
         <variable
             name="bundle"
@@ -42,7 +56,8 @@
             android:padding="4dp"
             android:text="共5张"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_small" />
+            android:textSize="@dimen/text_size_small"
+            android:visibility="@{textShow?View.VISIBLE:View.GONE}" />
 
         <TextView
             android:id="@+id/name"
@@ -50,7 +65,7 @@
             android:layout_height="match_parent"
             android:layout_toRightOf="@+id/image"
             android:gravity="center"
-            android:text="撒尿牛丸（迪拜店）"
+            android:text="@{info.store_name}"
             android:textColor="#000000"
             android:textSize="@dimen/text_size_mid"
             app:layout_heightPercent="30%h" />
@@ -61,7 +76,7 @@
             android:layout_alignParentRight="true"
             android:drawableLeft="@mipmap/locat"
             android:gravity="center"
-            android:text="500m"
+            android:text='@{range}'
             android:textColor="@color/gray"
             app:layout_heightPercent="30%h" />
 
@@ -86,7 +101,7 @@
             android:layout_toRightOf="@+id/points"
             android:gravity="center"
             android:padding="2dp"
-            android:text="消费金额20%"
+            android:text="@{info.score}"
             android:textColor="@color/titleRed"
             android:textSize="@dimen/text_size_small"
             app:layout_heightPercent="30%h" />
@@ -111,7 +126,7 @@
             android:layout_below="@id/points"
             android:layout_toRightOf="@+id/image"
             android:gravity="center"
-            android:text="营业时间："
+            android:text='@{@string/work_time+info.store_workingtime}'
             android:textColor="@color/gray"
             android:textSize="@dimen/text_size_small"
             app:layout_heightPercent="30%h" />

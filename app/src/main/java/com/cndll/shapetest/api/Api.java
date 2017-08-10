@@ -15,8 +15,10 @@ import com.cndll.shapetest.api.bean.response.AddressListResponse;
 import com.cndll.shapetest.api.bean.response.AddressResponse;
 import com.cndll.shapetest.api.bean.response.FileResponse;
 import com.cndll.shapetest.api.bean.response.HttpCodeResponse;
+import com.cndll.shapetest.api.bean.response.LineaOffResponse;
 import com.cndll.shapetest.api.bean.response.LogisticsResponse;
 import com.cndll.shapetest.api.bean.response.MemberResponse;
+import com.cndll.shapetest.api.bean.response.NearByResponse;
 import com.cndll.shapetest.api.bean.response.OrderListResponse;
 import com.cndll.shapetest.api.bean.response.RegisterResponse;
 import com.cndll.shapetest.api.bean.response.ScoreResponse;
@@ -51,15 +53,15 @@ public interface Api {
 
     //首页
     @GET("/mobile/index.php?act=index")
-    Observable<HomePageResponse> homePage(/*@Query("act") String act,*/ @Query("gc_id") String id, @Query("page") String page);
+    Observable<HomePageResponse> homePage(@Query("gc_id") String id, @Query("page") String page);
 
     //限时秒杀
     @GET("/mobile/index.php?act=goods&op=goodsSeckill")
-    Observable<LimitedResponse> limitidPage(/*@Query("act") String act,*/ @Query("page") String page, @Query("time_part") String timePart);
+    Observable<LimitedResponse> limitidPage(@Query("page") String page, @Query("time_part") String timePart);
 
     //拼团
     @GET("/mobile/index.php?act=fight_groups_goods&op=index")
-    Observable<FightResponse> fightPage(/*@Query("act") String act,*/ @Query("page") String page);
+    Observable<FightResponse> fightPage(@Query("page") String page);
 
     /*@GET("/mobile/index.php?act=goods&op=index&goods_id=7")
     Observable<CommodityResponse> commodiytPage();*/
@@ -74,8 +76,17 @@ public interface Api {
     @GET("mobile/index.php?act=score_goods&op=index")
     Observable<ScoreResponse> scorePage(@Query("key") String key);
 
+    //会员
     @GET("/mobile/index.php?act=goods&op=membergoods")
     Observable<MemberResponse> memberPage(@Query("key") String key);
+
+    //线下体验店
+    @GET("/mobile/index.php?act=line_store&op=index")
+    Observable<LineaOffResponse> lineaOffPage(@Query("page") String page);
+
+    //线下体验店
+    @GET("/mobile/index.php?act=nearby&op=nearby")
+    Observable<NearByResponse> nearByPage(@Query("page") String page, @Query("nearby_type") String type);
 
     /**
      * 地区列表

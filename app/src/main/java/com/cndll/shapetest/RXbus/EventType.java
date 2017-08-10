@@ -5,9 +5,8 @@ package com.cndll.shapetest.RXbus;
  */
 
 public class EventType {
-    public final static int BACKKEY = 0;
-    public final static int SHOW = 1;
-    public final static int RESET = 2;
+    public final static int LISTTAB = 0;
+    public final static int LISTCLASS = 1;
 
     public int getType() {
         return type;

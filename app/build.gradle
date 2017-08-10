@@ -8,7 +8,7 @@ android {
         abortOnError false
     }
 
-    signingConfigs {
+    /*signingConfigs {
         release {
             keyAlias 'shape1'
             keyPassword 'shape1'
@@ -25,7 +25,7 @@ android {
             keyPassword 'shape1'
 
         }
-    }
+    }*/
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     dataBinding {
@@ -47,7 +47,9 @@ android {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+/*
             signingConfig signingConfigs.debug
+*/
         }
 
     }
@@ -80,6 +82,7 @@ dependencies {
     compile('com.alibaba.android:vlayout:1.0.9@aar') {
         transitive = true
     }
+    //    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
@@ -98,8 +101,8 @@ dependencies {
     compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2@aar'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.4.3'
-//    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     compile 'com.contrarywind:Android-PickerView:3.2.4'
+    compile 'q.rorbin:VerticalTabLayout:1.2.5'
     testCompile 'junit:junit:4.12'
     kapt 'com.android.databinding:compiler:2.3.0'
 }

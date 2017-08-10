@@ -3,13 +3,11 @@ package com.cndll.shapetest.weight;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
-import android.system.ErrnoException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.vlayout.LayoutHelper;
-import com.cndll.shapetest.adapter.BannerAdapter;
 import com.cndll.shapetest.adapter.VLayoutAdapter;
 
 import org.jetbrains.annotations.NotNull;
@@ -32,7 +30,9 @@ public class VLayoutHelper {
 
                 @Override
                 protected void onBindViewHolderWithOffset(BannerViewHolder holder, int position, int offsetTotal) {
-
+                    if (builder.onBindViewOffset != null) {
+                        builder.onBindViewOffset.bindView(holder, offsetTotal);
+                    }
                 }
 
                 @Override
@@ -66,7 +66,9 @@ public class VLayoutHelper {
 
                 @Override
                 protected void onBindViewHolderWithOffset(BannerViewHolder holder, int position, int offsetTotal) {
-
+                    if (builder.onBindViewOffset != null) {
+                        builder.onBindViewOffset.bindView(holder, offsetTotal);
+                    }
                 }
 
                 @NotNull
@@ -168,6 +170,13 @@ public class VLayoutHelper {
         private int count;
         private int viewType;
         private ViewGroup.LayoutParams params;
+
+        public Builder setOnBindViewOffset(OnBindView onBindViewOffset) {
+            this.onBindViewOffset = onBindViewOffset;
+            return this;
+        }
+
+        private OnBindView onBindViewOffset;
     }
 
     public interface OnCreateView {
