@@ -60,6 +60,71 @@ public class ScoreAllResponse extends BaseResponse {
         private String store_name;
         private String goods_name;
 
+
+        private String id;
+        private String operator_id;
+        private String operator_name;
+        private String operator_num;
+        private String donation_id;
+        private String donation_name;
+        private String donation_num;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getOperator_id() {
+            return operator_id;
+        }
+
+        public void setOperator_id(String operator_id) {
+            this.operator_id = operator_id;
+        }
+
+        public String getOperator_name() {
+            return operator_name;
+        }
+
+        public void setOperator_name(String operator_name) {
+            this.operator_name = operator_name;
+        }
+
+        public String getOperator_num() {
+            return operator_num;
+        }
+
+        public void setOperator_num(String operator_num) {
+            this.operator_num = operator_num;
+        }
+
+        public String getDonation_id() {
+            return donation_id;
+        }
+
+        public void setDonation_id(String donation_id) {
+            this.donation_id = donation_id;
+        }
+
+        public String getDonation_name() {
+            return donation_name;
+        }
+
+        public void setDonation_name(String donation_name) {
+            this.donation_name = donation_name;
+        }
+
+        public String getDonation_num() {
+            return donation_num;
+        }
+
+        public void setDonation_num(String donation_num) {
+            this.donation_num = donation_num;
+        }
+
         public String getStore_name() {
             return store_name;
         }

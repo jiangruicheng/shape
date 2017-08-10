@@ -64,7 +64,7 @@ public final class Constants {
     // 验证邮箱
     public static Boolean validEmail(String pEmail) {
         if (pEmail == null
-                || !Pattern.compile(Ini._REG_MOBILE).matcher(pEmail).matches()) {
+                || !Pattern.compile(Ini._REG_EMAL).matcher(pEmail).matches()) {
             return false;
         }
         return pEmail.length() <= 0 ? false : true;

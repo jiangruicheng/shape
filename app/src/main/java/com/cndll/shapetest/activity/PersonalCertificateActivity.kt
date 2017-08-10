@@ -8,6 +8,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.cndll.shapetest.R
+import com.cndll.shapetest.api.ApiUtill
+import com.cndll.shapetest.api.AppRequest
+import com.cndll.shapetest.api.BaseObservable
+import com.cndll.shapetest.api.bean.BaseResponse
+import com.cndll.shapetest.api.bean.response.FileResponse
+import com.cndll.shapetest.api.bean.response.HttpCodeResponse
+import com.cndll.shapetest.api.bean.response.PersonalCerticateResponse
 import com.cndll.shapetest.databinding.ActivityPersonalCertificateBinding
 import com.cndll.shapetest.tools.*
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -15,9 +22,14 @@ import com.facebook.drawee.backends.pipeline.PipelineDraweeController
 import com.facebook.drawee.view.SimpleDraweeView
 import com.facebook.imagepipeline.common.ResizeOptions
 import com.facebook.imagepipeline.request.ImageRequestBuilder
+import okhttp3.MediaType
+import okhttp3.RequestBody
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * 个人认证
@@ -33,6 +45,8 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
     val c = Calendar.getInstance()
     var dateStart: String = ""
     var dateEnd: String = ""
+    var moreListName = ArrayList<String>()
+    var id = ""
     override fun initBindingVar() {
     }
 
@@ -53,6 +67,13 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
      * 加载控件
      * */
     private fun initView() {
+        var bundle = this.intent.extras
+        if (bundle.getString("ID") == null || bundle.getString("ID").equals("null")) {
+            id = ""
+        } else {
+            id = bundle.getString("ID")
+            httpPersonInfo()
+        }
         binding.simUserCard.setOnClickListener {
             //手持
             type = 1
@@ -104,21 +125,25 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
                     binding.simUserCard.setImageURI("file://" + GetPathVideo.getPath(context, uri))
                     var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
                     simUserCard = ImageFactory.saveFile(bm, "shape.jpg")
+                    uploadFile(simUserCard)
                 }
                 if (type == 2) {
                     binding.simCardZ.setImageURI("file://" + GetPathVideo.getPath(context, uri))
                     var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
                     simCardZ = ImageFactory.saveFile(bm, "shape.jpg")
+                    uploadFile(simCardZ)
                 }
                 if (type == 3) {
                     binding.simCardF.setImageURI("file://" + GetPathVideo.getPath(context, uri))
                     var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
                     simCardF = ImageFactory.saveFile(bm, "shape.jpg")
+                    uploadFile(simCardF)
                 }
                 if (type == 4) {
                     binding.simCardOther.setImageURI("file://" + GetPathVideo.getPath(context, uri))
                     var bm = ImageFactory.getSmallBitmap(GetPathVideo.getPath(context, uri))
                     simCardOther = ImageFactory.saveFile(bm, "shape.jpg")
+                    uploadFile(simCardOther)
                 }
             }
         }
@@ -128,6 +153,11 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
     private fun isNull() {
         var msg = ""
         var isNull = true
+        if (binding.cerCardNum.text.toString().trim().equals("")) {
+            isNull = false
+            msg = "请填写收款账号"
+        }
+
         if (binding.cerUsernameEdit.text.toString().trim().equals("")) {
             isNull = false
             msg = "请填写姓名"
@@ -142,7 +172,7 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             isNull = false
             msg = "请填写正确手机号"
         }
-        if (binding.cerPhoneEdit.text.toString().trim().equals(binding.cerRealPhoneEdit.text.toString().trim())) {
+        if (!binding.cerPhoneEdit.text.toString().trim().equals(binding.cerRealPhoneEdit.text.toString().trim())) {
             isNull = false
             msg = "输入手机号需要相同"
         }
@@ -183,11 +213,129 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
         }
     }
 
+    /**
+     * 认证信息
+     * */
+    private fun httpPersonInfo() {
+        ApiUtill.getInstance().getApi(AppRequest.getAPI().personalInfo("certificate", "personal", SharedPreferenceUtil.read("key", ""), id), {
+            baseResponse ->
+            baseResponse as PersonalCerticateResponse
+            if (baseResponse.code == 200) {
+                binding.cerUsernameEdit.setText(baseResponse.datas.name)
+                binding.cerCardEdit.setText(baseResponse.datas.card_num)
+                binding.cerCardNum.setText(baseResponse.datas.bank_card_num)
+                binding.cerPhoneEdit.setText(baseResponse.datas.phone)
+                binding.cerRealPhoneEdit.setText(baseResponse.datas.phone)
+                binding.cerEmail.setText(baseResponse.datas.email)
+                binding.cerDateStartText.text = Constants.strDate(baseResponse.datas.card_start_time)
+                binding.cerDateEndText.text = Constants.strDate(baseResponse.datas.card_end_time)
+                moreListName.addAll(baseResponse.datas.img)
+                if (baseResponse.datas.card_img.size == 3) {
+                    binding.simUserCard.setImageURI(baseResponse.datas.card_img[0])
+                    binding.simCardZ.setImageURI(baseResponse.datas.card_img[1])
+                    binding.simCardF.setImageURI(baseResponse.datas.card_img[2])
+                } else {
+                    binding.simUserCard.setImageURI(baseResponse.datas.card_img[0])
+                    binding.simCardZ.setImageURI(baseResponse.datas.card_img[1])
+                    binding.simCardF.setImageURI(baseResponse.datas.card_img[2])
+                    binding.simCardOther.setImageURI(baseResponse.datas.card_img[3])
+                }
+                Toast.makeText(context, baseResponse.datas.describe_personal, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, baseResponse.error_massage, Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
     /***
      * 认证
      * */
     private fun httpPerson() {
+        var parmes = HashMap<String, RequestBody>()
+        parmes.put("act", toreRequestBody("certificate"))
+        parmes.put("op", toreRequestBody("personalSub"))
+        parmes.put("key", toreRequestBody(SharedPreferenceUtil.read("key", "")))
+        parmes.put("name", toreRequestBody(binding.cerUsernameEdit.text.toString().trim()))
+        parmes.put("card_num", toreRequestBody(binding.cerCardEdit.text.toString().trim()))
+        if (id != null || !id.equals("") || !id.equals("null")) {
+            parmes.put("id", toreRequestBody(id))
+        }
+        parmes.put("bank_card_num", toreRequestBody(binding.cerCardNum.text.toString().trim()))
+        parmes.put("member_phone", toreRequestBody(binding.cerRealPhoneEdit.text.toString().trim()))
+        parmes.put("member_email", toreRequestBody(binding.cerEmail.text.toString().trim()))
+        parmes.put("card_start_time", toreRequestBody(Constants.dateToStamp(binding.cerDateStartText.text.toString().trim())))
+        parmes.put("card_end_time", toreRequestBody(Constants.dateToStamp(binding.cerDateEndText.text.toString().trim())))
+        for (i in 0..(moreListName.size - 1)) {
+            parmes.put("card_img[" + i + "]", toreRequestBody(moreListName[i]))
+        }
 
+        AppRequest.getAPI().personal(parmes).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                t as HttpCodeResponse
+                if (t.code == 200) {
+                    Toast.makeText(context, "提交成功", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    Toast.makeText(context, t.error_massage, Toast.LENGTH_SHORT).show()
+                }
 
+            }
+
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+                e!!.printStackTrace()
+            }
+        })
+
+    }
+
+    /**
+     * 上查文件
+     * */
+    private fun uploadFile(file: File?) {
+        var parmes = HashMap<String, RequestBody>()
+        parmes.put("act", toreRequestBody("sns_album"))
+        parmes.put("op", toreRequestBody("file_upload"))
+        parmes.put("key", toreRequestBody(SharedPreferenceUtil.read("key", "")))
+        parmes.put("file\";filename=\"" + file!!.name, RequestBody.create(MediaType.parse("image/jpg"), file))
+        AppRequest.getAPI().uploadFile(parmes).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                t as FileResponse
+                if (t.code == 200) {
+                    Toast.makeText(context, t.datas.file_name, Toast.LENGTH_SHORT).show()
+//                    moreListName.add(t.datas.file_name)
+                    if(type==1){
+                        moreListName.add(0,t.datas.file_name)
+                    }else if(type==2){
+                        moreListName.add(1,t.datas.file_name)
+                    }else if(type==3){
+                        moreListName.add(2,t.datas.file_name)
+                    }else if(type==4){
+                        moreListName.add(3,t.datas.file_name)
+                    }
+
+                }
+            }
+
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+                e!!.printStackTrace()
+            }
+        })
+    }
+
+    private fun toreRequestBody(value: String): RequestBody {
+        return RequestBody.create(MediaType.parse("text/plain"), value)
     }
 }

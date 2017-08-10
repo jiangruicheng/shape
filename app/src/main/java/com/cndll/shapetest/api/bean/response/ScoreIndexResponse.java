@@ -59,6 +59,24 @@ public class ScoreIndexResponse extends BaseResponse {
         private int state;
         private int fund;
         private String score_voucher;
+        private String certificate_id;
+        private String certificate_type;
+
+        public String getCertificate_id() {
+            return certificate_id;
+        }
+
+        public void setCertificate_id(String certificate_id) {
+            this.certificate_id = certificate_id;
+        }
+
+        public String getCertificate_type() {
+            return certificate_type;
+        }
+
+        public void setCertificate_type(String certificate_type) {
+            this.certificate_type = certificate_type;
+        }
 
         public String getScore_voucher() {
             return score_voucher;

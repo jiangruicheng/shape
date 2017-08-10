@@ -65,6 +65,16 @@ class IntergralRecodeAdapter(private val context: Context?, private val contentV
             holder.interFun.visibility = View.GONE
             holder.interManage.text = contentValues[position].goods_name
             holder.interCode.text = contentValues[position].score
+        }else if(type==4){
+            holder.interTime.text = Constants.strDate(contentValues[position].time)
+            if(contentValues[position].type.equals("0")){
+                holder.interType.text="激励积分"
+            }else if (contentValues[position].type.equals("1")){
+                holder.interType.text="通用抵用卷"
+            }
+            holder.interFun.visibility = View.GONE
+            holder.interManage.text = contentValues[position].donation_num
+            holder.interCode.text = contentValues[position].score
         }
 
 

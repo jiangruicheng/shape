@@ -216,14 +216,14 @@
                         android:background="@drawable/shape_main_button_edit"
                         android:orientation="horizontal"
                         app:layout_heightPercent="10%h"
-                        app:layout_widthPercent="25%w">
+                        app:layout_widthPercent="30%w">
 
                         <TextView
                             android:id="@+id/cer_date_start_text"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:padding="5dp"
-                            android:text="2014-7-8"
+                            android:text="2014-07-08"
                             app:layout_widthPercent="80%w" />
 
                         <ImageView
@@ -250,14 +250,14 @@
                         android:background="@drawable/shape_main_button_edit"
                         android:orientation="horizontal"
                         app:layout_heightPercent="10%h"
-                        app:layout_widthPercent="25%w">
+                        app:layout_widthPercent="30%w">
 
                         <TextView
                             android:id="@+id/cer_date_end_text"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:padding="5dp"
-                            android:text="2014-7-8"
+                            android:text="2014-07-08"
                             app:layout_widthPercent="80%w" />
 
                         <ImageView

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_button_white"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_heightPercent="30%h"
+        app:layout_widthPercent="85%w">
+
+
+        <TextView
+            android:id="@+id/deal_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="确认激励 是否激励"
+            android:textColor="@color/contents_text"
+            app:layout_heightPercent="60%h"
+            app:layout_textSizePercent="6%w"
+            app:layout_widthPercent="80%w" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"></View>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_heightPercent="40%h"
+            app:layout_widthPercent="80%w">
+
+            <TextView
+                android:id="@+id/deal_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="取消"
+                app:layout_heightPercent="50%h"
+                app:layout_textSizePercent="8%w"
+                app:layout_widthPercent="50%w" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray"></View>
+
+            <TextView
+                android:id="@+id/deal_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="确认"
+                android:textColor="@color/titleRed"
+                app:layout_heightPercent="50%h"
+                app:layout_textSizePercent="8%w"
+                app:layout_widthPercent="50%w" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</com.zhy.android.percent.support.PercentLinearLayout>

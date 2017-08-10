@@ -1,13 +1,14 @@
 package com.cndll.shapetest.fragment
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
 import com.cndll.shapetest.R
 import com.cndll.shapetest.activity.AppraiseActivity
 import com.cndll.shapetest.activity.LogisticsActivity
@@ -94,6 +95,7 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>(), SalesAdapter.setOn
         } else if (moerList[position].order_state.equals("40")) {
             if (moerList[position].order_state.equals("40") && moerList[position].is_excitation_state.equals("0")) {
                 //确认激励
+                dealView(moerList[position].order_sn)
             } else if (moerList[position].order_state.equals("40") && moerList[position].evaluation_state.equals("1") && moerList[position].evaluation_again_state.equals("1")) {
                 //删除订单
                 removeOrder(moerList[position].order_id)
@@ -120,6 +122,7 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>(), SalesAdapter.setOn
             //提醒发货
         } else if (moerList[position].order_state.equals("30")) {
             //确认激励
+            dealView(moerList[position].order_sn)
         } else if (moerList[position].order_state.equals("40")) {
 
             if (moerList[position].order_state.equals("40") && moerList[position].is_excitation_state.equals("0")) {
@@ -179,42 +182,42 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>(), SalesAdapter.setOn
                 adapter = SalesAdapter(context, moerList, this)
                 listView.adapter = adapter
             }
-            page=1
+            page = 1
             type = ""
         } else if (mNumber == 2) {
             if (adapter == null) {
                 adapter = SalesAdapter(context, moerList, this)
                 listView.adapter = adapter
             }
-            page=1
+            page = 1
             type = "state_new"
         } else if (mNumber == 3) {
             if (adapter == null) {
                 adapter = SalesAdapter(context, moerList, this)
                 listView.adapter = adapter
             }
-            page=1
+            page = 1
             type = "state_pay"
         } else if (mNumber == 4) {
             if (adapter == null) {
                 adapter = SalesAdapter(context, moerList, this)
                 listView.adapter = adapter
             }
-            page=1
+            page = 1
             type = "state_send"
         } else if (mNumber == 5) {
             if (adapter == null) {
                 adapter = SalesAdapter(context, moerList, this)
                 listView.adapter = adapter
             }
-            page=1
+            page = 1
             type = "state_success"
         } else if (mNumber == 6) {
             if (adapter == null) {
                 adapter = SalesAdapter(context, moerList, this)
                 listView.adapter = adapter
             }
-            page=1
+            page = 1
             type = "state_excitation"
 
         }
@@ -316,13 +319,13 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>(), SalesAdapter.setOn
                     moerList.addAll(cah)
                     adapter!!.notifyDataSetChanged()
                     binding.ordersPull.onRefreshComplete()
-                    if(t.datas.size<=0){
+                    if (t.datas.size <= 0) {
                         binding.ordersPull.mode = PullToRefreshBase.Mode.PULL_FROM_START
-                    }else{
+                    } else {
                         binding.ordersPull.mode = PullToRefreshBase.Mode.BOTH
                     }
                 } else {
-                   Toast.makeText(context,"请求失败",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "请求失败", Toast.LENGTH_SHORT).show()
                 }
             }
         })
@@ -396,5 +399,67 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>(), SalesAdapter.setOn
 
     }
 
+    /**
+     * 确认激励
+     * */
+    private fun excitation(orderID: String) {
+        AppRequest.getAPI().excitation("member_order", "excitation", SharedPreferenceUtil.read("key", ""), orderID).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
+
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+                e!!.printStackTrace()
+            }
+
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                t as HttpCodeResponse
+                if (t.code == 200) {
+                    Toast.makeText(context, "激励成功", Toast.LENGTH_SHORT).show()
+                    if (moerList != null && moerList.size > 0) {
+                        moerList.clear()
+                    }
+                    page = 1
+                    httpOrderList(type)
+                } else {
+                    Toast.makeText(context, "激励失败", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+        })
+    }
+
+    /**
+     * 对话框
+     * */
+    private fun dealView(orderID: String) {
+        val dm = DisplayMetrics()
+        activity.windowManager.defaultDisplay.getMetrics(dm)
+        val dialog = Dialog(activity, R.style.AlertDialog)
+        dialog!!.setContentView(R.layout.deal_content)
+        dialog!!.setCanceledOnTouchOutside(true)
+        dialog!!.show()
+        // 设置对话框大小
+        val layoutParams = dialog!!.window.attributes
+        layoutParams.width = (dm.widthPixels * 0.8).toInt()
+        layoutParams.height = (dm.heightPixels * 0.9).toInt()
+        dialog!!.window.attributes=layoutParams
+
+        val title = dialog!!.findViewById(R.id.deal_title) as TextView
+        val ok = dialog!!.findViewById(R.id.deal_ok) as TextView
+        val chose = dialog!!.findViewById(R.id.deal_close) as TextView
+        title.text = "确认激励后无法进行退换货，是否确认激励"
+        chose.setOnClickListener {
+            dialog.dismiss()
+        }
+        ok.setOnClickListener {
+            dialog.dismiss()
+            excitation(orderID)
+        }
+    }
 
 }
