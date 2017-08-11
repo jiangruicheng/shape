@@ -311,14 +311,14 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
                 if (t.code == 200) {
                     Toast.makeText(context, t.datas.file_name, Toast.LENGTH_SHORT).show()
 //                    moreListName.add(t.datas.file_name)
-                    if(type==1){
-                        moreListName.add(0,t.datas.file_name)
-                    }else if(type==2){
-                        moreListName.add(1,t.datas.file_name)
-                    }else if(type==3){
-                        moreListName.add(2,t.datas.file_name)
-                    }else if(type==4){
-                        moreListName.add(3,t.datas.file_name)
+                    if (type == 1) {
+                        moreListName.add(0, t.datas.file_name)
+                    } else if (type == 2) {
+                        moreListName.add(1, t.datas.file_name)
+                    } else if (type == 3) {
+                        moreListName.add(2, t.datas.file_name)
+                    } else if (type == 4) {
+                        moreListName.add(3, t.datas.file_name)
                     }
 
                 }

@@ -15,7 +15,7 @@ import com.cndll.shapetest.fragment.VouchersFragment
 import com.handmark.pulltorefresh.library.PullToRefreshBase
 
 /**
- * 我的抵用卷--预约订单--凭团
+     * 我的抵用卷--预约订单--凭团
  * */
 class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
    lateinit var context: Context

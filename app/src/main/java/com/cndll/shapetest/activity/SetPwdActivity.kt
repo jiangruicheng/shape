@@ -56,13 +56,6 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
             binding.linManagEnterprise.visibility = View.GONE
             binding.linManagUser.visibility = View.GONE
         } else if (type.equals("ent")) {
-            if (bundles.getString("certificate_type").equals("personal")) {
-
-            } else if (bundles.getString("certificate_type").equals("company")) {
-
-            } else {
-                
-            }
             binding.titlebar.title.text = "身份认证"
             binding.pwdSig.visibility = View.GONE
             binding.pwdPay.visibility = View.GONE
@@ -136,12 +129,22 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
         }
         //企业认证
         binding.linEnterprise.setOnClickListener {
-            context.startActivity(Intent(context, AuthenticationActivity::class.java))
+            if (bundles.getString("certificate_type").equals("company")) {
+                bundle.putString("ID", bundles.getString("ID"))
+                context.startActivity(Intent(context, AuthenticationActivity::class.java).putExtras(bundle))
+            } else {
+                context.startActivity(Intent(context, AuthenticationActivity::class.java))
+            }
         }
         // 个人认证
         binding.linUser.setOnClickListener {
-            bundle.putString("ID", bundles.getString("ID"))
-            context.startActivity(Intent(context, PersonalCertificateActivity::class.java).putExtras(bundle))
+            if (bundles.getString("certificate_type").equals("personal")) {
+                bundle.putString("ID", bundles.getString("ID"))
+                context.startActivity(Intent(context, PersonalCertificateActivity::class.java).putExtras(bundle))
+            } else {
+                context.startActivity(Intent(context, PersonalCertificateActivity::class.java))
+            }
+
         }
         //选择红包
         binding.donRedVouchers.setOnClickListener {
