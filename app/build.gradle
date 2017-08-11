@@ -15,9 +15,9 @@ android {
             storeFile file('C:/Users/Administrator/Desktop/zxxf/shape.jks')
             storePassword 'shape1'
         }*/
-        dexOptions {
+        /*dexOptions {
             jumboMode true
-        }
+        }*/
         /*debug {
             storeFile file('C:/Users/Administrator/Desktop/zxxf/shape.jks')
             storePassword 'shape1'

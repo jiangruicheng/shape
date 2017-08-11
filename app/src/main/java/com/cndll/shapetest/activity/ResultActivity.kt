@@ -8,12 +8,13 @@ import com.cndll.shapetest.fragment.ResultFragment
 
 class ResultActivity : BaseActivity<ActivityResultBinding>() {
     companion object {
-        val SEARCH = 0
-        val CLASS = 1
+        val MODE_SEARCH = 0
+        val MODE_CLASS = 1
         val MODE = "MODE"
         val TYPE = "TYPE"
-        val SHOP = 2
-        val COMMODIYT = 3
+        val TYPE_SHOP = 2
+        val TYPE_COMMODIYT = 3
+        val SEARCHKE = "KEY"
     }
 
     override fun initBindingVar() {
@@ -21,11 +22,15 @@ class ResultActivity : BaseActivity<ActivityResultBinding>() {
 
     override fun initTitle() {
         when (intent.extras.getInt(MODE)) {
-            (SEARCH) -> {
+            (MODE_SEARCH) -> {
                 binding.searchTitle.root.visibility = View.VISIBLE
                 binding.classiTitle.root.visibility = View.GONE
+                binding.searchTitle.searchEdit.searchEdit.setText(intent.extras.getString(SEARCHKE))
+                binding.searchTitle.searchEdit.searchEdit.setOnClickListener { finish() }
+                binding.searchTitle.searchEdit.delete.setOnClickListener { finish() }
+                binding.searchTitle.back.setOnClickListener { finish() }
             }
-            (CLASS) -> {
+            (MODE_CLASS) -> {
                 binding.searchTitle.root.visibility = View.GONE
                 binding.classiTitle.root.visibility = View.VISIBLE
             }

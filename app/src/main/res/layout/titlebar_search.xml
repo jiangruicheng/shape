@@ -18,7 +18,7 @@
             android:src="@mipmap/back" />
 
         <include
-            android:id="@+id/edit"
+            android:id="@+id/search_edit"
             layout="@layout/search_edit"
             android:layout_width="0dp"
             android:layout_height="match_parent"

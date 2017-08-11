@@ -16,6 +16,9 @@ import com.cndll.shapetest.R
 import com.cndll.shapetest.RXbus.EventType
 import com.cndll.shapetest.RXbus.RxBus
 import com.cndll.shapetest.activity.SearchActivity
+import com.cndll.shapetest.api.ApiUtill
+import com.cndll.shapetest.api.AppRequest
+import com.cndll.shapetest.api.bean.response.ClassItemResponse
 import com.cndll.shapetest.databinding.FragmentClassificationBinding
 import kotlinx.android.synthetic.main.fragment_classification.*
 import rx.Observer
@@ -48,8 +51,9 @@ class ClassificationFragment : BaseFragment<FragmentClassificationBinding>() {
         }
     }
 
+    val classFragment = ClassificationItemFragment.newInstance("", "")
     fun setClassification() {
-        activity.supportFragmentManager.beginTransaction().add(R.id.classic, ClassificationItemFragment.newInstance("", "")).commit()
+        activity.supportFragmentManager.beginTransaction().add(R.id.classic, classFragment).commit()
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -62,6 +66,7 @@ class ClassificationFragment : BaseFragment<FragmentClassificationBinding>() {
         initTab()
         setClassification()
         initBusEvent()
+        pullData()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -87,6 +92,20 @@ class ClassificationFragment : BaseFragment<FragmentClassificationBinding>() {
         })
     }
 
+    val classMode: ArrayList<ClassItemResponse.DatasBean> = ArrayList()
+    fun pullData() {
+        ApiUtill.getInstance().getApi(AppRequest.getAPI().ClassPage(), {
+            baseResponse ->
+            baseResponse as ClassItemResponse
+            if (classMode.isNotEmpty()) {
+                classMode.clear()
+            }
+            classMode.addAll(baseResponse.datas)
+            tabAdapter.notifyDataSetChanged()
+            classFragment.setData(baseResponse.datas as ArrayList<ClassItemResponse.DatasBean>)
+        })
+    }
+
     fun initTitle() {
         binding.titlebar.root.setBackgroundResource(R.color.titleRed)
         binding.titlebar.title.text = "众享消费"
@@ -102,16 +121,7 @@ class ClassificationFragment : BaseFragment<FragmentClassificationBinding>() {
     }
 
     fun initTab() {
-        titleList.add("农产")
-        titleList.add("水果")
-        titleList.add("美食")
-        titleList.add("家居")
-        titleList.add("电器")
-        titleList.add("美妆")
-        titleList.add("茶叶")
-        titleList.add("母婴")
-        titleList.add("文具")
-        titleList.add("旅游")
+
         tabAdapter = object : BaseAdapter() {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
                 val view = LayoutInflater.from(context).inflate(R.layout.tabitem, null, false)
@@ -128,7 +138,7 @@ class ClassificationFragment : BaseFragment<FragmentClassificationBinding>() {
                     RxBus.getDefault().post(EventType().setType(EventType.LISTCLASS).setExtra(select.toString()))
                     notifyDataSetChanged()
                 }
-                (view.findViewById(R.id.title) as TextView).setText(titleList[position])
+                (view.findViewById(R.id.title) as TextView).setText(classMode[position].gc_name)
 
                 return view
             }
@@ -143,7 +153,7 @@ class ClassificationFragment : BaseFragment<FragmentClassificationBinding>() {
             }
 
             override fun getCount(): Int {
-                return titleList.size
+                return classMode.size
             }
 
         }

@@ -11,21 +11,23 @@
         app:layout_marginTopPercent="12%w">
 
         <EditText
-            android:id="@+id/edit"
+            android:id="@+id/search_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
             android:drawableLeft="@mipmap/search_title"
             android:drawablePadding="4dp"
+            android:imeOptions="actionSearch"
+            android:lines="1"
             android:textSize="@dimen/text_size_small"
             app:layout_marginLeftPercent="2%w"
             app:layout_marginRightPercent="2%w" />
 
         <ImageView
             android:id="@+id/delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/edit"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignRight="@+id/search_edit"
             android:layout_centerVertical="true"
             android:scaleType="centerInside"
             android:src="@mipmap/delete_title" />

@@ -54,11 +54,12 @@
                     android:src="@mipmap/skew" />
 
                 <include
-                    android:layout_toRightOf="@+id/skew"
+                    android:id="@+id/search"
                     layout="@layout/search_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_alignParentRight="true" />
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@+id/skew" />
             </com.zhy.android.percent.support.PercentRelativeLayout>
         </com.zhy.android.percent.support.PercentLinearLayout>
 

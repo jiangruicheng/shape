@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Looper
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.TextView
 import com.alibaba.android.vlayout.layout.GridLayoutHelper
@@ -16,8 +17,9 @@ import com.cndll.shapetest.RXbus.RxBus
 import com.cndll.shapetest.activity.ResultActivity
 import com.cndll.shapetest.api.bean.response.ClassItemResponse
 import com.cndll.shapetest.weight.VLayoutHelper
+import com.facebook.drawee.view.SimpleDraweeView
 import rx.Observer
-import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -64,7 +66,10 @@ class ClassificationItemFragment : BaseVlayoutFragment() {
         //Toast.makeText(context, (recycler.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition().toString(), Toast.LENGTH_SHORT).show()
 
         if (titlePositions.contains((recycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())) {
+            Log.e("Position", "curry" + (recycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
             RxBus.getDefault().post(EventType().setType(EventType.LISTTAB).setExtra(titlePositions.indexOf((recycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()).toString()))
+            Log.e("Position", "extra" + titlePositions.indexOf((recycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()).toString())
+
             // Toast.makeText(context, (recycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition().toString(), Toast.LENGTH_SHORT).show()
         }
     }
@@ -75,8 +80,11 @@ class ClassificationItemFragment : BaseVlayoutFragment() {
 
     var titlePosition = 0
     override fun setVLayout() {
+        if (titlePositions.isNotEmpty()) {
+            titlePositions.clear()
+        }
         titlePositions.add(0)
-        for (i in 0..9) {
+        for (i in 0..classmode.size - 1) {
             adapter.addAdapter(object : VLayoutHelper.Builder() {}.
                     setContext(context).
                     setCount(1).
@@ -86,30 +94,46 @@ class ClassificationItemFragment : BaseVlayoutFragment() {
                     setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                             windowManager.defaultDisplay.height / 10)).
                     setOnBindView({ itemView, position ->
-
+                        val name = itemView.itemView.findViewById(R.id.name) as TextView
+                        name.setText(classmode[i].gc_name)
                     }).creatAdapter())
             val detailHelper = GridLayoutHelper(3)
             detailHelper.setAutoExpand(false)
             adapter.addAdapter(object : VLayoutHelper.Builder() {}.
                     setContext(context).
-                    setCount(11).
+                    setCount(classmode[i].son_array.size).
                     setLayoutHelper(detailHelper).
                     setViewType(6).
                     setRes(R.layout.classfication_body).
                     setParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                             windowManager.defaultDisplay.height / 12)).
                     setOnBindView({ itemView, position ->
-                        itemView.itemView.setOnClickListener { context.startActivity(Intent(context, ResultActivity::class.java).putExtra(ResultActivity.MODE, ResultActivity.SEARCH).putExtra(ResultActivity.TYPE, ResultActivity.COMMODIYT)) }
-                    }).setOnBindViewOffset({ itemView, position ->
+                        val image = itemView.itemView.findViewById(R.id.image) as SimpleDraweeView
+                        val text = itemView.itemView.findViewById(R.id.text) as TextView
+                        image.setImageURI(classmode[i].son_array[position].img_url)
+                        text.setText(classmode[i].son_array[position].son_name)
+                        itemView.itemView.setOnClickListener { context.startActivity(Intent(context, ResultActivity::class.java).putExtra(ResultActivity.MODE, ResultActivity.MODE_SEARCH).putExtra(ResultActivity.TYPE, ResultActivity.TYPE_COMMODIYT)) }
+                    })/*.setOnBindViewOffset({ itemView, position ->
                 (itemView.itemView.findViewById(R.id.text) as TextView).setText(position.toString())
-            }).creatAdapter())
-            titlePosition = titlePosition + 12
+            })*/.creatAdapter())
+            titlePosition = titlePosition + classmode[i].son_array.size + 1
             titlePositions.add(titlePosition)
+            Log.e("Position", titlePosition.toString())
         }
     }
 
     override fun pullData(mode: Int): Boolean {
         return super.pullData(mode)
+    }
+
+    val classmode = ArrayList<ClassItemResponse.DatasBean>()
+    fun setData(data: ArrayList<ClassItemResponse.DatasBean>) {
+        if (classmode.isNotEmpty()) {
+            classmode.clear()
+        }
+        classmode.addAll(data)
+        adapter.clear()
+        setVLayout()
     }
 
     companion object {

@@ -130,10 +130,10 @@ class ResultFragment : BaseVlayoutFragment() {
                     })
                 }).creatAdapter())
         when (arguments.getInt(ResultActivity.TYPE)) {
-            (ResultActivity.SHOP) -> {
+            (ResultActivity.TYPE_SHOP) -> {
                 adapter.addAdapter(shopAdapter)
             }
-            (ResultActivity.COMMODIYT) -> {
+            (ResultActivity.TYPE_COMMODIYT) -> {
                 adapter.addAdapter(commodityAdapter)
             }
         }
