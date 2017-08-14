@@ -97,7 +97,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                     binding.handler.login(binding.loginbtn)
                     finish()
                 } else {
-                    Toast.makeText(context, t.error_massage, Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, t.error_message, Toast.LENGTH_LONG).show()
                     return
                 }
             }

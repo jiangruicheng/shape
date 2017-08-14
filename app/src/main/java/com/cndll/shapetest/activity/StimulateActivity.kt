@@ -153,7 +153,7 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
                     binding.stimulateRollCode.text = t.datas.voucher_num.toString() + "张"//我的抵用卷
 
                 } else {
-                    Toast.makeText(context, t.error_massage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, t.error_message, Toast.LENGTH_SHORT).show()
                 }
             }
         })

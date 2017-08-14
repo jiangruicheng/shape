@@ -3,9 +3,7 @@ package com.cndll.shapetest.activity
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.api.ApiUtill
@@ -17,17 +15,11 @@ import com.cndll.shapetest.api.bean.response.HttpCodeResponse
 import com.cndll.shapetest.api.bean.response.PersonalCerticateResponse
 import com.cndll.shapetest.databinding.ActivityPersonalCertificateBinding
 import com.cndll.shapetest.tools.*
-import com.facebook.drawee.backends.pipeline.Fresco
-import com.facebook.drawee.backends.pipeline.PipelineDraweeController
-import com.facebook.drawee.view.SimpleDraweeView
-import com.facebook.imagepipeline.common.ResizeOptions
-import com.facebook.imagepipeline.request.ImageRequestBuilder
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import java.io.File
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -45,8 +37,11 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
     val c = Calendar.getInstance()
     var dateStart: String = ""
     var dateEnd: String = ""
-    var moreListName = ArrayList<String>()
     var id = ""
+    var hand_card: String = ""
+    var just_card: String = ""
+    var back_card: String = ""
+    var other_card: String = ""
     override fun initBindingVar() {
     }
 
@@ -68,7 +63,7 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
      * */
     private fun initView() {
         var bundle = this.intent.extras
-        if (bundle.getString("ID") == null || bundle.getString("ID").equals("null")) {
+        if (bundle == null || !bundle.containsKey("ID") || bundle.getString("ID") == null || bundle.getString("ID").equals("null")) {
             id = ""
         } else {
             id = bundle.getString("ID")
@@ -193,15 +188,15 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             isNull = false
             msg = "结束日期不能大于，等于开始日期"
         }
-        if (simUserCard == null) {
+        if (hand_card.equals("")) {
             isNull = false
             msg = "请选择手持身份证照片"
         }
-        if (simCardZ == null) {
+        if (just_card.equals("")) {
             isNull = false
             msg = "请选择身份证正面"
         }
-        if (simCardF == null) {
+        if (back_card.equals("")) {
             isNull = false
             msg = "请选择身份证反面"
         }
@@ -222,27 +217,40 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
             baseResponse as PersonalCerticateResponse
             if (baseResponse.code == 200) {
                 binding.cerUsernameEdit.setText(baseResponse.datas.name)
+                binding.cerUsernameEdit.isClickable = false
+                binding.cerUsernameEdit.isFocusable = false
                 binding.cerCardEdit.setText(baseResponse.datas.card_num)
+                binding.cerCardEdit.isClickable = false
+                binding.cerCardEdit.isFocusable = false
                 binding.cerCardNum.setText(baseResponse.datas.bank_card_num)
+                binding.cerCardNum.isClickable = false
+                binding.cerCardNum.isFocusable = false
                 binding.cerPhoneEdit.setText(baseResponse.datas.phone)
+                binding.cerPhoneEdit.isClickable = false
+                binding.cerPhoneEdit.isFocusable = false
                 binding.cerRealPhoneEdit.setText(baseResponse.datas.phone)
+                binding.cerRealPhoneEdit.isClickable = false
+                binding.cerRealPhoneEdit.isFocusable = false
                 binding.cerEmail.setText(baseResponse.datas.email)
                 binding.cerDateStartText.text = Constants.strDate(baseResponse.datas.card_start_time)
                 binding.cerDateEndText.text = Constants.strDate(baseResponse.datas.card_end_time)
-                moreListName.addAll(baseResponse.datas.img)
-                if (baseResponse.datas.card_img.size == 3) {
-                    binding.simUserCard.setImageURI(baseResponse.datas.card_img[0])
-                    binding.simCardZ.setImageURI(baseResponse.datas.card_img[1])
-                    binding.simCardF.setImageURI(baseResponse.datas.card_img[2])
-                } else {
-                    binding.simUserCard.setImageURI(baseResponse.datas.card_img[0])
-                    binding.simCardZ.setImageURI(baseResponse.datas.card_img[1])
-                    binding.simCardF.setImageURI(baseResponse.datas.card_img[2])
-                    binding.simCardOther.setImageURI(baseResponse.datas.card_img[3])
-                }
+                binding.cerDateStart.isClickable = false
+                binding.cerDateStart.isFocusable = false
+                binding.cerDateStart.isEnabled = false
+                binding.cerDateEnd.isEnabled = false
+                binding.cerDateEnd.isClickable = false
+                binding.cerDateEnd.isFocusable = false
+                hand_card = baseResponse.datas.hand_card
+                just_card = baseResponse.datas.just_card
+                back_card = baseResponse.datas.back_card
+                other_card = baseResponse.datas.other_card
+                binding.simUserCard.setImageURI(baseResponse.datas.hand_card_img)
+                binding.simCardZ.setImageURI(baseResponse.datas.just_card_img)
+                binding.simCardF.setImageURI(baseResponse.datas.back_card_img)
+                binding.simCardOther.setImageURI(baseResponse.datas.other_card_img)
                 Toast.makeText(context, baseResponse.datas.describe_personal, Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, baseResponse.error_massage, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, baseResponse.error_message, Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -266,9 +274,10 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
         parmes.put("member_email", toreRequestBody(binding.cerEmail.text.toString().trim()))
         parmes.put("card_start_time", toreRequestBody(Constants.dateToStamp(binding.cerDateStartText.text.toString().trim())))
         parmes.put("card_end_time", toreRequestBody(Constants.dateToStamp(binding.cerDateEndText.text.toString().trim())))
-        for (i in 0..(moreListName.size - 1)) {
-            parmes.put("card_img[" + i + "]", toreRequestBody(moreListName[i]))
-        }
+        parmes.put("hand_card", toreRequestBody(hand_card))
+        parmes.put("just_card", toreRequestBody(just_card))
+        parmes.put("back_card", toreRequestBody(back_card))
+        parmes.put("other_card", toreRequestBody(other_card))
 
         AppRequest.getAPI().personal(parmes).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
             override fun onNext(t: BaseResponse?) {
@@ -278,7 +287,7 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
                     Toast.makeText(context, "提交成功", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
-                    Toast.makeText(context, t.error_massage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, t.error_message, Toast.LENGTH_SHORT).show()
                 }
 
             }
@@ -310,17 +319,18 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
                 t as FileResponse
                 if (t.code == 200) {
                     Toast.makeText(context, t.datas.file_name, Toast.LENGTH_SHORT).show()
-//                    moreListName.add(t.datas.file_name)
                     if (type == 1) {
-                        moreListName.add(0, t.datas.file_name)
+                        hand_card = t.datas.file_name
                     } else if (type == 2) {
-                        moreListName.add(1, t.datas.file_name)
+                        just_card = t.datas.file_name
                     } else if (type == 3) {
-                        moreListName.add(2, t.datas.file_name)
+                        back_card = t.datas.file_name
                     } else if (type == 4) {
-                        moreListName.add(3, t.datas.file_name)
+                        other_card = t.datas.file_name
                     }
 
+                } else {
+                    Toast.makeText(context, t.datas.error, Toast.LENGTH_SHORT).show()
                 }
             }
 

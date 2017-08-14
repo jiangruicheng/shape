@@ -328,7 +328,7 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
                         binding.integralPull.mode = PullToRefreshBase.Mode.BOTH
                     }
                 } else {
-                    Toast.makeText(context, t.error_massage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, t.error_message, Toast.LENGTH_SHORT).show()
                 }
 
             }

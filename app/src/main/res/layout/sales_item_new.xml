@@ -8,6 +8,7 @@
     android:background="@color/white"
     >
     <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/lin_sales_goods"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

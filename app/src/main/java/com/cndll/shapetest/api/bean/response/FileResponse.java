@@ -6,7 +6,7 @@ import com.cndll.shapetest.api.bean.BaseResponse;
  * Created by Administrator on 2017/8/2 0002.
  */
 
-public class FileResponse extends BaseResponse {
+public class    FileResponse extends BaseResponse {
 
     /**
      * code : 200
@@ -44,6 +44,15 @@ public class FileResponse extends BaseResponse {
         private String file_name;
         private String origin_file_name;
         private String file_url;
+        private String error;
+
+        public String getError() {
+            return error;
+        }
+
+        public void setError(String error) {
+            this.error = error;
+        }
 
         public int getFile_id() {
             return file_id;

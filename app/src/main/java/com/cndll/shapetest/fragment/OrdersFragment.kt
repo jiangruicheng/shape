@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.cndll.shapetest.R
 import com.cndll.shapetest.activity.AppraiseActivity
+import com.cndll.shapetest.activity.GroupBookingDetailsActivity
 import com.cndll.shapetest.activity.LogisticsActivity
 import com.cndll.shapetest.adapter.SalesAdapter
 import com.cndll.shapetest.api.AppRequest
@@ -28,6 +29,8 @@ import rx.schedulers.Schedulers
  * Created by Administrator on 2017/7/7 0007.
  */
 class OrdersFragment : BaseFragment<FragmentOrdersBinding>(), SalesAdapter.setOnClickLoction {
+
+
     var bundle = Bundle()
     var moerList = ArrayList<OrderListResponse.DatasBean>()
     var cah = ArrayList<OrderListResponse.DatasBean>()
@@ -45,6 +48,15 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>(), SalesAdapter.setOn
         val fragment = OrdersFragment()
         fragment.arguments = bundle
         return fragment
+    }
+
+    /**
+     * 订单详情
+     * */
+    override fun shopOrderDetails(position: Int) {
+        var orderBean = moerList[position]
+        bundle.putSerializable("orderList", orderBean)
+        context.startActivity(Intent(context, GroupBookingDetailsActivity::class.java).putExtras(bundle))
     }
 
     /**
@@ -447,7 +459,7 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>(), SalesAdapter.setOn
         val layoutParams = dialog!!.window.attributes
         layoutParams.width = (dm.widthPixels * 0.8).toInt()
         layoutParams.height = (dm.heightPixels * 0.9).toInt()
-        dialog!!.window.attributes=layoutParams
+        dialog!!.window.attributes = layoutParams
 
         val title = dialog!!.findViewById(R.id.deal_title) as TextView
         val ok = dialog!!.findViewById(R.id.deal_ok) as TextView

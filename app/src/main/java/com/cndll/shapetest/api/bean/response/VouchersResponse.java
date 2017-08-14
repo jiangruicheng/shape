@@ -14,12 +14,12 @@ public class VouchersResponse extends BaseResponse {
 
     /**
      * code : 200
-     * error_massage : 请登陆
+     * error_message : 请登陆
      * datas : [{"id":"1","code":"413300555418825019","member_id":"2","money":"0.50","store_id":"0","payment_type":"1","voucher_type":"1","state":"1","start_time":"1502035200","end_time":"1504627200","member_name":"xiaofei","store_name":null}]
      */
 
     private int code;
-    private String error_massage;
+    private String error_message;
     private List<DatasBean> datas;
 
     public int getCode() {
@@ -30,12 +30,12 @@ public class VouchersResponse extends BaseResponse {
         this.code = code;
     }
 
-    public String getError_massage() {
-        return error_massage;
+    public String getError_message() {
+        return error_message;
     }
 
-    public void setError_massage(String error_massage) {
-        this.error_massage = error_massage;
+    public void setError_message(String error_message) {
+        this.error_message = error_message;
     }
 
     public List<DatasBean> getDatas() {

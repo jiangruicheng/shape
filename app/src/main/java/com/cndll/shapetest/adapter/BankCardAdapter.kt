@@ -1,9 +1,12 @@
 package com.cndll.shapetest.adapter
 
+import android.app.Activity
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +20,7 @@ import com.cndll.shapetest.R
  * Created by Administrator on 2017/8/8 0008.
  * 银行卡
  */
-class BankCardAdapter(private val contentValues: List<ContentValues>?, private val context: Context) : BaseAdapter() {
+class BankCardAdapter(private val contentValues: List<ContentValues>?, private val context: Context, val onClick: setOnClick) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertView = convertView
         var holder: ViewHolder
@@ -35,19 +38,7 @@ class BankCardAdapter(private val contentValues: List<ContentValues>?, private v
         }
         holder.bankCardNum.text = contentValues[position].getAsString("nun")
         holder.bankCardImg.setOnClickListener {
-
-            AlertDialog.Builder(context)//设置对话框标题
-
-                    .setMessage("是否删除中国银行卡 1123")//设置显示的内容
-
-                    .setPositiveButton("删除", DialogInterface.OnClickListener { dialog, which ->
-
-
-                    }).setNegativeButton("取消", DialogInterface.OnClickListener { dialog, which ->
-
-
-            }).show()
-
+            onClick.bankDelete(position)
         }
         return convertView
     }
@@ -67,7 +58,10 @@ class BankCardAdapter(private val contentValues: List<ContentValues>?, private v
     inner class ViewHolder {
         lateinit var bankCardImg: ImageView
         lateinit var bankCardNum: TextView
+    }
 
+    interface setOnClick {
+        fun bankDelete(position: Int)
     }
 
 }

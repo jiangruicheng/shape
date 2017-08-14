@@ -39,7 +39,7 @@ class AddBankActivity : BaseActivity<ActivityAddBankBinding>() {
          * 成功，失败跳转
          * */
         binding.bankNext.setOnClickListener {
-            context.startActivity(Intent(context, AddCarStareActivity::class.java))
+            isNull()
         }
 
         //查看协议
@@ -72,7 +72,7 @@ class AddBankActivity : BaseActivity<ActivityAddBankBinding>() {
                         Toast.makeText(context, "发送成功请注意查收", Toast.LENGTH_LONG).show()
                         cT.start()
                     } else {
-                        Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, t.error_message, Toast.LENGTH_LONG).show()
                         return
                     }
                 }
@@ -105,4 +105,46 @@ class AddBankActivity : BaseActivity<ActivityAddBankBinding>() {
             binding.bankSendCode.isClickable = false
         }
     }
+
+    /**
+     * 非空验证
+     * */
+    private fun isNull() {
+        var msg = ""
+        var isNull = true
+        if (binding.bankCardName.text.toString().trim().equals("")) {
+            isNull = false
+            msg = "请输入持卡人"
+        }
+        if (binding.bankCardNum.text.toString().trim().equals("")) {
+            isNull = false
+            msg = "请输入银行卡号"
+        }
+        if (!Constants.validMobile(binding.bankPhone.text.toString().trim())) {
+            isNull = false
+            msg = "请输入正确的手机号"
+        }
+        if (binding.bankCardCode.text.toString().trim().equals("")) {
+            isNull = false
+            msg = "请输入验证码"
+        }
+        if (isNull) {
+            httpBank()
+        } else {
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+            return
+        }
+
+    }
+
+    /**
+     * 提交
+     * */
+    private fun httpBank() {
+        var bundle=Bundle()
+        bundle.putString("","")
+        context.startActivity(Intent(context, AddCarStareActivity::class.java).putExtras(bundle))
+
+    }
+
 }

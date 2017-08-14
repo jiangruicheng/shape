@@ -94,7 +94,7 @@ class UpdatePwdActivity : BaseActivity<ActivityUpdatePwdBinding>() {
                     Toast.makeText(context,"修改成功",Toast.LENGTH_LONG).show()
                     finish()
                 }else{
-                    Toast.makeText(context,t.error_massage,Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,t.error_message,Toast.LENGTH_LONG).show()
                 }
             }
         })

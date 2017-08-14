@@ -17,14 +17,14 @@ public class ScoreAllResponse extends BaseResponse {
      */
 
     private int code;
-    private String error_massage;
+    private String error_message;
 
-    public String getError_massage() {
-        return error_massage;
+    public String getError_message() {
+        return error_message;
     }
 
-    public void setError_massage(String error_massage) {
-        this.error_massage = error_massage;
+    public void setError_message(String error_message) {
+        this.error_message = error_message;
     }
 
     private List<DatasBean> datas;
