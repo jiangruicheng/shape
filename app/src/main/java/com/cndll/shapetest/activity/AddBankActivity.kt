@@ -138,7 +138,7 @@ class AddBankActivity : BaseActivity<ActivityAddBankBinding>() {
     }
 
     /**
-     * 提交
+     * 提交添加银行卡
      * */
     private fun httpBank() {
         var bundle=Bundle()

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -16,6 +17,8 @@ import com.cndll.shapetest.api.bean.response.HttpCodeResponse
 import com.cndll.shapetest.api.bean.response.OrderListResponse
 import com.cndll.shapetest.databinding.ActivityGroupBookingDetailsBinding
 import com.cndll.shapetest.tools.SharedPreferenceUtil
+import com.facebook.drawee.view.SimpleDraweeView
+import com.zhy.android.percent.support.PercentLinearLayout
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -46,7 +49,7 @@ class GroupBookingDetailsActivity : BaseActivity<ActivityGroupBookingDetailsBind
      * */
     private fun initView() {
         var bundles = this.intent.extras
-        if (bundles.containsKey("orderList")) {
+        if (bundles != null && bundles.containsKey("orderList")) {
             orderBean = bundles.getSerializable("orderList") as OrderListResponse.DatasBean
 
             if (orderBean.order_state.equals("0")) {
@@ -164,46 +167,37 @@ class GroupBookingDetailsActivity : BaseActivity<ActivityGroupBookingDetailsBind
                         bundle.putString("rec_id", orderBean.goods_list[0].rec_id)
                         bundle.putString("opType", "save")
                         context.startActivity(Intent(context, AppraiseActivity::class.java).putExtras(bundle))
-
                     }
                 }
             }
+        } else {
+            binding.groupBookingType.setImageDrawable(resources.getDrawable(R.mipmap.group_booking))
+            //1查看团详情
+            binding.groupBookingDetails.setOnClickListener {
+                context.startActivity(Intent(context, InSpellingActivity::class.java))
+            }
+            //2查看物流
+            binding.groupLogistics.visibility = View.VISIBLE
+            binding.groupLogistics.text = "订单退款"
+            binding.groupLogistics.setOnClickListener {
+                //测试 -- 退款
+                context.startActivity(Intent(context, ApplyForRefundActivity::class.java))
+            }
         }
 
-
-//        var type = 1
-//        if (type == 1) {
-//            //凭团中
-//            binding.groupBookingType.setImageDrawable(resources.getDrawable(R.mipmap.group_booking))
-//        } else if (type == 2) {
-//            //成功--等待收货
-//            binding.groupBookingType.setImageDrawable(resources.getDrawable(R.mipmap.booking_ok))
-//        } else if (type == 3) {
-//            //失败
-//            binding.groupBookingType.setImageDrawable(resources.getDrawable(R.mipmap.booking_delete))
-//        } else if (type == 4) {
-//            //待发货
-//            binding.groupBookingType.setImageDrawable(resources.getDrawable(R.mipmap.booking_shipments))
-//        } else if (type == 5) {
-//            //收货
-//            binding.groupBookingType.setImageDrawable(resources.getDrawable(R.mipmap.booking_delivery))
-//        } else if (type == 6) {
-//            //待付款
-//            binding.groupBookingType.setImageDrawable(resources.getDrawable(R.mipmap.group_payment))
-//        }
-//
-//        //1查看团详情
-//        binding.groupBookingDetails.setOnClickListener {
-//            context.startActivity(Intent(context, ApplyForRefundActivity::class.java))
-//        }
-//        //2查看物流
-//        binding.groupLogistics.setOnClickListener {
-//            context.startActivity(Intent(context, LogisticsActivity::class.java))
-//        }
-//        //3确认激励
-//        binding.groupIncentive.setOnClickListener { }
-//        //4
-//        binding.groupBall.setOnClickListener { }
+        /**
+         * 放置数据
+         * */
+        for (i in 0..1) {
+            val view = LayoutInflater.from(context).inflate(R.layout.sales_item_new, null)
+            val linGoods = view.findViewById(R.id.lin_sales_goods) as PercentLinearLayout
+            val shopImg = view.findViewById(R.id.shop_all_img) as SimpleDraweeView
+            val shopName = view.findViewById(R.id.shop_all_name) as TextView
+            val shopType = view.findViewById(R.id.shop_all_type) as TextView
+            val shopPrice = view.findViewById(R.id.shop_all_price) as TextView
+            val shopCount = view.findViewById(R.id.shop_all_count) as TextView
+            binding.groupBookingList.addView(view)
+        }
     }
 
     /**
@@ -351,5 +345,6 @@ class GroupBookingDetailsActivity : BaseActivity<ActivityGroupBookingDetailsBind
             excitation(orderID)
         }
     }
+
 
 }

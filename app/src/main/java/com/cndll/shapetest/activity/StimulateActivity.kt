@@ -3,6 +3,7 @@ package com.cndll.shapetest.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.api.AppRequest
@@ -134,6 +135,7 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
                         binding.stimulateType.text = "身份认证成功"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"
                         binding.sitLinPhoto.isClickable = false
+//                        binding.sitLinPhoto.visibility=View.GONE
                     } else if (t.datas.state == 2) {
                         binding.stimulateType.text = "身份认证失败，请重新认证"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"

@@ -8,20 +8,21 @@ import com.cndll.shapetest.R
 import com.cndll.shapetest.config.AppContext
 import com.cndll.shapetest.databinding.ActivitySettingBinding
 import com.cndll.shapetest.tools.FilesUtlis
+import com.cndll.shapetest.tools.SharedPreferenceUtil
 
 
 /**
  * 设置-主界面
  * */
 class SettingActivity : BaseActivity<ActivitySettingBinding>() {
-    lateinit var context:Context
-    var futils=FilesUtlis()
+    lateinit var context: Context
+    var futils = FilesUtlis()
     override fun initBindingVar() {
     }
 
     override fun initTitle() {
         binding.titlebar.title.text = "设置"
-        binding.titlebar.back.setOnClickListener{
+        binding.titlebar.back.setOnClickListener {
             finish()
         }
     }
@@ -29,45 +30,45 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_setting)
-        context=this
+        context = this
         initView()
     }
 
     /**
      * 加载控件
      * */
-    private fun initView(){
+    private fun initView() {
         /** 清楚缓存 */
-        binding.setAllCache.text=futils.getTotalCacheSize(context)
+        binding.setAllCache.text = futils.getTotalCacheSize(context)
         binding.setAllCache.setOnClickListener {
             futils.clearAllCache(context)
-            binding.setAllCache.text="0M"
+            binding.setAllCache.text = "0M"
         }
         /** 版本 */
-        binding.setVersion.text=futils.getVersion(context)
+        binding.setVersion.text = futils.getVersion(context)
 
         /** 地址管理 */
-        binding.setAddress.setOnClickListener{
-            context.startActivity(Intent(context,AddressActivity::class.java))
+        binding.setAddress.setOnClickListener {
+            context.startActivity(Intent(context, AddressActivity::class.java))
         }
         // 绑定手机号
-        binding.setPhone.setOnClickListener{
-            var bundle=Bundle()
-            bundle.putString("type","bPhone")
-            context.startActivity(Intent(context,SetPhoneActivity::class.java).putExtras(bundle))
+        binding.setPhone.setOnClickListener {
+            var bundle = Bundle()
+            bundle.putString("type", "bPhone")
+            context.startActivity(Intent(context, SetPhoneActivity::class.java).putExtras(bundle))
         }
         //修改密码
-        binding.setUpdatePwd.setOnClickListener{
+        binding.setUpdatePwd.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("type", "pwd")
-            context.startActivity(Intent(context,SetPwdActivity::class.java).putExtras(bundle))
+            context.startActivity(Intent(context, SetPwdActivity::class.java).putExtras(bundle))
         }
         //推送消息
         binding.mTogBtn.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked){
+            if (isChecked) {
                 println("选中")
-                Toast.makeText(context,"选中",Toast.LENGTH_LONG).show()
-            }else{
+                Toast.makeText(context, "选中", Toast.LENGTH_LONG).show()
+            } else {
                 println("未选中")
             }
         }
@@ -75,11 +76,13 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
         binding.setUsers.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("type", "users")
-            context.startActivity(Intent(context,SetPwdActivity::class.java).putExtras(bundle))
+            context.startActivity(Intent(context, SetPwdActivity::class.java).putExtras(bundle))
         }
         //退出登录
-        binding.outLogin.setOnClickListener { AppContext.getInstance().logoutApp()
-        finish()
+        binding.outLogin.setOnClickListener {
+            SharedPreferenceUtil.clear()
+            AppContext.getInstance().logoutApp()
+            finish()
         }
     }
 

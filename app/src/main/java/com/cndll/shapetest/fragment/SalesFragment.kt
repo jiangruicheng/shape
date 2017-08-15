@@ -45,6 +45,9 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(){
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
+    /**
+     * 退货，退款
+     * */
     private fun initView(){
         binding.salesPull.setOnRefreshListener(onListener2)
         binding.salesPull.getLoadingLayoutProxy(false, true).setPullLabel("上蜡烛")
