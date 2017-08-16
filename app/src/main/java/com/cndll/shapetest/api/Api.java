@@ -10,6 +10,7 @@ import com.cndll.shapetest.api.bean.response.CollectResponse;
 import com.cndll.shapetest.api.bean.response.CommodityResponse;
 import com.cndll.shapetest.api.bean.response.FightResponse;
 import com.cndll.shapetest.api.bean.response.HomePageResponse;
+import com.cndll.shapetest.api.bean.response.HotSearchResponse;
 import com.cndll.shapetest.api.bean.response.LimitedResponse;
 import com.cndll.shapetest.api.bean.response.AboutUsResponse;
 import com.cndll.shapetest.api.bean.response.AddressDetailsResponse;
@@ -20,6 +21,7 @@ import com.cndll.shapetest.api.bean.response.HttpCodeResponse;
 import com.cndll.shapetest.api.bean.response.LineaOffResponse;
 import com.cndll.shapetest.api.bean.response.LogisticsResponse;
 import com.cndll.shapetest.api.bean.response.MemberResponse;
+import com.cndll.shapetest.api.bean.response.MoreClassResponse;
 import com.cndll.shapetest.api.bean.response.NearByResponse;
 import com.cndll.shapetest.api.bean.response.OrderListResponse;
 import com.cndll.shapetest.api.bean.response.RegisterResponse;
@@ -106,6 +108,14 @@ public interface Api {
     //搜索商店页面
     @GET("/mobile/index.php?act=shop&op=store_search")
     Observable<SearchShopResponse> searchShopPage(@Query("keyword") String search, @Query("page") String page);
+
+    //更多分类
+    @GET("mobile/index.php?act=goods&op=goods_son_class")
+    Observable<MoreClassResponse> moreClassPage(@Query("gc_id") String id);
+
+    //热门搜索
+    @GET("mobile/index.php?act=index&op=search_key_list")
+    Observable<HotSearchResponse> hotSearch();
 
     /**
      * 地区列表

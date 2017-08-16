@@ -93,7 +93,7 @@
             android:id="@+id/hot_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp"
+            android:padding="12dp"
             app:layout_heightPercent="25%h">
 
 

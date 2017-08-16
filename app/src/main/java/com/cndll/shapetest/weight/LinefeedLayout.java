@@ -48,15 +48,15 @@ public class LinefeedLayout extends ViewGroup {
 
                 if (availableLineWidth < childWidth) {
                     availableLineWidth = lineWidth;
-                    paddingTop = paddingTop + maxLineHight;
+                    paddingTop = paddingTop + maxLineHight + 12;
                     childLeft = getPaddingLeft();
                     maxLineHight = 0;
                 }
-                childTop = paddingTop;
+                childTop = paddingTop + 12;
                 setChildFrame(child, childLeft, childTop, childWidth,
                         childHeight);
-                childLeft += childWidth;
-                availableLineWidth = availableLineWidth - childWidth;
+                childLeft = childLeft + 12 + childWidth;
+                availableLineWidth = availableLineWidth - childWidth - 12;
                 maxLineHight = Math.max(maxLineHight, childHeight);
             }
         }

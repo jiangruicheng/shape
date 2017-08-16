@@ -90,7 +90,7 @@ class MemberFragment : BaseVlayoutFragment() {
                         c.imgUrl = i.goods_image
                         c.name = i.goods_name
                         c.nowPrice = i.goods_price
-                        c.oldPreci = i.goods_marketprice
+                        c.oldPrice = i.goods_marketprice
                         c.goodsID = i.goods_id
                         c.storeID = i.store_id
                         c.score = i.score

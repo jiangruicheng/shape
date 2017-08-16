@@ -5,13 +5,13 @@ package com.cndll.shapetest.bean;
  */
 
 public class CommodityVerInfoMode extends BaseBinding {
-    private String name;
-    private String nowPrice;
-    private String oldPreci;
-    private String score;
-    private String storeID;
-    private String goodsID;
-    private String imgUrl;
+    public String name;
+    public String nowPrice;
+    public String oldPrice;
+    public String score;
+    public String storeID;
+    public String goodsID;
+    public String imgUrl;
 
     public String getName() {
         return name;
@@ -29,12 +29,12 @@ public class CommodityVerInfoMode extends BaseBinding {
         this.nowPrice = nowPrice;
     }
 
-    public String getOldPreci() {
-        return oldPreci;
+    public String getOldPrice() {
+        return oldPrice;
     }
 
-    public void setOldPreci(String oldPreci) {
-        this.oldPreci = oldPreci;
+    public void setOldPrice(String oldPrice) {
+        this.oldPrice = oldPrice;
     }
 
     public String getScore() {
@@ -103,7 +103,7 @@ public class CommodityVerInfoMode extends BaseBinding {
 
     public boolean isButtonEnable;
     public boolean showButton;
-    private String orderScore;
-    private String goodsUrl;
+    public String orderScore;
+    public String goodsUrl;
 
 }

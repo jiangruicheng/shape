@@ -13,9 +13,8 @@
         android:layout_weight="7"
         android:scaleType="centerInside"
         app:actualImageScaleType="centerInside"
-        app:placeholderImage="@mipmap/ic_launcher_round"
-        app:roundAsCircle="true" />
-
+        app:placeholderImage="@mipmap/ic_launcher_round" />
+    <!--app:roundAsCircle="true"-->
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"

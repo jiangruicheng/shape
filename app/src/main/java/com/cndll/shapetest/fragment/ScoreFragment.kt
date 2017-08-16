@@ -3,10 +3,7 @@ package com.cndll.shapetest.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper
 
 import com.cndll.shapetest.R
@@ -63,7 +60,7 @@ class ScoreFragment : BrandDiscountFragment() {
                         c.storeID = i.store_id
                         c.name = i.goods_name
                         c.nowPrice = i.goods_price
-                        c.oldPreci = i.goods_marketprice
+                        c.oldPrice = i.goods_marketprice
                         c.orderScore = i.shop_score
                         c.imgUrl = i.img_url
                         c.score = i.score

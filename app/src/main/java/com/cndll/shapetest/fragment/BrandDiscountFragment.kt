@@ -20,6 +20,7 @@ import com.cndll.shapetest.api.ApiUtill
 import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.api.bean.response.BrandResponse
 import com.cndll.shapetest.bean.CommodityVerInfoMode
+import com.cndll.shapetest.bean.anno.Voluation
 import com.cndll.shapetest.databinding.ItemCommodityVerBinding
 import com.cndll.shapetest.databinding.ItemLimitTabBinding
 import com.cndll.shapetest.weight.VLayoutHelper
@@ -127,15 +128,8 @@ open class BrandDiscountFragment : BaseVlayoutFragment() {
                     when (mode) {
                         (MODE_PULL) -> {
                             for (i in (baseResponse as BrandResponse).datas) {
-                                val c = CommodityVerInfoMode()
-                                c.goodsID = i.goods_id
-                                c.nowPrice = i.goods_price
-                                c.oldPreci = i.goods_marketprice
-                                c.name = i.goods_name
-                                c.imgUrl = i.img_url
-                                c.goodsUrl = i.goods_url
-                                c.score = i.score
-                                c.storeID = i.store_id
+                                val v = Voluation<BrandResponse.DatasBean, CommodityVerInfoMode>()
+                                val c = v.getVari(i, CommodityVerInfoMode::class.java)
                                 brandMode.add(c)
                             }
                             commodityAdapter.mCount = baseResponse.datas.size

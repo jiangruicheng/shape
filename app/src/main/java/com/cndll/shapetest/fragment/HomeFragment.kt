@@ -66,7 +66,7 @@ HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
 
     fun initPageView() {
-        adapter = PagerAdapter(activity.supportFragmentManager)
+        adapter = PagerAdapter(childFragmentManager)
         binding.pageTab.tabMode = TabLayout.MODE_SCROLLABLE
         binding.pageTab.setupWithViewPager(binding.viewPage)
         binding.viewPage.adapter = adapter

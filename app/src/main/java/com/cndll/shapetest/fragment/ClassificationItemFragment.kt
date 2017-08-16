@@ -15,6 +15,7 @@ import com.cndll.shapetest.R
 import com.cndll.shapetest.RXbus.EventType
 import com.cndll.shapetest.RXbus.RxBus
 import com.cndll.shapetest.activity.ResultActivity
+import com.cndll.shapetest.activity.TurnOnActivity
 import com.cndll.shapetest.api.bean.response.ClassItemResponse
 import com.cndll.shapetest.weight.VLayoutHelper
 import com.facebook.drawee.view.SimpleDraweeView
@@ -96,6 +97,7 @@ class ClassificationItemFragment : BaseVlayoutFragment() {
                     setOnBindView({ itemView, position ->
                         val name = itemView.itemView.findViewById(R.id.name) as TextView
                         name.setText(classmode[i].gc_name)
+                        itemView.itemView.findViewById(R.id.load_more).setOnClickListener { context.startActivity(Intent(context, TurnOnActivity::class.java).setAction(MoreClassFragment.FLAG).putExtra(MoreClassFragment.FLAG, classmode[i].gc_id)) }
                     }).creatAdapter())
             val detailHelper = GridLayoutHelper(3)
             detailHelper.setAutoExpand(false)
@@ -112,7 +114,7 @@ class ClassificationItemFragment : BaseVlayoutFragment() {
                         val text = itemView.itemView.findViewById(R.id.text) as TextView
                         image.setImageURI(classmode[i].son_array[position].img_url)
                         text.setText(classmode[i].son_array[position].son_name)
-                        itemView.itemView.setOnClickListener { context.startActivity(Intent(context, ResultActivity::class.java).putExtra(ResultActivity.MODE, ResultActivity.MODE_SEARCH).putExtra(ResultActivity.TYPE, ResultActivity.TYPE_COMMODIYT)) }
+                        itemView.itemView.setOnClickListener { context.startActivity(Intent(context, ResultActivity::class.java).putExtra(ResultActivity.MODE, ResultActivity.MODE_CLASS).putExtra(ResultActivity.TYPE, ResultActivity.TYPE_COMMODIYT)) }
                     })/*.setOnBindViewOffset({ itemView, position ->
                 (itemView.itemView.findViewById(R.id.text) as TextView).setText(position.toString())
             })*/.creatAdapter())

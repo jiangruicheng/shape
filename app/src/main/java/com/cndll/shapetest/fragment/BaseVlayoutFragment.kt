@@ -94,7 +94,6 @@ open class BaseVlayoutFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater?.inflate(R.layout.fragment_pager_home, container, false) as View
         recycler = view!!.findViewById(R.id.recycler) as RecyclerView
-
         init()
         initDownRefresh(view)
         setScollListen(view)

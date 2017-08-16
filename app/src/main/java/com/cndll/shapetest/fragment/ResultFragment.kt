@@ -94,7 +94,7 @@ class ResultFragment : BaseVlayoutFragment() {
                     tabLayout.tabGravity = TabLayout.GRAVITY_FILL
                     val p = selectPosition
                     tabLayout.removeAllTabs()
-                    val titles = arrayListOf("默认排序", "销量排序", "价格排序")
+                    val titles = arrayListOf("默认排序", "销量排序", "好评优先")
                     for (i in 0..2) {
                         val tab: TabLayout.Tab = tabLayout.newTab()
                         val tabView = LayoutInflater.from(context).inflate(R.layout.item_limit_tab, tabLayout as ViewGroup, false)

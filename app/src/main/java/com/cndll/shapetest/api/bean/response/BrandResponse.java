@@ -1,6 +1,7 @@
 package com.cndll.shapetest.api.bean.response;
 
 import com.cndll.shapetest.api.bean.BaseResponse;
+import com.cndll.shapetest.bean.anno.Variable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,17 +49,31 @@ public class BrandResponse extends BaseResponse {
          * img_url : http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05526719863643949_60.jpg
          * goods_url : http://zhongxiang.51edn.com/mobile/index.php?act=goods&op=index&goods_id=39
          */
-
-        private String goods_name;
+        @Variable(variable = "name")
+        public String goods_name;
         private String goods_jingle;
-        private String goods_price;
-        private String goods_marketprice;
-        private String score;
+        @Variable(variable = "nowPrice")
+
+        public String goods_price;
+        @Variable(variable = "oldPrice")
+
+        public String goods_marketprice;
+        @Variable(variable = "score")
+
+        public String score;
         private String goods_image;
-        private String store_id;
-        private String goods_id;
-        private String img_url;
-        private String goods_url;
+        @Variable(variable = "storeID")
+
+        public String store_id;
+        @Variable(variable = "goodsID")
+
+        public String goods_id;
+        @Variable(variable = "imgUrl")
+
+        public String img_url;
+        @Variable(variable = "goodsUrl")
+
+        public String goods_url;
 
         public String getGoods_name() {
             return goods_name;
