@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="消费积分总额"
+                android:text="积分总额"
                 android:textColor="@color/white"
                 app:layout_heightPercent="20%h"
                 app:layout_marginLeftPercent="5%"

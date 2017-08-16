@@ -253,7 +253,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
                     binding.mineID.text="ID:"+t.datas.member_num
                     userInfo=t.datas
                 }else{
-                    Toast.makeText(context,t.error_massage,Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,t.error_message,Toast.LENGTH_LONG).show()
                 }
             }
 

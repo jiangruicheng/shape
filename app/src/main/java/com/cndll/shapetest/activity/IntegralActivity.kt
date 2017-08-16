@@ -137,9 +137,14 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
             binding.titlebar.title.text = "转增记录"
             binding.integralDataTable.visibility = View.GONE
             binding.typeTx.visibility = View.GONE
-            binding.funTx.text = "昵称"
+            binding.funTx.text = "转增类型"
             binding.manageTx.text = "ID号"
             page = 1
+            if (adapter == null) {
+                adapter = IntergralRecodeAdapter(context, moreList, 4)
+                listView.adapter = adapter
+            }
+            httpScore("score", "donation_score")
         }
 
         initPopupWindow()
@@ -171,6 +176,8 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
                 httpScore("score", "shop_score")
             } else if (type.equals("subsidiary")) {//积分明细
                 httpScore("score", "score_info")
+            } else if (type.equals("remain")) {
+                httpScore("score", "donation_score")
             }
 
         }
@@ -189,6 +196,8 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
                 httpScore("score", "shop_score")
             } else if (type.equals("subsidiary")) {
                 httpScore("score", "score_info")
+            } else if (type.equals("remain")) {
+                httpScore("score", "donation_score")
             }
         }
     }
@@ -272,6 +281,8 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
                 httpScore("score", "shop_score")
             } else if (type.equals("subsidiary")) {
                 httpScore("score", "score_info")
+            } else if (type.equals("remain")) {
+                httpScore("score", "donation_score")
             }
             pwMyPopWindow.dismiss()
         }
@@ -317,7 +328,7 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
                         binding.integralPull.mode = PullToRefreshBase.Mode.BOTH
                     }
                 } else {
-                    Toast.makeText(context, t.error_massage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, t.error_message, Toast.LENGTH_SHORT).show()
                 }
 
             }

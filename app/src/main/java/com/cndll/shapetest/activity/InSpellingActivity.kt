@@ -62,6 +62,7 @@ class InSpellingActivity : BaseActivity<ActivityInSpellingBinding>() {
             UtilsUmeng.share(this@InSpellingActivity,Ini.ShareCommunity_Url+43,"22222")
         }
 
+
     }
 
 

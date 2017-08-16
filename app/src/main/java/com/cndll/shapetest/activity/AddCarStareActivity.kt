@@ -13,10 +13,10 @@ class AddCarStareActivity : BaseActivity<ActivityAddCarStareBinding>() {
     }
 
     override fun initTitle() {
-        binding.titlebar.title.text="添加银行卡"
-        binding.titlebar.back.visibility=View.INVISIBLE
-        binding.titlebar.titleRight.visibility=View.VISIBLE
-        binding.titlebar.titleRight.text="完成"
+        binding.titlebar.title.text = "添加银行卡"
+        binding.titlebar.back.visibility = View.INVISIBLE
+        binding.titlebar.titleRight.visibility = View.VISIBLE
+        binding.titlebar.titleRight.text = "完成"
         binding.titlebar.titleRight.setTextColor(resources.getColor(R.color.titleRed))
         binding.titlebar.titleRight.setOnClickListener { finish() }
     }
@@ -25,9 +25,9 @@ class AddCarStareActivity : BaseActivity<ActivityAddCarStareBinding>() {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_add_car_stare)
 
-
+        //显示成功
 //        binding.linFinish
-
+        //显示失败
 //        binding.linJam
 
     }

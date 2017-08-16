@@ -2,13 +2,14 @@ package com.cndll.shapetest.api.bean.response;
 
 import com.cndll.shapetest.api.bean.BaseResponse;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/8/1 0001.
  */
 
-public class OrderListResponse extends BaseResponse {
+public class OrderListResponse extends BaseResponse implements Serializable{
 
     /**
      * code : 200
@@ -34,7 +35,7 @@ public class OrderListResponse extends BaseResponse {
         this.datas = datas;
     }
 
-    public static class DatasBean {
+    public static class DatasBean implements Serializable{
         /**
          * order_id : 45
          * order_sn : 9000000000004801
@@ -129,7 +130,7 @@ public class OrderListResponse extends BaseResponse {
             this.goods_list = goods_list;
         }
 
-        public static class GoodsListBean {
+        public static class GoodsListBean implements Serializable{
             /**
              * goods_num : 1
              * goods_price : 20.00

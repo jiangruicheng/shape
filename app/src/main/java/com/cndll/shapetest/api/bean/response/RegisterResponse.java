@@ -15,7 +15,6 @@ public class RegisterResponse extends BaseResponse {
      */
 
     private int code;
-    private String error_massage;
     private String error_message;
     private String message;
     private DatasBean datas;
@@ -42,14 +41,6 @@ public class RegisterResponse extends BaseResponse {
 
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public String getError_massage() {
-        return error_massage;
-    }
-
-    public void setError_massage(String error_massage) {
-        this.error_massage = error_massage;
     }
 
     public DatasBean getDatas() {

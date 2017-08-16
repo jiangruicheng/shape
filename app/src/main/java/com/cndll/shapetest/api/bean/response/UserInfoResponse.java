@@ -14,12 +14,12 @@ public class UserInfoResponse extends BaseResponse{
 
     /**
      * code : 200
-     * error_massage : 请先登录
+     * error_message : 请先登录
      * datas : {"error":"199","member_id":"4","member_name":"13048875254","member_username":"。雨神！","member_code":"15011520901165","member_num":"3006923","member_avatar":"http://zhongxiang.51edn.com/data/upload/shop/avatar/avatar_4_new.jpg","download_url":"www.baidu.com","my_relation":[{"member_avatar":"http://zhongxiang.51edn.com/data/upload/shop/common/default_user_portrait.gif","member_nick":"four","member_time":"2017.07.26"},{"member_avatar":"http://zhongxiang.51edn.com/data/upload/shop/common/default_user_portrait.gif","member_nick":"three","member_time":"2017.07.26"},{"member_avatar":"http://zhongxiang.51edn.com/data/upload/shop/common/default_user_portrait.gif","member_nick":"two","member_time":"2017.07.26"},{"member_avatar":"http://zhongxiang.51edn.com/data/upload/shop/common/default_user_portrait.gif","member_nick":"one","member_time":"2017.07.26"}]}
      */
 
     private int code;
-    private String error_massage;
+    private String error_message;
     private DatasBean datas;
 
     public int getCode() {
@@ -30,12 +30,12 @@ public class UserInfoResponse extends BaseResponse{
         this.code = code;
     }
 
-    public String getError_massage() {
-        return error_massage;
+    public String getError_message() {
+        return error_message;
     }
 
-    public void setError_massage(String error_massage) {
-        this.error_massage = error_massage;
+    public void setError_message(String error_message) {
+        this.error_message = error_message;
     }
 
     public DatasBean getDatas() {

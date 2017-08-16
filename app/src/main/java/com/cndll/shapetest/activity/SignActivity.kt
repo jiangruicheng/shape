@@ -148,7 +148,7 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
                     Toast.makeText(context, "发送成功请注意查收", Toast.LENGTH_LONG).show()
                     cT.start()
                 } else {
-                    Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, t.error_message, Toast.LENGTH_LONG).show()
                     return
                 }
             }
@@ -216,7 +216,7 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
                     Toast.makeText(context, "找回密码成功", Toast.LENGTH_LONG).show()
                     finish()
                 } else {
-                    Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, t.error_message, Toast.LENGTH_LONG).show()
                 }
             }
         })

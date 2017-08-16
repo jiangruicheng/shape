@@ -131,7 +131,7 @@ class DonateActivity : BaseActivity<ActivityDonateBinding>() {
                     Toast.makeText(context, "转增成功", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
-                    Toast.makeText(context, t.error_massage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, t.error_message, Toast.LENGTH_SHORT).show()
                 }
 
             }

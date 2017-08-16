@@ -103,16 +103,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_heightPercent="70%h"
+                app:layout_heightPercent="65%h"
                 app:layout_widthPercent="100%w">
 
-                <com.zhy.android.percent.support.PercentLinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_heightPercent="30%h"
-                    app:layout_widthPercent="100%w">
-                    <!--   this is imgs -->
-                </com.zhy.android.percent.support.PercentLinearLayout>
+                <com.cndll.shapetest.view.MyGridView
+                    android:id="@+id/spelling_icons"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:columnWidth="90dp"
+                    android:horizontalSpacing="10dp"
+                    android:numColumns="auto_fit"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="10dp">
+
+                </com.cndll.shapetest.view.MyGridView>
 
 
                 <com.zhy.android.percent.support.PercentLinearLayout
@@ -201,7 +206,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_heightPercent="4%h">
+                app:layout_heightPercent="6%h">
 
                 <View
                     android:layout_width="match_parent"
@@ -249,7 +254,7 @@
                     android:layout_height="0dp"
                     android:layout_toRightOf="@id/wechat"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/qq"
+                    android:src="@mipmap/wechat"
                     app:layout_heightPercent="15%w"
                     app:layout_marginLeftPercent="10%w"
                     app:layout_widthPercent="15%w" />

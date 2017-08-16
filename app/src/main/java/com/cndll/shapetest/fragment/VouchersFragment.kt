@@ -80,7 +80,7 @@ class VouchersFragment : BaseFragment<FragmentVouchersBinding>() {
                     moreList.addAll(t.datas)
                     adapter!!.notifyDataSetChanged()
                 } else {
-                    Toast.makeText(context, t.error_massage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, t.error_message, Toast.LENGTH_SHORT).show()
                 }
 
             }
@@ -112,7 +112,7 @@ class VouchersFragment : BaseFragment<FragmentVouchersBinding>() {
                         binding.vouchersList.adapter = adapter
                     }
                 } else {
-                    Toast.makeText(context, t.error_massage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, t.error_message, Toast.LENGTH_SHORT).show()
                 }
 
 

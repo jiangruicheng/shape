@@ -174,6 +174,8 @@ class AppraiseActivity : BaseActivity<ActivityAppraiseBinding>() {
                     Toast.makeText(context,t.datas.file_name,Toast.LENGTH_SHORT).show()
                     moreListName.add(t.datas.file_name)
                     isFish=true
+                }else{
+                    Toast.makeText(context,t.datas.error,Toast.LENGTH_SHORT).show()
                 }
             }
 

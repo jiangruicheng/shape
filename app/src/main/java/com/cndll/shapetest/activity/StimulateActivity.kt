@@ -3,6 +3,7 @@ package com.cndll.shapetest.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.api.AppRequest
@@ -44,6 +45,8 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
         // 认证身份
         binding.sitLinPhoto.setOnClickListener {
             bundle.putString("type", "ent")
+            bundle.putString("ID", scoreBean.certificate_id)
+            bundle.putString("certificate_type",scoreBean.certificate_type)
             context.startActivity(Intent(context, SetPwdActivity::class.java).putExtras(bundle))
         }
         //回购
@@ -132,6 +135,7 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
                         binding.stimulateType.text = "身份认证成功"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"
                         binding.sitLinPhoto.isClickable = false
+//                        binding.sitLinPhoto.visibility=View.GONE
                     } else if (t.datas.state == 2) {
                         binding.stimulateType.text = "身份认证失败，请重新认证"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"
@@ -139,6 +143,8 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
                         binding.stimulateType.text = "身份认证需认证，请认证身份"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"
                     }
+//                    t.datas.certificate_id   认证的ID
+//                    t.datas.certificate_type  ’personal‘个人认证’company‘企业认证
 
                     binding.stimulateCode.text = t.datas.member_excitation_score //总积分
                     binding.stimulatePurstCode.text = t.datas.member_excitation_score + "积分"//激励积分
@@ -149,7 +155,7 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
                     binding.stimulateRollCode.text = t.datas.voucher_num.toString() + "张"//我的抵用卷
 
                 } else {
-                    Toast.makeText(context, t.error_massage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, t.error_message, Toast.LENGTH_SHORT).show()
                 }
             }
         })

@@ -31,8 +31,8 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
      * 加载控件
      * */
     private fun initView() {
-        var bundle = this.intent.extras
-        var type: String = bundle.getString("type")
+        var bundles = this.intent.extras
+        var type: String = bundles.getString("type")
         println("type:" + type)
 
         if (type.equals("pwd")) {
@@ -129,11 +129,22 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
         }
         //企业认证
         binding.linEnterprise.setOnClickListener {
-            context.startActivity(Intent(context, AuthenticationActivity::class.java))
+            if (bundles.getString("certificate_type").equals("company")) {
+                bundle.putString("ID", bundles.getString("ID"))
+                context.startActivity(Intent(context, AuthenticationActivity::class.java).putExtras(bundle))
+            } else {
+                context.startActivity(Intent(context, AuthenticationActivity::class.java))
+            }
         }
         // 个人认证
         binding.linUser.setOnClickListener {
-            context.startActivity(Intent(context, PersonalCertificateActivity::class.java))
+            if (bundles.getString("certificate_type").equals("personal")) {
+                bundle.putString("ID", bundles.getString("ID"))
+                context.startActivity(Intent(context, PersonalCertificateActivity::class.java).putExtras(bundle))
+            } else {
+                context.startActivity(Intent(context, PersonalCertificateActivity::class.java))
+            }
+
         }
         //选择红包
         binding.donRedVouchers.setOnClickListener {

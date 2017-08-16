@@ -10,13 +10,21 @@ public class ScoreIndexResponse extends BaseResponse {
 
     /**
      * code : 200
-     * error_massage : 未登录
+     * error_message : 未登录
      * datas : {"voucher_num":1,"shop_score":"0.00","member_excitation_score":"0.00","bank_card_num":"0","state":9,"fund":0}
      */
 
     private int code;
-    private String error_massage;
+    private String error_message;
     private DatasBean datas;
+
+    public String getError_message() {
+        return error_message;
+    }
+
+    public void setError_message(String error_message) {
+        this.error_message = error_message;
+    }
 
     public int getCode() {
         return code;
@@ -26,13 +34,6 @@ public class ScoreIndexResponse extends BaseResponse {
         this.code = code;
     }
 
-    public String getError_massage() {
-        return error_massage;
-    }
-
-    public void setError_massage(String error_massage) {
-        this.error_massage = error_massage;
-    }
 
     public DatasBean getDatas() {
         return datas;
@@ -59,6 +60,24 @@ public class ScoreIndexResponse extends BaseResponse {
         private int state;
         private int fund;
         private String score_voucher;
+        private String certificate_id;
+        private String certificate_type;
+
+        public String getCertificate_id() {
+            return certificate_id;
+        }
+
+        public void setCertificate_id(String certificate_id) {
+            this.certificate_id = certificate_id;
+        }
+
+        public String getCertificate_type() {
+            return certificate_type;
+        }
+
+        public void setCertificate_type(String certificate_type) {
+            this.certificate_type = certificate_type;
+        }
 
         public String getScore_voucher() {
             return score_voucher;
