@@ -219,10 +219,10 @@ public final class Constants {
     /**
      * 显示银行卡号------截取
      */
-    private String replaceCard(String src) {
+    public static String replaceCard(String src) {
         StringBuilder builder = new StringBuilder();
 //        String str1=src.substring(0,src.length()-2);
-        String str2 = src.substring(src.length() - 12, src.length());
+        String str2 = src.substring(src.length() - 4, src.length());
 //        builder.append(str1);
         builder.append("**** **** **** ");
         builder.append(str2);

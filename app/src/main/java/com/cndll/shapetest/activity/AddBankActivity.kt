@@ -12,6 +12,7 @@ import com.cndll.shapetest.api.bean.BaseResponse
 import com.cndll.shapetest.api.bean.response.HttpCodeResponse
 import com.cndll.shapetest.databinding.ActivityAddBankBinding
 import com.cndll.shapetest.tools.Constants
+import com.cndll.shapetest.tools.SharedPreferenceUtil
 import com.cndll.shapetest.wxapi.AppRegister
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -22,6 +23,8 @@ import rx.schedulers.Schedulers
 class AddBankActivity : BaseActivity<ActivityAddBankBinding>() {
     lateinit var context: Context
     lateinit var cT: MyCountTime
+    var bankNum: String = ""
+    var bundle = Bundle()
     override fun initBindingVar() {
     }
 
@@ -33,6 +36,8 @@ class AddBankActivity : BaseActivity<ActivityAddBankBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_add_bank)
+        var bundles = this.intent.extras
+        bankNum = bundles.getString("cardNum")
         context = this
         cT = MyCountTime(60000, 1000)
         /**
@@ -141,10 +146,30 @@ class AddBankActivity : BaseActivity<ActivityAddBankBinding>() {
      * 提交添加银行卡
      * */
     private fun httpBank() {
-        var bundle=Bundle()
-        bundle.putString("","")
-        context.startActivity(Intent(context, AddCarStareActivity::class.java).putExtras(bundle))
+        AppRequest.getAPI().addBankCard("bank_card", "bankAdd", SharedPreferenceUtil.read("key", ""), binding.bankCardName.text.toString().trim(), bankNum, binding.bankCardCode.text.toString().trim(), binding.bankCardNum.text.toString().trim(), binding.bankPhone.text.toString().trim()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+                e!!.printStackTrace()
+            }
 
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                t as HttpCodeResponse
+                if (t.code == 200) {
+                    bundle.putString("is", "ok")
+                    context.startActivity(Intent(context, AddCarStareActivity::class.java).putExtras(bundle))
+                    finish()
+                } else {
+                    bundle.putString("is", "no")
+                    context.startActivity(Intent(context, AddCarStareActivity::class.java).putExtras(bundle))
+                    Toast.makeText(context,t.error_message,Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
 }

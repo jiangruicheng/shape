@@ -54,7 +54,7 @@
             android:id="@+id/bank_card_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/gray"
+            android:textColor="@color/contents_text"
             app:layout_widthPercent="70%w"
             app:layout_heightPercent="90%h"
             android:gravity="center|left"
@@ -89,7 +89,7 @@
             android:id="@+id/bank_card_num"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/gray"
+            android:textColor="@color/contents_text"
             app:layout_widthPercent="70%w"
             app:layout_heightPercent="90%h"
             android:gravity="center|left"
@@ -135,7 +135,7 @@
             android:id="@+id/bank_phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/gray"
+            android:textColor="@color/contents_text"
             app:layout_widthPercent="70%w"
             app:layout_heightPercent="90%h"
             android:gravity="center|left"
@@ -174,9 +174,10 @@
             android:layout_height="match_parent"
             android:background="@null"
             android:hint="@string/sign_auth_code_content"
+            android:textColor="@color/contents_text"
             app:layout_heightPercent="80%h"
             app:layout_textSizePercent="@string/text_size_big"
-            app:layout_widthPercent="45%w" />
+            app:layout_widthPercent="40%w" />
 
         <TextView
             android:id="@+id/bank_send_code"
@@ -187,7 +188,7 @@
             android:text="@string/sign_send_code"
             app:layout_heightPercent="80%h"
             app:layout_textSizePercent="@string/text_size_big"
-            app:layout_widthPercent="25%w" />
+            app:layout_widthPercent="30%w" />
 
     </com.zhy.android.percent.support.PercentLinearLayout>
     <com.zhy.android.percent.support.PercentLinearLayout
