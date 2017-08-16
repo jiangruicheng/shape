@@ -9,33 +9,33 @@
     <com.zhy.android.percent.support.PercentFrameLayout
         android:layout_width="match_parent"
         android:layout_height="100dp">
+
         <ImageView
             android:id="@+id/bank_card_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/titleRed" />
+            />
 
         <TextView
+            android:id="@+id/bank_card_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="中国银行卡"
-            app:layout_marginTopPercent="3%"
-            app:layout_marginLeftPercent="10%"
-            android:textColor="@color/bg" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="储蓄卡"
             android:textColor="@color/bg"
-            app:layout_marginTopPercent="25%"
-            app:layout_marginLeftPercent="10%"/>
+            app:layout_marginLeftPercent="10%"
+            app:layout_marginTopPercent="4%" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/bank_card_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="**** **** **** 1223"
+            android:textColor="@color/bg"
+            app:layout_marginLeftPercent="10%"
+            app:layout_marginTopPercent="25%" />
+
+        <TextView
+            android:id="@+id/bank_card_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textColor="@color/bg"
             app:layout_marginLeftPercent="10%"
             app:layout_marginTopPercent="55%" />

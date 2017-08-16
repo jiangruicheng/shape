@@ -341,7 +341,36 @@
 
                     </com.zhy.android.percent.support.PercentLinearLayout>
                 </com.zhy.android.percent.support.PercentLinearLayout>
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/mine_lin_booking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="@string/mine_booking"
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="20%w" />
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:padding="10dp"
+                        android:src="@mipmap/right"
+                        app:layout_marginLeftPercent="65%"
+                        app:layout_widthPercent="10%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
                     android:id="@+id/mine_lin_advance"
@@ -434,36 +463,7 @@
                         app:layout_widthPercent="10%w" />
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
-                <com.zhy.android.percent.support.PercentLinearLayout
-                    android:id="@+id/mine_lin_booking"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:background="@color/white"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="@string/mine_booking"
-                        android:textColor="@color/contents_text"
-                        app:layout_textSizePercent="@string/text_size_big"
-                        app:layout_widthPercent="20%w" />
-
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:padding="10dp"
-                        android:src="@mipmap/right"
-                        app:layout_marginLeftPercent="65%"
-                        app:layout_widthPercent="10%w" />
-                </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
                     android:id="@+id/mine_lin_apply"
@@ -534,7 +534,9 @@
                     android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:visibility="gone"
+                    >
 
                     <TextView
                         android:id="@+id/mine_partner_text"

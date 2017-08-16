@@ -94,7 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="可提现激励积分总额"
+                    android:text="普通激励积分总额"
                     android:textColor="@color/white"
                     app:layout_heightPercent="20%h"
 

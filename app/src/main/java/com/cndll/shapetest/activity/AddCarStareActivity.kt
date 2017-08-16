@@ -24,11 +24,12 @@ class AddCarStareActivity : BaseActivity<ActivityAddCarStareBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_add_car_stare)
-
-        //显示成功
-//        binding.linFinish
-        //显示失败
-//        binding.linJam
-
+        var bundle = this.intent.extras
+        var si = bundle.getString("is")
+        if (si.equals("ok")) {
+            binding.linJam.visibility = View.GONE
+        } else if (si.equals("no")) {
+            binding.linFinish.visibility = View.GONE
+        }
     }
 }

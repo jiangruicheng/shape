@@ -20,8 +20,9 @@ import rx.schedulers.Schedulers
  * */
 class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
     private lateinit var context: Context
-    var scoreBean=ScoreIndexResponse.DatasBean()
+    var scoreBean = ScoreIndexResponse.DatasBean()
     var bundle = Bundle()
+    var start: Int = 0
     override fun initBindingVar() {
     }
 
@@ -46,7 +47,7 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
         binding.sitLinPhoto.setOnClickListener {
             bundle.putString("type", "ent")
             bundle.putString("ID", scoreBean.certificate_id)
-            bundle.putString("certificate_type",scoreBean.certificate_type)
+            bundle.putString("certificate_type", scoreBean.certificate_type)
             context.startActivity(Intent(context, SetPwdActivity::class.java).putExtras(bundle))
         }
         //回购
@@ -77,7 +78,13 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
         }
         //常用银行卡
         binding.commonBankCardLin.setOnClickListener {
-            context.startActivity(Intent(context, BankCardActivity::class.java))
+            if (start == 1) {
+                context.startActivity(Intent(context, BankCardActivity::class.java))
+            } else {
+                Toast.makeText(context, "请先认证身份", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
         }
         //消费积分
         binding.scoreLin.setOnClickListener {
@@ -126,7 +133,8 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
                 super.onNext(t)
                 t as ScoreIndexResponse
                 if (t.code == 200) {
-                    scoreBean=t.datas
+                    scoreBean = t.datas
+                    start = t.datas.state
                     if (t.datas.state == 0) {
                         binding.stimulateType.text = "身份认证中，请等待认证"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"
@@ -134,13 +142,12 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
                     } else if (t.datas.state == 1) {
                         binding.stimulateType.text = "身份认证成功"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"
-                        binding.sitLinPhoto.isClickable = false
-//                        binding.sitLinPhoto.visibility=View.GONE
+                        binding.sitLinPhoto.visibility = View.GONE
                     } else if (t.datas.state == 2) {
                         binding.stimulateType.text = "身份认证失败，请重新认证"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"
                     } else if (t.datas.state == 9) {
-                        binding.stimulateType.text = "身份认证需认证，请认证身份"
+                        binding.stimulateType.text = "账户未实名认证，请认证身份"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"
                     }
 //                    t.datas.certificate_id   认证的ID
