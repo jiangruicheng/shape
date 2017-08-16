@@ -299,21 +299,27 @@ public interface Api {
     @FormUrlEncoded
     @POST("mobile/index.php/")
     Observable<HttpCodeResponse> scoreOperation(@Field("act") String act, @Field("op") String op, @Field("key") String key, @Field("score") String score, @Field("pay_password") String pay_password, @Field("member_num") String member_num, @Field("type") String type);
-    Observable<HttpCodeResponse> scoreOperation(@Field("act") String act,@Field("op") String op,@Field("key") String key,@Field("score") String score,@Field("pay_password") String pay_password,@Field("member_num") String member_num,@Field("type") String type);
 
-    /**订单激励**/
+
+    /**
+     * 订单激励
+     **/
     @FormUrlEncoded
     @POST("mobile/index.php/")
-    Observable<HttpCodeResponse> excitation(@Field("act") String act,@Field("op") String op,@Field("key") String key,@Field("order_sn") String order_sn);
+    Observable<HttpCodeResponse> excitation(@Field("act") String act, @Field("op") String op, @Field("key") String key, @Field("order_sn") String order_sn);
 
-    /**个人认证**/
+    /**
+     * 个人认证
+     **/
     @Multipart
     @POST("mobile/index.php/")
-    Observable<HttpCodeResponse> personal(@PartMap Map<String,RequestBody> map);
+    Observable<HttpCodeResponse> personal(@PartMap Map<String, RequestBody> map);
 
-    /**个人认证信息**/
+    /**
+     * 个人认证信息
+     **/
     @FormUrlEncoded
     @POST("mobile/index.php/")
-    Observable<PersonalCerticateResponse> personalInfo(@Field("act") String act,@Field("op") String op,@Field("key") String key,@Field("id") String id);
+    Observable<PersonalCerticateResponse> personalInfo(@Field("act") String act, @Field("op") String op, @Field("key") String key, @Field("id") String id);
 }
 
