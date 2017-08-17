@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w">
 
                     <TextView
@@ -55,7 +55,6 @@
                         android:gravity="center|left"
                         android:text="企业名称："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="8%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="20%w" />
 
@@ -65,7 +64,6 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="深圳物流咨询有限公司"
-                        app:layout_heightPercent="8%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="75%w" />
@@ -78,7 +76,7 @@
                     android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w">
 
                     <TextView
@@ -87,7 +85,6 @@
                         android:gravity="center|left"
                         android:text="联系人姓名："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="8%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="25%w" />
 
@@ -97,7 +94,6 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="王屋柳"
-                        app:layout_heightPercent="8%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="70%w" />
@@ -110,7 +106,7 @@
                     android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w">
 
                     <TextView
@@ -119,7 +115,6 @@
                         android:gravity="center|left"
                         android:text="联系人手机号："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="8%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="30%w" />
 
@@ -129,7 +124,6 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="李小康"
-                        app:layout_heightPercent="8%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="65%w" />
@@ -141,7 +135,7 @@
                     android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w">
 
                     <TextView
@@ -150,7 +144,6 @@
                         android:gravity="center|left"
                         android:text="联系人邮箱："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="8%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="30%w" />
 
@@ -160,7 +153,6 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="1352867940"
-                        app:layout_heightPercent="8%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="65%w" />
@@ -172,7 +164,7 @@
                     android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w">
 
                     <TextView
@@ -181,7 +173,6 @@
                         android:gravity="center|left"
                         android:text="公司统一信用代码："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="9%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="40%w" />
 
@@ -191,7 +182,6 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="1352867940"
-                        app:layout_heightPercent="8%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="55%w" />
@@ -203,7 +193,7 @@
                     android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w">
 
                     <TextView
@@ -212,7 +202,6 @@
                         android:gravity="center|left"
                         android:text="收款账号："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="10%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="20%w" />
 
@@ -222,7 +211,6 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="1352867940"
-                        app:layout_heightPercent="10%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="75%w" />
@@ -244,7 +232,7 @@
                     android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w">
 
                     <TextView
@@ -253,7 +241,6 @@
                         android:gravity="center|left"
                         android:text="开户行："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="11%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="20%w" />
 
@@ -263,7 +250,6 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="广东省深圳市宝安区宝安支行"
-                        app:layout_heightPercent="11%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="75%w" />
@@ -377,8 +363,8 @@
                         android:id="@+id/sim_business"
                         android:layout_width="200dp"
                         android:layout_height="130dp"
-                        android:layout_gravity="center"
                         android:layout_centerInParent="true"
+                        android:layout_gravity="center"
                         android:background="@mipmap/approve_bg" />
 
                     <TextView
@@ -405,8 +391,8 @@
                         android:id="@+id/sim_open_account"
                         android:layout_width="200dp"
                         android:layout_height="130dp"
-                        android:layout_gravity="center"
                         android:layout_centerInParent="true"
+                        android:layout_gravity="center"
                         android:background="@mipmap/approve_bg"
                         fresco:actualImageScaleType="focusCrop" />
 

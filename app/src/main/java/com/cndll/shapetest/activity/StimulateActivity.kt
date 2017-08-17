@@ -142,7 +142,7 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
                     } else if (t.datas.state == 1) {
                         binding.stimulateType.text = "身份认证成功"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"
-                        binding.sitLinPhoto.visibility = View.GONE
+//                        binding.sitLinPhoto.visibility = View.GONE
                     } else if (t.datas.state == 2) {
                         binding.stimulateType.text = "身份认证失败，请重新认证"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"

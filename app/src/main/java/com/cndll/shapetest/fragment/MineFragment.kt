@@ -33,7 +33,7 @@ import com.facebook.imagepipeline.core.ImagePipeline
  * Created by Administrator on 2017/7/3 0003.
  */
 class MineFragment : BaseFragment<FragmentMineBinding>(){
-    var imageHeight:Int=300
+    var imageHeight:Int=350
     var REQUEST_CODE_SCAN:Int=0x0000
     var DECODED_CONTENT_KEY:String="codedContent"
     var DECODED_BITMAP_KEY:String="codedBitmap"

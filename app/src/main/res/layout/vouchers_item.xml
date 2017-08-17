@@ -1,67 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/bg"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
+
     <com.zhy.android.percent.support.PercentLinearLayout
         android:id="@+id/lin_bg_quan"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center"
         android:background="@mipmap/qtwo"
-        app:layout_heightPercent="20%h"
-        app:layout_widthPercent="90%w"
-        >
+        android:orientation="horizontal">
+
         <com.zhy.android.percent.support.PercentLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_heightPercent="80%h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:layout_widthPercent="60%w"
-            >
+            android:layout_weight="2"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_marginTopPercent="30%"
-                app:layout_heightPercent="40%h"
-                app:layout_widthPercent="90%w"
-                android:text="抵用卷"
-                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                app:layout_textSizePercent="10%w"
+                android:text="抵用卷"
                 android:textColor="@color/white"
-                />
+                app:layout_textSizePercent="9%w" />
 
             <TextView
                 android:id="@+id/vouchers_time"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_heightPercent="30%h"
-                app:layout_widthPercent="95%w"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                app:layout_textSizePercent="7%w"
+                android:text="111"
                 android:textColor="@color/gray"
-                />
-
+                app:layout_textSizePercent="5%w" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 
         <TextView
             android:id="@+id/vouchers_price"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_heightPercent="90%h"
-            app:layout_widthPercent="30%w"
-            app:layout_marginLeftPercent="10%"
-            android:text="$100"
-            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_weight="1"
             android:gravity="center"
-            app:layout_textSizePercent="@string/text_size_bigC"
+            android:text="$100"
             android:textColor="@color/white"
-            />
+            app:layout_textSizePercent="@string/text_size_bigC" />
     </com.zhy.android.percent.support.PercentLinearLayout>
 </com.zhy.android.percent.support.PercentLinearLayout>

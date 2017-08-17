@@ -20,12 +20,12 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:scrollbars="none">
 
             <com.zhy.android.percent.support.PercentLinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_widthPercent="100%w">
 
@@ -43,10 +43,9 @@
                 <com.zhy.android.percent.support.PercentLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w">
 
                     <TextView
@@ -55,7 +54,6 @@
                         android:gravity="center|left"
                         android:text="姓名："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="8%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="20%w" />
 
@@ -65,7 +63,6 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="甜甜"
-                        app:layout_heightPercent="8%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="75%w" />
@@ -84,10 +81,9 @@
                 <com.zhy.android.percent.support.PercentLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w">
 
                     <TextView
@@ -96,7 +92,6 @@
                         android:gravity="center|left"
                         android:text="手机号："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="8%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="20%w" />
 
@@ -107,7 +102,6 @@
                         android:background="@null"
                         android:hint="13196365365"
                         android:inputType="phone"
-                        app:layout_heightPercent="8%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="75%w" />
@@ -126,10 +120,9 @@
                 <com.zhy.android.percent.support.PercentLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w">
 
                     <TextView
@@ -138,7 +131,6 @@
                         android:gravity="center|left"
                         android:text="再次输入手机号："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="9%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="35%w" />
 
@@ -149,7 +141,6 @@
                         android:background="@null"
                         android:hint="13196365365"
                         android:inputType="phone"
-                        app:layout_heightPercent="9%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="60%w" />
@@ -161,7 +152,7 @@
                     android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w">
 
                     <TextView
@@ -170,7 +161,6 @@
                         android:gravity="center|left"
                         android:text="身份证号："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="10%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="20%w" />
 
@@ -180,7 +170,6 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="13528679401352867940"
-                        app:layout_heightPercent="10%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="75%w" />
@@ -192,18 +181,19 @@
                     android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w"
 
                     >
 
                     <TextView
+                        android:id="@+id/textView13"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:gravity="center|left"
                         android:text="身份证有效期："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="12%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="30%w" />
 
@@ -211,17 +201,16 @@
                     <com.zhy.android.percent.support.PercentLinearLayout
                         android:id="@+id/cer_date_start"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="@drawable/shape_main_button_edit"
                         android:orientation="horizontal"
-                        app:layout_heightPercent="10%h"
                         app:layout_widthPercent="28%w">
 
                         <TextView
                             android:id="@+id/cer_date_start_text"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:padding="5dp"
                             android:text="2014-07-08"
                             app:layout_widthPercent="80%w" />
@@ -245,7 +234,7 @@
                     <com.zhy.android.percent.support.PercentLinearLayout
                         android:id="@+id/cer_date_end"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="@drawable/shape_main_button_edit"
                         android:orientation="horizontal"
@@ -255,7 +244,7 @@
                         <TextView
                             android:id="@+id/cer_date_end_text"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:padding="5dp"
                             android:text="2014-07-08"
                             app:layout_widthPercent="80%w" />
@@ -277,7 +266,7 @@
                     android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w">
 
                     <TextView
@@ -287,7 +276,6 @@
                         android:gravity="center|left"
                         android:text="个人邮箱："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="13%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="20%w" />
 
@@ -297,7 +285,6 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="13655@qq.com"
-                        app:layout_heightPercent="13%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="65%w" />
@@ -309,7 +296,7 @@
                     android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_paddingLeftPercent="5%"
+                    app:layout_paddingPercent="2%"
                     app:layout_widthPercent="100%w">
 
                     <TextView
@@ -318,7 +305,6 @@
                         android:gravity="center|left"
                         android:text="收款账号："
                         android:textColor="@color/contents_text"
-                        app:layout_heightPercent="15%h"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="20%w" />
 
@@ -328,7 +314,6 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="6173992811423"
-                        app:layout_heightPercent="15%h"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="70%w" />
