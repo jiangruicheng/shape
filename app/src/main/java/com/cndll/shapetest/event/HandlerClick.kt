@@ -1,5 +1,6 @@
 package com.cndll.shapetest.event
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.view.View
@@ -39,5 +40,11 @@ open class HandlerClick {
             view.context.startActivity(Intent(view.context, TurnOnActivity::class.java).putExtras(b).setAction(flag))
         }
     }
+
+    open fun backHomePage(view: View, activity: Activity) {
+        activity.startActivity(Intent(activity, HomeActivity::class.java))
+        activity.finish()
+    }
+
 }
 
