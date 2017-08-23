@@ -9,22 +9,22 @@ android {
     }
 
     signingConfigs {
-        /*release {
+        release {
             keyAlias 'shape1'
             keyPassword 'shape1'
             storeFile file('C:/Users/Administrator/Desktop/zxxf/shape.jks')
             storePassword 'shape1'
-        }*/
+        }
         dexOptions {
             jumboMode true
         }
-        /*debug {
+        debug {
             storeFile file('C:/Users/Administrator/Desktop/zxxf/shape.jks')
             storePassword 'shape1'
             keyAlias 'shape1'
             keyPassword 'shape1'
 
-        }*/
+        }
     }
     compileSdkVersion 25
     buildToolsVersion "25.0.3"

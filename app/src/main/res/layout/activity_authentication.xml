@@ -98,7 +98,34 @@
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="70%w" />
                 </com.zhy.android.percent.support.PercentLinearLayout>
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_paddingPercent="2%"
+                    app:layout_widthPercent="100%w">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="联系人身份证号："
+                        android:textColor="@color/contents_text"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="33%w" />
+
+                    <EditText
+                        android:id="@+id/legal_card_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="255224133233322233"
+                        app:layout_paddingLeftPercent="2%"
+                        app:layout_textSizePercent="@string/text_size_big"
+                        app:layout_widthPercent="65%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
                 <com.zhy.android.percent.support.PercentLinearLayout
                     android:id="@+id/lin_linkman"
                     android:layout_width="match_parent"
@@ -123,7 +150,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="李小康"
+                        android:hint="1359265556"
+                        android:inputType="phone"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="65%w" />
@@ -152,7 +180,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="1352867940"
+                        android:inputType="textEmailAddress"
+                        android:hint="28043667@qq.com"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="65%w" />
@@ -174,7 +203,7 @@
                         android:text="公司统一信用代码："
                         android:textColor="@color/contents_text"
                         app:layout_textSizePercent="@string/text_size_big"
-                        app:layout_widthPercent="40%w" />
+                        app:layout_widthPercent="38%w" />
 
                     <EditText
                         android:id="@+id/auth_code"
@@ -184,7 +213,7 @@
                         android:hint="1352867940"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
-                        app:layout_widthPercent="55%w" />
+                        app:layout_widthPercent="57%w" />
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
@@ -210,7 +239,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="1352867940"
+                        android:hint="1352867940121222"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="75%w" />
@@ -249,7 +278,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="广东省深圳市宝安区宝安支行"
+                        android:hint="平安银行"
                         app:layout_paddingLeftPercent="2%"
                         app:layout_textSizePercent="@string/text_size_big"
                         app:layout_widthPercent="75%w" />
@@ -307,7 +336,7 @@
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
                         android:background="@mipmap/approve_bg"
-                        fresco:actualImageScaleType="center" />
+                        fresco:actualImageScaleType="fitXY" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -336,7 +365,7 @@
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
                         android:background="@mipmap/approve_bg"
-                        fresco:actualImageScaleType="centerCrop" />
+                        fresco:actualImageScaleType="fitXY" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -394,7 +423,7 @@
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
                         android:background="@mipmap/approve_bg"
-                        fresco:actualImageScaleType="focusCrop" />
+                        fresco:actualImageScaleType="fitXY" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -423,7 +452,7 @@
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
                         android:background="@mipmap/approve_bg"
-                        fresco:actualImageScaleType="centerInside" />
+                        fresco:actualImageScaleType="fitXY" />
 
                     <TextView
                         android:layout_width="wrap_content"

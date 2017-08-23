@@ -7,6 +7,7 @@ import android.os.CountDownTimer
 import android.view.View
 import android.widget.Toast
 import com.cndll.shapetest.R
+import com.cndll.shapetest.api.ApiUtill
 import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.api.BaseObservable
 import com.cndll.shapetest.api.bean.BaseResponse
@@ -28,10 +29,8 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
     /** 推荐码 */
     var vouCode = ""
 
-
     lateinit private var cT: MyCountTime
     lateinit var type: String
-
     lateinit var context: Context
     override fun initBindingVar() {
 
@@ -58,9 +57,14 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
             binding.signAgreement.visibility = View.GONE
             binding.viewCode.visibility = View.GONE
             binding.linCode.visibility = View.GONE
-        } else {
+        } else if (type.equals("sign")) {
             binding.titlebar.title.text = "账号注册"
             binding.signRegisterPwd.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_red))
+        } else if (type.equals("qq")) {
+            binding.titlebar.title.text = "第三方注册"
+            binding.signAgreement.visibility = View.GONE
+            binding.viewCode.visibility = View.GONE
+            binding.linCode.visibility = View.GONE
         }
 
         cT = MyCountTime(60000, 1000)
@@ -104,8 +108,10 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
             binding.signRegisterPwd.isClickable = false
             if (type.equals("pwd")) { //忘记密码
                 httpNewPwd()
-            } else { //注册
+            } else if (type.equals("sign")) { //注册
                 httpSign()
+            } else if (type.equals("qq")) {
+                thirdLogin()
             }
         } else {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
@@ -222,5 +228,26 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
         })
 
     }
+
+    /**
+     * 第三方注册
+     * */
+    private fun thirdLogin() {
+        ApiUtill.getInstance().getApi(AppRequest.getAPI().thirdLogin("login", "thirdLogin", phone, pwd, code, SharedPreferenceUtil.read("nick", ""), SharedPreferenceUtil.read("icon", ""), SharedPreferenceUtil.read("openid", ""), SharedPreferenceUtil.read("logType",""), "android"), {
+            baseResponse ->
+            baseResponse as RegisterResponse
+            if (baseResponse.code == 200) {
+                SharedPreferenceUtil.insert("userPhone", baseResponse.datas.username)
+                SharedPreferenceUtil.insert("key", baseResponse.datas.key)
+                Toast.makeText(context, "注册成功,正在登录", Toast.LENGTH_LONG).show()
+                context.startActivity(Intent(context, HomeActivity::class.java))
+                finish()
+            } else if (baseResponse.code == 400) {
+                Toast.makeText(context, "注册失败", Toast.LENGTH_LONG).show()
+            }
+
+        })
+    }
+
 
 }

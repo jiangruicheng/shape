@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Message
 import android.widget.Toast
 import com.cndll.shapetest.R
+import com.cndll.shapetest.api.ApiUtill
 import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.api.BaseObservable
 import com.cndll.shapetest.api.bean.BaseResponse
@@ -48,10 +49,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         initView()
         binding.qq.setOnClickListener {
             UtilsUmeng.Login(this@LoginActivity, applicationContext, SHARE_MEDIA.QQ, mHandler)
-
+            SharedPreferenceUtil.insert("logType", "qq")
         }
         binding.wechat.setOnClickListener {
             UtilsUmeng.Login(this@LoginActivity, applicationContext, SHARE_MEDIA.WEIXIN, mHandler)
+            SharedPreferenceUtil.insert("logType", "wx")
         }
         binding.loginbtn.setOnClickListener { isNull() }
 
@@ -113,6 +115,25 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         })
     }
 
+    /**
+     * 第三方登录
+     * */
+    private fun httpLoginQQ() {
+        ApiUtill.getInstance().getApi(AppRequest.getAPI().qqLogin("login", "thirdLogin", SharedPreferenceUtil.read("openid", ""), SharedPreferenceUtil.read("logType", "")), {
+            baseResponse ->
+            baseResponse as RegisterResponse
+            if (baseResponse.code == 200) {
+                SharedPreferenceUtil.insert("userPhone", baseResponse.datas.username)
+                SharedPreferenceUtil.insert("key", baseResponse.datas.key)
+                binding.handler.login(binding.loginbtn)
+                finish()
+            } else if (baseResponse.code == 400) {
+                var bundle = Bundle()
+                bundle.putString("type", "qq")
+                context.startActivity(Intent(context, SignActivity::class.java))
+            }
+        })
+    }
 
     private fun initView() {
         if (SharedPreferenceUtil.hasKey("userName")) {
@@ -120,11 +141,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             passWord = SharedPreferenceUtil.read("passWord", "")
             httpLogin(userNmae, passWord)
         }
+        if (SharedPreferenceUtil.hasKey("openid")) {
+            httpLoginQQ()
+        }
+
         mHandler = object : Handler() {
             override fun handleMessage(msg: Message) {
                 when (msg.what) {
                     Ini.SDK_PAY_FLAG3 -> {
-                        println("拿到第三方登录的信息,请求自己的接口登录！")
+                        httpLoginQQ()
                     }
                 }
             }

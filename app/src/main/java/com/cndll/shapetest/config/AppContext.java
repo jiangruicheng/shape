@@ -36,8 +36,7 @@ public class AppContext extends Application implements UncaughtExceptionHandler 
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         //友盟配置三方平台的appkey
         PlatformConfig.setWeixin("wx11de741afcebadb2","491fc397d1458b210fac32cc6e7053c2");
-        PlatformConfig.setQQZone("1105155596", "bbRRZKif6xhk679w");
-        PlatformConfig.setSinaWeibo("3588954476", "66ee7a15a0301492373f82a42a80cd62", "http://www.sina.com");
+        PlatformConfig.setQQZone("1106231461", "drCdLNNgTmwFOqtE");
 //        Config.DEBUG = true; //测试----友盟
         Config.isJumptoAppStore = true;
         UMShareAPI.get(this);

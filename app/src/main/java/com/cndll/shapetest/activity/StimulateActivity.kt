@@ -50,7 +50,7 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
             bundle.putString("certificate_type", scoreBean.certificate_type)
             context.startActivity(Intent(context, SetPwdActivity::class.java).putExtras(bundle))
         }
-        //回购
+        //提现
         binding.sitRopeText.setOnClickListener {
             context.startActivity(Intent(context, ApplyBuyBackActivity::class.java))
         }
@@ -63,13 +63,13 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
         binding.incentivePointsLin.setOnClickListener {
             bundle.putString("type", "incentive")
             bundle.putString("score", scoreBean.member_excitation_score)
-            context.startActivity(Intent(context, IntegralActivity::class.java).putExtras(bundle))
+            context.startActivity(Intent(context, ScoreTypeActivity::class.java).putExtras(bundle))
         }
         //积分明细
         binding.subsidiaryLin.setOnClickListener {
             bundle.putString("type", "subsidiary")
             bundle.putString("score", (scoreBean.member_excitation_score.toDouble() + scoreBean.shop_score.toDouble()).toString())
-            context.startActivity(Intent(context, IntegralActivity::class.java).putExtras(bundle))
+            context.startActivity(Intent(context, ScoreTypeActivity::class.java).putExtras(bundle))
         }
         //基金捐款
         binding.fundLin.setOnClickListener {
@@ -142,7 +142,7 @@ class StimulateActivity : BaseActivity<ActivityStimulateBinding>() {
                     } else if (t.datas.state == 1) {
                         binding.stimulateType.text = "身份认证成功"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"
-//                        binding.sitLinPhoto.visibility = View.GONE
+                        binding.sitLinPhoto.visibility = View.GONE
                     } else if (t.datas.state == 2) {
                         binding.stimulateType.text = "身份认证失败，请重新认证"
                         binding.stimulateMoneySafety.text = "为资金安全，请认证"

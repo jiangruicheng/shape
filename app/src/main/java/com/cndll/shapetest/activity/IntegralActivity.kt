@@ -76,9 +76,57 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
         type = bundle.getString("type")
 
         if (type.equals("incentive")) {
+            binding.integralChose.visibility=View.VISIBLE
             binding.titlebar.title.text = "激励积分"
+            binding.timeTx.text = "时间"
+            binding.typeTx.text = "最高可激励积分"
+            binding.funTx.text = "今日激励积分"
+            binding.accountTx.text = "剩余待激励积分"
             binding.manageTx.visibility = View.GONE
+            binding.integralTitle.text="最高可激励积分总额"
             binding.integralAllScore.text = bundle.getString("score")
+            binding.integralItem1.text="待激励：1000"
+            binding.integralItem2.text="已激励：200"
+            binding.integralItem3.visibility=View.INVISIBLE
+
+            /**
+             * 待激励
+             * */
+            binding.integralWeting.setOnClickListener {
+                binding.integralWeting.setTextColor(resources.getColor(R.color.titleRed))
+                binding.integralWetingView.visibility=View.VISIBLE
+                binding.integralFinish.setTextColor(resources.getColor(R.color.contents_text))
+                binding.integralFinishView.visibility=View.GONE
+                binding.timeTx.text = "时间"
+                binding.typeTx.text = "最高可激励积分"
+                binding.funTx.text = "今日激励积分"
+                binding.accountTx.text = "剩余待激励积分"
+                binding.integralItem1.text="待激励：1000"
+                binding.integralItem2.text="已激励：200"
+                binding.integralItem3.visibility=View.INVISIBLE
+
+            }
+            /***
+             * 已激励
+             * */
+            binding.integralFinish.setOnClickListener {
+                binding.integralWeting.setTextColor(resources.getColor(R.color.contents_text))
+                binding.integralWetingView.visibility=View.GONE
+                binding.integralFinish.setTextColor(resources.getColor(R.color.titleRed))
+                binding.integralFinishView.visibility=View.VISIBLE
+                binding.timeTx.text = "时间"
+                binding.typeTx.text = "方式"
+                binding.funTx.text = "激励积分"
+                binding.accountTx.text = "转增/受赠ID"
+
+                binding.integralItem1.text="待激励：1000"
+                binding.integralItem2.text="已激励：200"
+                binding.integralItem3.visibility=View.INVISIBLE
+
+            }
+
+
+
             if (adapter == null) {
                 adapter = IntergralRecodeAdapter(context, moreList, 1)
                 listView.adapter = adapter
@@ -203,7 +251,7 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
     }
 
     /**
-     * 获取日期
+     * 获取日期------------
      * */
     private fun date() {
         var c = Calendar.getInstance()
@@ -252,7 +300,7 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
 
 
     /**
-     * 日期选择
+     * 日期选择----------弹
      * */
     private fun initPopupWindow() {
         date()

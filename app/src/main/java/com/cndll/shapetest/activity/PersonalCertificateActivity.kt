@@ -231,8 +231,8 @@ class PersonalCertificateActivity : BaseActivity<ActivityPersonalCertificateBind
                 binding.cerRealPhoneEdit.isClickable = false
                 binding.cerRealPhoneEdit.isFocusable = false
                 binding.cerEmail.setText(baseResponse.datas.email)
-                dateStart=Constants.strDate(baseResponse.datas.card_start_time)
-                dateEnd=Constants.strDate(baseResponse.datas.card_end_time)
+                dateStart = Constants.strDate(baseResponse.datas.card_start_time)
+                dateEnd = Constants.strDate(baseResponse.datas.card_end_time)
                 binding.cerDateStartText.text = Constants.strDate(baseResponse.datas.card_start_time)
                 binding.cerDateEndText.text = Constants.strDate(baseResponse.datas.card_end_time)
                 binding.cerDateStart.isClickable = false

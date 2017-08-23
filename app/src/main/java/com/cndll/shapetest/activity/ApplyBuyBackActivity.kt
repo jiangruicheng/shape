@@ -16,7 +16,7 @@ class ApplyBuyBackActivity : BaseActivity<ActivityApplyBuyBackBinding>() {
     }
 
     override fun initTitle() {
-        binding.titlebar.title.text="申请回购"
+        binding.titlebar.title.text="申请提现"
         binding.titlebar.back.setOnClickListener { finish() }
         binding.titlebar.titleRight.visibility= View.VISIBLE
         binding.titlebar.titleRight.text="记录"

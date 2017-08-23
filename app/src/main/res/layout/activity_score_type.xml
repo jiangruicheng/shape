@@ -6,9 +6,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg"
         android:orientation="vertical"
-        tools:context="com.cndll.shapetest.activity.IntegralActivity">
+        tools:context="com.cndll.shapetest.activity.ScoreTypeActivity">
 
         <include
             android:id="@+id/titlebar"
@@ -19,19 +18,19 @@
             app:layout_widthPercent="100%w" />
 
         <com.zhy.android.percent.support.PercentLinearLayout
-            android:id="@+id/integral_data_table"
+            android:id="@+id/lin_score"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
             android:orientation="vertical"
-            app:layout_heightPercent="20%h"
+            app:layout_heightPercent="25%h"
             app:layout_widthPercent="100%w">
 
             <TextView
-                android:id="@+id/integral_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:text="积分总额"
                 android:textColor="@color/gray"
                 app:layout_heightPercent="20%h"
                 app:layout_marginLeftPercent="5%"
@@ -44,10 +43,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:text="1000000000000000"
                 android:textColor="@color/contents_text"
                 app:layout_heightPercent="30%h"
                 app:layout_marginLeftPercent="5%"
-                app:layout_marginTopPercent="3%"
+                app:layout_marginTopPercent="5%"
                 app:layout_textSizePercent="8%w"
                 app:layout_widthPercent="95%w" />
 
@@ -56,11 +56,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_heightPercent="30%h"
-                app:layout_marginTopPercent="10%"
+                app:layout_marginTopPercent="6%"
                 app:layout_widthPercent="100%w">
 
                 <TextView
-                    android:id="@+id/integral_item1"
+                    android:id="@+id/score_it1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -72,7 +72,7 @@
                     app:layout_widthPercent="30%w" />
 
                 <TextView
-                    android:id="@+id/integral_item2"
+                    android:id="@+id/score_it2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -84,7 +84,7 @@
                     app:layout_widthPercent="30%w" />
 
                 <TextView
-                    android:id="@+id/integral_item3"
+                    android:id="@+id/score_it3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -96,6 +96,7 @@
                     app:layout_widthPercent="30%w" />
 
             </com.zhy.android.percent.support.PercentLinearLayout>
+
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 
@@ -169,92 +170,91 @@
             </com.zhy.android.percent.support.PercentLinearLayout>
         </com.zhy.android.percent.support.PercentLinearLayout>
 
-        <com.zhy.android.percent.support.PercentLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:layout_marginTopPercent="3%"
             android:background="@color/white"
-            android:orientation="horizontal"
-            app:layout_heightPercent="7%h"
-            app:layout_marginTopPercent="2%"
-            app:layout_paddingPercent="2%"
-            app:layout_widthPercent="100%w">
+            android:minHeight="40dip"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/time_tx"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                android:id="@+id/score1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="时间"
-                android:textColor="@color/contents_text"
-                app:layout_heightPercent="85%h"
-                app:layout_textSizePercent="@string/text_size_big" />
+                android:textColor="@color/contents_text" />
 
-            <TextView
-                android:id="@+id/type_tx"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+            <com.cndll.shapetest.view.CHScrollView
+                android:id="@+id/item_scroll_title"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="类型"
-                android:textColor="@color/contents_text"
-                app:layout_heightPercent="85%h"
-                app:layout_textSizePercent="@string/text_size_big" />
+                android:scrollbars="none">
 
-            <TextView
-                android:id="@+id/fun_tx"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="方式"
-                android:textColor="@color/contents_text"
-                app:layout_heightPercent="85%h"
-                app:layout_textSizePercent="@string/text_size_big" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/manage_tx"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="管理费"
-                android:textColor="@color/contents_text"
-                app:layout_heightPercent="85%h"
-                app:layout_textSizePercent="@string/text_size_big" />
+                    <TextView
+                        android:id="@+id/score2"
+                        android:layout_width="100dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="交易类型"
+                        android:textColor="@color/contents_text" />
 
-            <TextView
-                android:id="@+id/account_tx"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="积分"
-                android:textColor="@color/contents_text"
-                app:layout_heightPercent="85%h"
-                app:layout_textSizePercent="@string/text_size_big" />
+                    <TextView
+                        android:id="@+id/score3"
+                        android:layout_width="100dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="交易金额"
+                        android:textColor="@color/contents_text" />
 
-        </com.zhy.android.percent.support.PercentLinearLayout>
+                    <TextView
+                        android:id="@+id/score4"
+                        android:layout_width="100dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="店铺名称"
+                        android:textColor="@color/contents_text" />
 
-        <com.handmark.pulltorefresh.library.PullToRefreshListView xmlns:ptr="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/integral_pull"
+                    <TextView
+                        android:id="@+id/score5"
+                        android:layout_width="100dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="积分"
+                        android:textColor="@color/contents_text"/>
+
+                    <TextView
+                        android:id="@+id/score6"
+                        android:layout_width="100dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="最高可激励积分"
+                        android:textColor="@color/contents_text" />
+
+                    <TextView
+                        android:id="@+id/score7"
+                        android:layout_width="100dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="消费积分"
+                        android:textColor="@color/contents_text" />
+                </LinearLayout>
+            </com.cndll.shapetest.view.CHScrollView>
+        </LinearLayout>
+
+        <com.cndll.shapetest.view.AutoListView
+            android:id="@+id/scroll_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10px"
-            android:background="@color/bg"
-            android:divider="@color/gray"
-            android:dividerHeight="3px"
-            android:paddingLeft="2px"
-            android:paddingRight="2px"
-            android:paddingTop="2px"
-            ptr:ptrDrawable="@mipmap/jz"
-            ptr:ptrHeaderTextColor="@color/contents_text"
-            ptr:ptrMode="both" />
+            android:layout_height="fill_parent"
+            android:cacheColorHint="@android:color/transparent"></com.cndll.shapetest.view.AutoListView>
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 </layout>
