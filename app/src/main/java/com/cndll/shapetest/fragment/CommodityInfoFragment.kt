@@ -24,6 +24,7 @@ import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.api.bean.response.CommodityResponse
 import com.cndll.shapetest.bean.CommodityInfoMode
 import com.cndll.shapetest.databinding.*
+import com.cndll.shapetest.event.HandlerClick
 import com.cndll.shapetest.weight.*
 
 
@@ -259,7 +260,11 @@ class CommodityInfoFragment : BaseVlayoutFragment() {
                 setParams(ViewGroup.LayoutParams(windowManager.defaultDisplay.width,
                         windowManager.defaultDisplay.height / 14)).
                 setOnBindView({ itemView, position ->
-
+                    val binding = itemView.dataBinding as ItemCommodityinfoBottomBinding
+                    binding.activity = activity
+                    binding.flag = AddOrderFragment.FLAG
+                    binding.handler = HandlerClick()
+                    binding.bundle = Bundle()
                     // val imageView: SimpleDraweeView = itemView.findViewById(R.id.image) as SimpleDraweeView
                 }).creatAdapter())
         adapter.addAdapters(adapterlist)

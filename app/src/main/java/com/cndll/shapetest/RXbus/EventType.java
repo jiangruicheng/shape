@@ -1,5 +1,9 @@
 package com.cndll.shapetest.RXbus;
 
+import android.os.Bundle;
+
+import com.cndll.shapetest.api.bean.response.AddressResponse;
+
 /**
  * Created by kongqing on 2017/5/9.
  */
@@ -26,6 +30,16 @@ public class EventType {
         return this;
     }
 
+    public Bundle getExtras() {
+        return extras;
+    }
+
+    public EventType setExtras(Bundle extras) {
+        this.extras = extras;
+        return this;
+    }
+
+    private Bundle extras;
     private String extra;
     private int type;
 }

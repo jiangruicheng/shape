@@ -61,6 +61,7 @@ class TurnOnActivity : BaseActivity<ActivityTurnOnBinding>() {
         putFragment(ScoreFragment.FLAG, ScoreFragment.newInstance("", ""))
         putFragment(MemberFragment.FLAG, MemberFragment.newInstance("", ""))
         putFragment(MoreClassFragment.FLAG, MoreClassFragment.newInstance("", ""))
+        putFragment(AddOrderFragment.FLAG, AddOrderFragment.newInstance("", ""))
 
         if (fragmentMap.containsKey(intent.action)) {
             supportFragmentManager.beginTransaction().add(R.id.frame, fragmentMap.get(intent.action)).commit()

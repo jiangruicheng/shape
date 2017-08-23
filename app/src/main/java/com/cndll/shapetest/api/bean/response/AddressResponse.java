@@ -2,6 +2,7 @@ package com.cndll.shapetest.api.bean.response;
 
 import com.cndll.shapetest.api.bean.BaseResponse;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -34,7 +35,7 @@ public class AddressResponse extends BaseResponse {
         this.datas = datas;
     }
 
-    public static class DatasBean {
+    public static class DatasBean implements Serializable {
         /**
          * area_id : 1
          * area_name : 北京
