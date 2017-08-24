@@ -31,6 +31,7 @@ import com.cndll.shapetest.api.bean.response.PersonalCerticateResponse;
 import com.cndll.shapetest.api.bean.response.RegisterResponse;
 import com.cndll.shapetest.api.bean.response.ScoreAllResponse;
 import com.cndll.shapetest.api.bean.response.ScoreIndexResponse;
+import com.cndll.shapetest.api.bean.response.ScoreInfoResponse;
 import com.cndll.shapetest.api.bean.response.ScoreResponse;
 import com.cndll.shapetest.api.bean.response.SearchShopResponse;
 import com.cndll.shapetest.api.bean.response.SearcheCommodityResponse;
@@ -385,7 +386,7 @@ public interface Api {
      */
     @FormUrlEncoded
     @POST("mobile/index.php/")
-    Observable<RegisterResponse> qqLogin(@Field("act") String act, @Field("op") String op, @Field("openid") String openid, @Field("type") String type);
+    Observable<RegisterResponse> qqLogin(@Field("act") String act, @Field("op") String op, @Field("openid") String openid, @Field("type") String type, @Field("client") String client);
 
     /**
      * 第三方注册
@@ -393,6 +394,12 @@ public interface Api {
     @FormUrlEncoded
     @POST("mobile/index.php/")
     Observable<RegisterResponse> thirdLogin(@Field("act") String act, @Field("op") String op, @Field("username") String username, @Field("password") String password, @Field("code") String code, @Field("nick") String nick, @Field("avatar") String avatar, @Field("openid") String openid, @Field("type") String type, @Field("client") String client);
+
+    /**
+     * 以激励积分-待激励积分
+     */
+    @GET("mobile/index.php/")
+    Observable<ScoreInfoResponse> scoreNew(@Query("act") String act, @Query("op") String op, @Query("key") String key, @Query("page") String page, @Query("type") String type, @Query("start_time") String start_time, @Query("end_time") String end_time);
 
 }
 

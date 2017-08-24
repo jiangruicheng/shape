@@ -43,7 +43,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="1000000000000000"
                 android:textColor="@color/contents_text"
                 app:layout_heightPercent="30%h"
                 app:layout_marginLeftPercent="5%"
@@ -61,39 +60,39 @@
 
                 <TextView
                     android:id="@+id/score_it1"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="积分总额"
                     android:textColor="@color/gray"
                     app:layout_heightPercent="100%h"
                     app:layout_marginLeftPercent="3%"
-                    app:layout_textSizePercent="@string/text_size_mid"
-                    app:layout_widthPercent="30%w" />
+                    app:layout_textSizePercent="@string/text_size_mid" />
 
                 <TextView
                     android:id="@+id/score_it2"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="积分总额"
                     android:textColor="@color/gray"
                     app:layout_heightPercent="100%h"
                     app:layout_marginLeftPercent="3%"
-                    app:layout_textSizePercent="@string/text_size_mid"
-                    app:layout_widthPercent="30%w" />
+                    app:layout_textSizePercent="@string/text_size_mid" />
 
                 <TextView
                     android:id="@+id/score_it3"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="积分总额"
                     android:textColor="@color/gray"
                     app:layout_heightPercent="100%h"
                     app:layout_marginLeftPercent="3%"
-                    app:layout_textSizePercent="@string/text_size_mid"
-                    app:layout_widthPercent="30%w" />
+                    app:layout_textSizePercent="@string/text_size_mid" />
 
             </com.zhy.android.percent.support.PercentLinearLayout>
 
@@ -106,10 +105,9 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="horizontal"
-            app:layout_heightPercent="7%h"
-            app:layout_widthPercent="100%w"
             android:visibility="gone"
-            >
+            app:layout_heightPercent="7%h"
+            app:layout_widthPercent="100%w">
 
             <com.zhy.android.percent.support.PercentLinearLayout
                 android:layout_width="wrap_content"
@@ -173,10 +171,10 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            app:layout_marginTopPercent="3%"
             android:background="@color/white"
             android:minHeight="40dip"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_marginTopPercent="3%">
 
             <TextView
                 android:id="@+id/score1"
@@ -229,7 +227,7 @@
                         android:layout_height="fill_parent"
                         android:gravity="center"
                         android:text="积分"
-                        android:textColor="@color/contents_text"/>
+                        android:textColor="@color/contents_text" />
 
                     <TextView
                         android:id="@+id/score6"

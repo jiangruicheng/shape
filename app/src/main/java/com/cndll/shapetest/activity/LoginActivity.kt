@@ -119,18 +119,23 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
      * 第三方登录
      * */
     private fun httpLoginQQ() {
-        ApiUtill.getInstance().getApi(AppRequest.getAPI().qqLogin("login", "thirdLogin", SharedPreferenceUtil.read("openid", ""), SharedPreferenceUtil.read("logType", "")), {
+        ApiUtill.getInstance().getApi(AppRequest.getAPI().qqLogin("login", "thirdLogin", SharedPreferenceUtil.read("openid", ""), SharedPreferenceUtil.read("logType", ""), "android"), {
             baseResponse ->
             baseResponse as RegisterResponse
             if (baseResponse.code == 200) {
-                SharedPreferenceUtil.insert("userPhone", baseResponse.datas.username)
-                SharedPreferenceUtil.insert("key", baseResponse.datas.key)
-                binding.handler.login(binding.loginbtn)
-                finish()
+                if (baseResponse.datas.key == null) {
+                    var bundle = Bundle()
+                    bundle.putString("type", "qq")
+                    context.startActivity(Intent(context, SignActivity::class.java).putExtras(bundle))
+                } else {
+                    SharedPreferenceUtil.insert("userPhone", baseResponse.datas.username)
+                    SharedPreferenceUtil.insert("key", baseResponse.datas.key)
+                    Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show()
+                    binding.handler.login(binding.loginbtn)
+                    finish()
+                }
             } else if (baseResponse.code == 400) {
-                var bundle = Bundle()
-                bundle.putString("type", "qq")
-                context.startActivity(Intent(context, SignActivity::class.java))
+                Toast.makeText(context, baseResponse.datas.error, Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -140,8 +145,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             userNmae = SharedPreferenceUtil.read("userName", "")
             passWord = SharedPreferenceUtil.read("passWord", "")
             httpLogin(userNmae, passWord)
-        }
-        if (SharedPreferenceUtil.hasKey("openid")) {
+        }else if (SharedPreferenceUtil.hasKey("openid")) {
             httpLoginQQ()
         }
 

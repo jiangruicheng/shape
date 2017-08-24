@@ -1,6 +1,5 @@
 package com.cndll.shapetest.adapter
 
-import android.content.ContentValues
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,13 +7,15 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.cndll.shapetest.R
+import com.cndll.shapetest.api.bean.response.ScoreInfoResponse
+import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.view.AutoListView
 import com.cndll.shapetest.view.CHScrollView
 
 /**
  * Created by Administrator on 2017/8/18 0018.
  */
-class ScoreTypeAdapter(private val context: Context, private val contentValues: List<ContentValues>, private var lstv: AutoListView) : BaseAdapter() {
+class ScoreTypeAdapter(private val context: Context, private val contentValues: List<ScoreInfoResponse.DatasBean.ScoreInfoBean>, private var lstv: AutoListView, private var type: Int) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertView = convertView
         var holder: ViewHolder
@@ -36,13 +37,26 @@ class ScoreTypeAdapter(private val context: Context, private val contentValues: 
         if (contentValues!!.size <= position || contentValues == null) {
             return convertView
         }
-        holder.itemTitle.text = "110"
-        holder.itemData1.text = "112"
-        holder.itemData2.text = "113"
-        holder.itemData3.text = "114"
-        holder.itemData4.text = "115"
-        holder.itemData5.text = "116"
-        holder.itemData6.text = "117"
+        if (type == 1) {
+            holder.itemTitle.text = Constants.strDate(contentValues[position].time)
+            holder.itemData1.text = contentValues[position].so_score
+            holder.itemData2.text = opType(contentValues[position].operation_type)
+            holder.itemData3.text = contentValues[position].operation_symbol + contentValues[position].score
+            holder.itemData4.text = contentValues[position].giver_num
+            holder.itemData5.text = contentValues[position].now_score
+            holder.itemData4.visibility = View.VISIBLE
+            holder.itemData5.visibility = View.VISIBLE
+            holder.itemData6.visibility = View.GONE
+        }
+        if (type == 2) {
+            holder.itemTitle.text = Constants.strDate(contentValues[position].time)
+            holder.itemData1.text = contentValues[position].max_score
+            holder.itemData2.text = contentValues[position].today_score
+            holder.itemData3.text = contentValues[position].overplus_score
+            holder.itemData4.visibility = View.GONE
+            holder.itemData5.visibility = View.GONE
+            holder.itemData6.visibility = View.GONE
+        }
         return convertView
     }
 
@@ -66,6 +80,25 @@ class ScoreTypeAdapter(private val context: Context, private val contentValues: 
         lateinit var itemData4: TextView
         lateinit var itemData5: TextView
         lateinit var itemData6: TextView
+    }
+
+
+    private fun opType(op: String): String {
+        var opType = ""
+        if (op.equals("0")) {
+            opType = "消费"
+        } else if (op.equals("1")) {
+            opType = "直捐"
+        } else if (op.equals("2")) {
+            opType = "转赠"
+        } else if (op.equals("3")) {
+            opType = "回购"
+        } else if (op.equals("4")) {
+            opType = "抵用券转化"
+        } else if (op.equals("5")) {
+            opType = "受赠"
+        }
+        return opType
     }
 
 

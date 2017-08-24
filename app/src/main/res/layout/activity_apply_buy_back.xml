@@ -187,7 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="5dp"
-                android:text="回购金额"
+                android:text="转换抵用卷金额"
                 android:textColor="@color/gray"
                 app:layout_heightPercent="25%h"
                 app:layout_textSizePercent="@string/text_size_bigC" />
@@ -196,7 +196,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="5dp"
-                android:text="提现手续费5元，并将提现金额的4%捐给基金会"
+                android:text="并将转换金额的4%捐给基金会"
                 android:textColor="@color/gray"
                 app:layout_heightPercent="25%h"
                 app:layout_textSizePercent="@string/text_size_big" />

@@ -62,6 +62,7 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
             binding.signRegisterPwd.setBackgroundDrawable(resources.getDrawable(R.drawable.shape_button_red))
         } else if (type.equals("qq")) {
             binding.titlebar.title.text = "第三方注册"
+            binding.signRegisterPwd.setBackgroundResource(R.drawable.shape_button_red)
             binding.signAgreement.visibility = View.GONE
             binding.viewCode.visibility = View.GONE
             binding.linCode.visibility = View.GONE
@@ -233,17 +234,22 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
      * 第三方注册
      * */
     private fun thirdLogin() {
-        ApiUtill.getInstance().getApi(AppRequest.getAPI().thirdLogin("login", "thirdLogin", phone, pwd, code, SharedPreferenceUtil.read("nick", ""), SharedPreferenceUtil.read("icon", ""), SharedPreferenceUtil.read("openid", ""), SharedPreferenceUtil.read("logType",""), "android"), {
+        ApiUtill.getInstance().getApi(AppRequest.getAPI().thirdLogin("login", "thirdLogin", phone, pwd, code, SharedPreferenceUtil.read("nick", ""), SharedPreferenceUtil.read("icon", ""), SharedPreferenceUtil.read("openid", ""), SharedPreferenceUtil.read("logType", ""), "android"), {
             baseResponse ->
             baseResponse as RegisterResponse
             if (baseResponse.code == 200) {
-                SharedPreferenceUtil.insert("userPhone", baseResponse.datas.username)
-                SharedPreferenceUtil.insert("key", baseResponse.datas.key)
-                Toast.makeText(context, "注册成功,正在登录", Toast.LENGTH_LONG).show()
-                context.startActivity(Intent(context, HomeActivity::class.java))
-                finish()
+                if (baseResponse.datas.key == null) {
+                    Toast.makeText(context, "注册失败", Toast.LENGTH_LONG).show()
+                    return@getApi
+                } else {
+                    SharedPreferenceUtil.insert("userPhone", baseResponse.datas.username)
+                    SharedPreferenceUtil.insert("key", baseResponse.datas.key)
+                    Toast.makeText(context, "注册成功,正在登录", Toast.LENGTH_LONG).show()
+                    context.startActivity(Intent(context, HomeActivity::class.java))
+                    finish()
+                }
             } else if (baseResponse.code == 400) {
-                Toast.makeText(context, "注册失败", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, baseResponse.datas.error, Toast.LENGTH_LONG).show()
             }
 
         })
