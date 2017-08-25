@@ -75,7 +75,7 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
         var bundle = this.intent.extras
         type = bundle.getString("type")
 
-       if (type.equals("score")) {
+        if (type.equals("score")) {
             binding.titlebar.title.text = "消费积分"
             binding.manageTx.visibility = View.GONE
             binding.funTx.visibility = View.GONE
@@ -89,18 +89,6 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
             httpScore("score", "shop_score")
 
 
-        } else if (type.equals("subsidiary")) {
-            binding.titlebar.title.text = "积分明细"
-            binding.manageTx.visibility = View.GONE
-            binding.funTx.visibility = View.GONE
-            binding.typeTx.text = "商品名称"
-            binding.integralAllScore.text = bundle.getString("score")
-            if (adapter == null) {
-                adapter = IntergralRecodeAdapter(context, moreList, 3)
-                listView.adapter = adapter
-            }
-            page = 1
-            httpScore("score", "score_info")
         } else if (type.equals("fund")) {
             binding.titlebar.title.text = "基金捐款"
             binding.manageTx.visibility = View.GONE
@@ -134,6 +122,21 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
                 listView.adapter = adapter
             }
             httpScore("score", "donation_score")
+        } else if (type.equals("vouchers")) {
+            binding.titlebar.title.text = "红包抵用卷记录"
+            binding.integralDataTable.visibility = View.GONE
+            binding.typeTx.text = "使用类型"
+            binding.funTx.text = "店铺名称"
+            binding.manageTx.text = "抵用卷额度"
+            binding.accountTx.visibility = View.GONE
+            page = 1
+            if (adapter == null) {
+                adapter = IntergralRecodeAdapter(context, moreList, 4)
+                listView.adapter = adapter
+            }
+
+
+
         }
 
         initPopupWindow()
@@ -158,7 +161,7 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
             if (cahList != null && cahList.size > 0) {
                 cahList.clear()
             }
-            page +=1
+            page += 1
             if (type.equals("incentive")) {//激励积分
                 httpScore("score", "excitation_score")
             } else if (type.equals("score")) {//消费积分

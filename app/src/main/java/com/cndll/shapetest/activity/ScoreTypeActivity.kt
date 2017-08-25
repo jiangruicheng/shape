@@ -105,8 +105,13 @@ class ScoreTypeActivity : BaseActivity<ActivityScoreTypeBinding>(), AutoListView
             binding.scoreIt1.text = "积分：100"
             binding.scoreIt2.text = "最高可激励消费：100"
             binding.scoreIt3.text = "消费积分：200"
-
-
+            if (adapterScore == null) {
+                adapterScore = ScoreTypeAdapter(context, moreListScore, binding.scrollList, 2)
+                binding.scrollList.adapter = adapterScore
+            }
+            page = 1
+            httpScore(typeScore)
+            loadData(AutoListView.REFRESH)
         } else if (type.equals("incentive")) {
             binding.titlebar.title.text = "激励积分"
             binding.integralChose.visibility = View.VISIBLE
@@ -199,15 +204,19 @@ class ScoreTypeActivity : BaseActivity<ActivityScoreTypeBinding>(), AutoListView
 
         } else if (type.equals("vouchers")) {
             binding.linScore.visibility = View.GONE
-
-            binding.titlebar.title.text = "使用方式"
+            binding.titlebar.title.text = "通用抵用卷记录"
             binding.score2.text = "店铺名称"
             binding.score3.text = "通用卷额度"
             binding.score4.text = "转增/受赠ID"
             binding.score5.text = "通用卷额度"
             binding.score6.text = "已使用额度"
             binding.score7.text = "未使用额度"
-
+            page = 1
+            if (adapterScore == null) {
+                adapterScore = ScoreTypeAdapter(context, moreListScore, binding.scrollList, 0)
+                binding.scrollList.adapter = adapterScore
+            }
+            loadData(AutoListView.REFRESH)
         }
 
         binding.scrollList.setOnRefreshListener(this)

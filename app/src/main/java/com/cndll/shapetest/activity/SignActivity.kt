@@ -242,8 +242,8 @@ class SignActivity : BaseActivity<ActivitySignBinding>() {
                     Toast.makeText(context, "注册失败", Toast.LENGTH_LONG).show()
                     return@getApi
                 } else {
-                    SharedPreferenceUtil.insert("userPhone", baseResponse.datas.username)
-                    SharedPreferenceUtil.insert("key", baseResponse.datas.key)
+                    SharedPreferenceUtil.insert("userPhone", baseResponse.datas.member_name)
+                    SharedPreferenceUtil.insert("key", baseResponse.datas.token)
                     Toast.makeText(context, "注册成功,正在登录", Toast.LENGTH_LONG).show()
                     context.startActivity(Intent(context, HomeActivity::class.java))
                     finish()

@@ -123,13 +123,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             baseResponse ->
             baseResponse as RegisterResponse
             if (baseResponse.code == 200) {
-                if (baseResponse.datas.key == null) {
+                if (baseResponse.datas.member_name == null) {
                     var bundle = Bundle()
                     bundle.putString("type", "qq")
                     context.startActivity(Intent(context, SignActivity::class.java).putExtras(bundle))
                 } else {
-                    SharedPreferenceUtil.insert("userPhone", baseResponse.datas.username)
-                    SharedPreferenceUtil.insert("key", baseResponse.datas.key)
+                    SharedPreferenceUtil.insert("userPhone", baseResponse.datas.member_name)
+                    SharedPreferenceUtil.insert("key", baseResponse.datas.token)
                     Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show()
                     binding.handler.login(binding.loginbtn)
                     finish()
@@ -145,7 +145,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             userNmae = SharedPreferenceUtil.read("userName", "")
             passWord = SharedPreferenceUtil.read("passWord", "")
             httpLogin(userNmae, passWord)
-        }else if (SharedPreferenceUtil.hasKey("openid")) {
+        } else if (SharedPreferenceUtil.hasKey("openid")) {
             httpLoginQQ()
         }
 

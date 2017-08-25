@@ -93,14 +93,13 @@ class VouchersActivity : BaseActivity<ActivityVouchersBinding>() {
             binding.titlebar.titleRight.setOnClickListener {
                 //抵用卷记录
                 if (isChose) {
-                    Toast.makeText(context, "通用抵用卷", Toast.LENGTH_SHORT).show()
                     bundle.putString("type", "vouchers")
                     context.startActivity(Intent(context, ScoreTypeActivity::class.java).putExtras(bundle))
-
+                    Toast.makeText(context, "通用抵用卷", Toast.LENGTH_SHORT).show()
                 } else {
+                    bundle.putString("type", "vouchers")
+                    context.startActivity(Intent(context, IntegralActivity::class.java).putExtras(bundle))
                     Toast.makeText(context, "红包抵用卷", Toast.LENGTH_SHORT).show()
-
-
                 }
             }
 
