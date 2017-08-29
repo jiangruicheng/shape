@@ -1,6 +1,8 @@
 package com.cndll.shapetest.api;
 
 
+import android.util.Log;
+
 import com.cndll.shapetest.api.bean.BaseResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -53,8 +55,13 @@ public class MyGsonResponseBodyConverter<T extends BaseResponse> implements Conv
             e.printStackTrace();
         }
 
-        if (code == -211) {
-
+        if (code == 400) {
+            JsonPrimitive j = jsonObject.getAsJsonPrimitive("error_massage");
+            String m = "";
+            if (j != null) {
+                m = j.getAsString();
+            }
+            Log.e("erro", m);
         } else if (code == 0) {
 
         } else {

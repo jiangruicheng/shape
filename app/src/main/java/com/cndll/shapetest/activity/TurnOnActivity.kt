@@ -12,7 +12,6 @@ class TurnOnActivity : BaseActivity<ActivityTurnOnBinding>() {
     override fun initBindingVar() {
     }
 
-    val fragmentMap = HashMap<String, Fragment>()
     override fun initTitle() {
         if (intent.action == CommodityInfoFragment.FLAG) {
             binding.titlebar.root.visibility = View.GONE
@@ -22,7 +21,6 @@ class TurnOnActivity : BaseActivity<ActivityTurnOnBinding>() {
             when (intent.extras.get("id")) {
                 ("1") -> {
                     binding.titlebar.title.text = "品牌折扣"
-
                 }
                 ("2") -> {
                     binding.titlebar.title.text = "服饰箱包"
@@ -50,26 +48,51 @@ class TurnOnActivity : BaseActivity<ActivityTurnOnBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_turn_on)
-
-        putFragment(LimitedSpikeFragment.FLAG, LimitedSpikeFragment.newInstance("", ""))
-        putFragment(MissionToFightFragment.FLAG, MissionToFightFragment.newInstance("", ""))
-        putFragment(CommodityInfoFragment.FLAG, CommodityInfoFragment.newInstance("", ""))
-        putFragment(LineaOffShopFragment.FLAG, LineaOffShopFragment.newInstance("", ""))
-        putFragment(NearByShopFoodFragment.FLAG, NearByShopFoodFragment.newInstance("", ""))
-        putFragment(NearByShopFoodStoreFragment.FLAG, NearByShopFoodStoreFragment.newInstance("", ""))
-        putFragment(BrandDiscountFragment.FLAG, BrandDiscountFragment.newInstance("", ""))
-        putFragment(ScoreFragment.FLAG, ScoreFragment.newInstance("", ""))
-        putFragment(MemberFragment.FLAG, MemberFragment.newInstance("", ""))
-        putFragment(MoreClassFragment.FLAG, MoreClassFragment.newInstance("", ""))
-        putFragment(AddOrderFragment.FLAG, AddOrderFragment.newInstance("", ""))
-
-        if (fragmentMap.containsKey(intent.action)) {
-            supportFragmentManager.beginTransaction().add(R.id.frame, fragmentMap.get(intent.action)).commit()
+        if (getFragment(intent.action) != null) {
+            supportFragmentManager.beginTransaction().add(R.id.frame, getFragment(intent.action)).commit()
         }
     }
 
-    fun putFragment(flag: String, fragment: Fragment) {
-        fragmentMap.put(flag, fragment)
-        fragmentMap.get(flag)!!.arguments = intent.extras
+    fun getFragment(flag: String): Fragment? {
+        var f: Fragment? = null
+        when (flag) {
+            (LimitedSpikeFragment.FLAG) -> {
+                f = LimitedSpikeFragment.newInstance("", "")
+            }
+            (MissionToFightFragment.FLAG) -> {
+                f = MissionToFightFragment.newInstance("", "")
+            }
+            (CommodityInfoFragment.FLAG) -> {
+                f = CommodityInfoFragment.newInstance("", "")
+            }
+            (LineaOffShopFragment.FLAG) -> {
+                f = LineaOffShopFragment.newInstance("", "")
+            }
+            (NearByShopFoodFragment.FLAG) -> {
+                f = NearByShopFoodFragment.newInstance("", "")
+            }
+            (NearByShopFoodStoreFragment.FLAG) -> {
+                f = NearByShopFoodStoreFragment.newInstance("", "")
+            }
+            (BrandDiscountFragment.FLAG) -> {
+                f = BrandDiscountFragment.newInstance("", "")
+            }
+            (ScoreFragment.FLAG) -> {
+                f = ScoreFragment.newInstance("", "")
+            }
+            (MemberFragment.FLAG) -> {
+                f = MemberFragment.newInstance("", "")
+            }
+            (MoreClassFragment.FLAG) -> {
+                f = MoreClassFragment.newInstance("", "")
+            }
+            (AddOrderFragment.FLAG) -> {
+                f = AddOrderFragment.newInstance("", "")
+            }
+        }
+        if (f != null) {
+            f.arguments = intent.extras
+        }
+        return f
     }
 }

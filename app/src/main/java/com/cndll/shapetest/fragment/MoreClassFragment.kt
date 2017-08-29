@@ -57,7 +57,13 @@ class MoreClassFragment : BaseVlayoutFragment() {
                         windowManager.defaultDisplay.height / 5)).
                 setOnBindView({ itemView, position ->
                     (itemView.itemView.findViewById(R.id.image) as SimpleDraweeView)
-                    itemView.itemView.setOnClickListener { context.startActivity(Intent(context, ResultActivity::class.java).putExtra(ResultActivity.MODE, ResultActivity.MODE_CLASS).putExtra(ResultActivity.TYPE, ResultActivity.TYPE_COMMODIYT)) }
+                    itemView.itemView.setOnClickListener {
+                        context.startActivity(Intent(context, ResultActivity::class.java).
+                                putExtra(ResultActivity.MODE, ResultActivity.MODE_CLASS).
+                                putExtra(ResultActivity.TYPE, ResultActivity.TYPE_COMMODIYT).
+                                putExtra(ResultFragment.ID, classMode[position].gc_id).
+                                putExtra(ResultActivity.TITLE, classMode[position].son_name))
+                    }
                     (itemView.itemView.findViewById(R.id.image) as SimpleDraweeView).setImageURI(classMode[position].img_url)
                     (itemView.itemView.findViewById(R.id.text) as TextView).setText(classMode[position].son_name)
                 }).creatAdapter()

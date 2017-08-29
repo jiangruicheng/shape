@@ -59,7 +59,7 @@ class LimitedSpikeFragment : BaseVlayoutFragment() {
             }
 
             override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-                Toast.makeText(context, "yidong", Toast.LENGTH_SHORT).show()
+                //  Toast.makeText(context, "yidong", Toast.LENGTH_SHORT).show()
                 return false
             }
 

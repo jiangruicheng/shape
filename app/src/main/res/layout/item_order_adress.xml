@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="info"
+            type="com.cndll.shapetest.bean.AddressMode" />
+    </data>
+
     <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="12dp"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
             android:orientation="horizontal"
             app:layout_heightPercent="99%h">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:scaleType="centerInside"
-                android:src="@mipmap/locat" />
+                android:src="@mipmap/locat_red" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -38,18 +44,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="12dp"
+                        android:background="@color/white"
                         android:gravity="center_vertical"
-                        android:text="王小二"
+                        android:text="@{info.name}"
                         android:textColor="#000000"
-                        android:textSize="@dimen/text_size_mid" />
+                        android:textSize="@dimen/text_size_big" />
 
                     <TextView
                         android:layout_width="wrap_content"
+
                         android:layout_height="match_parent"
+                        android:background="@color/white"
                         android:gravity="center_vertical"
-                        android:text="111111111111"
+                        android:text="@{info.tel}"
                         android:textColor="#000000"
-                        android:textSize="@dimen/text_size_small" />
+                        android:textSize="@dimen/text_size_mid" />
                 </LinearLayout>
 
                 <TextView
@@ -57,15 +66,15 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="北京市东城区东城区"
+                    android:text="@{info.area+info.address}"
                     android:textColor="#000000"
-                    android:textSize="@dimen/text_size_small" />
+                    android:textSize="@dimen/text_size_mid" />
             </LinearLayout>
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:scaleType="centerInside"
                 android:src="@mipmap/right" />
         </LinearLayout>

@@ -2,6 +2,8 @@ package com.cndll.shapetest.activity
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.Gravity
+import android.widget.Toast
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.cndll.shapetest.R
@@ -12,6 +14,7 @@ import com.cndll.shapetest.fragment.MineFragment
 import com.cndll.shapetest.fragment.TableDataFragment
 import com.cndll.shapetest.tools.AppManager
 import com.cndll.shapetest.tools.XPermissionUtils
+import kotlin.concurrent.thread
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>(), BottomNavigationBar.OnTabSelectedListener {
 
@@ -68,6 +71,22 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), BottomNavigationBar.On
     override fun onDestroy() {
         super.onDestroy()
         AppManager.getAppManager().finishActivity(this)
+    }
+
+    @Volatile var backTime = 0
+    override fun onBackPressed() {
+        if (backTime == 0) {
+            val t = Toast.makeText(this, "再按一次退出App", Toast.LENGTH_SHORT)
+            t.setGravity(Gravity.CENTER, 0, 0)
+            t.show()
+            backTime = 1
+            thread {
+                Thread.sleep(1000)
+                backTime = 0
+            }
+        } else {
+            super.onBackPressed()
+        }
     }
 
     override fun onResume() {

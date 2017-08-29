@@ -5,6 +5,8 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import com.cndll.shapetest.tools.AppManager;
+import com.easemob.chat.core.EMConnectionManager;
+import com.easemob.easeui.controller.EaseUI;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -35,7 +37,7 @@ public class AppContext extends Application implements UncaughtExceptionHandler 
         // 获取系统默认的UncaughtException处理
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         //友盟配置三方平台的appkey
-        PlatformConfig.setWeixin("wx11de741afcebadb2","491fc397d1458b210fac32cc6e7053c2");
+        PlatformConfig.setWeixin("wx11de741afcebadb2", "491fc397d1458b210fac32cc6e7053c2");
         PlatformConfig.setQQZone("1106231461", "drCdLNNgTmwFOqtE");
 //        Config.DEBUG = true; //测试----友盟
         Config.isJumptoAppStore = true;
@@ -44,6 +46,8 @@ public class AppContext extends Application implements UncaughtExceptionHandler 
         // 将该app注册到微信
         msgApi.registerApp("wx11de741afcebadb2");
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
+        //环信EZUI
+        EaseUI.getInstance().init(this);
     }
 
     @Override

@@ -10,11 +10,14 @@ import com.cndll.shapetest.api.bean.response.ApplyInfoResponse;
 import com.cndll.shapetest.api.bean.response.AuthenticationResponse;
 import com.cndll.shapetest.api.bean.response.BankCardResponse;
 import com.cndll.shapetest.api.bean.response.BrandResponse;
+import com.cndll.shapetest.api.bean.response.ClassCommodity;
 import com.cndll.shapetest.api.bean.response.ClassItemResponse;
+import com.cndll.shapetest.api.bean.response.ClassShop;
 import com.cndll.shapetest.api.bean.response.CollectResponse;
 import com.cndll.shapetest.api.bean.response.CommodityResponse;
 import com.cndll.shapetest.api.bean.response.FightResponse;
 import com.cndll.shapetest.api.bean.response.FileResponse;
+import com.cndll.shapetest.api.bean.response.GetOrderInfoResponse;
 import com.cndll.shapetest.api.bean.response.HomePageResponse;
 import com.cndll.shapetest.api.bean.response.HotSearchResponse;
 import com.cndll.shapetest.api.bean.response.HttpCodeResponse;
@@ -106,6 +109,15 @@ public interface Api {
     @GET("/mobile/index.php?act=shop&op=store_search")
     Observable<SearchShopResponse> searchShopPage(@Query("keyword") String search, @Query("page") String page);
 
+
+    //分类商店页面
+    @GET("/mobile/index.php?act=goods&op=store_son_list")
+    Observable<ClassShop> classShopPage(@Query("gc_id") String id, @Query("page") String page, @Query("order") String order);
+
+    //分类商品页面
+    @GET("mobile/index.php?act=goods&op=goods_son_list")
+    Observable<ClassCommodity> classCommotidyPage(@Query("gc_id") String id, @Query("page") String page, @Query("order") String order);
+
     //更多分类
     @GET("mobile/index.php?act=goods&op=goods_son_class")
     Observable<MoreClassResponse> moreClassPage(@Query("gc_id") String id);
@@ -113,6 +125,10 @@ public interface Api {
     //热门搜索
     @GET("mobile/index.php?act=index&op=search_key_list")
     Observable<HotSearchResponse> hotSearch();
+
+    //订单信息
+    @GET("/mobile/index.php?act=member_buy&op=getOrderInfo")
+    Observable<GetOrderInfoResponse> getOrderInfo(@Query("key") String key);
 
     /**
      * 地区列表
