@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Message
 import android.widget.Toast
 import com.cndll.shapetest.R
+import com.cndll.shapetest.api.ApiUtill
 import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.api.BaseObservable
 import com.cndll.shapetest.api.bean.BaseResponse
@@ -48,10 +49,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         initView()
         binding.qq.setOnClickListener {
             UtilsUmeng.Login(this@LoginActivity, applicationContext, SHARE_MEDIA.QQ, mHandler)
-
+            SharedPreferenceUtil.insert("logType", "qq")
         }
         binding.wechat.setOnClickListener {
             UtilsUmeng.Login(this@LoginActivity, applicationContext, SHARE_MEDIA.WEIXIN, mHandler)
+            SharedPreferenceUtil.insert("logType", "wx")
         }
         binding.loginbtn.setOnClickListener { isNull() }
 
@@ -113,18 +115,45 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         })
     }
 
+    /**
+     * 第三方登录
+     * */
+    private fun httpLoginQQ() {
+        ApiUtill.getInstance().getApi(AppRequest.getAPI().qqLogin("login", "thirdLogin", SharedPreferenceUtil.read("openid", ""), SharedPreferenceUtil.read("logType", ""), "android"), {
+            baseResponse ->
+            baseResponse as RegisterResponse
+            if (baseResponse.code == 200) {
+                if (baseResponse.datas.member_name == null) {
+                    var bundle = Bundle()
+                    bundle.putString("type", "qq")
+                    context.startActivity(Intent(context, SignActivity::class.java).putExtras(bundle))
+                } else {
+                    SharedPreferenceUtil.insert("userPhone", baseResponse.datas.member_name)
+                    SharedPreferenceUtil.insert("key", baseResponse.datas.token)
+                    Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show()
+                    binding.handler.login(binding.loginbtn)
+                    finish()
+                }
+            } else if (baseResponse.code == 400) {
+                Toast.makeText(context, baseResponse.datas.error, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 
     private fun initView() {
         if (SharedPreferenceUtil.hasKey("userName")) {
             userNmae = SharedPreferenceUtil.read("userName", "")
             passWord = SharedPreferenceUtil.read("passWord", "")
             httpLogin(userNmae, passWord)
+        } else if (SharedPreferenceUtil.hasKey("openid")) {
+            httpLoginQQ()
         }
+
         mHandler = object : Handler() {
             override fun handleMessage(msg: Message) {
                 when (msg.what) {
                     Ini.SDK_PAY_FLAG3 -> {
-                        println("拿到第三方登录的信息,请求自己的接口登录！")
+                        httpLoginQQ()
                     }
                 }
             }

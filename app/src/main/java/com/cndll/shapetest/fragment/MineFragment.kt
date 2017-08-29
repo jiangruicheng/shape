@@ -12,9 +12,12 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.Toast
 import com.cndll.shapetest.R
 import com.cndll.shapetest.activity.*
+import com.cndll.shapetest.api.ApiUtill
 import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.api.BaseObservable
 import com.cndll.shapetest.api.bean.BaseResponse
+import com.cndll.shapetest.api.bean.response.ApplyInfoResponse
+import com.cndll.shapetest.api.bean.response.HttpCodeResponse
 import com.cndll.shapetest.api.bean.response.UserInfoResponse
 import com.cndll.shapetest.databinding.FragmentMineBinding
 import com.cndll.shapetest.tools.SharedPreferenceUtil
@@ -27,20 +30,20 @@ import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.imagepipeline.core.ImagePipeline
 
 
-
-
 /**
  * Created by Administrator on 2017/7/3 0003.
  */
-class MineFragment : BaseFragment<FragmentMineBinding>(){
-    var imageHeight:Int=350
-    var REQUEST_CODE_SCAN:Int=0x0000
-    var DECODED_CONTENT_KEY:String="codedContent"
-    var DECODED_BITMAP_KEY:String="codedBitmap"
+class MineFragment : BaseFragment<FragmentMineBinding>() {
+    var imageHeight: Int = 350
+    var REQUEST_CODE_SCAN: Int = 0x0000
+    var DECODED_CONTENT_KEY: String = "codedContent"
+    var DECODED_BITMAP_KEY: String = "codedBitmap"
     private var mParam1: String? = null
     private var mParam2: String? = null
     val bundle = Bundle()
-    var userInfo=UserInfoResponse.DatasBean()
+    var userInfo = UserInfoResponse.DatasBean()
+    var applyInfo = ApplyInfoResponse()
+    var isApply: Boolean = false
     override fun initBindingVar() {
     }
 
@@ -53,19 +56,20 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        initBinding(R.layout.fragment_mine,container)
+        initBinding(R.layout.fragment_mine, container)
         mView = binding.root
         initSrco()
         initView()
         httpUserInfo()
+        httpApplyInfo()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     /**
      * 加载滑动标题栏变色
      * */
-   private fun initSrco(){
-        var vto=binding.mineIconTop.viewTreeObserver
+    private fun initSrco() {
+        var vto = binding.mineIconTop.viewTreeObserver
         vto.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 binding.mineIconTop.viewTreeObserver.removeGlobalOnLayoutListener(this)
@@ -94,106 +98,140 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
     /**
      * 加载视图---点击事件处理
      * */
-    private fun initView(){
+    private fun initView() {
         // 头像，个人资料
         binding.mineIcon.setOnClickListener {
-            bundle.putSerializable("userInfo",userInfo)
-            startActivityForResult(Intent(context,UserInfoActivity::class.java).putExtras(bundle),102)
+            bundle.putSerializable("userInfo", userInfo)
+            startActivityForResult(Intent(context, UserInfoActivity::class.java).putExtras(bundle), 102)
         }
-        //申请成为业务员
-        binding.mineSalesMan.setOnClickListener{
-            bundle.putString("type", "sales")
-            context.startActivity(Intent(context,ApplyActivity::class.java).putExtras(bundle))
-        }
-        //申请服务合伙人
-        binding.mineLinPartner.setOnClickListener {
-            bundle.putString("type", "par")
-            context.startActivity(Intent(context,ApplyActivity::class.java).putExtras(bundle))
-        }
-        //申请管理合伙人
-        binding.mineLinManaging.setOnClickListener {
-            bundle.putString("type", "manag")
-            context.startActivity(Intent(context,SetPwdActivity::class.java).putExtras(bundle))
-        }
-        //申请商家
-        binding.mineLinApply.setOnClickListener {
-            bundle.putString("type", "apply")
-            context.startActivity(Intent(context,ApplyActivity::class.java).putExtras(bundle)) }
+
         //我的拼团
         binding.mineLinBooking.setOnClickListener {
             bundle.putString("type", "booking")
-            context.startActivity(Intent(context,VouchersActivity::class.java).putExtras(bundle))
+            context.startActivity(Intent(context, VouchersActivity::class.java).putExtras(bundle))
         }
         //我的推广
         binding.mineLinGeneralize.setOnClickListener {
-            context.startActivity(Intent(context,PopularizeActivity::class.java))
+            context.startActivity(Intent(context, PopularizeActivity::class.java))
         }
         //我的抵用卷
         binding.mineLinVouchers.setOnClickListener {
             bundle.putString("type", "voucher")
-            context.startActivity(Intent(context,VouchersActivity::class.java).putExtras(bundle))
+            context.startActivity(Intent(context, VouchersActivity::class.java).putExtras(bundle))
         }
         //预约订单
         binding.mineLinAdvance.setOnClickListener {
             bundle.putString("type", "advance")
-            context.startActivity(Intent(context,VouchersActivity::class.java).putExtras(bundle))
+            context.startActivity(Intent(context, VouchersActivity::class.java).putExtras(bundle))
         }
         //设置
-        binding.mineSetting.setOnClickListener{
-            context.startActivity(Intent(context,SettingActivity::class.java))
+        binding.mineSetting.setOnClickListener {
+            context.startActivity(Intent(context, SettingActivity::class.java))
         }
         //二维码处理
         binding.mineZixingCode.setOnClickListener {
-            startActivityForResult(Intent(context,CaptureActivity::class.java),REQUEST_CODE_SCAN)
+            startActivityForResult(Intent(context, CaptureActivity::class.java), REQUEST_CODE_SCAN)
         }
         //消息
         binding.mineNews.setOnClickListener {
-            ////////InSpellingActivity-- 拼团详情
-            context.startActivity(Intent(context,InSpellingActivity::class.java))
+            context.startActivity(Intent(context, ScoreTypeActivity::class.java))
         }
 
         //我的激励
         binding.mineStimu.setOnClickListener {
-            context.startActivity(Intent(context,StimulateActivity::class.java))
+            context.startActivity(Intent(context, StimulateActivity::class.java))
         }
         //我的红包记录
         binding.mineLinPack.setOnClickListener {
-        context.startActivity(Intent(context,RedPacketActivity::class.java))
+            context.startActivity(Intent(context, RedPacketActivity::class.java))
         }
         //我的收藏
         binding.mineLinCollect.setOnClickListener {
             bundle.putString("type", "collect")
-            context.startActivity(Intent(context,FavoriteActivity::class.java).putExtras(bundle))
+            context.startActivity(Intent(context, FavoriteActivity::class.java).putExtras(bundle))
         }
         //退貨，換貨
         binding.mineLinRefund.setOnClickListener {
             bundle.putString("type", "refund")
-            context.startActivity(Intent(context,FavoriteActivity::class.java).putExtras(bundle))
+            context.startActivity(Intent(context, FavoriteActivity::class.java).putExtras(bundle))
         }
         //查看更多
         binding.mineAllOrder.setOnClickListener {
             bundle.putInt("count", 0)
-            context.startActivity(Intent(context,OrdersListActivity::class.java).putExtras(bundle)) }
+            context.startActivity(Intent(context, OrdersListActivity::class.java).putExtras(bundle))
+        }
         //待付款
         binding.mineLinPayment.setOnClickListener {
             bundle.putInt("count", 1)
-            context.startActivity(Intent(context,OrdersListActivity::class.java).putExtras(bundle)) }
+            context.startActivity(Intent(context, OrdersListActivity::class.java).putExtras(bundle))
+        }
         //待发货
         binding.mineLinShipments.setOnClickListener {
             bundle.putInt("count", 2)
-            context.startActivity(Intent(context,OrdersListActivity::class.java).putExtras(bundle)) }
+            context.startActivity(Intent(context, OrdersListActivity::class.java).putExtras(bundle))
+        }
         //待收货
         binding.mineLinGoods.setOnClickListener {
             bundle.putInt("count", 3)
-            context.startActivity(Intent(context,OrdersListActivity::class.java).putExtras(bundle)) }
+            context.startActivity(Intent(context, OrdersListActivity::class.java).putExtras(bundle))
+        }
         //待激励
         binding.mineLinAware.setOnClickListener {
             bundle.putInt("count", 4)
-            context.startActivity(Intent(context,OrdersListActivity::class.java).putExtras(bundle)) }
+            context.startActivity(Intent(context, OrdersListActivity::class.java).putExtras(bundle))
+        }
         //待评价
         binding.mineLinRate.setOnClickListener {
             bundle.putInt("count", 5)
-            context.startActivity(Intent(context,OrdersListActivity::class.java).putExtras(bundle)) }
+            context.startActivity(Intent(context, OrdersListActivity::class.java).putExtras(bundle))
+        }
+
+        if (applyInfo.code == 200) {
+            if (applyInfo.datas.invite_type.equals("1") && applyInfo.datas.status.equals("1")) {
+                //合伙人
+                binding.mineSalesMan.visibility = View.GONE
+                binding.mineLinManaging.visibility = View.VISIBLE
+                binding.mineManagingText.text = "合伙人"
+            } else if (applyInfo.datas.invite_type.equals("2") && applyInfo.datas.status.equals("1")) {
+                //业务员
+                binding.mineSalesMan.visibility = View.VISIBLE
+                binding.mineLinManaging.visibility = View.GONE
+                binding.mineSalesText.text = "业务员"
+            } else {
+                isApply = true
+            }
+        }
+
+        //申请成为业务员
+        binding.mineSalesMan.setOnClickListener {
+            if (isApply) {
+                Toast.makeText(context, "正在审核中", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            bundle.putString("type", "sales")
+            context.startActivity(Intent(context, ApplyActivity::class.java).putExtras(bundle))
+        }
+        //申请服务合伙人
+        binding.mineLinPartner.setOnClickListener {
+            bundle.putString("type", "par")
+            context.startActivity(Intent(context, ApplyActivity::class.java).putExtras(bundle))
+        }
+        //申请合伙人
+        binding.mineLinManaging.setOnClickListener {
+            if (isApply) {
+                Toast.makeText(context, "正在审核中", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            bundle.putString("type", "manag")
+            context.startActivity(Intent(context, ApplyActivity::class.java).putExtras(bundle))
+        }
+        //申请商家
+        binding.mineLinApply.setOnClickListener {
+            bundle.putString("type", "apply")
+            context.startActivity(Intent(context, ApplyActivity::class.java).putExtras(bundle))
+        }
+
+
     }
 
 
@@ -216,17 +254,17 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode==REQUEST_CODE_SCAN && resultCode == Activity.RESULT_OK){
-            if(data!=null){
+        if (requestCode == REQUEST_CODE_SCAN && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
                 val content = data.getStringExtra(DECODED_CONTENT_KEY)
                 //返回生成的二维码
 //                val bitmap = data.getParcelableExtra<Bitmap>(DECODED_BITMAP_KEY)
 
-                Toast.makeText(context,"content:"+content,Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "content:" + content, Toast.LENGTH_LONG).show()
 
             }
         }
-        if(requestCode==102 && resultCode==102){
+        if (requestCode == 102 && resultCode == 102) {
             httpUserInfo()
         }
     }
@@ -235,13 +273,13 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
     /**
      * 会员信息
      * */
-    private fun httpUserInfo(){
+    private fun httpUserInfo() {
 
-        AppRequest.getAPI().userInfo("member_info","index",SharedPreferenceUtil.read("key","")).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable(){
+        AppRequest.getAPI().userInfo("member_info", "index", SharedPreferenceUtil.read("key", "")).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
             override fun onNext(t: BaseResponse?) {
                 super.onNext(t)
                 t as UserInfoResponse
-                if(t.code==200){
+                if (t.code == 200) {
 
                     val imgurl = Uri.parse(t.datas.member_avatar)
                     val imagePipeline = Fresco.getImagePipeline()
@@ -249,11 +287,11 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
                     imagePipeline.evictFromDiskCache(imgurl)
                     imagePipeline.evictFromCache(imgurl)
                     binding.mineIcon.setImageURI(t.datas.member_avatar)
-                    binding.mineNick.text=t.datas.member_username
-                    binding.mineID.text="ID:"+t.datas.member_num
-                    userInfo=t.datas
-                }else{
-                    Toast.makeText(context,t.error_message,Toast.LENGTH_LONG).show()
+                    binding.mineNick.text = t.datas.member_username
+                    binding.mineID.text = "ID:" + t.datas.member_num
+                    userInfo = t.datas
+                } else {
+                    Toast.makeText(context, t.error_message, Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -265,6 +303,18 @@ class MineFragment : BaseFragment<FragmentMineBinding>(){
                 super.onError(e)
                 e!!.printStackTrace()
             }
+        })
+    }
+
+
+    /***
+     * 身份申请---业务员及合伙人
+     * */
+    private fun httpApplyInfo() {
+        ApiUtill.getInstance().getApi(AppRequest.getAPI().applyInfo("invite", "invite_info", SharedPreferenceUtil.read("key", "")), {
+            baseResponse ->
+            baseResponse as ApplyInfoResponse
+            applyInfo = baseResponse
         })
     }
 

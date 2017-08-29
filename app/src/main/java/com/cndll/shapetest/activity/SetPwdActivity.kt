@@ -86,16 +86,6 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
             binding.donRedVouchers.visibility = View.VISIBLE
             binding.donCodeAccount.visibility = View.VISIBLE
         }
-
-        //申请企业合伙人
-        binding.linManagEnterprise.setOnClickListener {
-            context.startActivity(Intent(context, PersonalCertificateManagActivity::class.java))
-        }
-        //申请个人合伙人
-        binding.linManagUser.setOnClickListener {
-            context.startActivity(Intent(context, AuthenticationManagActivity::class.java))
-        }
-
         //修改登录密码
         binding.pwdSig.setOnClickListener {
             context.startActivity(Intent(context, UpdatePwdActivity::class.java))
@@ -132,8 +122,10 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
             if (bundles.getString("certificate_type").equals("company")) {
                 bundle.putString("ID", bundles.getString("ID"))
                 context.startActivity(Intent(context, AuthenticationActivity::class.java).putExtras(bundle))
+                finish()
             } else {
                 context.startActivity(Intent(context, AuthenticationActivity::class.java))
+                finish()
             }
         }
         // 个人认证
@@ -141,8 +133,10 @@ class SetPwdActivity : BaseActivity<ActivitySetPwdBinding>() {
             if (bundles.getString("certificate_type").equals("personal")) {
                 bundle.putString("ID", bundles.getString("ID"))
                 context.startActivity(Intent(context, PersonalCertificateActivity::class.java).putExtras(bundle))
+                finish()
             } else {
                 context.startActivity(Intent(context, PersonalCertificateActivity::class.java))
+                finish()
             }
 
         }

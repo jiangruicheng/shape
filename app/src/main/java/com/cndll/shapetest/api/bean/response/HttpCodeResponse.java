@@ -7,15 +7,17 @@ import com.cndll.shapetest.api.bean.BaseResponse;
  */
 
 public class HttpCodeResponse extends BaseResponse {
-
-    /**
-     * code : 200
-     * datas : 1
-     */
-
     private int code;
     private String error_message;
     private String message;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 
     public String getError_message() {
         return error_message;
@@ -32,13 +34,4 @@ public class HttpCodeResponse extends BaseResponse {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
 }

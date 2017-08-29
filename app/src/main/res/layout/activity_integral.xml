@@ -24,14 +24,14 @@
             android:layout_height="match_parent"
             android:background="@color/white"
             android:orientation="vertical"
-            app:layout_heightPercent="25%h"
+            app:layout_heightPercent="20%h"
             app:layout_widthPercent="100%w">
 
             <TextView
+                android:id="@+id/integral_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="积分总额"
                 android:textColor="@color/gray"
                 app:layout_heightPercent="20%h"
                 app:layout_marginLeftPercent="5%"
@@ -44,11 +44,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="1000000000000000"
                 android:textColor="@color/contents_text"
                 app:layout_heightPercent="30%h"
                 app:layout_marginLeftPercent="5%"
-                app:layout_marginTopPercent="5%"
+                app:layout_marginTopPercent="3%"
                 app:layout_textSizePercent="8%w"
                 app:layout_widthPercent="95%w" />
 
@@ -61,6 +60,7 @@
                 app:layout_widthPercent="100%w">
 
                 <TextView
+                    android:id="@+id/integral_item1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -72,6 +72,7 @@
                     app:layout_widthPercent="30%w" />
 
                 <TextView
+                    android:id="@+id/integral_item2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -83,6 +84,7 @@
                     app:layout_widthPercent="30%w" />
 
                 <TextView
+                    android:id="@+id/integral_item3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -97,75 +99,13 @@
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 
-        <com.zhy.android.percent.support.PercentLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            app:layout_heightPercent="8%h"
-            app:layout_widthPercent="100%w">
-
-            <com.zhy.android.percent.support.PercentLinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_heightPercent="100%h"
-                app:layout_widthPercent="50%w">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="待激励"
-                    android:textColor="@color/titleRed"
-                    app:layout_heightPercent="80%h"
-                    app:layout_textSizePercent="8%w"
-                    app:layout_widthPercent="70%w" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_gravity="center"
-                    android:background="@color/titleRed"
-                    app:layout_widthPercent="30%w"></View>
-
-            </com.zhy.android.percent.support.PercentLinearLayout>
-
-            <com.zhy.android.percent.support.PercentLinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_heightPercent="100%h"
-                app:layout_widthPercent="50%w">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="已激励"
-                    android:textColor="@color/contents_text"
-                    app:layout_heightPercent="80%h"
-                    app:layout_textSizePercent="8%w"
-                    app:layout_widthPercent="70%w" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_gravity="center"
-                    android:background="@color/titleRed"
-                    android:visibility="gone"
-                    app:layout_widthPercent="30%w"></View>
-            </com.zhy.android.percent.support.PercentLinearLayout>
-        </com.zhy.android.percent.support.PercentLinearLayout>
 
         <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
             android:orientation="horizontal"
-            app:layout_heightPercent="8%h"
+            app:layout_heightPercent="7%h"
             app:layout_marginTopPercent="2%"
             app:layout_paddingPercent="2%"
             app:layout_widthPercent="100%w">

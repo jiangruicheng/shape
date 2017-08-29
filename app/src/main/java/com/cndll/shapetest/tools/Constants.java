@@ -39,8 +39,8 @@ public final class Constants {
 
 
     public static final String APP_ID = "wx11de741afcebadb2";
-    public static final String APP_KEY = "491fc397d1458b210fac32cc6e7053c2";
-    public static final String APPQQ_ID = "1105155596";
+    public static final String APP_KEY = "drCdLNNgTmwFOqtE";
+    public static final String APPQQ_ID = "1106231461";
 
     public static class ShowMsgActivity {
         public static final String STitle = "showmsg_title";

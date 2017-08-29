@@ -65,7 +65,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="tencent1105155596" />
+                <data android:scheme="tencent1106231461" />
             </intent-filter>
         </activity>
         <activity
@@ -88,7 +88,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="tencent1105155596" />
+                <data android:scheme="tencent1106231461" />
             </intent-filter>
         </activity>
         <activity
@@ -170,17 +170,14 @@
         <activity android:name=".activity.ApplyForRefundActivity" />
         <activity android:name=".activity.LogisticsActivity" />
         <activity android:name=".activity.InSpellingActivity" />
-        <activity android:name=".activity.AuthenticationManagActivity" />
-        <activity android:name=".activity.PersonalCertificateManagActivity" />
         <activity android:name=".activity.TurnOnActivity" />
         <activity
             android:name=".activity.SearchActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".activity.ResultActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <activity android:name=".activity.ScoreTypeActivity"></activity>
     </application>
 
 </manifest>

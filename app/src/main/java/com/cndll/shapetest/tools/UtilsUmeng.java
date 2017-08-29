@@ -53,32 +53,13 @@ public class UtilsUmeng {
 
             @Override
             public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-//                SharedPreferenceUtil.insert("nick", data.get("name"));
-                Log.e("UtilsUmeng", data.get("name"));
+                SharedPreferenceUtil.INSTANCE.insert("nick", data.get("name"));
                 if (platform.equals(SHARE_MEDIA.QQ) || platform.equals(SHARE_MEDIA.SINA)) {
-//                    SharedPreferenceUtil.insert("id", data.get("uid"));
-                    Log.e("UtilsUmeng", data.get("uid"));
+                    SharedPreferenceUtil.INSTANCE.insert("openid", data.get("uid"));
                 } else if (platform.equals(SHARE_MEDIA.WEIXIN)) {
-//                    SharedPreferenceUtil.insert("id", data.get("openid"));
-                    Log.e( "UtilsUmeng",data.get("openid"));
+                    SharedPreferenceUtil.INSTANCE.insert("openid", data.get("openid"));
                 }
-                if ("女".equals(data.get("gender"))) {
-//                    AppContext.cv.put("gender", 0);//性别
-                    Log.e("UtilsUmeng", data.get("gender"));
-                } else {
-//                    AppContext.cv.put("gender", 1);//性别
-                    Log.e("UtilsUmeng",data.get("gender"));
-                }
-                Log.e("UtilsUmeng",data.get("iconurl"));
-//                AppContext.cv.put("icon", data.get("iconurl"));//头像
-//                SharedPreferenceUtil.insert("icon", data.get("iconurl"));
-                if (platform.equals(SHARE_MEDIA.SINA)) {
-//                    AppContext.cv.put("locat", data.get("locat"));//地址
-                    Log.e("UtilsUmeng",data.get("locat"));
-                } else {
-//                    AppContext.cv.put("locat", data.get("province") + data.get("city"));//地址
-                   Log.e("UtilsUmeng",data.get("province") + data.get("city"));
-                }
+                SharedPreferenceUtil.INSTANCE.insert("icon", data.get("iconurl"));
                 Message msg = new Message();
                 msg.what = Ini.SDK_PAY_FLAG3;
                 mHandler.sendMessage(msg);
@@ -91,7 +72,7 @@ public class UtilsUmeng {
 
             @Override
             public void onCancel(SHARE_MEDIA platform, int action) {
-                Toast.makeText( context, "Authorize cancel", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Authorize cancel", Toast.LENGTH_SHORT).show();
             }
         };
         UMShareAPI.get(activity).getPlatformInfo(activity, whereTag, umAuthListener);
@@ -136,7 +117,7 @@ public class UtilsUmeng {
 
             @Override
             public void onCancel(SHARE_MEDIA platform) {
-                Toast.makeText(activity,platform + " 分享取消", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, platform + " 分享取消", Toast.LENGTH_SHORT).show();
             }
         };
         new ShareAction(activity).setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE,
@@ -148,13 +129,13 @@ public class UtilsUmeng {
                             Toast.makeText(activity, "请先安装客户端", Toast.LENGTH_LONG).show();
                             return;
                         }
-                        if(share_media== SHARE_MEDIA.WEIXIN_CIRCLE || share_media.equals(SHARE_MEDIA.WEIXIN_CIRCLE)){
+                        if (share_media == SHARE_MEDIA.WEIXIN_CIRCLE || share_media.equals(SHARE_MEDIA.WEIXIN_CIRCLE)) {
                             UMWeb web = new UMWeb(url);
                             web.setTitle(content);//标题
                             web.setThumb(new UMImage(activity, R.drawable.umeng_socialize_qq));  //缩略图
                             web.setDescription("");//描述
                             new ShareAction(activity).withMedia(web).withText(url).setPlatform(share_media).setCallback(umShareListener).share();
-                        }else{
+                        } else {
                             UMWeb web = new UMWeb(url);
                             web.setTitle("去卖艺");//标题
                             web.setThumb(new UMImage(activity, R.drawable.umeng_socialize_qq));  //缩略图

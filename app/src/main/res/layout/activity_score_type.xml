@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.cndll.shapetest.activity.ScoreTypeActivity">
+
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/titlebar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%h"
+            app:layout_widthPercent="100%w" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/lin_score"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layout_heightPercent="25%h"
+            app:layout_widthPercent="100%w">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="积分总额"
+                android:textColor="@color/gray"
+                app:layout_heightPercent="20%h"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginTopPercent="10%"
+                app:layout_textSizePercent="@string/text_size_big"
+                app:layout_widthPercent="95%w" />
+
+            <TextView
+                android:id="@+id/integral_all_score"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/contents_text"
+                app:layout_heightPercent="30%h"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginTopPercent="5%"
+                app:layout_textSizePercent="8%w"
+                app:layout_widthPercent="95%w" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="30%h"
+                app:layout_marginTopPercent="6%"
+                app:layout_widthPercent="100%w">
+
+                <TextView
+                    android:id="@+id/score_it1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="积分总额"
+                    android:textColor="@color/gray"
+                    app:layout_heightPercent="100%h"
+                    app:layout_marginLeftPercent="3%"
+                    app:layout_textSizePercent="@string/text_size_mid" />
+
+                <TextView
+                    android:id="@+id/score_it2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="积分总额"
+                    android:textColor="@color/gray"
+                    app:layout_heightPercent="100%h"
+                    app:layout_marginLeftPercent="3%"
+                    app:layout_textSizePercent="@string/text_size_mid" />
+
+                <TextView
+                    android:id="@+id/score_it3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="积分总额"
+                    android:textColor="@color/gray"
+                    app:layout_heightPercent="100%h"
+                    app:layout_marginLeftPercent="3%"
+                    app:layout_textSizePercent="@string/text_size_mid" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/integral_chose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_heightPercent="7%h"
+            app:layout_widthPercent="100%w">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_heightPercent="100%h"
+                app:layout_widthPercent="50%w">
+
+                <TextView
+                    android:id="@+id/integral_weting"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="待激励"
+                    android:textColor="@color/titleRed"
+                    app:layout_heightPercent="80%h"
+                    app:layout_textSizePercent="7%w"
+                    app:layout_widthPercent="70%w" />
+
+                <View
+                    android:id="@+id/integral_weting_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_gravity="center"
+                    android:background="@color/titleRed"
+                    app:layout_widthPercent="30%w"></View>
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_heightPercent="100%h"
+                app:layout_widthPercent="50%w">
+
+                <TextView
+                    android:id="@+id/integral_finish"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="已激励"
+                    android:textColor="@color/contents_text"
+                    app:layout_heightPercent="80%h"
+                    app:layout_textSizePercent="7%w"
+                    app:layout_widthPercent="70%w" />
+
+                <View
+                    android:id="@+id/integral_finish_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_gravity="center"
+                    android:background="@color/titleRed"
+                    android:visibility="gone"
+                    app:layout_widthPercent="30%w"></View>
+            </com.zhy.android.percent.support.PercentLinearLayout>
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:minHeight="40dip"
+            android:orientation="horizontal"
+            app:layout_marginTopPercent="3%">
+
+            <TextView
+                android:id="@+id/score1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="时间"
+                android:textColor="@color/contents_text" />
+
+            <com.cndll.shapetest.view.CHScrollView
+                android:id="@+id/item_scroll_title"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/score2"
+                        android:layout_width="100dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="交易类型"
+                        android:textColor="@color/contents_text" />
+
+                    <TextView
+                        android:id="@+id/score3"
+                        android:layout_width="100dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="交易金额"
+                        android:textColor="@color/contents_text" />
+
+                    <TextView
+                        android:id="@+id/score4"
+                        android:layout_width="100dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="店铺名称"
+                        android:textColor="@color/contents_text" />
+
+                    <TextView
+                        android:id="@+id/score5"
+                        android:layout_width="100dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="积分"
+                        android:textColor="@color/contents_text" />
+
+                    <TextView
+                        android:id="@+id/score6"
+                        android:layout_width="100dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="最高可激励积分"
+                        android:textColor="@color/contents_text" />
+
+                    <TextView
+                        android:id="@+id/score7"
+                        android:layout_width="100dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text="消费积分"
+                        android:textColor="@color/contents_text" />
+                </LinearLayout>
+            </com.cndll.shapetest.view.CHScrollView>
+        </LinearLayout>
+
+        <com.cndll.shapetest.view.AutoListView
+            android:id="@+id/scroll_list"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="@android:color/transparent"></com.cndll.shapetest.view.AutoListView>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

@@ -20,17 +20,16 @@
 
         <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/result_text"
             android:orientation="vertical"
-            app:layout_heightPercent="20%h"
             app:layout_widthPercent="100%w">
 
             <com.zhy.android.percent.support.PercentLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_heightPercent="49%h"
+                app:layout_heightPercent="9%h"
                 app:layout_paddingLeftPercent="5%"
                 app:layout_widthPercent="100%w">
 
@@ -59,6 +58,7 @@
             </com.zhy.android.percent.support.PercentLinearLayout>
 
             <View
+                android:id="@+id/view_lin"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_gravity="right"
@@ -66,10 +66,11 @@
                 app:layout_widthPercent="95%w" />
 
             <com.zhy.android.percent.support.PercentLinearLayout
+                android:id="@+id/lin_app_num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_heightPercent="49%h"
+                app:layout_heightPercent="9%h"
                 app:layout_paddingLeftPercent="5%"
                 app:layout_widthPercent="100%w">
 
@@ -98,6 +99,7 @@
         </com.zhy.android.percent.support.PercentLinearLayout>
 
         <TextView
+            android:id="@+id/view_tip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center|left"
