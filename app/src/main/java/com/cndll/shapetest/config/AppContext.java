@@ -5,11 +5,9 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import com.cndll.shapetest.tools.AppManager;
+import com.easemob.chat.core.EMConnectionManager;
+import com.easemob.easeui.controller.EaseUI;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.hyphenate.EMContactListener;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMOptions;
-import com.hyphenate.easeui.controller.EaseUI;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.umeng.socialize.Config;
@@ -49,9 +47,7 @@ public class AppContext extends Application implements UncaughtExceptionHandler 
         msgApi.registerApp("wx11de741afcebadb2");
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         //环信EZUI
-        EMOptions options = new EMOptions();
-        options.setAcceptInvitationAlways(false);
-        EaseUI.getInstance().init(this, options);
+        EaseUI.getInstance().init(this);
     }
 
     @Override

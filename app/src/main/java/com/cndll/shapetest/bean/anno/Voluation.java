@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class Voluation<V, T> {
+    //赋值
     public T getVari(V a, Class<T> t) {
         T b = null;
         try {
@@ -45,6 +46,7 @@ public class Voluation<V, T> {
         return t;
     }
 
+    //调用方法
     public T setVariBind(V a, T t) {
         try {
 
