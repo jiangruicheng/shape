@@ -30,7 +30,8 @@
             android:background="@drawable/shape_main_edit"
             android:gravity="center"
             android:inputType="number"
-            android:text="@={info.count}" />
+            android:text="@={info.count}"
+            android:textSize="@dimen/text_size_small" />
 
         <ImageButton
             android:id="@+id/add"

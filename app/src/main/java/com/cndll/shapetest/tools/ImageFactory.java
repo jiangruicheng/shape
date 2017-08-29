@@ -1,8 +1,12 @@
 package com.cndll.shapetest.tools;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Environment;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.RawRes;
 import android.util.Base64;
 
 
@@ -20,6 +24,12 @@ import java.io.IOException;
  */
 
 public class ImageFactory {
+    public static Drawable getDrawableWithRes(@DrawableRes int id, Context context) {
+        Drawable drawable = context.getResources().getDrawable(id);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+                drawable.getMinimumHeight());
+        return drawable;
+    }
 
     // 根据路径获得图片并压缩，返回bitmap用于显示
     public static Bitmap getSmallBitmap(String filePath) {
@@ -37,13 +47,13 @@ public class ImageFactory {
     }
 
     //计算图片的缩放值
-    public static int calculateInSampleSize(BitmapFactory.Options options,int reqWidth, int reqHeight) {
+    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
         final int height = options.outHeight;
         final int width = options.outWidth;
         int inSampleSize = 1;
 
         if (height > reqHeight || width > reqWidth) {
-            final int heightRatio = Math.round((float) height/ (float) reqHeight);
+            final int heightRatio = Math.round((float) height / (float) reqHeight);
             final int widthRatio = Math.round((float) width / (float) reqWidth);
             inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
         }
@@ -59,13 +69,14 @@ public class ImageFactory {
         Log.d("d", "压缩后的大小=" + b.length);//1.5M的压缩后在100Kb以内，测试得值,压缩后的大小=94486,压缩后的大小=74473
         return Base64.encodeToString(b, Base64.DEFAULT);
     }
+
     /**
      * 压缩转换成file
-     * */
+     */
     public static File saveFile(Bitmap bm, String fileName) throws IOException {
-        String path = getSDPath() +"/shape/";
+        String path = getSDPath() + "/shape/";
         File dirFile = new File(path);
-        if(!dirFile.exists()){
+        if (!dirFile.exists()) {
             dirFile.mkdir();
         }
         File myCaptureFile = new File(path + fileName);
@@ -75,14 +86,14 @@ public class ImageFactory {
         bos.close();
         return myCaptureFile;
     }
+
     /**
      * 保存sd
-     * */
-    public static String getSDPath(){
+     */
+    public static String getSDPath() {
         File sdDir = null;
         boolean sdCardExist = Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED); //判断sd卡是否存在
-        if (sdCardExist)
-        {
+        if (sdCardExist) {
             sdDir = Environment.getExternalStorageDirectory();//获取跟目录
         }
         return sdDir.toString();

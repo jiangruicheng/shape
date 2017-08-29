@@ -1,6 +1,7 @@
 package com.cndll.shapetest.api.bean.response;
 
 import com.cndll.shapetest.api.bean.BaseResponse;
+import com.cndll.shapetest.bean.anno.Variable;
 
 import java.util.List;
 
@@ -54,12 +55,15 @@ public class SearchShopResponse extends BaseResponse {
              * count : 12
              * goods : [{"goods_image":"2_05513826366625209.jpg","goods_id":"17","goods_commonid":"8","img_url":"http://zhongxiang.51edn.com/data/upload/shop/store/goods/2/2_05513826366625209_60.jpg"}]
              */
-
-            private String store_name;
+            @Variable(variable = "shopName")
+            public String store_name;
             private String store_id;
-            private String member_avatar;
-            private String goods_salenum;
-            private int count;
+            @Variable(variable = "logoUrl")
+            public String member_avatar;
+            @Variable(variable = "salenum")
+            public String goods_salenum;
+            @Variable(variable = "count")
+            public int count;
             private List<GoodsBean> goods;
 
             public String getStore_name() {

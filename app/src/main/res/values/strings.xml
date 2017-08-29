@@ -164,4 +164,8 @@
     <string name="notvip">你还不是平台VIP会员</string>
     <string name="tab"> </string>
     <string name="work_time">营业时间：</string>
+    <string name="sell">销量</string>
+    <string name="gong">共</string>
+    <string name="jian">件</string>
+    <string name="shangpin">商品</string>
 </resources>

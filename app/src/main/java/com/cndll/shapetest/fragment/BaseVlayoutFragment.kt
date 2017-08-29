@@ -38,7 +38,7 @@ open class BaseVlayoutFragment : Fragment() {
     var offsetX = 0
     var page = 1
     var loading = false
-
+    open var isDownRefresh = true
     lateinit var viewPool: RecyclerView.RecycledViewPool
     val adapterList = ArrayList<DelegateAdapter.Adapter<out RecyclerView.ViewHolder>>()
     lateinit var adapter: DelegateAdapter
@@ -136,11 +136,14 @@ open class BaseVlayoutFragment : Fragment() {
         }
     }
 
+    open var isBackTop = true
     open fun scrollToDo() {
-        if (offsetX > windowManager.defaultDisplay.height) {
-            addBackTopButton()
-        } else {
-            removeBackTopButton()
+        if (isBackTop) {
+            if (offsetX > windowManager.defaultDisplay.height) {
+                addBackTopButton()
+            } else {
+                removeBackTopButton()
+            }
         }
     }
 
@@ -160,7 +163,7 @@ open class BaseVlayoutFragment : Fragment() {
 
             override fun checkCanDoRefresh(frame: PtrFrameLayout, content: View, header: View): Boolean {
                 // 默认实现，根据实际情况做改动
-                return isFirstRecycler
+                return isFirstRecycler && isDownRefresh
                 // return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header)
             }
         })
@@ -171,6 +174,7 @@ open class BaseVlayoutFragment : Fragment() {
     }
 
     var lastItem = 0
+    open var isShowLastItem = true
     open var canLoadLastItem = true
     fun setScollListen(view: View) {
         val recycler = view!!.findViewById(R.id.recycler) as RecyclerView
@@ -195,7 +199,7 @@ open class BaseVlayoutFragment : Fragment() {
 
                 if (lastVisibleItem >= totalItemCount - 2 && dy > 0/*&& isSlidingToLast*/) {
                     //加载更多功能的代码
-                    if (!loadMore() && canLoadLastItem) {
+                    if (!loadMore() && canLoadLastItem && isShowLastItem) {
                         adapter.addAdapter(lastItemAdapter)
                         canLoadLastItem = false
                     }

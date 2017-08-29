@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/titleBackGround"
@@ -9,51 +9,59 @@
 
         <ImageButton
             android:id="@+id/back"
-            android:layout_width="0dp"
+            android:layout_width="36dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_alignParentLeft="true"
             android:background="@color/titleBackGround"
-            android:padding="8dp"
+            android:padding="6dp"
             android:scaleType="centerInside"
-            android:src="@mipmap/back" />
+            android:src="@mipmap/back"
+            app:layout_widthPercent="10%w" />
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="9"
+            android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="" />
+            android:text=""
+            android:textSize="@dimen/text_size_mid" />
 
         <TextView
             android:id="@+id/title_right"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:gravity="center"
-            android:text=""
+            android:text="123"
+            android:textSize="@dimen/text_size_small"
             android:visibility="gone" />
 
 
         <TextView
             android:id="@+id/menu"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:background="@color/titleBackGround"
-            android:scaleType="center"
+            android:gravity="center"
+            android:paddingRight="4dp"
             android:src="@mipmap/add_card"
             android:visibility="gone" />
 
         <ImageButton
             android:id="@+id/menu_date"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:background="@color/titleBackGround"
             android:scaleType="center"
             android:src="@mipmap/add_card"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            app:layout_widthPercent="10%w" />
 
-    </LinearLayout>
+    </com.zhy.android.percent.support.PercentRelativeLayout>
 </layout>

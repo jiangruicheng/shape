@@ -114,7 +114,11 @@ class ClassificationItemFragment : BaseVlayoutFragment() {
                         val text = itemView.itemView.findViewById(R.id.text) as TextView
                         image.setImageURI(classmode[i].son_array[position].img_url)
                         text.setText(classmode[i].son_array[position].son_name)
-                        itemView.itemView.setOnClickListener { context.startActivity(Intent(context, ResultActivity::class.java).putExtra(ResultActivity.MODE, ResultActivity.MODE_CLASS).putExtra(ResultActivity.TYPE, ResultActivity.TYPE_COMMODIYT)) }
+                        itemView.itemView.setOnClickListener { context.startActivity(Intent(context, ResultActivity::class.java).
+                                putExtra(ResultActivity.MODE, ResultActivity.MODE_CLASS).
+                                putExtra(ResultActivity.TYPE, ResultActivity.TYPE_COMMODIYT).
+                                putExtra(ResultActivity.TITLE, classmode[i].son_array[position].son_name).
+                                putExtra(ResultFragment.ID, classmode[i].son_array[position].gc_id)) }
                     })/*.setOnBindViewOffset({ itemView, position ->
                 (itemView.itemView.findViewById(R.id.text) as TextView).setText(position.toString())
             })*/.creatAdapter())

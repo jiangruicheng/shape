@@ -9,6 +9,7 @@ class MainActivity : android.support.v7.app.AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         startActivity(android.content.Intent(this, LoginActivity::class.java))
+        finish()
     }
 
     override fun onResume() {

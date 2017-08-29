@@ -4,7 +4,7 @@ package com.cndll.shapetest.bean;
  * Created by jiangruicheng on 2017/8/4.
  */
 
-public class CommodityVerInfoMode extends BaseBinding {
+public class CommodityVerInfoMode {
     public String name;
     public String nowPrice;
     public String oldPrice;

@@ -1,6 +1,7 @@
 package com.cndll.shapetest.api.bean.response;
 
 import com.cndll.shapetest.api.bean.BaseResponse;
+import com.cndll.shapetest.bean.anno.Variable;
 
 import java.util.List;
 
@@ -54,13 +55,18 @@ public class SearcheCommodityResponse extends BaseResponse {
              * img_url : http://zhongxiang.51edn.com/data/upload/shop/store/goods/1/1_05524113778318337_60.jpg
              * goods_id : 7
              */
-
-            private String score;
-            private String goods_name;
-            private String goods_marketprice;
-            private String goods_price;
-            private String img_url;
-            private String goods_id;
+            @Variable(variable = "score")
+            public String score;
+            @Variable(variable = "name")
+            public String goods_name;
+            @Variable(variable = "oldPrice")
+            public String goods_marketprice;
+            @Variable(variable = "nowPrice")
+            public String goods_price;
+            @Variable(variable = "imgUrl")
+            public String img_url;
+            @Variable(variable = "goodsID")
+            public String goods_id;
 
             public String getScore() {
                 return score;
