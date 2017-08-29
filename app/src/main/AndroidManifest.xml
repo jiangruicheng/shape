@@ -176,8 +176,9 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".activity.ResultActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <activity android:name=".activity.ScoreTypeActivity"></activity>
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".activity.ScoreTypeActivity" />
+        <activity android:name=".activity.SendNewActivity"></activity>
     </application>
 
 </manifest>

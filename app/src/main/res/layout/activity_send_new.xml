@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.cndll.shapetest.activity.SendNewActivity">
+
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/titlebar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="8%h"
+            app:layout_widthPercent="100%w" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/lin_service_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_heightPercent="10%"
+            app:layout_marginPercent="2%"
+            app:layout_widthPercent="95%w">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/service_news" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_marginLeftPercent="3%"
+                app:layout_widthPercent="65%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="平台客服"
+                    android:textColor="@color/contents_text"
+                    app:layout_heightPercent="50%h" />
+
+                <TextView
+                    android:id="@+id/service_news_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="在吗？"
+                    android:textColor="@color/gray"
+                    app:layout_heightPercent="50%h" />
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <TextView
+                android:id="@+id/service_news_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="15:22"
+                android:textColor="@color/contents_text" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/lin_system_messages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_heightPercent="10%"
+            app:layout_marginPercent="2%"
+            app:layout_widthPercent="95%w">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/system_messages" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_marginLeftPercent="3%"
+                app:layout_widthPercent="65%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="系统消息"
+                    android:textColor="@color/contents_text"
+                    app:layout_heightPercent="50%h" />
+
+                <TextView
+                    android:id="@+id/system_messages_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="你有一件抢购商品"
+                    android:textColor="@color/gray"
+                    app:layout_heightPercent="50%h" />
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <TextView
+                android:id="@+id/system_messages_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="15:22"
+                android:textColor="@color/contents_text" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/lin_order_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_heightPercent="10%"
+            app:layout_marginPercent="2%"
+            app:layout_widthPercent="95%w">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/order_news" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_marginLeftPercent="3%"
+                app:layout_widthPercent="65%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="订单消息"
+                    android:textColor="@color/contents_text"
+                    app:layout_heightPercent="50%h" />
+
+                <TextView
+                    android:id="@+id/order_news_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="你有一笔订单付款成功"
+                    android:textColor="@color/gray"
+                    app:layout_heightPercent="50%h" />
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <TextView
+                android:id="@+id/order_news_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="15:22"
+                android:textColor="@color/contents_text" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/lin_logistics_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_heightPercent="10%"
+            app:layout_marginPercent="2%"
+            app:layout_widthPercent="95%w">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/logistics_news" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_marginLeftPercent="3%"
+                app:layout_widthPercent="65%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="物流信息"
+                    android:textColor="@color/contents_text"
+                    app:layout_heightPercent="50%h" />
+
+                <TextView
+                    android:id="@+id/logistics_news_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="订单已发货"
+                    android:textColor="@color/gray"
+                    app:layout_heightPercent="50%h" />
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <TextView
+                android:id="@+id/logistics_news_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="15:22"
+                android:textColor="@color/contents_text" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</layout>

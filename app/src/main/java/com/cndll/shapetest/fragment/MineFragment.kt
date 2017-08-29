@@ -134,7 +134,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
         }
         //消息
         binding.mineNews.setOnClickListener {
-            context.startActivity(Intent(context, ScoreTypeActivity::class.java))
+            context.startActivity(Intent(context, SendNewActivity::class.java))
         }
 
         //我的激励
@@ -249,7 +249,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
     }
 
     /**
-     * 返回二维码的信息
+     * 返回二维码的信息--处理二维码
      * */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

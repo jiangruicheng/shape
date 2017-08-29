@@ -2,8 +2,10 @@ package com.cndll.shapetest.api;
 
 
 import com.cndll.shapetest.api.bean.BaseRequest;
-
-import com.cndll.shapetest.api.bean.BaseResponse;
+import com.cndll.shapetest.api.bean.response.AboutUsResponse;
+import com.cndll.shapetest.api.bean.response.AddressDetailsResponse;
+import com.cndll.shapetest.api.bean.response.AddressListResponse;
+import com.cndll.shapetest.api.bean.response.AddressResponse;
 import com.cndll.shapetest.api.bean.response.ApplyInfoResponse;
 import com.cndll.shapetest.api.bean.response.AuthenticationResponse;
 import com.cndll.shapetest.api.bean.response.BankCardResponse;
@@ -12,15 +14,11 @@ import com.cndll.shapetest.api.bean.response.ClassItemResponse;
 import com.cndll.shapetest.api.bean.response.CollectResponse;
 import com.cndll.shapetest.api.bean.response.CommodityResponse;
 import com.cndll.shapetest.api.bean.response.FightResponse;
+import com.cndll.shapetest.api.bean.response.FileResponse;
 import com.cndll.shapetest.api.bean.response.HomePageResponse;
 import com.cndll.shapetest.api.bean.response.HotSearchResponse;
-import com.cndll.shapetest.api.bean.response.LimitedResponse;
-import com.cndll.shapetest.api.bean.response.AboutUsResponse;
-import com.cndll.shapetest.api.bean.response.AddressDetailsResponse;
-import com.cndll.shapetest.api.bean.response.AddressListResponse;
-import com.cndll.shapetest.api.bean.response.AddressResponse;
-import com.cndll.shapetest.api.bean.response.FileResponse;
 import com.cndll.shapetest.api.bean.response.HttpCodeResponse;
+import com.cndll.shapetest.api.bean.response.LimitedResponse;
 import com.cndll.shapetest.api.bean.response.LineaOffResponse;
 import com.cndll.shapetest.api.bean.response.LogisticsResponse;
 import com.cndll.shapetest.api.bean.response.MemberResponse;
@@ -38,9 +36,7 @@ import com.cndll.shapetest.api.bean.response.SearcheCommodityResponse;
 import com.cndll.shapetest.api.bean.response.TestResponse;
 import com.cndll.shapetest.api.bean.response.UserInfoResponse;
 import com.cndll.shapetest.api.bean.response.VouchersResponse;
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 
-import java.io.File;
 import java.util.Map;
 
 import okhttp3.RequestBody;
@@ -48,12 +44,8 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 import rx.Observable;

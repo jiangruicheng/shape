@@ -338,8 +338,7 @@ class ScoreTypeActivity : BaseActivity<ActivityScoreTypeBinding>(), AutoListView
 
 
     /**
-     * ---------
-     * 以激励的积分
+     * 激励的积分
      * */
     private fun httpScore(type: String) {
         ApiUtill.getInstance().getApi(AppRequest.getAPI().scoreNew("score", "excitation_score", SharedPreferenceUtil.read("key", ""), page.toString(), type, start_time, end_time), {

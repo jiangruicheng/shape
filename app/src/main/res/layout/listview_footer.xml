@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="5dp"
-        android:text="没有数据"
+        android:text="没有更多数据，禁止上拉"
         android:visibility="gone" />
 
     <TextView
