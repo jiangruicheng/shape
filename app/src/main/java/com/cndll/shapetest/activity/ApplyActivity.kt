@@ -69,9 +69,11 @@ class ApplyActivity : BaseActivity<ActivityApplyBinding>() {
         }
         binding.applySubmit.setOnClickListener {
             if (type.equals("sales")) {
-                isNull()
+                isNull(2)
             } else if (type.equals("manag")) {
                 httpApply()
+            } else if (type.equals("apply")) {
+                isNull(3)
             }
         }
     }
@@ -79,7 +81,7 @@ class ApplyActivity : BaseActivity<ActivityApplyBinding>() {
     /**
      * 非空判断
      * */
-    private fun isNull() {
+    private fun isNull(type: Int) {
         var isNull = true
         var msg = ""
         if (binding.userName.text.toString().trim().equals("")) {
@@ -91,7 +93,7 @@ class ApplyActivity : BaseActivity<ActivityApplyBinding>() {
             msg = "请输入推荐码"
         }
         if (isNull) {
-            httpApplyCode()
+            httpApplyCode(type)
         } else {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
             return
@@ -101,8 +103,8 @@ class ApplyActivity : BaseActivity<ActivityApplyBinding>() {
     /**
      * 申请业务员
      * */
-    private fun httpApplyCode() {
-        ApiUtill.getInstance().getApi(AppRequest.getAPI().applyInviteCode("invite", "invite_info", SharedPreferenceUtil.read("key", ""), binding.userName.text.toString().trim(), "2", binding.appNum.text.toString().trim()), {
+    private fun httpApplyCode(type: Int) {
+        ApiUtill.getInstance().getApi(AppRequest.getAPI().applyInviteCode("invite", "invite_info", SharedPreferenceUtil.read("key", ""), binding.userName.text.toString().trim(), type.toString(), binding.appNum.text.toString().trim()), {
             baseResponse ->
             baseResponse as ApplyInfoResponse
             if (baseResponse.code == 200) {

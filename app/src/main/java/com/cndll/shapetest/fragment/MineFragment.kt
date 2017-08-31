@@ -43,7 +43,11 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
     val bundle = Bundle()
     var userInfo = UserInfoResponse.DatasBean()
     var applyInfo = ApplyInfoResponse()
+    // 合伙人 业务员
     var isApply: Boolean = false
+    //商家
+    var isApplyMine: Boolean = false
+
     override fun initBindingVar() {
     }
 
@@ -197,6 +201,11 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
                 binding.mineSalesMan.visibility = View.VISIBLE
                 binding.mineLinManaging.visibility = View.GONE
                 binding.mineSalesText.text = "业务员"
+            } else if (applyInfo.datas.invite_type.equals("3") && applyInfo.datas.status.equals("1")) {
+                //商家
+                binding.mineApplyText.text = "商家"
+            } else if (applyInfo.datas.invite_type.equals("3") && applyInfo.datas.status.equals("2")) {
+                isApplyMine = true
             } else {
                 isApply = true
             }
@@ -227,6 +236,10 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
         }
         //申请商家
         binding.mineLinApply.setOnClickListener {
+            if (isApplyMine) {
+                Toast.makeText(context, "正在审核中", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             bundle.putString("type", "apply")
             context.startActivity(Intent(context, ApplyActivity::class.java).putExtras(bundle))
         }

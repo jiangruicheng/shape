@@ -78,7 +78,7 @@ public final class EaseUI {
 
 	/**
 	 * 获取EaseUI单实例对象
-	 * 
+	 *
 	 * @return
 	 */
 	public synchronized static EaseUI getInstance() {
@@ -90,10 +90,10 @@ public final class EaseUI {
 
 	/**
 	 * this function will initialize the HuanXin SDK
-	 * 
+	 *
 	 * @return boolean true if caller can continue to call HuanXin related APIs
 	 *         after calling onInit, otherwise false.
-	 * 
+	 *
 	 *         初始化环信sdk及easeui库
 	 *         返回true如果正确初始化，否则false，如果返回为false，请在后续的调用中不要调用任何和环信相关的代码
 	 * @param context
@@ -120,8 +120,9 @@ public final class EaseUI {
 			// 则此application::onCreate 是被service 调用的，直接返回
 			return false;
 		}
+
 		// 初始化环信SDK,一定要先调用init()
-		EMChat.getInstance().init(context);
+		EMChat.getInstance().init(appContext);
 
 		initChatOptions();
 		if (settingsProvider == null) {
@@ -154,7 +155,7 @@ public final class EaseUI {
 		// notifier.setNotificationInfoProvider(getNotificationListener());
 	}
 
-	
+
 	protected EaseNotifier createNotifier() {
 		return new EaseNotifier();
 	}
@@ -169,7 +170,7 @@ public final class EaseUI {
 
 	/**
 	 * 设置用户属性提供者
-	 * 
+	 *
 	 * @param provider
 	 */
 	public void setUserProfileProvider(EaseUserProfileProvider userProvider) {
@@ -178,7 +179,7 @@ public final class EaseUI {
 
 	/**
 	 * 获取用户属性提供者
-	 * 
+	 *
 	 * @return
 	 */
 	public EaseUserProfileProvider getUserProfileProvider() {
@@ -196,7 +197,7 @@ public final class EaseUI {
 	/**
 	 * check the application process name if process name is not qualified, then
 	 * we think it is a service process and we will not init SDK
-	 * 
+	 *
 	 * @param pID
 	 * @return
 	 */
@@ -227,14 +228,14 @@ public final class EaseUI {
 
 	/**
 	 * 用户属性提供者
-	 * 
+	 *
 	 * @author wei
 	 *
 	 */
 	public interface EaseUserProfileProvider {
 		/**
 		 * 返回此username对应的user
-		 * 
+		 *
 		 * @param username
 		 *            环信id
 		 * @return
@@ -249,7 +250,7 @@ public final class EaseUI {
 	public interface EaseEmojiconInfoProvider {
 		/**
 		 * 根据唯一识别号返回此表情内容
-		 * 
+		 *
 		 * @param emojiconIdentityCode
 		 * @return
 		 */
@@ -257,7 +258,7 @@ public final class EaseUI {
 
 		/**
 		 * 获取文字表情的映射Map,map的key为表情的emoji文本内容，value为对应的图片资源id或者本地路径(不能为网络地址)
-		 * 
+		 *
 		 * @return
 		 */
 		Map<String, Object> getTextEmojiconMapping();
@@ -267,7 +268,7 @@ public final class EaseUI {
 
 	/**
 	 * 获取表情提供者
-	 * 
+	 *
 	 * @return
 	 */
 	public EaseEmojiconInfoProvider getEmojiconInfoProvider() {
@@ -276,7 +277,7 @@ public final class EaseUI {
 
 	/**
 	 * 设置表情信息提供者
-	 * 
+	 *
 	 * @param emojiconInfoProvider
 	 */
 	public void setEmojiconInfoProvider(EaseEmojiconInfoProvider emojiconInfoProvider) {

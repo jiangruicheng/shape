@@ -57,6 +57,21 @@ class ScoreTypeAdapter(private val context: Context, private val contentValues: 
             holder.itemData5.visibility = View.GONE
             holder.itemData6.visibility = View.GONE
         }
+        if (type == 3) {
+            holder.itemTitle.text = Constants.strDate(contentValues[position].time)
+            if (contentValues[position].pay_type.equals("0")) {
+                holder.itemData1.text = "线上消费"
+            } else if (contentValues[position].pay_type.equals("1")) {
+                holder.itemData1.text = "线下付款"
+            } else if (contentValues[position].pay_type.equals("2")) {
+                holder.itemData1.text = "线下扫码"
+            }
+            holder.itemData2.text = contentValues[position].order_amount
+            holder.itemData3.text = contentValues[position].store_name
+            holder.itemData4.text = contentValues[position].settlement_price
+            holder.itemData5.text = contentValues[position].excitation_score
+            holder.itemData6.text = contentValues[position].shop_score
+        }
         return convertView
     }
 

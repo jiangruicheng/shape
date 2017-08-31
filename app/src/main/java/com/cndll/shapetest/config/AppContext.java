@@ -34,6 +34,8 @@ public class AppContext extends Application implements UncaughtExceptionHandler 
         appContext = this;
         mContext = this.getApplicationContext();
         Fresco.initialize(this);
+        //环信EZUI
+        EaseUI.getInstance().init(this);
         // 获取系统默认的UncaughtException处理
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         //友盟配置三方平台的appkey
@@ -46,8 +48,7 @@ public class AppContext extends Application implements UncaughtExceptionHandler 
         // 将该app注册到微信
         msgApi.registerApp("wx11de741afcebadb2");
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
-        //环信EZUI
-        EaseUI.getInstance().init(this);
+
     }
 
     @Override

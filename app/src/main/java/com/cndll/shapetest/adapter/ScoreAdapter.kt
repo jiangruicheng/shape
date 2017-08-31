@@ -14,7 +14,7 @@ import com.cndll.shapetest.tools.Constants
 /**
  * Created by Administrator on 2017/8/7 0007.
  */
-class IntergralRecodeAdapter(private val context: Context?, private val contentValues: List<ScoreAllResponse.DatasBean>, private val type: Int) : BaseAdapter() {
+class ScoreAdapter(private val context: Context?, private val contentValues: List<ScoreInfoResponse.DatasBean.ScoreInfoBean>, private val type: Int) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertView = convertView
         var holder: ViewHolder
@@ -33,24 +33,14 @@ class IntergralRecodeAdapter(private val context: Context?, private val contentV
         if (contentValues!!.size <= position || contentValues == null) {
             return convertView
         }
-        if (type == 3) {
+
+        if (type == 2) {
             holder.interTime.text = Constants.strDate(contentValues[position].time)
             holder.interType.visibility = View.GONE
             holder.interFun.visibility = View.GONE
-            holder.interManage.text = contentValues[position].goods_name
-            holder.interCode.text = contentValues[position].score
-        } else if (type == 4) {
-            holder.interTime.text = Constants.strDate(contentValues[position].time)
-            if (contentValues[position].type.equals("0")) {
-                holder.interType.text = "激励积分"
-            } else if (contentValues[position].type.equals("1")) {
-                holder.interType.text = "通用抵用卷"
-            }
-            holder.interFun.visibility = View.GONE
-            holder.interManage.text = contentValues[position].donation_num
-            holder.interCode.text = contentValues[position].score
+            holder.interManage.text = contentValues[position].store_name
+            holder.interCode.text = contentValues[position].operation_symbol + contentValues[position].score
         }
-
 
         return convertView
     }

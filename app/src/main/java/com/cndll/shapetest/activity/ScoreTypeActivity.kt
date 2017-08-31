@@ -17,6 +17,7 @@ import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.tools.SharedPreferenceUtil
 import com.cndll.shapetest.view.AutoListView
 import com.cndll.shapetest.view.CHScrollView.CHScrollViewHelper
+import com.handmark.pulltorefresh.library.PullToRefreshBase
 import java.util.*
 
 
@@ -32,7 +33,12 @@ class ScoreTypeActivity : BaseActivity<ActivityScoreTypeBinding>(), AutoListView
             moreListScore.clear()
         }
         page = 1
-        httpScore(typeScore)
+        if (type.equals("subsidiary")) {
+            httpScoreDetails("score", "score_info")
+        }else if(type.equals("incentive")){
+            httpScore(typeScore)
+        }
+
         loadData(AutoListView.REFRESH)
     }
 
@@ -44,7 +50,11 @@ class ScoreTypeActivity : BaseActivity<ActivityScoreTypeBinding>(), AutoListView
             cahList.clear()
         }
         page += 1
-        httpScore(typeScore)
+        if (type.equals("subsidiary")) {
+            httpScoreDetails("score", "score_info")
+        }else if(type.equals("incentive")){
+            httpScore(typeScore)
+        }
         loadData(AutoListView.LOAD)
     }
 
@@ -82,7 +92,7 @@ class ScoreTypeActivity : BaseActivity<ActivityScoreTypeBinding>(), AutoListView
     var moreListScore = ArrayList<ScoreInfoResponse.DatasBean.ScoreInfoBean>()
     var cahList = ArrayList<ScoreInfoResponse.DatasBean.ScoreInfoBean>()
     var typeScore = "not_score"
-
+    var type: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding(R.layout.activity_score_type)
@@ -98,19 +108,16 @@ class ScoreTypeActivity : BaseActivity<ActivityScoreTypeBinding>(), AutoListView
         // 添加头滑动事件
         CHScrollViewHelper.mHScrollViews.add(binding.itemScrollTitle)
         var bundle = this.intent.extras
-        var type = bundle.getString("type")
+        type = bundle.getString("type")
         if (type.equals("subsidiary")) {
             binding.titlebar.title.text = "消费明细"
-            binding.integralAllScore.text = "100000000"
-            binding.scoreIt1.text = "积分：100"
-            binding.scoreIt2.text = "最高可激励消费：100"
-            binding.scoreIt3.text = "消费积分：200"
+
             if (adapterScore == null) {
-                adapterScore = ScoreTypeAdapter(context, moreListScore, binding.scrollList, 2)
+                adapterScore = ScoreTypeAdapter(context, moreListScore, binding.scrollList, 3)
                 binding.scrollList.adapter = adapterScore
             }
             page = 1
-            httpScore(typeScore)
+            httpScoreDetails("score", "score_info")
             loadData(AutoListView.REFRESH)
         } else if (type.equals("incentive")) {
             binding.titlebar.title.text = "激励积分"
@@ -321,7 +328,11 @@ class ScoreTypeActivity : BaseActivity<ActivityScoreTypeBinding>(), AutoListView
                 moreListScore.clear()
             }
             page = 1
-            httpScore(typeScore)
+            if (type.equals("subsidiary")) {
+                httpScoreDetails("score", "score_info")
+            }else if(type.equals("incentive")){
+                httpScore(typeScore)
+            }
             loadData(AutoListView.REFRESH)
             pwMyPopWindow.dismiss()
         }
@@ -359,5 +370,27 @@ class ScoreTypeActivity : BaseActivity<ActivityScoreTypeBinding>(), AutoListView
         })
     }
 
+    /**
+     * 积分明细
+     * */
+    private fun httpScoreDetails(act: String, op: String) {
+        ApiUtill.getInstance().getApi(AppRequest.getAPI().shopScore(act, op, SharedPreferenceUtil.read("key", ""), page.toString(), start_time, end_time), {
+            baseResponse ->
+            baseResponse as ScoreInfoResponse
+            if (baseResponse.code == 200) {
+                binding.integralAllScore.text = baseResponse.datas.shop_money
+                binding.scoreIt1.text = "积分：" + baseResponse.datas.score
+                binding.scoreIt2.text = "最高可激励消费：" + baseResponse.datas.excitation_score
+                binding.scoreIt3.text = "消费积分：" + baseResponse.datas.shop_score
+
+                cahList.addAll(baseResponse.datas.score_info)
+                moreListScore.addAll(cahList)
+                adapterScore!!.notifyDataSetChanged()
+            } else {
+                Toast.makeText(context, baseResponse.error_message, Toast.LENGTH_SHORT).show()
+            }
+        })
+
+    }
 
 }

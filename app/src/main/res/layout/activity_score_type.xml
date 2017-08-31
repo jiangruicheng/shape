@@ -67,19 +67,19 @@
                     android:text="积分总额"
                     android:textColor="@color/gray"
                     app:layout_heightPercent="100%h"
-                    app:layout_marginLeftPercent="3%"
+                    app:layout_marginLeftPercent="2%"
                     app:layout_textSizePercent="@string/text_size_mid" />
 
                 <TextView
                     android:id="@+id/score_it2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:gravity="center"
                     android:text="积分总额"
                     android:textColor="@color/gray"
                     app:layout_heightPercent="100%h"
-                    app:layout_marginLeftPercent="3%"
+                    app:layout_marginLeftPercent="2%"
                     app:layout_textSizePercent="@string/text_size_mid" />
 
                 <TextView
@@ -91,7 +91,7 @@
                     android:text="积分总额"
                     android:textColor="@color/gray"
                     app:layout_heightPercent="100%h"
-                    app:layout_marginLeftPercent="3%"
+                    app:layout_marginLeftPercent="2%"
                     app:layout_textSizePercent="@string/text_size_mid" />
 
             </com.zhy.android.percent.support.PercentLinearLayout>

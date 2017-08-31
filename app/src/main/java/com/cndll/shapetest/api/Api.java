@@ -409,5 +409,12 @@ public interface Api {
     @GET("mobile/index.php/")
     Observable<ScoreInfoResponse> scoreNew(@Query("act") String act, @Query("op") String op, @Query("key") String key, @Query("page") String page, @Query("type") String type, @Query("start_time") String start_time, @Query("end_time") String end_time);
 
+    /**
+     * 消费积分
+     */
+    @GET("mobile/index.php/")
+    Observable<ScoreInfoResponse> shopScore(@Query("act") String act, @Query("op") String op, @Query("key") String key, @Query("page") String page, @Query("start_time") String start_time, @Query("end_time") String end_time);
+
+
 }
 

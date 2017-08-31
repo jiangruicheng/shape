@@ -3,8 +3,8 @@
     package="com.easemob.easeui.test" >
 
     <uses-sdk
-        android:minSdkVersion="9"
-        android:targetSdkVersion="22" />
+        android:minSdkVersion="15"
+        android:targetSdkVersion="25" />
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
@@ -12,6 +12,10 @@
         android:handleProfiling="false"
         android:label="Tests for com.easemob.easeui.test"
         android:targetPackage="com.easemob.easeui.test" />
+
+    <meta-data
+        android:name="android.support.VERSION"
+        android:value="25.3.1" />
 
     <application>
         <uses-library android:name="android.test.runner" />

@@ -11,10 +11,13 @@ import com.cndll.shapetest.databinding.ActivityIntegralBinding
 import java.util.*
 import android.widget.PopupWindow
 import com.cndll.shapetest.adapter.IntergralRecodeAdapter
+import com.cndll.shapetest.adapter.ScoreAdapter
+import com.cndll.shapetest.api.ApiUtill
 import com.cndll.shapetest.api.AppRequest
 import com.cndll.shapetest.api.BaseObservable
 import com.cndll.shapetest.api.bean.BaseResponse
 import com.cndll.shapetest.api.bean.response.ScoreAllResponse
+import com.cndll.shapetest.api.bean.response.ScoreInfoResponse
 import com.cndll.shapetest.tools.Constants
 import com.cndll.shapetest.tools.SharedPreferenceUtil
 import com.handmark.pulltorefresh.library.PullToRefreshBase
@@ -38,11 +41,15 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
     lateinit var listView: ListView
     var page: Int = 1
     var adapter: IntergralRecodeAdapter? = null
+    var scoreAdapter: ScoreAdapter? = null
     var moreList = ArrayList<ScoreAllResponse.DatasBean>()
     var cahList = ArrayList<ScoreAllResponse.DatasBean>()
     var type: String? = null
     var start_time: String = ""
     var end_time: String = ""
+
+    var moreShopList = ArrayList<ScoreInfoResponse.DatasBean.ScoreInfoBean>()
+    var cahShopList = ArrayList<ScoreInfoResponse.DatasBean.ScoreInfoBean>()
     override fun initBindingVar() {
     }
 
@@ -77,18 +84,16 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
 
         if (type.equals("score")) {
             binding.titlebar.title.text = "消费积分"
+            binding.integralTitle.text = "消费积分"
             binding.manageTx.visibility = View.GONE
             binding.funTx.visibility = View.GONE
             binding.typeTx.text = "消费店铺"
-            binding.integralAllScore.text = bundle.getString("score")
             if (adapter == null) {
-                adapter = IntergralRecodeAdapter(context, moreList, 2)
-                listView.adapter = adapter
+                scoreAdapter = ScoreAdapter(context, moreShopList, 2)
+                listView.adapter = scoreAdapter
             }
             page = 1
-            httpScore("score", "shop_score")
-
-
+            httpShopScore("score", "shop_score")
         } else if (type.equals("fund")) {
             binding.titlebar.title.text = "基金捐款"
             binding.manageTx.visibility = View.GONE
@@ -136,7 +141,6 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
             }
 
 
-
         }
 
         initPopupWindow()
@@ -161,11 +165,12 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
             if (cahList != null && cahList.size > 0) {
                 cahList.clear()
             }
+            if (cahShopList != null && cahShopList.size > 0) {
+                cahShopList.clear()
+            }
             page += 1
-            if (type.equals("incentive")) {//激励积分
-                httpScore("score", "excitation_score")
-            } else if (type.equals("score")) {//消费积分
-                httpScore("score", "shop_score")
+            if (type.equals("score")) {//消费积分
+                httpShopScore("score", "shop_score")
             } else if (type.equals("subsidiary")) {//积分明细
                 httpScore("score", "score_info")
             } else if (type.equals("remain")) {
@@ -181,11 +186,15 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
             if (moreList != null && moreList.size > 0) {
                 moreList.clear()
             }
+            if (cahShopList != null && cahShopList.size > 0) {
+                cahShopList.clear()
+            }
+            if (moreShopList != null && moreShopList.size > 0) {
+                moreShopList.clear()
+            }
             page = 1
-            if (type.equals("incentive")) {
-                httpScore("score", "excitation_score")
-            } else if (type.equals("score")) {
-                httpScore("score", "shop_score")
+            if (type.equals("score")) {
+                httpShopScore("score", "shop_score")
             } else if (type.equals("subsidiary")) {
                 httpScore("score", "score_info")
             } else if (type.equals("remain")) {
@@ -259,18 +268,21 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
         lvPopupList.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             start_time = Constants.dateToStamp(listTime.get(position).get("time").toString())
             end_time = Constants.dateToStamp(Constants.strEndTime(listTime.get(position).get("time").toString()))
-            println("start_time:" + start_time + "end_time:" + end_time)
             if (cahList != null && cahList.size > 0) {
                 cahList.clear()
             }
             if (moreList != null && moreList.size > 0) {
                 moreList.clear()
             }
+            if (cahShopList != null && cahShopList.size > 0) {
+                cahShopList.clear()
+            }
+            if (moreShopList != null && moreShopList.size > 0) {
+                moreShopList.clear()
+            }
             page = 1
-            if (type.equals("incentive")) {
-                httpScore("score", "excitation_score")
-            } else if (type.equals("score")) {
-                httpScore("score", "shop_score")
+            if (type.equals("score")) {
+                httpShopScore("score", "shop_score")
             } else if (type.equals("subsidiary")) {
                 httpScore("score", "score_info")
             } else if (type.equals("remain")) {
@@ -325,9 +337,47 @@ class IntegralActivity : BaseActivity<ActivityIntegralBinding>() {
 
             }
         })
-
-
     }
 
 
+    /**
+     * 消费积分--类型
+     * */
+    private fun httpShopScore(act: String, op: String) {
+        AppRequest.getAPI().shopScore(act, op, SharedPreferenceUtil.read("key", ""), page.toString(), start_time, end_time).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObservable() {
+            override fun onError(e: Throwable?) {
+                super.onError(e)
+                e!!.printStackTrace()
+            }
+
+            override fun onCompleted() {
+                super.onCompleted()
+            }
+
+            override fun onNext(t: BaseResponse?) {
+                super.onNext(t)
+                t as ScoreInfoResponse
+                if (t.code == 200) {
+                    if (type.equals("score")) {
+                        binding.integralAllScore.text = (t.datas.not_score.toDouble() + t.datas.shop_score.toDouble()).toString()
+                        binding.integralItem1.text = "已使用：" + t.datas.shop_score
+                        binding.integralItem2.visibility = View.GONE
+                        binding.integralItem3.text = "未使用：" + t.datas.not_score
+                    }
+                    cahShopList.addAll(t.datas.score_info)
+                    moreShopList.addAll(cahShopList)
+                    scoreAdapter!!.notifyDataSetChanged()
+                    binding.integralPull.onRefreshComplete()
+                    if (t.datas.score_info.size <= 0) {
+                        binding.integralPull.mode = PullToRefreshBase.Mode.PULL_FROM_START
+                    } else {
+                        binding.integralPull.mode = PullToRefreshBase.Mode.BOTH
+                    }
+                } else {
+                    Toast.makeText(context, t.error_message, Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        })
+    }
 }

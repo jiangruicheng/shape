@@ -39,7 +39,7 @@
                 android:layout_width="100dip"
                 android:layout_height="fill_parent"
                 android:gravity="center"
-                android:textColor="#191" />
+                android:textColor="#101" />
 
             <TextView
                 android:id="@+id/item_data3"
@@ -60,14 +60,14 @@
                 android:layout_width="100dip"
                 android:layout_height="fill_parent"
                 android:gravity="center"
-                android:textColor="#071" />
+                android:textColor="#101" />
 
             <TextView
                 android:id="@+id/item_data6"
                 android:layout_width="100dip"
                 android:layout_height="fill_parent"
                 android:gravity="center"
-                android:textColor="#910" />
+                android:textColor="#101" />
         </LinearLayout>
     </com.cndll.shapetest.view.CHScrollView>
 

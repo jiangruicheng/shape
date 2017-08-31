@@ -52,12 +52,47 @@ public class ScoreInfoResponse extends BaseResponse {
          * member_score : 9820.00
          * score_info : [{"time":"1503558364","operation_type":"2","operation_symbol":"-","score":"30.00","giver_num":"3495509","so_score":"9950.00","now_score":"9920.00"},{"time":"1498838400","operation_type":"2","operation_symbol":"-","score":"100.00","giver_num":"3495509","so_score":"9920.00","now_score":"9820.00"}]
          */
-
         private String max_score;
-        private double not_score;
+        private String not_score;
         private String get_score;
         private String member_score;
+        private String shop_score;
+        private String shop_money;
+        private String score;
+        private String excitation_score;
         private List<ScoreInfoBean> score_info;
+
+        public String getShop_money() {
+            return shop_money;
+        }
+
+        public void setShop_money(String shop_money) {
+            this.shop_money = shop_money;
+        }
+
+        public String getScore() {
+            return score;
+        }
+
+        public void setScore(String score) {
+            this.score = score;
+        }
+
+        public String getExcitation_score() {
+            return excitation_score;
+        }
+
+        public void setExcitation_score(String excitation_score) {
+            this.excitation_score = excitation_score;
+        }
+
+        public String getShop_score() {
+            return shop_score;
+        }
+
+        public void setShop_score(String shop_score) {
+            this.shop_score = shop_score;
+        }
 
         public String getMax_score() {
             return max_score;
@@ -67,11 +102,11 @@ public class ScoreInfoResponse extends BaseResponse {
             this.max_score = max_score;
         }
 
-        public double getNot_score() {
+        public String getNot_score() {
             return not_score;
         }
 
-        public void setNot_score(double not_score) {
+        public void setNot_score(String not_score) {
             this.not_score = not_score;
         }
 
@@ -121,6 +156,60 @@ public class ScoreInfoResponse extends BaseResponse {
             private String max_score;
             private String today_score;
             private String overplus_score;
+            private String store_name;
+            private String pay_type;
+            private String order_amount;
+            private String settlement_price;
+            private String excitation_score;
+            private String shop_score;
+
+            public String getPay_type() {
+                return pay_type;
+            }
+
+            public void setPay_type(String pay_type) {
+                this.pay_type = pay_type;
+            }
+
+            public String getOrder_amount() {
+                return order_amount;
+            }
+
+            public void setOrder_amount(String order_amount) {
+                this.order_amount = order_amount;
+            }
+
+            public String getSettlement_price() {
+                return settlement_price;
+            }
+
+            public void setSettlement_price(String settlement_price) {
+                this.settlement_price = settlement_price;
+            }
+
+            public String getExcitation_score() {
+                return excitation_score;
+            }
+
+            public void setExcitation_score(String excitation_score) {
+                this.excitation_score = excitation_score;
+            }
+
+            public String getShop_score() {
+                return shop_score;
+            }
+
+            public void setShop_score(String shop_score) {
+                this.shop_score = shop_score;
+            }
+
+            public String getStore_name() {
+                return store_name;
+            }
+
+            public void setStore_name(String store_name) {
+                this.store_name = store_name;
+            }
 
             public String getRole_type() {
                 return role_type;
